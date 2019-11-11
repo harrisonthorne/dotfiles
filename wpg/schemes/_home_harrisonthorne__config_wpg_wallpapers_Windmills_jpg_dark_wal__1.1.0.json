@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Windmills.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#341f0d",
+        "foreground": "#fffcff",
+        "cursor": "#fffcff"
+    },
+    "colors": {
+        "color0": "#341f0d",
+        "color1": "#CCD6F3",
+        "color2": "#BCE0FD",
+        "color3": "#F4C6A9",
+        "color4": "#B2D4FA",
+        "color5": "#A0B4E0",
+        "color6": "#8FC7FE",
+        "color7": "#ebe6ea",
+        "color8": "#5c3616",
+        "color9": "#cfe7ff",
+        "color10": "#bfffff",
+        "color11": "#ffeeb7",
+        "color12": "#bafbff",
+        "color13": "#b7e0ff",
+        "color14": "#9effff",
+        "color15": "#fffcff"
+    }
+}

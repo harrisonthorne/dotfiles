@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Range.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#070B0A",
+        "foreground": "#e7fbff",
+        "cursor": "#e7fbff"
+    },
+    "colors": {
+        "color0": "#070B0A",
+        "color1": "#8BB3FC",
+        "color2": "#77A2F7",
+        "color3": "#BBBCA1",
+        "color4": "#6B96F7",
+        "color5": "#A1B7D8",
+        "color6": "#538AF6",
+        "color7": "#ccddf5",
+        "color8": "#192a26",
+        "color9": "#9be1ff",
+        "color10": "#82caff",
+        "color11": "#ffffba",
+        "color12": "#74baff",
+        "color13": "#b8e9ff",
+        "color14": "#56acff",
+        "color15": "#e7fbff"
+    }
+}

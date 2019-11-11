@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Bridge.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0A0A0C",
+        "foreground": "#f9ffff",
+        "cursor": "#f9ffff"
+    },
+    "colors": {
+        "color0": "#0A0A0C",
+        "color1": "#E5E3DA",
+        "color2": "#D3DAE6",
+        "color3": "#C8C0BC",
+        "color4": "#C8CCD6",
+        "color5": "#BCC3CE",
+        "color6": "#B1B9C7",
+        "color7": "#e4e9ee",
+        "color8": "#202027",
+        "color9": "#ffffdf",
+        "color10": "#daf5ff",
+        "color11": "#fff1db",
+        "color12": "#dcf0ff",
+        "color13": "#d9f6ff",
+        "color14": "#cde9ff",
+        "color15": "#f9ffff"
+    }
+}

@@ -1,0 +1,15 @@
+default-timeout=10000
+border-size=0
+anchor=top-center
+background-color=#000000CC
+font=Fira Sans 10
+padding=16,32
+margin=16
+border-size=2
+border-color=#000000
+
+[urgency=low]
+text-color=#FFFFFFCC
+
+[urgency=high]
+border-color=#AA0000

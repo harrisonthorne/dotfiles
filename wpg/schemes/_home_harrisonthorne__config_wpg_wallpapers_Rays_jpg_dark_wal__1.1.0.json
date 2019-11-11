@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Rays.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#191808",
+        "foreground": "#fffff9",
+        "cursor": "#fffff9"
+    },
+    "colors": {
+        "color0": "#191808",
+        "color1": "#718498",
+        "color2": "#6E7A89",
+        "color3": "#8897AA",
+        "color4": "#5F768F",
+        "color5": "#9B9C9E",
+        "color6": "#788FA8",
+        "color7": "#dcd7d2",
+        "color8": "#3f3d13",
+        "color9": "#81abd6",
+        "color10": "#7f9cc2",
+        "color11": "#9cc1f0",
+        "color12": "#6c98c9",
+        "color13": "#b5c4e1",
+        "color14": "#89b9ed",
+        "color15": "#fffff9"
+    }
+}

@@ -1,0 +1,1 @@
+../../bspwm/panel.sh

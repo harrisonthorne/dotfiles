@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Mists.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0B0D04",
+        "foreground": "#ffffef",
+        "cursor": "#ffffef"
+    },
+    "colors": {
+        "color0": "#0B0D04",
+        "color1": "#7A848E",
+        "color2": "#707A84",
+        "color3": "#CDC6BC",
+        "color4": "#536387",
+        "color5": "#8A8F93",
+        "color6": "#9EA5AA",
+        "color7": "#e9ddce",
+        "color8": "#2c350e",
+        "color9": "#8dabc9",
+        "color10": "#819ebb",
+        "color11": "#ffffda",
+        "color12": "#5d7bbd",
+        "color13": "#a0bbd1",
+        "color14": "#b8daf2",
+        "color15": "#ffffef"
+    }
+}

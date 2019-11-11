@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Bush.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#161813",
+        "foreground": "#fdfeff",
+        "cursor": "#fdfeff"
+    },
+    "colors": {
+        "color0": "#161813",
+        "color1": "#9F9269",
+        "color2": "#D6D7DA",
+        "color3": "#A79D56",
+        "color4": "#7B778B",
+        "color5": "#C5B39E",
+        "color6": "#A6A494",
+        "color7": "#e5e6e8",
+        "color8": "#2f3428",
+        "color9": "#dfc677",
+        "color10": "#e3f1ff",
+        "color11": "#e9d85f",
+        "color12": "#958ac5",
+        "color13": "#ffeab6",
+        "color14": "#ece5ac",
+        "color15": "#fdfeff"
+    }
+}

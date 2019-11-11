@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Winter.JPG",
+    "alpha": "100",
+
+    "special": {
+        "background": "#161619",
+        "foreground": "#f3fcff",
+        "cursor": "#f3fcff"
+    },
+    "colors": {
+        "color0": "#161619",
+        "color1": "#BCCCE8",
+        "color2": "#B6C5DD",
+        "color3": "#A2B2CC",
+        "color4": "#9199AC",
+        "color5": "#C2BCC6",
+        "color6": "#76A2C8",
+        "color7": "#d9e1ed",
+        "color8": "#2d2d33",
+        "color9": "#caf0ff",
+        "color10": "#ccf3ff",
+        "color11": "#bae1ff",
+        "color12": "#a7bef4",
+        "color13": "#ffdbff",
+        "color14": "#84d4ff",
+        "color15": "#f3fcff"
+    }
+}

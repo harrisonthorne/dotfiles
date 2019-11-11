@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Alley.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0D0D0C",
+        "foreground": "#fffff4",
+        "cursor": "#fffff4"
+    },
+    "colors": {
+        "color0": "#0D0D0C",
+        "color1": "#927652",
+        "color2": "#7A837F",
+        "color3": "#D8AC6A",
+        "color4": "#F3DC99",
+        "color5": "#ACA48E",
+        "color6": "#A88D63",
+        "color7": "#f2efdf",
+        "color8": "#272723",
+        "color9": "#cc9b5b",
+        "color10": "#8ebaa6",
+        "color11": "#ffe374",
+        "color12": "#ffffab",
+        "color13": "#f3dea4",
+        "color14": "#ebbb6f",
+        "color15": "#fffff4"
+    }
+}

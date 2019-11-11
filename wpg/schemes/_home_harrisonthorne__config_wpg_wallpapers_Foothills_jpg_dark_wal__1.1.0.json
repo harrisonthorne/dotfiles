@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Foothills.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0f0b08",
+        "foreground": "#fffffd",
+        "cursor": "#fffffd"
+    },
+    "colors": {
+        "color0": "#0f0b08",
+        "color1": "#615E5D",
+        "color2": "#7D828C",
+        "color3": "#867F79",
+        "color4": "#767A86",
+        "color5": "#8A8E96",
+        "color6": "#A2A5AA",
+        "color7": "#d6d5d4",
+        "color8": "#302218",
+        "color9": "#8a746c",
+        "color10": "#91a3c7",
+        "color11": "#bea38c",
+        "color12": "#8996be",
+        "color13": "#a0b2d5",
+        "color14": "#bdd1f2",
+        "color15": "#fffffd"
+    }
+}

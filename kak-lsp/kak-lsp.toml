@@ -1,0 +1,11 @@
+[language.typescript]
+filetypes = ["typescript"]
+roots = [".git"]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[language.php]
+filetypes = ["php"]
+roots = ["composer.json"]
+command = "node"
+args = ["/usr/bin/intelephense"]

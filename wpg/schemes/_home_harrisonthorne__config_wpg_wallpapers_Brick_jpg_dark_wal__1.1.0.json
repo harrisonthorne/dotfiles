@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Brick.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#191816",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#191816",
+        "color1": "#807F81",
+        "color2": "#737B84",
+        "color3": "#7A858C",
+        "color4": "#3D5C83",
+        "color5": "#8E8E8F",
+        "color6": "#7C9EC3",
+        "color7": "#c8c8c8",
+        "color8": "#33312d",
+        "color9": "#a694b8",
+        "color10": "#859ebb",
+        "color11": "#8db0c6",
+        "color12": "#4276b6",
+        "color13": "#a6a6cc",
+        "color14": "#8cccff",
+        "color15": "#ffffff"
+    }
+}

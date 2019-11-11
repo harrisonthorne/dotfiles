@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Windows.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#180f08",
+        "foreground": "#edfcff",
+        "cursor": "#edfcff"
+    },
+    "colors": {
+        "color0": "#180f08",
+        "color1": "#7496C6",
+        "color2": "#6487BA",
+        "color3": "#BAB19F",
+        "color4": "#4E74AD",
+        "color5": "#91AFDA",
+        "color6": "#7EC1CC",
+        "color7": "#cfdced",
+        "color8": "#3e2613",
+        "color9": "#82bfff",
+        "color10": "#6facff",
+        "color11": "#ffedb8",
+        "color12": "#5593f1",
+        "color13": "#a4dfff",
+        "color14": "#8effff",
+        "color15": "#edfcff"
+    }
+}

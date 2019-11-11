@@ -1,0 +1,12 @@
+[Unit]
+Description=Mopidy music server
+After=network.target
+After=pulseaudio.target
+
+[Service]
+ExecStart=/usr/bin/mopidy -vv --save-debug-log -o logging/debug_file="/home/harrisonthorne/mopidy.log"
+#ExecStartPost=/home/harrisonthorne/.config/i3/mopidy_vis.sh
+Restart=always
+
+[Install]
+WantedBy=default.target

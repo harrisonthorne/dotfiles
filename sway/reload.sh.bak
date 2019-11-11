@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+currentWallpaper="$(wpg -c)"
+
+cat ~/.config/wpg/sequences # apply wpgtk's colors
+
+# status-bar-template-parsing-thing -i "$HOME/.config/wpg/wallpapers/$currentWallpaper" -t "$HOME/.config/wpg/templates/config_sway_config" -o "$HOME/.config/sway/config"
+
+makoctl reload
+
+if [ "$1" = "--reload-sway" ]; then
+    swaymsg reload
+fi
+
+kitty @ set-colors -a -c
+
+swaymsg output "*" background "$HOME/.config/wpg/wallpapers/$currentWallpaper" fill

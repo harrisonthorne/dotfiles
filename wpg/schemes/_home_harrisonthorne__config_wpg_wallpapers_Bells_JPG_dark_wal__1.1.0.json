@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Bells.JPG",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0a0d0a",
+        "foreground": "#faf1ff",
+        "cursor": "#faf1ff"
+    },
+    "colors": {
+        "color0": "#0a0d0a",
+        "color1": "#8A6370",
+        "color2": "#9664A0",
+        "color3": "#A094A0",
+        "color4": "#735C89",
+        "color5": "#AE69BF",
+        "color6": "#788E97",
+        "color7": "#d3cce2",
+        "color8": "#1f291f",
+        "color9": "#c2718c",
+        "color10": "#ce71e0",
+        "color11": "#e3ace3",
+        "color12": "#9568c0",
+        "color13": "#ed75ff",
+        "color14": "#8abfd5",
+        "color15": "#faf1ff"
+    }
+}

@@ -1,0 +1,116 @@
+configuration {{
+	modi: "combi,drun,calc,emoji,window";
+	combi-modi: "drun,window";
+	columns: 1;
+	font: "Roboto 10";
+	location: 2;
+	yoffset: 32;
+	xoffset: 0;
+	show-icons: true;
+	disable-history: false;
+    sort: true;
+	sorting-method: "fzf";
+    hide-scrollbar: false;
+    scrollbar-width: 4;
+    scroll-method: 1;
+	case-sensitive: false;
+	sidebar-mode: true;
+	auto-select: false;
+	matching: "fuzzy";
+	fullscreen: false;
+    terminal: "alacritty";
+    ssh-client: "ssh";
+    ssh-command: "{{terminal}} -e /bin/bash -i -c \"{{ssh-client}} {{host}}\"";
+    run-shell-command: "{{terminal}} -e /usr/bin/fish -i -c \"{{cmd}}\"";
+    window-format: "{{t:32}}   on desktop {{w:-1}}";
+    display-window: "Windows";
+    display-run: "Commands";
+    display-drun: "Apps";
+    display-ssh: "SSH";
+    display-calc: "Calculator";
+    display-emoji: "Emoji";
+    display-combi: "All";
+    combi-hide-mode-prefix: true;
+}}
+
+* {{
+    text-color:  #ffffff;
+    background-color: #00000000;
+    black: {color0};
+    white: #ffffff;
+    inactive: {active};
+    orange: #ffaa00;
+    selected: #{active.strip}20;
+}}
+#window {{
+    border:  0px 0px 0px 0px;
+    text-color: @white;
+
+    orientation: vertical;
+    children: [mainbox];
+    height: 85%;
+    width: 33%;
+}}
+
+#sidebar {{
+    border: 0px;
+}}
+
+#button {{
+    text-color: @inactive;
+}}
+
+#button selected {{
+    text-color: @white;
+}}
+
+#inputbar {{
+    text-color: @white;
+}}
+
+#mainbox {{
+    expand: true;
+    background-color: {color0}e5;
+    spacing: 1em;
+    padding: 32px;
+}}
+
+#listview {{
+    dynamic: false;
+    lines: 0;
+}}
+
+#element {{
+    padding: 12px;
+}}
+
+#element selected normal {{
+    background-color: @selected;
+}}
+
+#element normal active {{
+    text-color: {active};
+}}
+#element normal urgent {{
+    text-color: @orange;
+}}
+#element selected active {{
+    background-color: @selected;
+    text-color: {active};
+}}
+#element selected urgent {{
+    background-color: @selected;
+    text-color: @orange;
+}}
+#inputbar {{
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}}
+#textbox-prompt-colon {{
+    expand:     false;
+    str:        ":";
+    margin:     0em 0.5em 0em 0em;
+    text-color: @white;
+}}
+
+/* vim: ft=css
+ */

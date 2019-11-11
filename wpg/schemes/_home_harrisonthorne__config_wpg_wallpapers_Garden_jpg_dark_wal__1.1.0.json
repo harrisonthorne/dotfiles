@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Garden.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0b0d09",
+        "foreground": "#fdfdff",
+        "cursor": "#fdfdff"
+    },
+    "colors": {
+        "color0": "#0b0d09",
+        "color1": "#7F807A",
+        "color2": "#64675A",
+        "color3": "#8D8976",
+        "color4": "#C3BFBE",
+        "color5": "#AEAEB1",
+        "color6": "#939393",
+        "color7": "#dedee0",
+        "color8": "#242b1d",
+        "color9": "#afb68e",
+        "color10": "#889268",
+        "color11": "#c8bd88",
+        "color12": "#ffe9de",
+        "color13": "#cbcbfc",
+        "color14": "#d2acac",
+        "color15": "#fdfdff"
+    }
+}

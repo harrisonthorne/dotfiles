@@ -1,0 +1,23 @@
+{
+	"suggest.minTriggerInputLength": 1,
+	"coc.preferences.previewAutoClose": true,
+	"diagnostic.infoSign": "i",
+	"diagnostic.hintSign": ">",
+	"diagnostic.errorSign": "X",
+	"diagnostic.warningSign": "!",
+	"diagnostic.joinMessageLines": true,
+	"diagnostic.refreshAfterSave": true,
+	"diagnostic.refreshOnInsertMode": false,
+    "suggest.triggerCompletionWait": 300,
+    "suggest.floatEnable": true,
+    "suggest.timeout": 5000,
+    "html.filetypes": [ "html", "handlebars", "pug" ],
+    "css.filetypes": [ "css", "less", "scss", "sass", "styl" ],
+	"languageserver": {
+		"golang": {
+			"command": "gopls",
+			"filetypes": ["go"],
+			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"]
+		}
+	}
+}

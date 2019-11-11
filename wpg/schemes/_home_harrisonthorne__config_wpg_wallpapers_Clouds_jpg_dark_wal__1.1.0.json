@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Clouds.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0A0707",
+        "foreground": "#fffff1",
+        "cursor": "#fffff1"
+    },
+    "colors": {
+        "color0": "#0A0707",
+        "color1": "#6289B1",
+        "color2": "#5A7696",
+        "color3": "#DBD3BD",
+        "color4": "#4D79A9",
+        "color5": "#9C9E9D",
+        "color6": "#6595C5",
+        "color7": "#e7decf",
+        "color8": "#281b1b",
+        "color9": "#6db1f7",
+        "color10": "#6598d2",
+        "color11": "#ffffd2",
+        "color12": "#549ceb",
+        "color13": "#b6e1cc",
+        "color14": "#6fc1ff",
+        "color15": "#fffff1"
+    }
+}

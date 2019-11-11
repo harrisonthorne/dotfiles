@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Rexburg.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0a0c07",
+        "foreground": "#effdff",
+        "cursor": "#effdff"
+    },
+    "colors": {
+        "color0": "#0a0c07",
+        "color1": "#9BB2D7",
+        "color2": "#8EA9D2",
+        "color3": "#CEBDA6",
+        "color4": "#7897C6",
+        "color5": "#A5AAB0",
+        "color6": "#7EA1CC",
+        "color7": "#cfdbea",
+        "color8": "#242c18",
+        "color9": "#b1e1ff",
+        "color10": "#a1d6ff",
+        "color11": "#fff9bf",
+        "color12": "#87c0ff",
+        "color13": "#c0dafa",
+        "color14": "#8ecfff",
+        "color15": "#effdff"
+    }
+}

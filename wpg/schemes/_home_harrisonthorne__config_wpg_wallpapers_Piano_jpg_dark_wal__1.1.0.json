@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Piano.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0B0907",
+        "foreground": "#f9fdff",
+        "cursor": "#f9fdff"
+    },
+    "colors": {
+        "color0": "#0B0907",
+        "color1": "#B7B5AF",
+        "color2": "#C2BDB2",
+        "color3": "#CDC7B7",
+        "color4": "#BBC7D5",
+        "color5": "#989A9C",
+        "color6": "#ACB7CA",
+        "color7": "#d9dde3",
+        "color8": "#2a2219",
+        "color9": "#fff6cc",
+        "color10": "#fffecf",
+        "color11": "#ffffd4",
+        "color12": "#d5fbff",
+        "color13": "#b1c8de",
+        "color14": "#c7e7ff",
+        "color15": "#f9fdff"
+    }
+}

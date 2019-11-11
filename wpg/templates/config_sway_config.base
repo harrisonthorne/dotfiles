@@ -1,0 +1,286 @@
+set $mod Mod4
+
+# exit sway
+bindsym $mod+Shift+e exec paplay "$HOME/drive/Music/MuseSounds/Goodbye.ogg" && swaymsg exit
+
+# some convenience variables
+set $locker "sh $HOME/.config/sway/lock.sh"
+set $lockWarningCmd "paplay $HOME/drive/Music/MuseSounds/LockWarning.ogg && notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
+set $dpmsoff "swaymsg 'output * dpms off'"
+set $dpmson "swaymsg 'output * dpms on'"
+
+# startup apps
+exec mako &
+exec sh $HOME/.config/wpg/wp_init.sh &
+exec nm-applet &
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec xhost si:localuser:root &
+exec redshift &
+exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dpmsoff resume $dpmson before-sleep $locker &
+
+# Use custom colors
+set $inactive     {inactive}
+set $warning      #ffaa00
+set $warningAlpha #ffaa00c0
+set $white        {active}
+set $black        {color0}c0
+set $fadedBlack   {color0}c0
+set $transparent  #00000000
+
+set $TERMINAL alacritty
+set $SHELL /usr/bin/fish
+
+set $screenshot "sh $HOME/.config/sway/screenshot.sh"
+
+# Window colors
+# class                 border          backgr.         text            indicator       child_border
+client.focused          $black          $black          $white          $black          $black
+client.focused_inactive $black          $black          $white          $black          $black
+client.unfocused        $black          $black          $inactive       $black          $black
+client.urgent           $warning        $warning        $black          $warning        $warning
+client.placeholder      $black          $black          $inactive       $black          $black
+client.background       $black
+
+# Font for window titles
+font pango: Noto Sans 10
+title_align center
+
+# disable borders and titlebars
+default_border normal 8
+default_floating_border normal 8
+
+# floating window size constraints
+floating_minimum_size -1 x -1
+floating_maximum_size 1856 x 1016
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+set $pop /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && paplay $pop
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && paplay $pop
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && paplay $pop # mute sound
+
+# Media player controls
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc cdprev
+
+# Sreen brightness controls
+bindsym --locked XF86MonBrightnessUp exec light -A 2
+bindsym --locked XF86MonBrightnessDown exec light -U 2
+
+# Gaps between windows
+# gaps inner 32
+bindsym $mod+equal gaps inner all set 32
+bindsym $mod+minus gaps inner all set 0
+hide_edge_borders none
+
+# start a terminal
+bindsym $mod+Return exec $TERMINAL
+
+# kill focused window
+bindsym $mod+q kill
+
+# start rofi
+bindsym $mod+a exec rofi -show combi
+bindsym $mod+Control+a exec rofi -show drun
+bindsym $mod+Control+s exec rofi -show ssh
+bindsym $mod+Control+f exec rofi -show find -modi find:$HOME/.config/rofi/finder.sh
+bindsym $mod+Control+w exec rofi -show window
+bindsym $mod+Control+c exec rofi -show calc -modi calc -no-show-match -no-sort
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+o split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# floating video mode
+bindsym $mod+d fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 8; move position 1548 px 16 px; inhibit_idle open
+bindsym $mod+Shift+d fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 8; move position 1193 px 16 px; inhibit_idle open
+
+# disables swayidle for fullscreen windows
+for_window [class=".*"] inhibit_idle fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+t layout tabbed
+bindsym $mod+y layout toggle split
+bindsym $mod+u layout stacking
+
+# app shortcuts
+bindsym $mod+w exec brave
+bindsym $mod+e exec $TERMINAL -t ranger -e $SHELL -i -c ranger
+bindsym $mod+b exec $TERMINAL -t ncmpcpp -e $SHELL -i -c ncmpcpp
+bindsym $mod+n exec $TERMINAL -t nvim -e $SHELL -i -c nvim
+bindsym $mod+c exec gnome-calculator
+bindsym $mod+m exec evolution
+bindsym $mod+g exec sh $HOME/.config/sway/drive.sh
+bindsym $mod+Control+r exec sh $HOME/.config/sway/toggle_redshift.sh
+
+# lock
+bindsym $mod+Escape exec $locker
+
+# screenshot
+bindsym --release $mod+Print exec $screenshot
+
+# video capture
+bindsym --release $mod+Shift+Print exec sh $HOME/.config/sway/videocapture.sh
+
+# dismiss mako notifications
+bindsym Control+Escape exec makoctl dismiss
+
+# toggle tiling / floating
+bindsym $mod+space floating enable, border normal 8
+bindsym $mod+Shift+space floating disable, border normal 8
+
+# change focus between tiling / floating windows
+bindsym $mod+Control+space focus mode_toggle
+
+# focus the parent container
+# bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# scratchpad
+bindsym $mod+p move scratchpad
+bindsym $mod+Shift+p scratchpad show
+
+# reload with same wallpaper
+bindsym $mod+Shift+c exec "wpg -ns $(wpg -c)"
+
+# reload with random wallpaper
+bindsym $mod+Shift+r exec "wpg -mn"
+
+# modes
+bindsym $mod+r mode "Resize mode"
+
+# resize window (you can also use the mouse for that)
+mode "Resize mode" {{
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 20 px
+        bindsym j resize grow height 20 px
+        bindsym k resize shrink height 20 px
+        bindsym l resize grow width 20 px
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 20 px
+        bindsym Down resize grow height 20 px
+        bindsym Up resize shrink height 20 px
+        bindsym Right resize grow width 20 px
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}}
+
+input "2:7:SynPS/2_Synaptics_TouchPad" {{
+    tap enabled
+    natural_scroll enabled
+}}
+
+input "*" {{
+    xkb_layout us
+    # xkb_variant colemak
+}}
+
+output eDP-1 {{
+    pos 0 0
+}}
+
+bar {{
+    status_command "muse-status -M i3 -P <COLORACT> -S <COLORIN>"
+    mode dock
+    modifier $mod
+    separator_symbol "        "
+    position top
+    workspace_buttons yes
+    height 32
+    status_edge_padding 16
+    tray_output none
+    colors {{
+        background $fadedBlack
+        statusline $white
+        separator $inactive
+        focused_workspace $fadedBlack $fadedBlack $white
+        active_workspace $fadedBlack $fadedBlack $inactive
+        inactive_workspace $fadedBlack $fadedBlack $inactive
+        urgent_workspace $fadedBlack $fadedBlack $warning
+        binding_mode $fadedBlack $fadedBlack $warning
+    }}
+}}
+
+exec paplay "$HOME/drive/Music/MuseSounds/Hello.ogg"

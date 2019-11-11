@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Aloft.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#181b25",
+        "foreground": "#eefdff",
+        "cursor": "#eefdff"
+    },
+    "colors": {
+        "color0": "#181b25",
+        "color1": "#EFD2B0",
+        "color2": "#91AEDC",
+        "color3": "#D1B19E",
+        "color4": "#6A89B7",
+        "color5": "#A19499",
+        "color6": "#7697C7",
+        "color7": "#cfdcec",
+        "color8": "#2b3143",
+        "color9": "#ffffbe",
+        "color10": "#a4dcff",
+        "color11": "#ffe0b5",
+        "color12": "#77aeff",
+        "color13": "#e5acc2",
+        "color14": "#84c0ff",
+        "color15": "#eefdff"
+    }
+}

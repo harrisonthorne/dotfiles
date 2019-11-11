@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Saint_George.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#040602",
+        "foreground": "#daedf5",
+        "cursor": "#daedf5"
+    },
+    "colors": {
+        "color0": "#040602",
+        "color1": "#78AAF3",
+        "color2": "#93A0AB",
+        "color3": "#8AB0E6",
+        "color4": "#93C8FE",
+        "color5": "#AADBFD",
+        "color6": "#B7E4FC",
+        "color7": "#daedf5",
+        "color8": "#98a5ab",
+        "color9": "#78AAF3",
+        "color10": "#93A0AB",
+        "color11": "#8AB0E6",
+        "color12": "#93C8FE",
+        "color13": "#AADBFD",
+        "color14": "#B7E4FC",
+        "color15": "#daedf5"
+    }
+}

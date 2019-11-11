@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Wheat.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0f1a10",
+        "foreground": "#fffdfe",
+        "cursor": "#fffdfe"
+    },
+    "colors": {
+        "color0": "#0f1a10",
+        "color1": "#73885E",
+        "color2": "#6F8339",
+        "color3": "#8A923D",
+        "color4": "#8E9C6F",
+        "color5": "#AFB3A1",
+        "color6": "#768587",
+        "color7": "#e5e2e3",
+        "color8": "#203a23",
+        "color9": "#95bf6b",
+        "color10": "#95b63d",
+        "color11": "#becb41",
+        "color12": "#bfdc7e",
+        "color13": "#effebb",
+        "color14": "#89b9bf",
+        "color15": "#fffdfe"
+    }
+}

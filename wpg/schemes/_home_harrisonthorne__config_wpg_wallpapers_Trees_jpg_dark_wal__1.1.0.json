@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Trees.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0F1611",
+        "foreground": "#f9ffff",
+        "cursor": "#f9ffff"
+    },
+    "colors": {
+        "color0": "#0F1611",
+        "color1": "#50665C",
+        "color2": "#688D51",
+        "color3": "#7D9273",
+        "color4": "#323B44",
+        "color5": "#38504C",
+        "color6": "#6F8F99",
+        "color7": "#c7d0cd",
+        "color8": "#233427",
+        "color9": "#5c9078",
+        "color10": "#83c55a",
+        "color11": "#9cce84",
+        "color12": "#394c60",
+        "color13": "#407068",
+        "color14": "#7fc2d8",
+        "color15": "#f9ffff"
+    }
+}

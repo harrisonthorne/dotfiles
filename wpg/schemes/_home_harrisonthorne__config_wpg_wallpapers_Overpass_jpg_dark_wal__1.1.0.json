@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Overpass.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#190f0c",
+        "foreground": "#fbffff",
+        "cursor": "#fbffff"
+    },
+    "colors": {
+        "color0": "#190f0c",
+        "color1": "#87756B",
+        "color2": "#8E857A",
+        "color3": "#A6A5A1",
+        "color4": "#93918C",
+        "color5": "#BAC2C6",
+        "color6": "#74878A",
+        "color7": "#e1e5e7",
+        "color8": "#3b231b",
+        "color9": "#bf937b",
+        "color10": "#c9ae8d",
+        "color11": "#ece3bc",
+        "color12": "#d1c4a3",
+        "color13": "#d8ffff",
+        "color14": "#86bbc3",
+        "color15": "#fbffff"
+    }
+}

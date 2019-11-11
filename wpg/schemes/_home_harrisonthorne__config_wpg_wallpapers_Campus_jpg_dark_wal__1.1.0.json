@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Campus.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#060905",
+        "foreground": "#f5fcff",
+        "cursor": "#f5fcff"
+    },
+    "colors": {
+        "color0": "#060905",
+        "color1": "#C8DAF6",
+        "color2": "#B7CCED",
+        "color3": "#B0C4DA",
+        "color4": "#798C95",
+        "color5": "#909FA8",
+        "color6": "#A7B7CB",
+        "color7": "#e3eaf5",
+        "color8": "#1a2a15",
+        "color9": "#cbf3ff",
+        "color10": "#c4f2ff",
+        "color11": "#cafcff",
+        "color12": "#8bbcd3",
+        "color13": "#a6d3ee",
+        "color14": "#c1ebff",
+        "color15": "#f5fcff"
+    }
+}

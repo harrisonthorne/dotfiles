@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Mound.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#1b2012",
+        "foreground": "#fafeff",
+        "cursor": "#fafeff"
+    },
+    "colors": {
+        "color0": "#1b2012",
+        "color1": "#CED8E5",
+        "color2": "#C6D0DC",
+        "color3": "#85886C",
+        "color4": "#BACBDB",
+        "color5": "#9EAAAF",
+        "color6": "#BACEE2",
+        "color7": "#e4e8ed",
+        "color8": "#364023",
+        "color9": "#d8f9ff",
+        "color10": "#d8fbff",
+        "color11": "#b9c07c",
+        "color12": "#d0ffff",
+        "color13": "#b7e5f9",
+        "color14": "#ccfeff",
+        "color15": "#fafeff"
+    }
+}

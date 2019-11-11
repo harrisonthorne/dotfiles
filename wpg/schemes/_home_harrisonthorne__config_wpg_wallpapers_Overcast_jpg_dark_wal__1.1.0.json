@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Overcast.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0c121b",
+        "foreground": "#fffff7",
+        "cursor": "#fffff7"
+    },
+    "colors": {
+        "color0": "#0c121b",
+        "color1": "#467AC6",
+        "color2": "#5B729A",
+        "color3": "#CFD3AE",
+        "color4": "#37609A",
+        "color5": "#A1A397",
+        "color6": "#5B8DD3",
+        "color7": "#dcdfd3",
+        "color8": "#1a283e",
+        "color9": "#499bff",
+        "color10": "#668fd8",
+        "color11": "#ffffc9",
+        "color12": "#397ad5",
+        "color13": "#dee8af",
+        "color14": "#62b4ff",
+        "color15": "#fffff7"
+    }
+}

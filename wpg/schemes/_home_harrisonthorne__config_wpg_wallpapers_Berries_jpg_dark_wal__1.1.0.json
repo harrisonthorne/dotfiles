@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Berries.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#121816",
+        "foreground": "#f3ffff",
+        "cursor": "#f3ffff"
+    },
+    "colors": {
+        "color0": "#121816",
+        "color1": "#C19E5E",
+        "color2": "#6693A4",
+        "color3": "#ED9863",
+        "color4": "#56778B",
+        "color5": "#98768D",
+        "color6": "#73A9CD",
+        "color7": "#cbd6de",
+        "color8": "#273430",
+        "color9": "#ffd267",
+        "color10": "#73c6e6",
+        "color11": "#ffc06a",
+        "color12": "#619ec3",
+        "color13": "#d787bd",
+        "color14": "#80dfff",
+        "color15": "#f3ffff"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Sidewalk.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#1e1c1e",
+        "foreground": "#fcfafa",
+        "cursor": "#fcfafa"
+    },
+    "colors": {
+        "color0": "#1e1c1e",
+        "color1": "#8C7467",
+        "color2": "#7E8079",
+        "color3": "#E4BD65",
+        "color4": "#757B83",
+        "color5": "#9F916B",
+        "color6": "#7A8489",
+        "color7": "#c0bfbf",
+        "color8": "#373437",
+        "color9": "#c59276",
+        "color10": "#aab68d",
+        "color11": "#fffd6d",
+        "color12": "#889dba",
+        "color13": "#dfc479",
+        "color14": "#8db1c2",
+        "color15": "#fcfafa"
+    }
+}

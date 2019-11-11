@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Balcony.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#151516",
+        "foreground": "#ffffed",
+        "cursor": "#ffffed"
+    },
+    "colors": {
+        "color0": "#151516",
+        "color1": "#926A4A",
+        "color2": "#8B6C59",
+        "color3": "#BC9B61",
+        "color4": "#817D83",
+        "color5": "#949097",
+        "color6": "#D3B692",
+        "color7": "#ecdecd",
+        "color8": "#2d2d2f",
+        "color9": "#cc8851",
+        "color10": "#c38864",
+        "color11": "#ffce6b",
+        "color12": "#ad91ba",
+        "color13": "#c3a8d7",
+        "color14": "#ffefa6",
+        "color15": "#ffffed"
+    }
+}

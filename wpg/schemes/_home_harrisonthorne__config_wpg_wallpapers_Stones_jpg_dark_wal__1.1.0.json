@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Stones.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0D100B",
+        "foreground": "#fafdff",
+        "cursor": "#fafdff"
+    },
+    "colors": {
+        "color0": "#0D100B",
+        "color1": "#887F6B",
+        "color2": "#66863A",
+        "color3": "#DACCB7",
+        "color4": "#5E615F",
+        "color5": "#AAA7A6",
+        "color6": "#50702A",
+        "color7": "#d4d6db",
+        "color8": "#252e1f",
+        "color9": "#c0ab7b",
+        "color10": "#86ba3e",
+        "color11": "#ffffcf",
+        "color12": "#6d8a77",
+        "color13": "#f2cec2",
+        "color14": "#689b2c",
+        "color15": "#fafdff"
+    }
+}

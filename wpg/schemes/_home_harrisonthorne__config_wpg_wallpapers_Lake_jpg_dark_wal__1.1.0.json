@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Lake.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0f140f",
+        "foreground": "#faffff",
+        "cursor": "#faffff"
+    },
+    "colors": {
+        "color0": "#0f140f",
+        "color1": "#738BAD",
+        "color2": "#758598",
+        "color3": "#99B1C9",
+        "color4": "#607691",
+        "color5": "#8D9DAF",
+        "color6": "#7B99C6",
+        "color7": "#d2dada",
+        "color8": "#243024",
+        "color9": "#82b1f3",
+        "color10": "#86abd7",
+        "color11": "#afe6ff",
+        "color12": "#6d97cc",
+        "color13": "#a2caf7",
+        "color14": "#8bc2ff",
+        "color15": "#faffff"
+    }
+}

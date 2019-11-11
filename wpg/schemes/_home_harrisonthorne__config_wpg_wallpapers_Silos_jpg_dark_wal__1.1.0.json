@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Silos.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#141f19",
+        "foreground": "#f1feff",
+        "cursor": "#f1feff"
+    },
+    "colors": {
+        "color0": "#141f19",
+        "color1": "#C3DDFD",
+        "color2": "#B7D9FD",
+        "color3": "#BCDFFB",
+        "color4": "#5D6F9C",
+        "color5": "#C5D4D7",
+        "color6": "#8FA3CD",
+        "color7": "#dde9f6",
+        "color8": "#273d31",
+        "color9": "#c4f8ff",
+        "color10": "#bcfdff",
+        "color11": "#c0ffff",
+        "color12": "#6889da",
+        "color13": "#daffff",
+        "color14": "#a3cbff",
+        "color15": "#f1feff"
+    }
+}

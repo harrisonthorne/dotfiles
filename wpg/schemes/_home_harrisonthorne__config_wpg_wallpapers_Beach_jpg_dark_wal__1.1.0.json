@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Beach.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0B0D0D",
+        "foreground": "#d6faff",
+        "cursor": "#d6faff"
+    },
+    "colors": {
+        "color0": "#0B0D0D",
+        "color1": "#437BC6",
+        "color2": "#4174BB",
+        "color3": "#999462",
+        "color4": "#396EB4",
+        "color5": "#678AAA",
+        "color6": "#4D88D4",
+        "color7": "#aac7eb",
+        "color8": "#212828",
+        "color9": "#459dff",
+        "color10": "#4494ff",
+        "color11": "#d7cd6f",
+        "color12": "#3a8cf9",
+        "color13": "#74b4ee",
+        "color14": "#51aeff",
+        "color15": "#d6faff"
+    }
+}

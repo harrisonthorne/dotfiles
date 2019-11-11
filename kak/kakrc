@@ -1,0 +1,81 @@
+# call plug.kak with `plug' command
+plug "andreyorst/fzf.kak" config %{
+    # ctrl-p fzf
+    map global normal <c-p> ':fzf-mode<ret>'
+} defer "fzf" %{
+    set-option global fzf_file_command 'ag --hidden --ignore .git --ignore node_modules -g ""'
+}
+plug "andreyorst/plug.kak" noload
+plug "alexherbo2/auto-pairs.kak"
+plug "JJK96/kakoune-emmet"
+plug "occivink/kakoune-snippets" config %{
+    set-option -add global snippets_directories "%opt{plug_install_dir}/kakoune-snippet-collection/snippets"
+    # some other kakoune-snippets related configurations
+}
+plug "andreyorst/kakoune-snippet-collection"
+
+source external.kak
+
+# no clippy (sorry clippy)
+set global ui_options ncurses_assistant=off
+
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(go|typescript|javascript|html|scss|sass|css|php) %{
+	lsp-enable-window
+	lsp-auto-hover-enable
+	lsp-auto-signature-help-enable
+}
+
+# enable auto pairs
+hook global WinCreate .* %{
+    auto-pairs-enable
+}
+
+set global tabstop 4
+set global indentwidth 4
+
+# formatting
+set global autowrap_column 60
+hook global WinSetOption filetype=markdown %{
+    autowrap-enable
+}
+
+map global normal = '|fmt -w $kak_opt_autowrap_column<ret>'
+
+# jj or fj to normal mode
+hook global InsertChar j %{ try %{
+    exec -draft hH <a-k>jj<ret> d
+    exec <esc>
+}}
+hook global InsertChar j %{ try %{
+    exec -draft hH <a-k>fj<ret> d
+    exec <esc>
+}}
+
+# system clipboard
+hook global NormalKey y|d|c %{ nop %sh{
+    printf %s "$kak_main_reg_dquote" | xsel --input --clipboard
+}}
+map global user P '!xsel --output --clipboard<ret>' -docstring 'paste from system clipboard'
+map global user p '<a-!>xsel --output --clipboard<ret>' -docstring 'paste from system clipboard'
+
+# faces
+set-face global LineNumbers blue
+set-face global LineNumberCursor white+b
+set-face global LineNumbersWrapped blue@LineNumbers
+set-face global MenuForeground white,blue+b
+set-face global MenuBackground magenta,black
+set-face global MenuInfo cyan
+
+# Faces used by inline diagnostics.
+set-face global DiagnosticError red
+set-face global DiagnosticWarning yellow
+# Line flags for errors and warnings both use this face.
+set-face global LineFlagErrors red
+
+# enable line numbers
+add-highlighter global/ number-lines -relative -hlcursor -separator '  '
+
+# lsp mode
+map global user / ':lsp-definition<ret>' -docstring 'lsp jump to definition'
+map global user c ':enter-user-mode<space>lsp<ret>' -docstring 'lsp'

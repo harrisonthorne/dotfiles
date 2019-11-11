@@ -1,0 +1,115 @@
+configuration {
+	modi: "drun,run,ssh";
+	combi-modi: "drun,run";
+	columns: 1;
+	font: "Fira Sans 10";
+	location: 8;
+	yoffset: 0;
+	xoffset: 0;
+	show-icons: true;
+	disable-history: false;
+	levenshtein-sort: true;
+	case-sensitive: false;
+	sidebar-mode: true;
+	auto-select: false;
+	matching: "fuzzy";
+	fullscreen: true;
+    terminal: "kitty";
+    ssh-client: "ssh";
+    ssh-command: "{terminal} /usr/bin/bash -i -c '{ssh-client} {host}'";
+    run-shell-command: "{terminal} --hold -e '/bin/bash -i -c {cmd}'";
+    display-window: "Windows";
+    display-run: "Commands";
+    display-drun: "Apps";
+    display-ssh: "SSH";
+    display-combi: "All";
+    combi-hide-mode-prefix: true;
+}
+
+* {
+    text-color:  #ffffff;
+    background-color: #00000000;
+    black: #080808;
+    white: #ffffff80;
+    blue: #aaffff;
+    orange: #ffaa00;
+    highlight: bold #ffffff;
+    selected: #ffffff20;
+}
+#window {
+    fullscreen: true;
+    location: center;
+    anchor:   center;
+    border:  0px 0px 0px 0px;
+    text-color: @white;
+
+    orientation: horizontal;
+    children: [mainbox];
+}
+
+#sidebar {
+    border: 0px 0px 0px 0px;
+}
+
+#button {
+    text-color: #ffffff80;
+}
+
+#button selected {
+    text-color: #ffffff;
+}
+
+#entry {
+    width: 100%;
+}
+
+#inputbar {
+    text-color: @white;
+}
+
+#mainbox {
+    expand: true;
+    background-color: #080808C0;
+    spacing: 1em;
+    padding: 128px 640px 128px 640px;
+}
+
+#listview {
+    dynamic: false;
+    lines: 0;
+}
+
+#element {
+    padding: 16px;
+}
+
+#element selected normal {
+    background-color: @selected;
+}
+
+#element normal active {
+    text-color: @blue;
+}
+#element normal urgent {
+    text-color: @orange;
+}
+#element selected active {
+    background-color: @selected;
+    text-color: @blue;
+}
+#element selected urgent {
+    background-color: @selected;
+    text-color: @orange;
+}
+#inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+#textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0em 0.5em 0em 0em ;
+    text-color: @white;
+}
+
+/* vim: ft=css
+ */
