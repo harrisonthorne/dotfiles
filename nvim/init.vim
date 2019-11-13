@@ -73,7 +73,7 @@ set number
 set rnu
 " set runtimepath+=~/.config/nvim/plugged/deoplete.nvim
 set shiftwidth=4
-set shortmess=a
+set shortmess=aFTW
 set si   " Smart indent
 " set signcolumn=auto:2
 set signcolumn=yes
