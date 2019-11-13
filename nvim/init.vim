@@ -8,17 +8,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ledger/vim-ledger'                " Ledger
 Plug 'deviantfero/wpgtk.vim'
 Plug 'dhruvasagar/vim-table-mode'		" Tables!
-Plug 'itchyny/lightline.vim'            " lightline
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'plasticboy/vim-markdown'
-Plug 'roxma/nvim-yarp'
+Plug 'plasticboy/vim-markdown'          " markdown latex syntax highlighting
 Plug 'scrooloose/nerdtree'              " NERDTree
-Plug 'TaDaa/goyo.vim'
-Plug 'tmsvg/pear-tree'
+Plug 'tmsvg/pear-tree'                  " auto-pairs
 Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
 Plug 'yuttie/comfortable-motion.vim'    " Physics-based scrolling
@@ -29,8 +26,6 @@ let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
 let g:go_fmt_autosave = 0
 let g:ledger_bin = 'hledger'
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
 let g:startify_custom_header = startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
 let g:startify_lists = [
             \ { 'type': 'sessions',  'header': ['   Sessions']             },
@@ -45,34 +40,13 @@ let g:tex_conceal = ""
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 
-let g:lightline = {
-            \ 'colorscheme': 'wal',
-            \ 'active': {
-            \   'left': [
-            \     ['mode', 'paste'],
-            \     ['filename', 'readonly'],
-            \     ['git', 'modified'],
-            \   ],
-            \   'right': [
-            \     ['lineinfo'],
-            \     ['percent'],
-            \     ['coc', 'filetype', 'words'],
-            \   ]
-            \ },
-            \ 'component_function': {
-            \   'git': 'UpdateGitInfo',
-            \   'coc': 'coc#status',
-            \   'words': 'WordCount',
-            \ }
-            \ }
-
 set autowriteall
 set autoread
 set background=dark
-set breakindent " Indents word-wrapped lines as much as the line above
+set breakindent                         " Indents word-wrapped lines as much as the line above
 set clipboard+=unnamedplus
 set cmdheight=2
-set complete+=kspell " spell check
+set complete+=kspell                    " spell check
 set completeopt+=preview
 set conceallevel=2
 set diffopt+=hiddenoff
@@ -86,11 +60,10 @@ set hidden
 set ignorecase
 set lazyredraw
 set lbr
-set listchars=tab:\|\ 
+set list listchars=tab:\>\ ,trail:·
 set mouse=a
 set nobackup
 set cursorline
-set nocompatible
 set noshowmode " hides -- INSERT --
 set noswapfile
 set noeb vb t_vb= " disable error bells
@@ -271,27 +244,22 @@ hi CursorColumn guibg=black ctermbg=0 cterm=NONE gui=NONE ctermfg=NONE guifg=NON
 
 hi WarningMsg guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
 hi ErrorMsg guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
+hi InfoMsg guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold term=bold
 
-hi link ALEErrorSign ErrorMsg
-hi link ALEWarningSign WarningMsg
-hi ALEInfoSign guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold term=bold
-hi link ALEStyleErrorSign ErrorMsg
-
-hi CocUnderline gui=underline term=underline
+hi link CocUnderline InfoMsg
 hi link CocErrorHighlight ErrorMsg
 hi link CocWarningHighlight WarningMsg
+hi link CocInfoHighlight WarningMsg
 
 hi link CocErrorSign ErrorMsg
 hi link CocWarningSign WarningMsg
+hi link CocInfoSign WarningMsg
 hi link CocError ErrorMsg
 hi link CocWarning WarningMsg
+hi link CocInfo WarningMsg
 hi CocInfoSign guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold term=bold
 hi CocStyleErrorSign guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
 hi CocStyleWarningSign guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
-
-hi ALEError guifg=red ctermfg=196 gui=underline cterm=underline
-hi ALEWarning guifg=yellow ctermfg=226 gui=underline cterm=underline
-hi ALEInfo guifg=cyan ctermfg=51 gui=underline cterm=underline
 
 hi VertSplit guibg=NONE guifg=NONE gui=NONE ctermbg=NONE ctermfg=NONE cterm=NONE
 hi StatusLine ctermbg=NONE guibg=NONE
@@ -300,11 +268,13 @@ hi Normal ctermbg=NONE guibg=NONE
 hi NonText cterm=NONE gui=NONE ctermbg=NONE guibg=NONE
 hi Comment ctermbg=NONE guibg=NONE
 hi SpecialComment ctermfg=4 ctermbg=NONE guibg=NONE cterm=bold,italic gui=bold,italic term=bold,italic
-hi link javaScriptLineComment Comment
 hi Delimiter ctermbg=NONE guibg=NONE
 hi Exception ctermbg=NONE guibg=NONE
 hi SpecialChar ctermbg=NONE guibg=NONE
 hi Typedef ctermbg=NONE guibg=NONE
+hi Whitespace ctermfg=8 guifg=8
+
+hi link javaScriptLineComment Comment
 
 hi DiffAdd ctermbg=NONE guibg=NONE ctermfg=48 guifg=green
 hi DiffChange ctermbg=NONE guibg=NONE ctermfg=214 guifg=orange
@@ -325,22 +295,15 @@ fu! SaveLastSession()
     execute 'mksession! ' . '~/.vim/session/previous'
 endfu
 
-" Lightline settings """"""""""""""""""""""""""""""""""""""""""""
-
-let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-let s:palette.inactive.middle = s:palette.normal.middle
-let s:palette.tabline.middle = s:palette.normal.middle
-
 fu! UpdateGitInfo()
-    let b:custom_lightline_git_branch = ''
+    let b:custom_git_branch = ''
     try
         if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-            b:custom_lightline_git_branch = fugitive#head
+            b:custom_git_branch = fugitive#head
         endif
     catch
     endtry
-    return b:custom_lightline_git_branch
+    return b:custom_git_branch
 endfu
 
 " from @SnoringFrog on Stack Overflow
@@ -445,3 +408,132 @@ function! AutoSave()
     silent! wa 
     call coc#refresh()
 endfunction
+
+"" Status bar
+
+hi CustomMode cterm=bold gui=bold ctermfg=15 guifg=15 ctermbg=NONE guibg=NONE
+hi CustomCursorPos ctermfg=14 guifg=14 ctermbg=NONE guibg=NONE
+hi CustomFiletype ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
+hi CustomGitBranch ctermfg=12 guifg=12 ctermbg=NONE guibg=NONE
+hi CustomPercentage ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
+hi CustomCoc ctermfg=8 guifg=8 ctermbg=NONE guibg=NONE
+hi Inactive ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
+
+let g:currentmode={
+    \ 'n'  : 'n',
+    \ 'no' : '...',
+    \ 'v'  : 'v',
+    \ 'V'  : 'vl',
+    \ '^V' : 'vb',
+    \ 's'  : 's',
+    \ 'S'  : 'sl',
+    \ '^S' : 'sb',
+    \ 'i'  : 'i',
+    \ 'R'  : 'r',
+    \ 'Rv' : 'vr',
+    \ 'c'  : 'cmd',
+    \ 'cv' : 'vim ex',
+    \ 'ce' : 'ex',
+    \ 'r'  : 'p',
+    \ 'rm' : 'm',
+    \ 'r?' : '?',
+    \ '!'  : 'sh',
+    \ 't'  : 't'
+    \ }
+
+function! CurrentMode() abort
+    let l:modecurrent = mode()
+    " use get() -> fails safely, since ^V doesn't seem to register
+    " 3rd arg is used when return of mode() == 0, which is case with ^V
+    " thus, ^V fails -> returns 0 -> replaced with 'V Block'
+    let l:modelist = tolower(get(g:currentmode, l:modecurrent, 'vb')).' '
+    let l:current_status_mode = l:modelist
+    return l:current_status_mode
+endfunction
+
+function! PasteMode()
+    let paste_status = &paste
+    if paste_status == 1
+        return "paste"
+    else
+        return ""
+    endif
+endfunction
+
+function! ActiveStatus()
+    let statusline=""
+    let statusline.="%=" 
+    let statusline.="%#CustomCoc#"
+    let statusline.="\ %{coc#status()} "
+    let statusline.="%#Normal#"
+    let statusline.="\ %f %M %r"
+    let statusline.="%#CustomPercentage#"
+    let statusline.="\ %3p%% "
+    let statusline.="%#CustomFiletype#"
+    let statusline.="\ ".tolower(&ft)." "
+    let statusline.="%#CustomGitBranch#"
+    let statusline.="%{fugitive#head()!=''?'\ '.fugitive#head().' \':'\'}"
+    let statusline.="%#CustomMode#"
+    let statusline.="\ %{CurrentMode()}\%-6{PasteMode()}"
+    return statusline
+endfunction
+
+function! InactiveStatus()
+    let statusline=""
+    let statusline.="%=" 
+    let statusline.="%#Inactive#"
+    let statusline.="\ %f %M %r"
+    let statusline.="\ %3p%% "
+    let statusline.="%{fugitive#head()!=''?'\ '.fugitive#head().' \':'\'}"
+    return statusline
+endfunction
+
+set laststatus=2
+set noshowmode
+set statusline=%!ActiveStatus()
+
+augroup status
+    autocmd!
+    autocmd WinEnter * setlocal statusline=%!ActiveStatus()
+    autocmd WinLeave * setlocal statusline=%!InactiveStatus()
+augroup END
+
+"" Tab line
+
+fu! TabLine()
+    let s = ''
+    for i in range(tabpagenr('$'))
+        " select the highlighting
+        if i + 1 == tabpagenr()
+            let s .= '%#TabLineSel#'
+        else
+            let s .= '%#TabLine#'
+        endif
+
+        " set the tab page number (for mouse clicks)
+        let s .= '%' . (i + 1) . 'T'
+
+        " the label is made by MyTabLabel()
+        let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+    endfor
+
+    " after the last tab fill with TabLineFill and reset tab page nr
+    let s .= '%#TabLineFill#%T'
+
+    " right-align the label to close the current tab page
+    if tabpagenr('$') > 1
+        let s .= '%=%#TabLine#%999Xclose'
+    endif
+
+    return s
+endfunction
+
+fu! TabLabel(n)
+    let buflist = tabpagebuflist(a:n)
+    let winnr = tabpagewinnr(a:n)
+    return bufname(buflist[winnr - 1])
+endfunction
+
+hi TabLine ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
+hi TabLineFill ctermfg=8 guifg=8 ctermbg=NONE guibg=NONE
+hi TabLineSel ctermfg=15 guifg=15 ctermbg=NONE guibg=NONE

@@ -19,12 +19,12 @@ exec redshift &
 exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dpmsoff resume $dpmson before-sleep $locker &
 
 # Use custom colors
-set $inactive     #85716a
+set $inactive     #1c608b
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #c1a49b
-set $black        #0D100Bc0
-set $fadedBlack   #0D100Bc0
+set $white        #288ccb
+set $black        #0d140fc0
+set $fadedBlack   #0d140fc0
 set $transparent  #00000000
 
 set $TERMINAL alacritty
