@@ -13,8 +13,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'plasticboy/vim-markdown'          " markdown latex syntax highlighting
+" Plug 'plasticboy/vim-markdown'          " markdown latex syntax highlighting
 Plug 'scrooloose/nerdtree'              " NERDTree
+Plug 'sheerun/vim-polyglot'             " languages
 Plug 'tmsvg/pear-tree'                  " auto-pairs
 Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
@@ -167,14 +168,14 @@ nnoremap <leader>goi :!go install<CR>
 nnoremap <leader>gor :!go run *.go
 
 " Lanuage Server shortcuts
-nnoremap <silent> <leader>ca :CocAction<CR>
-nnoremap <silent> <leader>cr <Plug>(coc-rename)
-nnoremap <silent> <leader>cf <Plug>(coc-format)
-nnoremap <silent> <leader>ct <Plug>(coc-type-definition)
-nnoremap <silent> <leader>cx <Plug>(coc-references)
-nnoremap <silent> <leader>/ :call CocAction('jumpDefinition')<CR>
-nnoremap <silent> <leader>? :call CocAction('doHover')<CR>
-nnoremap <silent> K :call CocAction('doHover')<CR>
+nmap <silent> <leader>ca :CocAction<CR>
+nmap <silent> <leader>cr <Plug>(coc-rename)
+nmap <silent> <leader>cf <Plug>(coc-format)
+nmap <silent> <leader>ct <Plug>(coc-type-definition)
+nmap <silent> <leader>cx <Plug>(coc-references)
+nmap <silent> <leader>/ :call CocAction('jumpDefinition')<CR>
+nmap <silent> <leader>? :call CocAction('doHover')<CR>
+nmap <silent> K :call CocAction('doHover')<CR>
 
 nnoremap <silent> <leader>xt :tabe<CR>:terminal<CR>i
 nnoremap <silent> <leader>xv :vs<CR>:terminal<CR>i
@@ -412,12 +413,12 @@ endfunction
 "" Status bar
 
 hi CustomMode cterm=bold gui=bold ctermfg=15 guifg=15 ctermbg=NONE guibg=NONE
-hi CustomCursorPos ctermfg=14 guifg=14 ctermbg=NONE guibg=NONE
-hi CustomFiletype ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
-hi CustomGitBranch ctermfg=12 guifg=12 ctermbg=NONE guibg=NONE
-hi CustomPercentage ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
-hi CustomCoc ctermfg=8 guifg=8 ctermbg=NONE guibg=NONE
-hi Inactive ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
+hi CustomCursorPos cterm=bold gui=bold ctermfg=14 guifg=14 ctermbg=NONE guibg=NONE
+hi CustomFiletype cterm=bold gui=bold ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
+hi CustomGitBranch cterm=bold gui=bold ctermfg=12 guifg=12 ctermbg=NONE guibg=NONE
+hi CustomPercentage cterm=bold gui=bold ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
+hi CustomCoc cterm=bold gui=bold ctermfg=8 guifg=8 ctermbg=NONE guibg=NONE
+hi Inactive cterm=bold gui=bold ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
 
 let g:currentmode={
     \ 'n'  : 'n',
@@ -465,7 +466,7 @@ function! ActiveStatus()
     let statusline.="%=" 
     let statusline.="%#CustomCoc#"
     let statusline.="\ %{coc#status()} "
-    let statusline.="%#Normal#"
+    let statusline.="%#CustomMode#"
     let statusline.="\ %f %M %r"
     let statusline.="%#CustomPercentage#"
     let statusline.="\ %3p%% "
@@ -534,6 +535,6 @@ fu! TabLabel(n)
     return bufname(buflist[winnr - 1])
 endfunction
 
-hi TabLine ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
-hi TabLineFill ctermfg=8 guifg=8 ctermbg=NONE guibg=NONE
-hi TabLineSel ctermfg=15 guifg=15 ctermbg=NONE guibg=NONE
+hi TabLine cterm=bold ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
+hi TabLineFill cterm=bold ctermfg=8 guifg=8 ctermbg=NONE guibg=NONE
+hi TabLineSel cterm=bold ctermfg=15 guifg=15 ctermbg=NONE guibg=NONE
