@@ -21,15 +21,15 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p fdfeff -s b5c0cb | lemonbar -B "#e5161813" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p fffffd -s 979561 | lemonbar -B "#e5090a08" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $inactive     #7c848c
+set $inactive     #676643
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #fdfeff
-set $black        #161813e5
-set $fadedBlack   #161813c0
+set $white        #fffffd
+set $black        #090a08e5
+set $fadedBlack   #090a08c0
 set $transparent  #00000000
 
 set $TERMINAL alacritty
@@ -278,7 +278,7 @@ output "*" {
 }
 
 bar {
-    # status_command "muse-status -m i3 -p fdfeff -s b5c0cb"
+    # status_command "muse-status -m i3 -p fffffd -s 979561"
     status_command i3status
     mode dock
     modifier $mod

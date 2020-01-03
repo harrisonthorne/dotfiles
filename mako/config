@@ -1,20 +1,20 @@
 default-timeout=10000
 anchor=top-right
-background-color=#161813CC
+background-color=#090a08CC
 font=Roboto 10
 padding=16,32
 margin=4
 width=512
 height=512
-border-color=#161813C0
+border-color=#090a08C0
 border-size=8
 max-icon-size=32
-progress-color=#b5c0cbFF
+progress-color=#979561FF
 layer=overlay
 format=<b>%s</b>\n%b
 
 [urgency=low]
-text-color=#b5c0cbc0
+text-color=#979561c0
 
 [urgency=high]
-border-color=#9F9269cc
+border-color=#999A91cc
