@@ -1,8 +1,10 @@
+$HOME/.config/wpg/wp_init.sh
+
 light -I &
-nohup kitty &
+nohup alacritty &
 nohup dunst &
 nohup sxhkd -m -1 &
-nohup compton &
+nohup picom &
 nohup redshift &
 nohup syncthing -no-browser &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

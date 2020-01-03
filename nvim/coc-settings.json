@@ -11,13 +11,31 @@
     "suggest.triggerCompletionWait": 300,
     "suggest.floatEnable": true,
     "suggest.timeout": 5000,
-    "html.filetypes": [ "html", "handlebars", "pug" ],
-    "css.filetypes": [ "css", "less", "scss", "sass", "styl" ],
+    "rust-analyzer.enableCargoWatchOnStartup": "disabled",
+    "rust-analyzer.useClientWatching": false,
 	"languageserver": {
 		"golang": {
 			"command": "gopls",
 			"filetypes": ["go"],
 			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"]
-		}
-	}
+        },
+        "haskell": {
+            "command": "hie-wrapper",
+            "rootPatterns": [
+                "stack.yaml",
+                "cabal.config",
+                "package.yaml"
+            ],
+            "filetypes": [
+                "hs",
+                "lhs",
+                "haskell"
+            ],
+            "initializationOptions": {
+                "languageServerHaskell": {
+                    "hlintOn": true
+                }
+            }
+        }
+    }
 }

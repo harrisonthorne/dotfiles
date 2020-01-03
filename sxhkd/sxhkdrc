@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	kitty
+	alacritty
 
 # program launcher
 super + a
@@ -55,11 +55,11 @@ super + w
 super + p
 	pavucontrol
 super + e
-	kitty -T ranger -e /bin/fish -i -c ranger
+	alacritty -e /bin/fish -i -c ranger
 super + b
 	spotify
 super + {_, shift +, ctrl +} n
-	kitty -T nvim -e /bin/fish -i -c {"nvim","ranger ~/Notebook","nvim ~/Notebook/new-`date +%Y%m%d-%H%M%S`.md"}
+	alacritty -e /bin/fish -i -c {"nvim","ranger ~/Notebook","nvim ~/Notebook/new-`date +%Y%m%d-%H%M%S`.md"}
 super + c 
 	rofi -show calc
 super + d 
@@ -68,13 +68,13 @@ super + d
 # super + m 
 #	evolution
 
-# drive sync
+# game mode/disable compositing
 super + g 
-	sh $HOME/.config/sway/drive.sh
+	sh $HOME/.config/toggle_picom.sh
 
 # toggle redshift
 super + ctrl + r 
-	sh $HOME/.config/sway/toggle_redshift.sh
+	sh $HOME/.config/toggle_redshift.sh
 
 # screenshot
 super + Print
@@ -83,6 +83,10 @@ super + Print
 # Controlled screenshot 
 super + ctrl + Print
 	sh $HOME/.config/i3/screenshot.sh -s
+
+# Video capture with audio
+super + shift + Print
+	sh $HOME/.config/video_capture.sh
 
 # make sxhkd reload its configuration files:
 super + alt + r
@@ -161,10 +165,10 @@ super + Tab
 	bspc desktop -f last
 
 # focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+# super + {o,i}
+# 	bspc wm -h off; \
+# 	bspc node {older,newer} -f; \
+# 	bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
@@ -198,14 +202,32 @@ super + ctrl + shift + space
 super + alt + shift + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
 # contract a window by moving one of its side inward
 super + alt + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+super + alt + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# floating video mode
+super + i
+    bspc node -t floating; \
+    xdotool windowsize $(bspc query -N -n) 356 200; \
+    xdotool windowmove $(bspc query -N -n) 1556 32
+
+super + shift + i
+    bspc node -t floating; \
+    xdotool windowsize $(bspc query -N -n) 711 400; \
+    xdotool windowmove $(bspc query -N -n) 1201 32
+
+# rotate layout
 super + r
 	bspc node @/ -R 90
 
@@ -215,7 +237,7 @@ super + v
 
 # unhide window
 super + shift + v
-	bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off -d $(bspc query -D -d)
+	bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off -d $(bspc query -D -d)
 
 # stick window
 super + x

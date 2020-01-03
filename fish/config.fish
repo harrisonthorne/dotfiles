@@ -26,10 +26,11 @@ set -gx EIX_LIMIT 0
 # Start desktop at login
 if status is-login
     if test -z "$DISPLAY" # -a $XDG_VTNR = 1
-        startx -- -keeptty > ~/startx.log
+        # startx -- -keeptty > ~/startx.log
+        sway > sway.log
     end
 else
-    eval (keychain -q --agents ssh --eval id_rsa_github id_rsa_bitbucket)
+    eval (keychain -q --agents ssh --eval id_rsa_github id_rsa_bitbucket aur)
 end
 
 # if status is-interactive; and not set -q TMUX

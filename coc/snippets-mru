@@ -1,5 +1,13 @@
-h2
+assert_eq
+test
+cfg
+derive
+unimplemented
+private
 h1
+extern
+import
+h2
 get
 snippet
 function

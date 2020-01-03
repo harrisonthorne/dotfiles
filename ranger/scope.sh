@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-W3MIMGDISPLAY_PATH=/usr/libexec/w3m/w3mimgdisplay
+# W3MIMGDISPLAY_PATH=/usr/libexec/w3m/w3mimgdisplay
 
 set -o noclobber -o noglob -o nounset -o pipefail
 IFS=$'\n'
@@ -91,9 +91,9 @@ handle_image() {
     local mimetype="${1}"
     case "${mimetype}" in
         # SVG
-        # image/svg+xml)
-        #     convert "${FILE_PATH}" "${IMAGE_CACHE_PATH}" && exit 6
-        #     exit 1;;
+        image/svg+xml)
+            convert "${FILE_PATH}" "${IMAGE_CACHE_PATH}" && exit 6
+            exit 1;;
 		image/x-canon-cr2|image/x-olympus-orf|image/tiff)
             local orientation
             # extract orientation from RAW file using exiftool (identify won't work)
@@ -135,6 +135,13 @@ handle_image() {
                       -jpeg -tiffcompression jpeg \
                       -- "${FILE_PATH}" "${IMAGE_CACHE_PATH%.*}" \
                  && exit 6 || exit 1;;
+
+        # ePub, MOBI, FB2 (using Calibre)
+        application/epub+zip|application/x-mobipocket-ebook|application/x-fictionbook+xml)
+             # ePub (using https://github.com/marianosimone/epub-thumbnailer)
+             epub-thumbnailer "${FILE_PATH}" "${IMAGE_CACHE_PATH}" "${DEFAULT_SIZE%x*}" && exit 6
+             ebook-meta --get-cover="${IMAGE_CACHE_PATH}" -- "${FILE_PATH}" /dev/null && exit 6
+             exit 1;
 
         # Preview archives using the first image inside.
         # (Very useful for comic book collections for example.)

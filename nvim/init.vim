@@ -14,12 +14,12 @@ Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'plasticboy/vim-markdown'          " markdown latex syntax highlighting
+Plug 'psliwka/vim-smoothie'
 Plug 'scrooloose/nerdtree'              " NERDTree
 Plug 'sheerun/vim-polyglot'             " languages
 Plug 'tmsvg/pear-tree'                  " auto-pairs
 Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
-Plug 'yuttie/comfortable-motion.vim'    " Physics-based scrolling
 call plug#end()
 
 let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore-dir={.git,node_modules}'
@@ -49,7 +49,7 @@ set clipboard+=unnamedplus
 set cmdheight=2
 set complete+=kspell                    " spell check
 set completeopt+=preview
-set conceallevel=2
+set conceallevel=1
 set diffopt+=hiddenoff
 set equalalways
 set fillchars+=vert:\ |
@@ -80,6 +80,7 @@ set si   " Smart indent
 set signcolumn=yes
 set smartcase
 set softtabstop=4
+set scrolloff=5
 set splitbelow
 set splitright
 set tabstop=4 " Tab size is 4
@@ -92,7 +93,6 @@ set undoreload=10000
 set updatetime=300
 set whichwrap+=<,>,h,l
 set wildignore+=*/node_modules,*/node_modules/*,.git,.git/*,tags,*/dist,*/dist/*
-" set t_Co=256
 
 " call echodoc#enable()
 
@@ -103,8 +103,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " navigate long lines easily
-nnoremap j gj
-nnoremap k gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 
 inoremap <silent><expr> <C-n> coc#refresh()
 " FZF
@@ -202,14 +202,6 @@ imap jj <Plug>(PearTreeFinishExpansion)
 inoremap fj <esc>
 imap fj <Plug>(PearTreeFinishExpansion)
 
-" comfortable motion
-noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
-nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
-nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
-
 nnoremap <silent> <leader>mm :silent !sh $HOME/.config/nvim/pandocPreview.sh "%"<CR>:echo "Markdown preview was started."<CR>
 nnoremap <silent> <leader>mq :silent !killall entr && rm "%.tmp.pdf"<CR>:echo "Markdown preview was stopped. You can close your editor when you want. :)"<CR>
 
@@ -226,6 +218,7 @@ augroup auto_commands
     autocmd VimLeave * call SaveLastSession()
     autocmd BufEnter * checktime
     autocmd InsertLeave * nested call AutoSave()
+    autocmd CursorHold * call coc#refresh()
     " autocmd CursorHold,BufWinEnter ?* call HasFolds()
 augroup END
 
@@ -417,8 +410,7 @@ hi CustomCursorPos cterm=bold gui=bold ctermfg=14 guifg=14 ctermbg=NONE guibg=NO
 hi CustomFiletype cterm=bold gui=bold ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
 hi CustomGitBranch cterm=bold gui=bold ctermfg=12 guifg=12 ctermbg=NONE guibg=NONE
 hi CustomPercentage cterm=bold gui=bold ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
-hi CustomCoc cterm=bold gui=bold ctermfg=8 guifg=8 ctermbg=NONE guibg=NONE
-hi Inactive cterm=bold gui=bold ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
+hi Inactive ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
 
 let g:currentmode={
     \ 'n'  : 'n',
@@ -464,7 +456,7 @@ endfunction
 function! ActiveStatus()
     let statusline=""
     let statusline.="%=" 
-    let statusline.="%#CustomCoc#"
+    let statusline.="%#Inactive#"
     let statusline.="\ %{coc#status()} "
     let statusline.="%#CustomMode#"
     let statusline.="\ %f %M %r"
@@ -495,8 +487,8 @@ set statusline=%!ActiveStatus()
 
 augroup status
     autocmd!
-    autocmd WinEnter * setlocal statusline=%!ActiveStatus()
-    autocmd WinLeave * setlocal statusline=%!InactiveStatus()
+    autocmd BufEnter,WinEnter,SessionLoadPost * setlocal statusline=%!ActiveStatus()
+    autocmd BufLeave,WinLeave * setlocal statusline=%!InactiveStatus()
 augroup END
 
 "" Tab line

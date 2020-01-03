@@ -4,3 +4,9 @@ x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
 x-scheme-handler/about=brave-browser.desktop
 application/x-logisim=logisim.desktop
+x-scheme-handler/mailto=userapp-Evolution-8BBWB0.desktop
+x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/webcal=org.gnome.Evolution.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=userapp-Evolution-8BBWB0.desktop;
