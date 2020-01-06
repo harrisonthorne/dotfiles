@@ -10,17 +10,21 @@ plug "alexherbo2/auto-pairs.kak"
 plug "JJK96/kakoune-emmet"
 plug "occivink/kakoune-snippets" config %{
     set-option -add global snippets_directories "%opt{plug_install_dir}/kakoune-snippet-collection/snippets"
+    set-option global snippets_auto_expand false
     # some other kakoune-snippets related configurations
+
+    map global insert <c-space> ':snippets-expand-trigger'
+    map global insert <c-j> ':snippets-select-next-placeholders'
 }
 plug "andreyorst/kakoune-snippet-collection"
 
-source external.kak
+source ~/.config/kak/external.kak
 
 # no clippy (sorry clippy)
 set global ui_options ncurses_assistant=off
 
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(go|typescript|javascript|html|scss|sass|css|php) %{
+hook global WinSetOption filetype=(go|typescript|javascript|html|scss|sass|css|php|rust) %{
 	lsp-enable-window
 	lsp-auto-hover-enable
 	lsp-auto-signature-help-enable
@@ -41,6 +45,14 @@ hook global WinSetOption filetype=markdown %{
 }
 
 map global normal = '|fmt -w $kak_opt_autowrap_column<ret>'
+
+# save on every mode change
+hook global NormalIdle .* %{
+	write-all
+}
+hook global InsertIdle .* %{
+	write-all
+}
 
 # jj or fj to normal mode
 hook global InsertChar j %{ try %{
@@ -78,4 +90,4 @@ add-highlighter global/ number-lines -relative -hlcursor -separator '  '
 
 # lsp mode
 map global user / ':lsp-definition<ret>' -docstring 'lsp jump to definition'
-map global user c ':enter-user-mode<space>lsp<ret>' -docstring 'lsp'
+map global user c ':enter-user-mode<space>lsp<ret>' -docstring 'lsp mode'

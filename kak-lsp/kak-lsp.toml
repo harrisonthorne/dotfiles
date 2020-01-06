@@ -9,3 +9,8 @@ filetypes = ["php"]
 roots = ["composer.json"]
 command = "node"
 args = ["/usr/bin/intelephense"]
+
+[language.rust]
+filetypes = ["rust"]
+roots = ["Cargo.toml", ".git"]
+command = "ra_lsp_server"

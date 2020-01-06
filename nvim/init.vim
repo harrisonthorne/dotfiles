@@ -8,8 +8,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ledger/vim-ledger'                " Ledger
 Plug 'deviantfero/wpgtk.vim'
 Plug 'dhruvasagar/vim-table-mode'		" Tables!
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
+Plug 'lotabout/skim.vim'
 Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -22,7 +21,7 @@ Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
 call plug#end()
 
-let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore-dir={.git,node_modules}'
+let $SKIM_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore-dir={.git,node_modules}'
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
 let g:go_fmt_autosave = 0
@@ -52,9 +51,10 @@ set completeopt+=preview
 set conceallevel=1
 set diffopt+=hiddenoff
 set equalalways
-set fillchars+=vert:\ |
+set fillchars+=vert:\||
 set fillchars+=fold:\ |
-set foldcolumn=1
+set fillchars+=stl:-
+set fillchars+=stlnc:-
 set expandtab
 set formatoptions+=lt " Ensures word-wrap does not split words
 set hidden
@@ -76,8 +76,8 @@ set rnu
 set shiftwidth=4
 set shortmess=aFTW
 set si   " Smart indent
-" set signcolumn=auto:2
-set signcolumn=yes
+set signcolumn=auto:1
+"set signcolumn=yes
 set smartcase
 set softtabstop=4
 set scrolloff=5
@@ -107,8 +107,8 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 
 inoremap <silent><expr> <C-n> coc#refresh()
-" FZF
-map <C-p> :FZF<CR>
+" FZF/skim
+map <C-p> :SK<CR>
 
 " todo list
 nnoremap <leader>to :Ag (NOTE)\|(XXX)\|(FIXME)\|(TODO)<cr>
@@ -147,10 +147,10 @@ noremap <leader>te :tabe<CR>
 
 " splitting shortcuts
 noremap <leader>v :vs<CR>
-noremap <leader>nv :vs<CR>:FZF<CR>
+noremap <leader>nv :vs<CR>:SK<CR>
 noremap <leader>s :sp<CR>
-noremap <leader>ns :sp<CR>:FZF<CR>
-noremap <leader>nt :tabe<CR>:FZF<CR>
+noremap <leader>ns :sp<CR>:SK<CR>
+noremap <leader>nt :tabe<CR>:SK<CR>
 
 " Fugitive shortcuts
 noremap <leader>gg :Git
@@ -219,12 +219,11 @@ augroup auto_commands
     autocmd BufEnter * checktime
     autocmd InsertLeave * nested call AutoSave()
     autocmd CursorHold * call coc#refresh()
-    " autocmd CursorHold,BufWinEnter ?* call HasFolds()
 augroup END
 
 " au CursorHold,InsertLeave * nested update
 
-color wpgtk
+"color wpgtk
 
 " change gutter (SignColumn) color to clear
 hi SignColumn guibg=NONE ctermbg=NONE
@@ -255,9 +254,9 @@ hi CocInfoSign guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold
 hi CocStyleErrorSign guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
 hi CocStyleWarningSign guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
 
-hi VertSplit guibg=NONE guifg=NONE gui=NONE ctermbg=NONE ctermfg=NONE cterm=NONE
-hi StatusLine ctermbg=NONE guibg=NONE
-hi StatusLineNC ctermbg=NONE guibg=NONE
+hi VertSplit guibg=NONE guifg=8 gui=NONE ctermbg=NONE ctermfg=8 cterm=NONE
+hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
+hi StatusLine cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
 hi Normal ctermbg=NONE guibg=NONE
 hi NonText cterm=NONE gui=NONE ctermbg=NONE guibg=NONE
 hi Comment ctermbg=NONE guibg=NONE
@@ -278,12 +277,10 @@ hi DiffText ctermbg=NONE guibg=NONE ctermfg=226 guifg=yellow cterm=bold gui=bold
 hi diffAdded ctermbg=NONE guibg=NONE ctermfg=48 guifg=green
 hi diffRemoved ctermbg=NONE guibg=NONE ctermfg=196 guifg=orange
 
-hi GitGutterAdd ctermbg=NONE guibg=NONE ctermfg=10 guifg=green
-hi GitGutterChange ctermbg=NONE guibg=NONE ctermfg=11 guifg=yellow
-hi GitGutterDelete ctermbg=NONE guibg=NONE ctermfg=9 guifg=red
-hi GitGutterChangeDelete ctermbg=NONE guibg=NONE ctermfg=11 guifg=orange
-
-hi illuminatedWord ctermbg=8 guibg=gray ctermfg=15 guifg=white cterm=bold gui=bold
+hi Pmenu cterm=NONE gui=NONE ctermbg=8 ctermfg=14 guibg=8 guifg=14
+hi PmenuSel cterm=bold gui=bold ctermbg=6 ctermfg=15 guibg=6 guifg=15
+hi PmenuSbar cterm=NONE gui=NONE ctermbg=0 ctermfg=0 guibg=0 guifg=0
+hi PmenuThumb cterm=NONE gui=NONE ctermbg=5 ctermfg=5 guibg=5 guifg=5
 
 fu! SaveLastSession()
     execute 'mksession! ' . '~/.vim/session/previous'
@@ -299,51 +296,6 @@ fu! UpdateGitInfo()
     endtry
     return b:custom_git_branch
 endfu
-
-" from @SnoringFrog on Stack Overflow
-function! HasFolds()
-    "Attempt to move between folds, checking line numbers to see if it worked.
-    "If it did, there are folds.
-
-    function! HasFoldsInner()
-        let origline=line('.')  
-        :norm zk
-        if origline==line('.')
-            :norm zj
-            if origline==line('.')
-                return 0
-            else
-                return 1
-            endif
-        else
-            return 1
-        endif
-        return 0
-    endfunction
-
-    let l:winview=winsaveview() "save window and cursor position
-    let foldsexist=HasFoldsInner()
-    if foldsexist
-        set foldcolumn=4
-    else
-        "Move to the end of the current fold and check again in case the
-        "cursor was on the sole fold in the file when we checked
-        if line('.')!=1
-            :norm [z
-            :norm k
-        else
-            :norm ]z
-            :norm j
-        endif
-        let foldsexist=HasFoldsInner()
-        if foldsexist
-            set foldcolumn=4
-        else
-            set foldcolumn=0
-        endif
-    end
-    call winrestview(l:winview) "restore window/cursor position
-endfunction
 
 function! WordCount()
     if &filetype == "markdown"
@@ -405,12 +357,12 @@ endfunction
 
 "" Status bar
 
-hi CustomMode cterm=bold gui=bold ctermfg=15 guifg=15 ctermbg=NONE guibg=NONE
-hi CustomCursorPos cterm=bold gui=bold ctermfg=14 guifg=14 ctermbg=NONE guibg=NONE
-hi CustomFiletype cterm=bold gui=bold ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
-hi CustomGitBranch cterm=bold gui=bold ctermfg=12 guifg=12 ctermbg=NONE guibg=NONE
-hi CustomPercentage cterm=bold gui=bold ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
-hi Inactive ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
+hi CustomFile cterm=bold gui=bold ctermfg=14 guifg=14 ctermbg=NONE guibg=NONE
+hi CustomPercentage cterm=bold gui=bold ctermfg=10 guifg=10 ctermbg=NONE guibg=NONE
+hi CustomFiletype cterm=bold gui=bold ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
+hi CustomGitBranch cterm=bold gui=bold ctermfg=9 guifg=9 ctermbg=NONE guibg=NONE
+hi CustomMode cterm=bold gui=bold ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
+hi Inactive cterm=italic gui=italic ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
 
 let g:currentmode={
     \ 'n'  : 'n',
@@ -439,7 +391,7 @@ function! CurrentMode() abort
     " use get() -> fails safely, since ^V doesn't seem to register
     " 3rd arg is used when return of mode() == 0, which is case with ^V
     " thus, ^V fails -> returns 0 -> replaced with 'V Block'
-    let l:modelist = tolower(get(g:currentmode, l:modecurrent, 'vb')).' '
+    let l:modelist = tolower(get(g:currentmode, l:modecurrent, 'vb'))
     let l:current_status_mode = l:modelist
     return l:current_status_mode
 endfunction
@@ -458,26 +410,26 @@ function! ActiveStatus()
     let statusline.="%=" 
     let statusline.="%#Inactive#"
     let statusline.="\ %{coc#status()} "
-    let statusline.="%#CustomMode#"
-    let statusline.="\ %f %M %r"
+    let statusline.="%#CustomFile#"
+    let statusline.="\ %f"
+    let statusline.="\ %M %r"
     let statusline.="%#CustomPercentage#"
-    let statusline.="\ %3p%% "
+    let statusline.="\ %p%% "
     let statusline.="%#CustomFiletype#"
     let statusline.="\ ".tolower(&ft)." "
     let statusline.="%#CustomGitBranch#"
-    let statusline.="%{fugitive#head()!=''?'\ '.fugitive#head().' \':'\'}"
+    let statusline.=" "."%{fugitive#head()!=''?fugitive#head():''}"." "
     let statusline.="%#CustomMode#"
-    let statusline.="\ %{CurrentMode()}\%-6{PasteMode()}"
+    let statusline.="\ %{CurrentMode()}\%-6{PasteMode()} "
     return statusline
 endfunction
 
 function! InactiveStatus()
-    let statusline=""
-    let statusline.="%=" 
+    let statusline="%=" 
     let statusline.="%#Inactive#"
-    let statusline.="\ %f %M %r"
-    let statusline.="\ %3p%% "
-    let statusline.="%{fugitive#head()!=''?'\ '.fugitive#head().' \':'\'}"
+    let statusline.="\ %f"
+    let statusline.="\ %M %r"
+     let statusline.="\ %3p%% "
     return statusline
 endfunction
 
