@@ -53,8 +53,8 @@ set diffopt+=hiddenoff
 set equalalways
 set fillchars+=vert:\||
 set fillchars+=fold:\ |
-set fillchars+=stl:-
-set fillchars+=stlnc:-
+set fillchars+=stl:_
+set fillchars+=stlnc:_
 set expandtab
 set formatoptions+=lt " Ensures word-wrap does not split words
 set hidden
@@ -265,6 +265,7 @@ hi Delimiter ctermbg=NONE guibg=NONE
 hi Exception ctermbg=NONE guibg=NONE
 hi SpecialChar ctermbg=NONE guibg=NONE
 hi Typedef ctermbg=NONE guibg=NONE
+hi Type ctermfg=10 guifg=10
 hi Whitespace ctermfg=8 guifg=8
 
 hi link javaScriptLineComment Comment
@@ -278,7 +279,7 @@ hi diffAdded ctermbg=NONE guibg=NONE ctermfg=48 guifg=green
 hi diffRemoved ctermbg=NONE guibg=NONE ctermfg=196 guifg=orange
 
 hi Pmenu cterm=NONE gui=NONE ctermbg=8 ctermfg=14 guibg=8 guifg=14
-hi PmenuSel cterm=bold gui=bold ctermbg=6 ctermfg=15 guibg=6 guifg=15
+hi PmenuSel cterm=bold gui=bold ctermbg=6 ctermfg=8 guibg=6 guifg=8
 hi PmenuSbar cterm=NONE gui=NONE ctermbg=0 ctermfg=0 guibg=0 guifg=0
 hi PmenuThumb cterm=NONE gui=NONE ctermbg=5 ctermfg=5 guibg=5 guifg=5
 

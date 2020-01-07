@@ -21,18 +21,18 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p eaffff -s 7ca9cb | lemonbar -B "#e50f1317" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p ffffef -s a0accb | lemonbar -B "#e5080806" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $inactive     #55748c
+set $inactive     #6e768c
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #eaffff
-set $black        #0f1317e5
-set $fadedBlack   #0f1317c0
+set $white        #ffffef
+set $black        #080806e5
+set $fadedBlack   #080806c0
 set $transparent  #00000000
 
-set $TERMINAL alacritty
+set $TERMINAL kitty
 set $SHELL /usr/bin/fish
 
 set $screenshot "sh $HOME/.config/sway/screenshot.sh"
@@ -147,7 +147,7 @@ bindsym $mod+q split toggle; kill
 
 # app shortcuts
 bindsym $mod+w exec brave
-bindsym $mod+e exec $TERMINAL -t ranger -e $SHELL -i -c ranger
+bindsym $mod+e exec $TERMINAL -T "Files" -e $SHELL -i -c ranger
 bindsym $mod+b exec spotify
 bindsym $mod+c exec rofi -show calc
 bindsym $mod+m exec evolution
@@ -155,15 +155,16 @@ bindsym $mod+g exec sh $HOME/.config/sway/drive.sh
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
 # nvim, notebook, new note
-bindsym $mod+n exec $TERMINAL -t nvim -e $SHELL -i -c nvim
-bindsym $mod+Shift+n exec $TERMINAL -t nvim -e $SHELL -i -c nvim
-bindsym $mod+Control+n exec $TERMINAL -t nvim -e $SHELL -i -c nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md
+bindsym $mod+n exec $TERMINAL -T Neovim -e $SHELL -i -c nvim
+bindsym $mod+Shift+n exec $TERMINAL -T Notebook -e $SHELL -i -c "ranger ~/Notebook"
+bindsym $mod+Control+n exec $TERMINAL -T "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
 
 # lock
 bindsym $mod+Escape exec $locker
 
 # screenshot
 bindsym --release $mod+Print exec $screenshot
+bindsym --release $mod+Control+Print exec "sh $HOME/.config/sway/screenshot.sh -s"
 
 # video capture
 bindsym --release $mod+Shift+Print exec sh $HOME/.config/sway/videocapture.sh
@@ -278,7 +279,7 @@ output "*" {
 }
 
 bar {
-    # status_command "muse-status -m i3 -p eaffff -s 7ca9cb"
+    # status_command "muse-status -m i3 -p ffffef -s a0accb"
     status_command i3status
     mode dock
     modifier $mod

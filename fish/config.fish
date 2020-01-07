@@ -33,10 +33,6 @@ else
     eval (keychain -q --agents ssh --eval id_rsa_github id_rsa_bitbucket aur)
 end
 
-# if status is-interactive; and not set -q TMUX
-#     test $TERM != "screen"; and exec tmux
-# end
-
 function fish_prompt --description 'Write out the prompt'
     set -l color_cwd
     set -l suffix
