@@ -18,7 +18,7 @@ set -gx GDK_BACKEND x11
 set -gx QT_QPA_PLATFORMTHEME gtk2
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
-set -gx LEDGER_FILE $HOME/Notebook/hledger/hledger.journal
+set -gx LEDGER_FILE $HOME/Notebook/ledger/main.journal
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx W3MIMGDISPLAY_PATH /usr/libexec/w3m/w3mimgdisplay
 set -gx EIX_LIMIT 0
@@ -55,3 +55,5 @@ end
 function nohup
     command nohup $argv </dev/null >/dev/null 2>&1 & disown
 end
+
+bash ~/.bashrc

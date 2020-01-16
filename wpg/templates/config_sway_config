@@ -21,15 +21,18 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p ffffef -s a0accb | lemonbar -B "#e5080806" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p fffefe -s b7cbaa | lemonbar -B "#e510130c" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $inactive     #6e768c
+set $active       #b7cbaae5
+set $inactive     #7d8c75e5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #ffffef
-set $black        #080806e5
-set $fadedBlack   #080806c0
+set $white        #fffefe
+set $black        #10130ce5
+set $gray         #29321ee5
+set $opaqueGray   #29321e
+set $fadedBlack   #10130cc0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -39,7 +42,7 @@ set $screenshot "sh $HOME/.config/sway/screenshot.sh"
 
 # Window colors
 # class                 border          backgr.         text            indicator       child_border
-client.focused          $black          $black          $white          $black          $black
+client.focused          $gray           $gray           $white          $black          $gray
 client.focused_inactive $black          $black          $inactive       $black          $black
 client.unfocused        $black          $black          $inactive       $black          $black
 client.urgent           $warning        $warning        $black          $warning        $warning
@@ -49,6 +52,10 @@ client.background       $black
 # Font for window titles
 font pango: Roboto 10
 title_align center
+
+# others
+default_orientation auto
+focus_follows_mouse always
 
 # disable borders and titlebars
 default_border normal 4
@@ -79,10 +86,10 @@ bindsym --locked XF86MonBrightnessUp exec light -A 2 && muse-status notify brigh
 bindsym --locked XF86MonBrightnessDown exec light -U 2 && muse-status notify brightness
 
 # Gaps between windows
-gaps inner 16
-bindsym $mod+equal gaps inner all set 16
-bindsym $mod+minus gaps inner all set 0
-hide_edge_borders none
+gaps inner 0
+bindsym $mod+equal gaps inner all set 16; hide_edge_borders --i3 none
+bindsym $mod+minus gaps inner all set 0; hide_edge_borders --i3 smart
+hide_edge_borders --i3 smart
 
 # start a terminal
 bindsym $mod+Return exec $TERMINAL
@@ -119,6 +126,9 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# close window
+bindsym $mod+q kill
+
 # toggle split direction
 bindsym $mod+o split toggle
 
@@ -137,14 +147,6 @@ bindsym $mod+t layout tabbed
 bindsym $mod+y layout toggle split
 bindsym $mod+u layout stacking
 
-# binary spacing
-# start in opposite orientation from your monitor
-default_orientation vertical
-# toggles split at each new window
-for_window [class=".*"] split toggle
-# kill command resets the split
-bindsym $mod+q split toggle; kill
-
 # app shortcuts
 bindsym $mod+w exec brave
 bindsym $mod+e exec $TERMINAL -T "Files" -e $SHELL -i -c ranger
@@ -152,6 +154,7 @@ bindsym $mod+b exec spotify
 bindsym $mod+c exec rofi -show calc
 bindsym $mod+m exec evolution
 bindsym $mod+g exec sh $HOME/.config/sway/drive.sh
+bindsym $mod+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
 # nvim, notebook, new note
@@ -169,8 +172,9 @@ bindsym --release $mod+Control+Print exec "sh $HOME/.config/sway/screenshot.sh -
 # video capture
 bindsym --release $mod+Shift+Print exec sh $HOME/.config/sway/videocapture.sh
 
-# dismiss mako notifications
+# mako notifications
 bindsym Control+Escape exec makoctl dismiss
+bindsym $mod+Space exec makoctl invoke
 
 # toggle tiling / floating
 bindsym $mod+s floating enable, border normal 4
@@ -279,7 +283,7 @@ output "*" {
 }
 
 bar {
-    # status_command "muse-status -m i3 -p ffffef -s a0accb"
+    # status_command "muse-status -m i3 -p fffefe -s b7cbaa"
     status_command i3status
     mode dock
     modifier $mod

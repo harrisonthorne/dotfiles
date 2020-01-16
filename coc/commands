@@ -1,4 +1,10 @@
-rust-analyzer.collectGarbage
-rust-analyzer.stopCargoWatch
+rls.run
+rust-analyzer.showReferences
+rust-analyzer.joinLines
+workspace.diagnosticRelated
+rust-analyzer.reload
+rust-analyzer.syntaxTree
 rust-analyzer.analyzerStatus
 snippets.editSnippets
+rust-analyzer.collectGarbage
+rust-analyzer.stopCargoWatch

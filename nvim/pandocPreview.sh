@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-cmd="pandoc \"$1\" -o \"$1.pdf\" && pkill -HUP mupdf" 
+cmd="pandoc \"$1\" -o \"$1.pdf\" --wrap=preserve && pkill -HUP mupdf" 
 echo $cmd
 
 bash -c "$cmd"

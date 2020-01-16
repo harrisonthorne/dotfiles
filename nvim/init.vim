@@ -8,11 +8,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ledger/vim-ledger'                " Ledger
 Plug 'deviantfero/wpgtk.vim'
 Plug 'dhruvasagar/vim-table-mode'		" Tables!
+Plug 'honza/vim-snippets'               " Snippets
 Plug 'lotabout/skim.vim'
 Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'plasticboy/vim-markdown'          " markdown latex syntax highlighting
 Plug 'psliwka/vim-smoothie'
 Plug 'scrooloose/nerdtree'              " NERDTree
 Plug 'sheerun/vim-polyglot'             " languages
@@ -53,8 +53,8 @@ set diffopt+=hiddenoff
 set equalalways
 set fillchars+=vert:\||
 set fillchars+=fold:\ |
-set fillchars+=stl:_
-set fillchars+=stlnc:_
+set fillchars+=stl:-
+set fillchars+=stlnc:-
 set expandtab
 set formatoptions+=lt " Ensures word-wrap does not split words
 set hidden
@@ -231,13 +231,14 @@ hi LineNr ctermfg=4 guibg=NONE ctermbg=NONE
 
 hi MatchParen cterm=bold ctermbg=8 ctermfg=231 gui=bold guibg=8 guifg=white
 hi FoldColumn guibg=NONE ctermbg=NONE
-hi CursorLineNr guibg=black ctermbg=0 cterm=bold gui=bold guifg=white ctermfg=231
-hi CursorLine guibg=black ctermbg=0 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
-hi CursorColumn guibg=black ctermbg=0 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
+hi CursorLineNr guibg=8 ctermbg=8 cterm=bold gui=bold guifg=white ctermfg=231
+hi CursorLine guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
+hi CursorColumn guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
+hi Folded guibg=0 ctermbg=0 guifg=4 ctermfg=4 gui=italic cterm=italic
 
-hi WarningMsg guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
-hi ErrorMsg guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
-hi InfoMsg guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold term=bold
+hi WarningMsg guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
+hi ErrorMsg guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
+hi InfoMsg guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
 
 hi link CocUnderline InfoMsg
 hi link CocErrorHighlight ErrorMsg
@@ -266,6 +267,7 @@ hi Exception ctermbg=NONE guibg=NONE
 hi SpecialChar ctermbg=NONE guibg=NONE
 hi Typedef ctermbg=NONE guibg=NONE
 hi Type ctermfg=10 guifg=10
+hi PreProc ctermfg=14 guifg=14
 hi Whitespace ctermfg=8 guifg=8
 
 hi link javaScriptLineComment Comment
@@ -358,7 +360,7 @@ endfunction
 
 "" Status bar
 
-hi CustomFile cterm=bold gui=bold ctermfg=14 guifg=14 ctermbg=NONE guibg=NONE
+hi CustomFile cterm=bold gui=bold ctermfg=12 guifg=12 ctermbg=NONE guibg=NONE
 hi CustomPercentage cterm=bold gui=bold ctermfg=10 guifg=10 ctermbg=NONE guibg=NONE
 hi CustomFiletype cterm=bold gui=bold ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
 hi CustomGitBranch cterm=bold gui=bold ctermfg=9 guifg=9 ctermbg=NONE guibg=NONE
@@ -406,31 +408,34 @@ function! PasteMode()
     endif
 endfunction
 
+function! CocCustomStatus() abort
+    let info = get(b:, 'coc_diagnostic_info', {})
+    if empty(info)
+        return ''
+    endif
+    let msgs = []
+    if get(info, 'error', 0)
+        call add(msgs, 'E' . info['error'])
+    endif
+    if get(info, 'warning', 0)
+        call add(msgs, 'W' . info['warning'])
+    endif
+    return join(msgs, " ")." ". get(g:, "coc_status", "")
+endfunction
+
 function! ActiveStatus()
-    let statusline=""
-    let statusline.="%=" 
-    let statusline.="%#Inactive#"
-    let statusline.="\ %{coc#status()} "
-    let statusline.="%#CustomFile#"
-    let statusline.="\ %f"
-    let statusline.="\ %M %r"
-    let statusline.="%#CustomPercentage#"
-    let statusline.="\ %p%% "
-    let statusline.="%#CustomFiletype#"
-    let statusline.="\ ".tolower(&ft)." "
-    let statusline.="%#CustomGitBranch#"
-    let statusline.=" "."%{fugitive#head()!=''?fugitive#head():''}"." "
-    let statusline.="%#CustomMode#"
-    let statusline.="\ %{CurrentMode()}\%-6{PasteMode()} "
+    let statusline="%=%#Inactive# %{CocCustomStatus()}"
+    let statusline.="  %#CustomFile# %f %M %r"
+    let statusline.="  %#CustomPercentage# %3p%%"
+    let statusline.="  %#CustomFiletype# ".tolower(&ft)
+    let statusline.="  %#CustomGitBranch# "."%{fugitive#head()!=''?fugitive#head():''}"
+    let statusline.="  %#CustomMode# %{CurrentMode()}\%-6{PasteMode()}"
     return statusline
 endfunction
 
 function! InactiveStatus()
-    let statusline="%=" 
-    let statusline.="%#Inactive#"
-    let statusline.="\ %f"
-    let statusline.="\ %M %r"
-     let statusline.="\ %3p%% "
+    let statusline="%=%#Inactive#"
+    let statusline.="  %f %M %r %3p%% "
     return statusline
 endfunction
 
