@@ -429,7 +429,7 @@ function! ActiveStatus()
     let statusline.="  %#CustomPercentage# %3p%%"
     let statusline.="  %#CustomFiletype# ".tolower(&ft)
     let statusline.="  %#CustomGitBranch# "."%{fugitive#head()!=''?fugitive#head():''}"
-    let statusline.="  %#CustomMode# %{CurrentMode()}\%-6{PasteMode()}"
+    let statusline.="  %#CustomMode# %{CurrentMode()}\%-6{PasteMode()} "
     return statusline
 endfunction
 
