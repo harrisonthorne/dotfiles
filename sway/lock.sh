@@ -26,12 +26,12 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
     -resize 5% \
     -blur 1x2 \
     -resize 2000% \
-    -fill "#10130c" \
+    -fill "#10180a" \
     -colorize 75% \
     "$tmpbg"
 
-primary="fffefeff"
-secondary="b7cbaae5"
+primary="f2fdffff"
+secondary="8cb3cbe5"
 
 swaylock $FORK -t -i "$tmpbg" \
     -e \

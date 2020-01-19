@@ -5,6 +5,6 @@ echo $cmd
 
 bash -c "$cmd"
 
-echo "$1" | entr -n bash -c "$cmd" &
-
 mupdf "$1.pdf" &
+
+echo "$1" | entr -n bash -c "$cmd"

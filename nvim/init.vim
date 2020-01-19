@@ -202,9 +202,6 @@ imap jj <Plug>(PearTreeFinishExpansion)
 inoremap fj <esc>
 imap fj <Plug>(PearTreeFinishExpansion)
 
-nnoremap <silent> <leader>mm :silent !sh $HOME/.config/nvim/pandocPreview.sh "%"<CR>:echo "Markdown preview was started."<CR>
-nnoremap <silent> <leader>mq :silent !killall entr && rm "%.tmp.pdf"<CR>:echo "Markdown preview was stopped. You can close your editor when you want. :)"<CR>
-
 nnoremap ! :!
 
 " autocommands
@@ -362,10 +359,11 @@ endfunction
 
 hi CustomFile cterm=bold gui=bold ctermfg=12 guifg=12 ctermbg=NONE guibg=NONE
 hi CustomPercentage cterm=bold gui=bold ctermfg=10 guifg=10 ctermbg=NONE guibg=NONE
-hi CustomFiletype cterm=bold gui=bold ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
-hi CustomGitBranch cterm=bold gui=bold ctermfg=9 guifg=9 ctermbg=NONE guibg=NONE
-hi CustomMode cterm=bold gui=bold ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
-hi Inactive cterm=italic gui=italic ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
+hi CustomLineCol cterm=bold gui=bold ctermfg=11 guifg=11 ctermbg=NONE guibg=NONE
+hi CustomFiletype cterm=bold gui=bold ctermfg=9 guifg=9 ctermbg=NONE guibg=NONE
+hi CustomGitBranch cterm=bold gui=bold ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
+hi CustomMode cterm=bold gui=bold ctermfg=14 guifg=14 ctermbg=NONE guibg=NONE
+hi Inactive cterm=italic gui=italic ctermfg=4 guifg=4 ctermbg=NONE guibg=NONE
 
 let g:currentmode={
     \ 'n'  : 'n',
@@ -408,6 +406,10 @@ function! PasteMode()
     endif
 endfunction
 
+set laststatus=2
+set noshowmode
+set statusline=%!ActiveStatus()
+
 function! CocCustomStatus() abort
     let info = get(b:, 'coc_diagnostic_info', {})
     if empty(info)
@@ -415,18 +417,21 @@ function! CocCustomStatus() abort
     endif
     let msgs = []
     if get(info, 'error', 0)
-        call add(msgs, 'E' . info['error'])
+        call add(msgs, info['error']." errors")
     endif
     if get(info, 'warning', 0)
-        call add(msgs, 'W' . info['warning'])
+        call add(msgs, info['warning']." warnings")
     endif
-    return join(msgs, " ")." ". get(g:, "coc_status", "")
+    return trim(get(g:, "coc_status", "") . "    " . join(msgs, ", "))
 endfunction
 
 function! ActiveStatus()
-    let statusline="%=%#Inactive# %{CocCustomStatus()}"
+    let statusline="%="
+    let statusline.="%#Inactive# ".CocCustomStatus()." "
+    let statusline.="  %#StatusLineNC#"
     let statusline.="  %#CustomFile# %f %M %r"
     let statusline.="  %#CustomPercentage# %3p%%"
+    let statusline.="  %#CustomLineCol# %l:%c"
     let statusline.="  %#CustomFiletype# ".tolower(&ft)
     let statusline.="  %#CustomGitBranch# "."%{fugitive#head()!=''?fugitive#head():''}"
     let statusline.="  %#CustomMode# %{CurrentMode()}\%-6{PasteMode()} "
@@ -438,10 +443,6 @@ function! InactiveStatus()
     let statusline.="  %f %M %r %3p%% "
     return statusline
 endfunction
-
-set laststatus=2
-set noshowmode
-set statusline=%!ActiveStatus()
 
 augroup status
     autocmd!

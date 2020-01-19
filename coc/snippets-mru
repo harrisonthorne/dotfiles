@@ -1,7 +1,12 @@
-diso
-unim
-h1
+println
+crate
 test
+unreachable
+h1
+h2
+thread::spawn
+unim
+diso
 d
 impl
 assert_eq
@@ -11,7 +16,6 @@ unimplemented
 private
 extern
 import
-h2
 get
 snippet
 function

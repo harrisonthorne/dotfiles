@@ -21,21 +21,21 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p fffefe -s b7cbaa | lemonbar -B "#e510130c" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p f2fdff -s 8cb3cb | lemonbar -B "#e510180a" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $active       #b7cbaae5
-set $inactive     #7d8c75e5
+set $active       #8cb3cbe5
+set $inactive     #607b8ce5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #fffefe
-set $black        #10130ce5
-set $gray         #29321ee5
-set $opaqueGray   #29321e
-set $fadedBlack   #10130cc0
+set $white        #f2fdff
+set $black        #10180ae5
+set $gray         #273b18e5
+set $opaqueGray   #273b18
+set $fadedBlack   #10180ac0
 set $transparent  #00000000
 
-set $TERMINAL kitty
+set $TERMINAL alacritty
 set $SHELL /usr/bin/fish
 
 set $screenshot "sh $HOME/.config/sway/screenshot.sh"
@@ -43,7 +43,7 @@ set $screenshot "sh $HOME/.config/sway/screenshot.sh"
 # Window colors
 # class                 border          backgr.         text            indicator       child_border
 client.focused          $gray           $gray           $white          $black          $gray
-client.focused_inactive $black          $black          $inactive       $black          $black
+client.focused_inactive $black          $black          $active         $black          $black
 client.unfocused        $black          $black          $inactive       $black          $black
 client.urgent           $warning        $warning        $black          $warning        $warning
 client.placeholder      $black          $black          $inactive       $black          $black
@@ -158,9 +158,9 @@ bindsym $mod+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
 # nvim, notebook, new note
-bindsym $mod+n exec $TERMINAL -T Neovim -e $SHELL -i -c nvim
-bindsym $mod+Shift+n exec $TERMINAL -T Notebook -e $SHELL -i -c "ranger ~/Notebook"
-bindsym $mod+Control+n exec $TERMINAL -T "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
+bindsym $mod+n exec $TERMINAL -t Neovim -e $SHELL -i -c nvim
+bindsym $mod+Shift+n exec $TERMINAL -t Notebook -e $SHELL -i -c "ranger ~/Notebook"
+bindsym $mod+Control+n exec $TERMINAL -t "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
 
 # lock
 bindsym $mod+Escape exec $locker
@@ -177,14 +177,7 @@ bindsym Control+Escape exec makoctl dismiss
 bindsym $mod+Space exec makoctl invoke
 
 # toggle tiling / floating
-bindsym $mod+s floating enable, border normal 4
-bindsym $mod+Shift+s floating disable, border normal 4
-
-# change focus between tiling / floating windows
-bindsym $mod+Control+space focus mode_toggle
-
-# focus the parent container
-# bindsym $mod+a focus parent
+bindsym $mod+s floating toggle
 
 # start mivy
 bindsym $mod+d exec mivy
@@ -283,7 +276,7 @@ output "*" {
 }
 
 bar {
-    # status_command "muse-status -m i3 -p fffefe -s b7cbaa"
+    # status_command "muse-status -m i3 -p f2fdff -s 8cb3cb"
     status_command i3status
     mode dock
     modifier $mod

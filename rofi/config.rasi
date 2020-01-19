@@ -18,7 +18,7 @@ configuration {
 	auto-select: false;
 	matching: "fuzzy";
 	fullscreen: false;
-    terminal: "kitty";
+    terminal: "alacritty";
     ssh-client: "ssh";
     ssh-command: "{terminal} -e /bin/bash -i -c \"{ssh-client} {host}\"";
     run-shell-command: "{terminal} -e /usr/bin/fish -i -c \"{cmd}\"";
@@ -36,11 +36,11 @@ configuration {
 * {
     text-color:  #ffffff;
     background-color: #00000000;
-    black: #10130c;
+    black: #10180a;
     white: #ffffff;
-    inactive: #b7cbaa;
+    inactive: #8cb3cb;
     orange: #ffaa00;
-    selected: #b7cbaa20;
+    selected: #8cb3cb20;
 }
 #window {
     border:  0px 0px 0px 0px;
@@ -70,7 +70,7 @@ configuration {
 
 #mainbox {
     expand: true;
-    background-color: #10130ce5;
+    background-color: #10180ae5;
     spacing: 1em;
     padding: 32px;
 }
@@ -89,14 +89,14 @@ configuration {
 }
 
 #element normal active {
-    text-color: #b7cbaa;
+    text-color: #8cb3cb;
 }
 #element normal urgent {
     text-color: @orange;
 }
 #element selected active {
     background-color: @selected;
-    text-color: #b7cbaa;
+    text-color: #8cb3cb;
 }
 #element selected urgent {
     background-color: @selected;

@@ -115,7 +115,7 @@ font:
     family: "Iosevka Muse"
 
   # Point size
-  size: 11.0
+  size: 9.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -153,8 +153,8 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x10130c'
-    foreground: '0xfffefe'
+    background: '0x10180a'
+    foreground: '0xf2fdff'
 
     # Bright and dim foreground colors
     #
@@ -183,25 +183,25 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x10130c'
-    red:     '0x9A7E87'
-    green:   '0xA29992'
-    yellow:  '0x9A8D75'
-    blue:    '0xBAC3B7'
-    magenta: '0xCAACAD'
-    cyan:    '0xB1B4AF'
-    white:   '0xd9d8d8'
+    black:   '0x10180a'
+    red:     '0x99AEC6'
+    green:   '0x8899AC'
+    yellow:  '0x979087'
+    blue:    '0x748CA3'
+    magenta: '0x93A5B9'
+    cyan:    '0x7698C4'
+    white:   '0xcad3de'
 
   # Bright colors
   bright:
-    black:   '0x29321e'
-    red:     '0xda91a9'
-    green:   '0xe6c4a9'
-    yellow:  '0xd9bc86'
-    blue:    '0xe5ffd5'
-    magenta: '0xffc7ca'
-    cyan:    '0xe1ffcc'
-    white:   '0xfffefe'
+    black:   '0x273b18'
+    red:     '0xb0e0ff'
+    green:   '0x9cc5f3'
+    yellow:  '0xd6bd9c'
+    blue:    '0x84b6e5'
+    magenta: '0xa9d5ff'
+    cyan:    '0x85c2ff'
+    white:   '0xf2fdff'
 
   # Dim colors
   #
