@@ -428,7 +428,6 @@ endfunction
 function! ActiveStatus()
     let statusline="%="
     let statusline.="%#Inactive# ".CocCustomStatus()." "
-    let statusline.="  %#StatusLineNC#"
     let statusline.="  %#CustomFile# %f %M %r"
     let statusline.="  %#CustomPercentage# %3p%%"
     let statusline.="  %#CustomLineCol# %l:%c"
@@ -446,8 +445,8 @@ endfunction
 
 augroup status
     autocmd!
-    autocmd BufEnter,WinEnter,SessionLoadPost * setlocal statusline=%!ActiveStatus()
-    autocmd BufLeave,WinLeave * setlocal statusline=%!InactiveStatus()
+    autocmd BufEnter,WinEnter,BufRead,BufWinEnter * :setlocal statusline=%!ActiveStatus()
+    autocmd BufLeave,WinLeave * :setlocal statusline=%!InactiveStatus()
 augroup END
 
 "" Tab line

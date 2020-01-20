@@ -10,7 +10,7 @@ fi
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 for o in `xrandr | grep " connected" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/"`; do
-    muse-status -p f2fdff -s 8cb3cb | lemonbar -n "$PANEL_WM_NAME" -B "#e510180a" -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+    muse-status -p d6faff -s 377dcb | lemonbar -n "$PANEL_WM_NAME" -B "#e50B0D0D" -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 done
 
 sleep 3s
