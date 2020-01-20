@@ -430,7 +430,7 @@ function! ActiveStatus()
     let statusline.="%#Inactive# ".CocCustomStatus()." "
     let statusline.="  %#CustomFile# %f %M %r"
     let statusline.="  %#CustomPercentage# %3p%%"
-    let statusline.="  %#CustomLineCol# %l:%c"
+    let statusline.="  %#CustomLineCol# %3l:%3c"
     let statusline.="  %#CustomFiletype# ".tolower(&ft)
     let statusline.="  %#CustomGitBranch# "."%{fugitive#head()!=''?fugitive#head():''}"
     let statusline.="  %#CustomMode# %{CurrentMode()}\%-6{PasteMode()} "
