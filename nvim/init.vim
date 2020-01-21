@@ -17,6 +17,7 @@ Plug 'psliwka/vim-smoothie'
 Plug 'scrooloose/nerdtree'              " NERDTree
 Plug 'sheerun/vim-polyglot'             " languages
 Plug 'tmsvg/pear-tree'                  " auto-pairs
+Plug 'tpope/vim-abolish'                " camelCase to snake_case
 Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
 call plug#end()
@@ -196,6 +197,9 @@ nnoremap <leader>dg :diffget<CR>
 nnoremap <leader>dt :diffthis<CR>
 nnoremap <leader>do :diffoff<CR>:set noscrollbind<CR>:set nocursorbind<CR>
 
+" convert all camelCase to snake_case
+nnoremap <leader>u :%s#\(\u\l\+\|\l\+\)\(\u\)#\l\1_\l\2#g
+
 " press jj or fj to go from insert to normal mode
 inoremap jj <esc>
 imap jj <Plug>(PearTreeFinishExpansion)
@@ -237,6 +241,10 @@ hi WarningMsg guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bo
 hi ErrorMsg guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
 hi InfoMsg guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
 
+hi link Error ErrorMsg
+hi link Warning WarningMsg
+hi link Info InfoMsg
+
 hi link CocUnderline InfoMsg
 hi link CocErrorHighlight ErrorMsg
 hi link CocWarningHighlight WarningMsg
@@ -266,6 +274,7 @@ hi Typedef ctermbg=NONE guibg=NONE
 hi Type ctermfg=10 guifg=10
 hi PreProc ctermfg=14 guifg=14
 hi Whitespace ctermfg=8 guifg=8
+hi Title cterm=bold gui=bold ctermfg=13 guifg=13
 
 hi link javaScriptLineComment Comment
 

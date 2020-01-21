@@ -1,3 +1,5 @@
+der
+derive
 for
 assert_eq
 test
@@ -12,7 +14,6 @@ diso
 d
 impl
 cfg
-derive
 unimplemented
 private
 extern
