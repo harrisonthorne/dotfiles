@@ -334,7 +334,7 @@
        gradientdrag="1"
        font_sample="AaBbCcIiPpQq12369$€¢?.;/()"
        show_sample_in_list="1"
-       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:8px;line-height:1.25;letter-spacing:0px;word-spacing:0px;text-anchor:start;text-align:start"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;letter-spacing:0px;word-spacing:0px;text-anchor:end;text-align:end"
        selcue="1"
        outer_style="0"
        align_mode="1">
@@ -579,10 +579,10 @@
        x="0"
        y="0"
        w="314"
-       h="374"
+       h="372"
        visible="1"
        state="2"
-       placement="1" />
+       placement="2" />
     <group
        id="filtereffects" />
     <group
@@ -610,15 +610,25 @@
        panel_mode="1"
        panel_wrap="0"
        panel_border="0"
-       x="1380"
-       y="870"
-       w="545"
-       h="751"
+       x="1217"
+       y="709"
+       w="948"
+       h="992"
        visible="0"
        placement="1" />
     <group
        id="preferences"
-       state="1" />
+       state="1"
+       page="13"
+       panel_size="1"
+       panel_ratio="100"
+       panel_mode="1"
+       panel_wrap="0"
+       panel_border="0"
+       x="735"
+       y="408"
+       w="450"
+       h="264" />
     <group
        id="gradienteditor" />
     <group
@@ -627,18 +637,31 @@
        id="export"
        default=""
        append_extension="1"
-       path="">
+       path=""
+       panel_size="1"
+       panel_ratio="100"
+       panel_mode="1"
+       panel_wrap="0"
+       panel_border="0"
+       x="0"
+       y="0"
+       w="314"
+       h="431"
+       visible="1"
+       state="2"
+       placement="1">
       <group
-         id="exportarea" />
+         id="exportarea"
+         value="page" />
       <group
          id="defaultxdpi" />
     </group>
     <group
        id="save_as"
-       default="org.inkscape.output.pdf.cairorenderer"
+       default="org.inkscape.output.svg.inkscape"
        append_extension="1"
        enable_preview="1"
-       path="/home/harrisonthorne/Documents/college/digital-systems"
+       path="/home/harrisonthorne/Documents/college/english"
        use_current_dir="1" />
     <group
        id="save_copy"
@@ -649,14 +672,15 @@
     <group
        id="open"
        enable_preview="1"
-       path="/home/harrisonthorne/Documents/college/digital-systems/" />
+       path="/home/harrisonthorne/Documents/college/english/" />
     <group
        id="import"
        enable_preview="1"
        path="/home/harrisonthorne/Documents/college/digital-systems/"
-       ask="1"
-       link="link"
-       scale="optimizeSpeed" />
+       ask="0"
+       link="embed"
+       scale="auto"
+       forcexdpi="0" />
     <group
        id="debug"
        redirect="0" />
@@ -991,10 +1015,11 @@
      org.inkscape.output.pdf.cairorenderer.PDFversion="PDF-1.5"
      org.inkscape.output.pdf.cairorenderer.resolution="96"
      org.inkscape.output.pdf.cairorenderer.bleed="0"
-     org.inkscape.output.pdf.cairorenderer.blurToBitmap="1" />
+     org.inkscape.output.pdf.cairorenderer.blurToBitmap="1"
+     org.inkscape.input.gdkpixbuf.jpg.do_not_ask="1" />
   <group
      id="desktop"
-     style="line-height:1.25;fill:none;fill-opacity:1;stroke-width:1.00157477;stroke-miterlimit:4;stroke-dasharray:none;stroke:#000000;stroke-opacity:1;font-variant-east_asian:normal;opacity:1;vector-effect:none;stroke-linecap:butt;stroke-linejoin:miter;stroke-dashoffset:0;font-size:16px;text-anchor:middle;text-align:center">
+     style="line-height:1.25;fill:#ff0000;fill-opacity:1;stroke-width:3.26929134;stroke-miterlimit:4;stroke-dasharray:none;stroke:#f90000;stroke-opacity:1;font-variant-east_asian:normal;opacity:1;vector-effect:none;stroke-linecap:butt;stroke-linejoin:miter;stroke-dashoffset:0;font-size:16px;text-anchor:middle;text-align:center;-inkscape-font-specification:'DejaVu Sans Bold';font-family:'DejaVu Sans';font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal">
     <group
        width="1920"
        height="1048"

@@ -1,3 +1,4 @@
+rls.restart
 rls.run
 rust-analyzer.showReferences
 rust-analyzer.joinLines

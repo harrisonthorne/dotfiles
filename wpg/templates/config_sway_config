@@ -16,23 +16,31 @@ exec sh $HOME/.config/wpg/wp_init.sh &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec xhost si:localuser:root &
 exec redshift &
+exec syncthing --no-browser &
 exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dpmsoff resume $dpmson before-sleep $locker &
+
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always gsettings set $gnome-schema gtk-theme 'alto-gtk'
+exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'
+exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
+exec_always gsettings set $gnome-schema font-name 'Roboto 10'
 
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p d6faff -s 377dcb | lemonbar -B "#e50B0D0D" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p f9fdff -s cbcba9 | lemonbar -B "#e50B0907" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $active       #377dcbe5
-set $inactive     #26568be5
+set $active       #cbcba9e5
+set $inactive     #8c8c74e5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #d6faff
-set $black        #0B0D0De5
-set $gray         #212828e5
-set $opaqueGray   #212828
-set $fadedBlack   #0B0D0Dc0
+set $white        #f9fdff
+set $black        #0B0907e5
+set $gray         #2a2219e5
+set $opaqueGray   #2a2219
+set $fadedBlack   #0B0907c0
 set $transparent  #00000000
 
 set $TERMINAL alacritty
@@ -149,7 +157,6 @@ bindsym $mod+u layout stacking
 
 # app shortcuts
 bindsym $mod+w exec brave
-bindsym $mod+e exec $TERMINAL -T "Files" -e $SHELL -i -c ranger
 bindsym $mod+b exec spotify
 bindsym $mod+c exec rofi -show calc
 bindsym $mod+m exec evolution
@@ -157,7 +164,8 @@ bindsym $mod+g exec sh $HOME/.config/sway/drive.sh
 bindsym $mod+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
-# nvim, notebook, new note
+# files, nvim, notebook, new note
+bindsym $mod+e exec $TERMINAL -t "Files" -e $SHELL -i -c ranger
 bindsym $mod+n exec $TERMINAL -t Neovim -e $SHELL -i -c nvim
 bindsym $mod+Shift+n exec $TERMINAL -t Notebook -e $SHELL -i -c "ranger ~/Notebook"
 bindsym $mod+Control+n exec $TERMINAL -t "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
@@ -227,44 +235,48 @@ bindsym $mod+Shift+v scratchpad show
 bindsym $mod+Shift+c exec wpg -s $(wpg -c)
 
 # reload with random wallpaper
-bindsym $mod+Shift+r exec wpg -m
+    bindsym $mod+Shift+r exec wpg -m
 
 # modes
-bindsym $mod+r mode "Resize mode"
+    bindsym $mod+r mode "Resize mode"
 
 # resize window (you can also use the mouse for that)
-mode "Resize mode" {
-        # These bindings trigger as soon as you enter the resize mode
+    mode "Resize mode" {
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 20 px
-        bindsym j resize grow height 20 px
-        bindsym k resize shrink height 20 px
-        bindsym l resize grow width 20 px
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+bindsym h resize shrink width 20 px
+bindsym j resize grow height 20 px
+bindsym k resize shrink height 20 px
+bindsym l resize grow width 20 px
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 20 px
-        bindsym Down resize grow height 20 px
-        bindsym Up resize shrink height 20 px
-        bindsym Right resize grow width 20 px
+# same bindings, but for the arrow keys
+            bindsym Left resize shrink width 20 px
+            bindsym Down resize grow height 20 px
+            bindsym Up resize shrink height 20 px
+            bindsym Right resize grow width 20 px
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
+# back to normal: Enter or Escape or $mod+r
+            bindsym Return mode "default"
+            bindsym Escape mode "default"
+            bindsym $mod+r mode "default"
+    }
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {
     tap enabled
-    natural_scroll enabled
+        natural_scroll enabled
+}
+
+input "1267:9527:ELAN0732:00_04F3:2537" {
+    map_to_output eDP-1
 }
 
 input "*" {
     xkb_layout us
-    # xkb_variant colemak
+# xkb_variant colemak
 }
 
 output eDP-1 {
@@ -276,26 +288,26 @@ output "*" {
 }
 
 bar {
-    # status_command "muse-status -m i3 -p d6faff -s 377dcb"
+# status_command "muse-status -m i3 -p f9fdff -s cbcba9"
     status_command i3status
-    mode dock
-    modifier $mod
-    separator_symbol "    "
-    position top
-    workspace_buttons yes
-    height 32
-    status_edge_padding 16
-    tray_output none
-    colors {
-        background $black
-        statusline $white
-        separator $inactive
-        focused_workspace $black $black $white
-        active_workspace $black $black $inactive
-        inactive_workspace $black $black $inactive
-        urgent_workspace $black $black $warning
-        binding_mode $black $black $warning
-    }
+        mode dock
+        modifier $mod
+        separator_symbol "    "
+        position top
+        workspace_buttons yes
+        height 32
+        status_edge_padding 16
+        tray_output none
+        colors {
+            background $black
+                statusline $white
+                separator $inactive
+                focused_workspace $black $black $white
+                active_workspace $black $black $inactive
+                inactive_workspace $black $black $inactive
+                urgent_workspace $black $black $warning
+                binding_mode $black $black $warning
+        }
 }
 
 exec paplay "$HOME/Drive/Music/MuseSounds/Hello.ogg" &

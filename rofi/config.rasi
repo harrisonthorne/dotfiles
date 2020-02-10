@@ -36,11 +36,11 @@ configuration {
 * {
     text-color:  #ffffff;
     background-color: #00000000;
-    black: #0B0D0D;
+    black: #0B0907;
     white: #ffffff;
-    inactive: #377dcb;
+    inactive: #cbcba9;
     orange: #ffaa00;
-    selected: #377dcb20;
+    selected: #cbcba920;
 }
 #window {
     border:  0px 0px 0px 0px;
@@ -70,7 +70,7 @@ configuration {
 
 #mainbox {
     expand: true;
-    background-color: #0B0D0De5;
+    background-color: #0B0907e5;
     spacing: 1em;
     padding: 32px;
 }
@@ -89,14 +89,14 @@ configuration {
 }
 
 #element normal active {
-    text-color: #377dcb;
+    text-color: #cbcba9;
 }
 #element normal urgent {
     text-color: @orange;
 }
 #element selected active {
     background-color: @selected;
-    text-color: #377dcb;
+    text-color: #cbcba9;
 }
 #element selected urgent {
     background-color: @selected;

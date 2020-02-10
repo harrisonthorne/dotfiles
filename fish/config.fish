@@ -10,17 +10,17 @@ alias imv="imv -e Monospace:13"
 set fish_greeting ""
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
 set -gx GOPATH $HOME/go
+set -gx RUSTBIN $HOME/.cargo/bin
 set -gx WINEPREFIX $HOME/.wine/
-set -gx PATH $GOPATH/bin $PATH $HOME/.local/bin
+set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
 set -gx BROWSER /bin/brave
 set -gx EDITOR /bin/nvim
-set -gx GDK_BACKEND x11
 set -gx QT_QPA_PLATFORMTHEME gtk2
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.journal
 set -gx SXHKD_SHELL '/bin/sh'
-set -gx W3MIMGDISPLAY_PATH /usr/libexec/w3m/w3mimgdisplay
+set -gx XDG_SESSION_TYPE wayland
 set -gx EIX_LIMIT 0
 
 # Start desktop at login

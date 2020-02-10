@@ -117,8 +117,6 @@ nnoremap <leader>to :Ag (NOTE)\|(XXX)\|(FIXME)\|(TODO)<cr>
 " easily edit init.vim file
 map <leader>rc :tabe ~/.config/nvim/init.vim<CR>
 
-" find word under the cursor
-noremap <leader>f /<C-R><C-W><CR>
 " easy window resizing in normal mode
 nnoremap <silent> + :5wincmd ><CR>
 nnoremap <silent> - :5wincmd <<CR>
@@ -170,11 +168,13 @@ nnoremap <leader>gor :!go run *.go
 
 " Lanuage Server shortcuts
 nmap <silent> <leader>ca :CocAction<CR>
-nmap <silent> <leader>cr <Plug>(coc-rename)
+nmap <silent> <leader>cr <Plug>(coc-refactor)
 nmap <silent> <leader>cf <Plug>(coc-format)
 nmap <silent> <leader>ct <Plug>(coc-type-definition)
 nmap <silent> <leader>cx <Plug>(coc-references)
-nmap <silent> <leader>/ :call CocAction('jumpDefinition')<CR>
+nmap <silent> <leader>cq <Plug>(coc-fix-current)
+nmap <silent> <leader>ci <Plug>(coc-diagnostic-info)
+nmap <silent> <leader>/ <Plug>(coc-definition)
 nmap <silent> <leader>? :call CocAction('doHover')<CR>
 nmap <silent> K :call CocAction('doHover')<CR>
 
@@ -187,7 +187,8 @@ nnoremap <silent> <leader>xs :sp<CR>:terminal<CR>i
 noremap <silent> <leader>e :NERDTreeToggle<CR>
 noremap <silent> <leader>P :Prettier<CR>
 noremap <silent> <leader>q :q<CR>
-noremap <silent> <leader>p :pwd<CR>
+noremap <silent> <leader>pd :pwd<CR>
+noremap <silent> <leader>pp :!pandoc "%" -o "%.pdf"<CR>
 noremap <silent> <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap Y y$
 
@@ -197,8 +198,18 @@ nnoremap <leader>dg :diffget<CR>
 nnoremap <leader>dt :diffthis<CR>
 nnoremap <leader>do :diffoff<CR>:set noscrollbind<CR>:set nocursorbind<CR>
 
-" convert all camelCase to snake_case
-nnoremap <leader>u :%s#\(\u\l\+\|\l\+\)\(\u\)#\l\1_\l\2#g
+" easy lnext, cnext, etc
+nnoremap <leader>zn :lnext<CR>
+nnoremap <leader>zp :lprev<CR>
+nnoremap <leader>zN :lnfile<CR>
+nnoremap <leader>zP :lpfile<CR>
+nnoremap <leader>xn :cnext<CR>
+nnoremap <leader>xp :cprev<CR>
+nnoremap <leader>xN :cnfile<CR>
+nnoremap <leader>xP :cpfile<CR>
+
+" jump to floating window
+nnoremap <leader>f <Plug>(coc-float-jump)
 
 " press jj or fj to go from insert to normal mode
 inoremap jj <esc>
@@ -237,25 +248,25 @@ hi CursorLine guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
 hi CursorColumn guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
 hi Folded guibg=0 ctermbg=0 guifg=4 ctermfg=4 gui=italic cterm=italic
 
-hi WarningMsg guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
-hi ErrorMsg guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
-hi InfoMsg guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
+hi Error guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
+hi Warning guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
+hi Info guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
 
-hi link Error ErrorMsg
-hi link Warning WarningMsg
-hi link Info InfoMsg
+hi ErrorMsg guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
+hi WarningMsg guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
+hi InfoMsg guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
 
 hi link CocUnderline InfoMsg
 hi link CocErrorHighlight ErrorMsg
 hi link CocWarningHighlight WarningMsg
-hi link CocInfoHighlight WarningMsg
+hi link CocInfoHighlight InfoMsg
 
 hi link CocErrorSign ErrorMsg
 hi link CocWarningSign WarningMsg
-hi link CocInfoSign WarningMsg
+hi link CocInfoSign InfoMsg
 hi link CocError ErrorMsg
 hi link CocWarning WarningMsg
-hi link CocInfo WarningMsg
+hi link CocInfo InfoMsg
 hi CocInfoSign guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold term=bold
 hi CocStyleErrorSign guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
 hi CocStyleWarningSign guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
@@ -290,6 +301,9 @@ hi Pmenu cterm=NONE gui=NONE ctermbg=8 ctermfg=14 guibg=8 guifg=14
 hi PmenuSel cterm=bold gui=bold ctermbg=6 ctermfg=8 guibg=6 guifg=8
 hi PmenuSbar cterm=NONE gui=NONE ctermbg=0 ctermfg=0 guibg=0 guifg=0
 hi PmenuThumb cterm=NONE gui=NONE ctermbg=5 ctermfg=5 guibg=5 guifg=5
+
+hi SpellBad ctermfg=196 ctermbg=NONE guifg=196 guibg=NONE cterm=italic,undercurl gui=italic,undercurl
+hi SpellCap ctermfg=201 ctermbg=NONE guifg=201 guibg=NONE
 
 fu! SaveLastSession()
     execute 'mksession! ' . '~/.vim/session/previous'
