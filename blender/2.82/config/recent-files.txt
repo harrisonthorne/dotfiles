@@ -1,0 +1,3 @@
+/home/harrisonthorne/Drive/Documents/Blender/Lake.blend
+/tmp/Lake_3474_autosave.blend
+/home/harrisonthorne/Drive/Documents/Blender/Mountain.blend

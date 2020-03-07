@@ -10,8 +10,8 @@ set $dpmsoff "swaymsg 'output * dpms off'"
 set $dpmson "swaymsg 'output * dpms on'"
 
 # startup apps
+exec rot8 &
 exec light -I &
-exec mako &
 exec sh $HOME/.config/wpg/wp_init.sh &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec xhost si:localuser:root &
@@ -21,7 +21,9 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 
 set $gnome-schema org.gnome.desktop.interface
 
-exec_always gsettings set $gnome-schema gtk-theme 'alto-gtk'
+exec_always "killall muse-status-daemon; muse-status-daemon &"
+exec_always "killall mako; mako &"
+exec_always gsettings set $gnome-schema gtk-theme 'Adwaita'
 exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'
 exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
 exec_always gsettings set $gnome-schema font-name 'Roboto 10'
@@ -29,18 +31,18 @@ exec_always gsettings set $gnome-schema font-name 'Roboto 10'
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p f9fdff -s cbcba9 | lemonbar -B "#e50B0907" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p fefeff -s 6f7297 | lemonbar -B "#e5151210" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $active       #cbcba9e5
-set $inactive     #8c8c74e5
+set $active       #6f7297e5
+set $inactive     #4c4e68e5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #f9fdff
-set $black        #0B0907e5
-set $gray         #2a2219e5
-set $opaqueGray   #2a2219
-set $fadedBlack   #0B0907c0
+set $white        #fefeff
+set $black        #151210e5
+set $gray         #312a25e5
+set $opaqueGray   #312a25
+set $fadedBlack   #151210c0
 set $transparent  #00000000
 
 set $TERMINAL alacritty
@@ -73,16 +75,16 @@ default_floating_border normal 4
 floating_minimum_size -1 x -1
 floating_maximum_size 1856 x 1016
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 set $volume_up "$HOME/Drive/Music/MuseSounds/Volume.wav"
 set $volume_down "$HOME/Drive/Music/MuseSounds/VolumeDown.wav"
 
 # Pulse Audio controls
-bindsym --locked XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && paplay $volume_up; muse-status notify volume"
-bindsym --locked XF86AudioLowerVolume exec "amixer -q sset Master 5%- unmute && paplay $volume_down; muse-status notify volume"
-bindsym --locked XF86AudioMute exec "amixer sset Master toggle && paplay $volume_up; muse-status notify volume"
+bindsym --locked XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && muse-status notify volume; paplay $volume_up"
+bindsym --locked XF86AudioLowerVolume exec "amixer -q sset Master 5%- unmute && muse-status notify volume; paplay $volume_down"
+bindsym --locked XF86AudioMute exec "amixer sset Master toggle && muse-status notify volume; paplay $volume_up"
 
 # Media player controls
 bindsym --locked XF86AudioPlay exec mpc toggle || playerctl play-pause
@@ -103,18 +105,17 @@ hide_edge_borders --i3 smart
 bindsym $mod+Return exec $TERMINAL
 
 # start rofi
-bindsym $mod+a exec rofi -show combi
-bindsym $mod+Control+a exec rofi -show drun
+bindsym $mod+a exec rofi -show drun -config ~/.config/rofi/apps_config.rasi
 bindsym $mod+Control+e exec rofi -show emoji -modi emoji
 bindsym $mod+Control+w exec rofi -show window
-bindsym $mod+Control+f exec rofi -show find -modi find:$HOME/.config/rofi/finder.sh
-bindsym $mod+Control+c exec rofi -show calc
+bindsym $mod+c exec rofi -show calc -no-sort
 
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -128,11 +129,24 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
+# alternatively, you can use the arrow keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# move focused workspace
+bindsym $mod+Mod1+h move workspace to left
+bindsym $mod+Mod1+j move workspace to down
+bindsym $mod+Mod1+k move workspace to up
+bindsym $mod+Mod1+l move workspace to right
+
+# (arrow keys for workspace)
+bindsym $mod+Mod1+Left move workspace to left
+bindsym $mod+Mod1+Down move workspace to down
+bindsym $mod+Mod1+Up move workspace to up
+bindsym $mod+Mod1+Right move workspace to right
+
 
 # close window
 bindsym $mod+q kill
@@ -144,8 +158,8 @@ bindsym $mod+o split toggle
 bindsym $mod+f fullscreen toggle
 
 # floating video mode
-bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px -16 px; inhibit_idle open
-bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px -16 px; inhibit_idle open
+bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px 16 px; inhibit_idle open
+bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px 16 px; inhibit_idle open
 
 # disables swayidle for fullscreen windows
 for_window [class=".*"] inhibit_idle fullscreen
@@ -158,9 +172,7 @@ bindsym $mod+u layout stacking
 # app shortcuts
 bindsym $mod+w exec brave
 bindsym $mod+b exec spotify
-bindsym $mod+c exec rofi -show calc
 bindsym $mod+m exec evolution
-bindsym $mod+g exec sh $HOME/.config/sway/drive.sh
 bindsym $mod+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
@@ -288,8 +300,9 @@ output "*" {
 }
 
 bar {
-# status_command "muse-status -m i3 -p f9fdff -s cbcba9"
-    status_command i3status
+    status_command "muse-status -p fefeff -s 6f7297"
+    # status_command i3status
+    font pango: Roboto 10
         mode dock
         modifier $mod
         separator_symbol "    "

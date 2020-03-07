@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/harrisonthorne/Documents/hledger'
 let g:netrw_dirhist_3='/home/harrisonthorne/.config/Code'
 let g:netrw_dirhist_2='/home/harrisonthorne/.config'
 let g:netrw_dirhist_1='/home/harrisonthorne/.config/nvim'

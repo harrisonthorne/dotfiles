@@ -14,9 +14,7 @@ Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'psliwka/vim-smoothie'
-Plug 'scrooloose/nerdtree'              " NERDTree
 Plug 'sheerun/vim-polyglot'             " languages
-Plug 'tmsvg/pear-tree'                  " auto-pairs
 Plug 'tpope/vim-abolish'                " camelCase to snake_case
 Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
@@ -168,7 +166,8 @@ nnoremap <leader>gor :!go run *.go
 
 " Lanuage Server shortcuts
 nmap <silent> <leader>ca :CocAction<CR>
-nmap <silent> <leader>cr <Plug>(coc-refactor)
+nmap <silent> <leader>cc :CocCommand\ |
+nmap <silent> <leader>cr <Plug>(coc-rename)
 nmap <silent> <leader>cf <Plug>(coc-format)
 nmap <silent> <leader>ct <Plug>(coc-type-definition)
 nmap <silent> <leader>cx <Plug>(coc-references)
@@ -184,11 +183,12 @@ nnoremap <silent> <leader>xx :terminal<CR>i
 nnoremap <silent> <leader>xs :sp<CR>:terminal<CR>i
 
 " Misc shortcuts
-noremap <silent> <leader>e :NERDTreeToggle<CR>
+noremap <silent> <leader>e :CocCommand explorer<CR>
 noremap <silent> <leader>P :Prettier<CR>
 noremap <silent> <leader>q :q<CR>
-noremap <silent> <leader>pd :pwd<CR>
+noremap <silent> <leader>pwd :pwd<CR>
 noremap <silent> <leader>pp :!pandoc "%" -o "%.pdf"<CR>
+noremap <silent> <leader>pd :!pandoc "%" -o "%.docx"<CR>
 noremap <silent> <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap Y y$
 
@@ -211,12 +211,8 @@ nnoremap <leader>xP :cpfile<CR>
 " jump to floating window
 nnoremap <leader>f <Plug>(coc-float-jump)
 
-" press jj or fj to go from insert to normal mode
 inoremap jj <esc>
-imap jj <Plug>(PearTreeFinishExpansion)
 inoremap fj <esc>
-imap fj <Plug>(PearTreeFinishExpansion)
-
 nnoremap ! :!
 
 " autocommands

@@ -15,7 +15,7 @@ set -gx WINEPREFIX $HOME/.wine/
 set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
 set -gx BROWSER /bin/brave
 set -gx EDITOR /bin/nvim
-set -gx QT_QPA_PLATFORMTHEME gtk2
+set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.journal

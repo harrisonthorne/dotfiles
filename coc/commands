@@ -1,5 +1,6 @@
-rls.restart
+explorer
 rls.run
+rls.restart
 rust-analyzer.showReferences
 rust-analyzer.joinLines
 workspace.diagnosticRelated

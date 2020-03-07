@@ -7,7 +7,7 @@ margin=4
 width=512
 height=512
 border-color={color0}C0
-border-size=8
+border-size=4
 max-icon-size=32
 progress-color={active}FF
 layer=overlay
@@ -17,4 +17,4 @@ format=<b>%s</b>\n%b
 text-color={active}c0
 
 [urgency=high]
-border-color={color1}cc
+border-color=#ffaa00cc

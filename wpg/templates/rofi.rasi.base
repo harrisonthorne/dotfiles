@@ -3,10 +3,10 @@ configuration {{
 	combi-modi: "drun,window";
 	columns: 1;
 	font: "Roboto 10";
-	location: 2;
-	yoffset: 32;
+	location: 8;
+	yoffset: 0;
 	xoffset: 0;
-	show-icons: true;
+	show-icons: false;
 	disable-history: false;
     sort: true;
 	sorting-method: "fzf";
@@ -14,7 +14,6 @@ configuration {{
     scrollbar-width: 4;
     scroll-method: 1;
 	case-sensitive: false;
-	sidebar-mode: true;
 	auto-select: false;
 	matching: "fuzzy";
 	fullscreen: false;
@@ -22,7 +21,7 @@ configuration {{
     ssh-client: "ssh";
     ssh-command: "{{terminal}} -e /bin/bash -i -c \"{{ssh-client}} {{host}}\"";
     run-shell-command: "{{terminal}} -e /usr/bin/fish -i -c \"{{cmd}}\"";
-    window-format: "{{t:32}}   on desktop {{w:-1}}";
+    window-format: "{{t}}";
     display-window: "Windows";
     display-run: "Commands";
     display-drun: "Apps";
@@ -30,87 +29,86 @@ configuration {{
     display-calc: "Calculator";
     display-emoji: "Emoji";
     display-combi: "All";
+    drun-display-format: "<span>{{name}}</span>";
     combi-hide-mode-prefix: true;
 }}
 
 * {{
-    text-color:  #ffffff;
+    text-color: #ffffff;
     background-color: #00000000;
     black: {color0};
     white: #ffffff;
     inactive: {active};
     orange: #ffaa00;
-    selected: #{active.strip}20;
+    selected: {active}20;
 }}
-#window {{
+
+window {{
     border:  0px 0px 0px 0px;
     text-color: @white;
 
-    orientation: vertical;
     children: [mainbox];
-    height: 85%;
-    width: 33%;
+    height: 100%;
+    width: 512px;
 }}
 
-#sidebar {{
-    border: 0px;
-}}
-
-#button {{
+button {{
     text-color: @inactive;
 }}
 
-#button selected {{
+button selected {{
     text-color: @white;
 }}
 
-#inputbar {{
-    text-color: @white;
-}}
-
-#mainbox {{
+mainbox {{
     expand: true;
     background-color: {color0}e5;
     spacing: 1em;
     padding: 32px;
 }}
 
-#listview {{
-    dynamic: false;
-    lines: 0;
-}}
-
-#element {{
+element {{
     padding: 12px;
+    orientation: vertical;
 }}
 
-#element selected normal {{
+element selected.normal {{
     background-color: @selected;
 }}
 
-#element normal active {{
+element normal.active {{
     text-color: {active};
 }}
-#element normal urgent {{
+
+element normal.urgent {{
     text-color: @orange;
 }}
-#element selected active {{
+
+element selected.active {{
     background-color: @selected;
     text-color: {active};
 }}
-#element selected urgent {{
-    background-color: @selected;
-    text-color: @orange;
+
+element selected.urgent {{
+    background-color: @orange;
+    text-color: @white;
 }}
-#inputbar {{
+
+element-icon {{
+    size: 32px;
+    horizontal-align: 0.5;
+}}
+
+inputbar {{
+    text-color: @white;
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }}
-#textbox-prompt-colon {{
+
+textbox-prompt-colon {{
     expand:     false;
     str:        ":";
     margin:     0em 0.5em 0em 0em;
     text-color: @white;
 }}
 
-/* vim: ft=css
- */
+/* vim: ft=css */
