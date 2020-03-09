@@ -9,7 +9,7 @@ Plug 'ledger/vim-ledger'                " Ledger
 Plug 'deviantfero/wpgtk.vim'
 Plug 'dhruvasagar/vim-table-mode'		" Tables!
 Plug 'honza/vim-snippets'               " Snippets
-Plug 'lotabout/skim.vim'
+Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -20,7 +20,7 @@ Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
 call plug#end()
 
-let $SKIM_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore-dir={.git,node_modules}'
+let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore-dir={.git,node_modules}'
 let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
 let g:go_fmt_autosave = 0
@@ -95,7 +95,6 @@ set wildignore+=*/node_modules,*/node_modules/*,.git,.git/*,tags,*/dist,*/dist/*
 
 " call echodoc#enable()
 
-
 " get highlight under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -107,7 +106,7 @@ nnoremap <silent> k gk
 
 inoremap <silent><expr> <C-n> coc#refresh()
 " FZF/skim
-map <C-p> :SK<CR>
+map <C-p> :FZF<CR>
 
 " todo list
 nnoremap <leader>to :Ag (NOTE)\|(XXX)\|(FIXME)\|(TODO)<cr>
@@ -144,10 +143,10 @@ noremap <leader>te :tabe<CR>
 
 " splitting shortcuts
 noremap <leader>v :vs<CR>
-noremap <leader>nv :vs<CR>:SK<CR>
+noremap <leader>nv :vs<CR>:FZF<CR>
 noremap <leader>s :sp<CR>
-noremap <leader>ns :sp<CR>:SK<CR>
-noremap <leader>nt :tabe<CR>:SK<CR>
+noremap <leader>ns :sp<CR>:FZF<CR>
+noremap <leader>nt :tabe<CR>:FZF<CR>
 
 " Fugitive shortcuts
 noremap <leader>gg :Git

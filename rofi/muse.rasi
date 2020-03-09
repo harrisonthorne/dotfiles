@@ -1,0 +1,105 @@
+configuration {
+	modi: "drun,emoji,window";
+	combi-modi: "drun,window";
+	font: "Roboto 10";
+	location: 8;
+	yoffset: 0;
+	xoffset: 0;
+	disable-history: false;
+    sort: true;
+	sorting-method: "fzf";
+    hide-scrollbar: false;
+    scrollbar-width: 4;
+    scroll-method: 0;
+	case-sensitive: false;
+	auto-select: false;
+	matching: "fuzzy";
+	fullscreen: false;
+    terminal: "alacritty";
+    ssh-client: "ssh";
+    ssh-command: "{terminal} -e /bin/bash -i -c \"{ssh-client} {host}\"";
+    run-shell-command: "{terminal} -e /usr/bin/fish -i -c \"{cmd}\"";
+    window-format: "{t}";
+    display-window: "Windows";
+    display-run: "Commands";
+    display-drun: "Apps";
+    display-ssh: "SSH";
+    display-calc: "Calculator";
+    display-emoji: "Emoji";
+    display-combi: "All";
+    drun-display-format: "<span>{name}</span>";
+    combi-hide-mode-prefix: true;
+}
+
+* {
+    text-color: #ffffff;
+    background-color: #00000000;
+    background: #0a0c07e5;
+    white: #ffffff;
+    inactive: #cbc798;
+    orange: #ffaa00;
+    selected: #cbc79820;
+}
+
+window {
+    border:  0px 0px 0px 0px;
+    text-color: @white;
+
+    children: [mainbox];
+}
+
+button {
+    text-color: @inactive;
+}
+
+button selected {
+    text-color: @white;
+}
+
+mainbox {
+    expand: true;
+    background-color: @background;
+    spacing: 1em;
+}
+
+element {
+    text-color: @inactive;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color: @white;
+}
+
+element normal.active {
+    text-color: @white;
+}
+
+element normal.urgent {
+    text-color: @orange;
+}
+
+element selected.active {
+    background-color: @selected;
+    text-color: @white;
+}
+
+element selected.urgent {
+    background-color: @orange;
+    text-color: @white;
+}
+
+inputbar {
+    text-color: @white;
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0em 0.5em 0em 0em;
+    text-color: @white;
+}
+
+/* vim: ft=css 
+ */

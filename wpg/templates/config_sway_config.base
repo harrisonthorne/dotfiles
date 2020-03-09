@@ -21,7 +21,6 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 
 set $gnome-schema org.gnome.desktop.interface
 
-exec_always "killall muse-status-daemon; muse-status-daemon &"
 exec_always "killall mako; mako &"
 exec_always gsettings set $gnome-schema gtk-theme 'Adwaita'
 exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'

@@ -1,114 +1,20 @@
 configuration {
-	modi: "combi,drun,calc,emoji,window";
-	combi-modi: "drun,window";
-	columns: 1;
-	font: "Roboto 10";
-	location: 8;
-	yoffset: 0;
-	xoffset: 0;
-	show-icons: false;
-	disable-history: false;
-    sort: true;
-	sorting-method: "fzf";
-    hide-scrollbar: false;
-    scrollbar-width: 4;
-    scroll-method: 1;
-	case-sensitive: false;
-	auto-select: false;
-	matching: "fuzzy";
-	fullscreen: false;
-    terminal: "alacritty";
-    ssh-client: "ssh";
-    ssh-command: "{terminal} -e /bin/bash -i -c \"{ssh-client} {host}\"";
-    run-shell-command: "{terminal} -e /usr/bin/fish -i -c \"{cmd}\"";
-    window-format: "{t}";
-    display-window: "Windows";
-    display-run: "Commands";
-    display-drun: "Apps";
-    display-ssh: "SSH";
-    display-calc: "Calculator";
-    display-emoji: "Emoji";
-    display-combi: "All";
-    drun-display-format: "<span>{name}</span>";
-    combi-hide-mode-prefix: true;
-}
-
-* {
-    text-color: #ffffff;
-    background-color: #00000000;
-    black: #151210;
-    white: #ffffff;
-    inactive: #6f7297;
-    orange: #ffaa00;
-    selected: #6f729720;
+    theme: "muse";
+    columns: 1;
 }
 
 window {
-    border:  0px 0px 0px 0px;
-    text-color: @white;
-
-    children: [mainbox];
     height: 100%;
     width: 512px;
 }
 
-button {
-    text-color: @inactive;
-}
-
-button selected {
-    text-color: @white;
-}
-
 mainbox {
-    expand: true;
-    background-color: #151210e5;
-    spacing: 1em;
     padding: 32px;
 }
 
 element {
     padding: 12px;
-    orientation: vertical;
 }
 
-element selected.normal {
-    background-color: @selected;
-}
-
-element normal.active {
-    text-color: #6f7297;
-}
-
-element normal.urgent {
-    text-color: @orange;
-}
-
-element selected.active {
-    background-color: @selected;
-    text-color: #6f7297;
-}
-
-element selected.urgent {
-    background-color: @orange;
-    text-color: @white;
-}
-
-element-icon {
-    size: 32px;
-    horizontal-align: 0.5;
-}
-
-inputbar {
-    text-color: @white;
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
-}
-
-textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0em 0.5em 0em 0em;
-    text-color: @white;
-}
-
-/* vim: ft=css */
+/* vim: ft=css 
+ */

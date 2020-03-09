@@ -21,7 +21,6 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 
 set $gnome-schema org.gnome.desktop.interface
 
-exec_always "killall muse-status-daemon; muse-status-daemon &"
 exec_always "killall mako; mako &"
 exec_always gsettings set $gnome-schema gtk-theme 'Adwaita'
 exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'
@@ -31,18 +30,18 @@ exec_always gsettings set $gnome-schema font-name 'Roboto 10'
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p fefeff -s 6f7297 | lemonbar -B "#e5151210" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p effdff -s cbc798 | lemonbar -B "#e50a0c07" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $active       #6f7297e5
-set $inactive     #4c4e68e5
+set $active       #cbc798e5
+set $inactive     #8c8869e5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #fefeff
-set $black        #151210e5
-set $gray         #312a25e5
-set $opaqueGray   #312a25
-set $fadedBlack   #151210c0
+set $white        #effdff
+set $black        #0a0c07e5
+set $gray         #242c18e5
+set $opaqueGray   #242c18
+set $fadedBlack   #0a0c07c0
 set $transparent  #00000000
 
 set $TERMINAL alacritty
@@ -300,7 +299,7 @@ output "*" {
 }
 
 bar {
-    status_command "muse-status -p fefeff -s 6f7297"
+    status_command "muse-status -p effdff -s cbc798"
     # status_command i3status
     font pango: Roboto 10
         mode dock

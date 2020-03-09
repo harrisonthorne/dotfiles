@@ -1,28 +1,32 @@
 configuration {{
-	modi: "combi,drun,calc,emoji,window";
+	modi: "drun,emoji,window";
 	combi-modi: "drun,window";
-	columns: 5;
 	font: "Roboto 10";
 	location: 8;
 	yoffset: 0;
 	xoffset: 0;
-	show-icons: true;
 	disable-history: false;
     sort: true;
 	sorting-method: "fzf";
     hide-scrollbar: false;
     scrollbar-width: 4;
-    scroll-method: 1;
+    scroll-method: 0;
 	case-sensitive: false;
 	auto-select: false;
 	matching: "fuzzy";
-	fullscreen: true;
+	fullscreen: false;
     terminal: "alacritty";
     ssh-client: "ssh";
     ssh-command: "{{terminal}} -e /bin/bash -i -c \"{{ssh-client}} {{host}}\"";
     run-shell-command: "{{terminal}} -e /usr/bin/fish -i -c \"{{cmd}}\"";
     window-format: "{{t}}";
+    display-window: "Windows";
+    display-run: "Commands";
     display-drun: "Apps";
+    display-ssh: "SSH";
+    display-calc: "Calculator";
+    display-emoji: "Emoji";
+    display-combi: "All";
     drun-display-format: "<span>{{name}}</span>";
     combi-hide-mode-prefix: true;
 }}
@@ -30,7 +34,7 @@ configuration {{
 * {{
     text-color: #ffffff;
     background-color: #00000000;
-    black: {color0};
+    background: {color0}e5;
     white: #ffffff;
     inactive: {active};
     orange: #ffaa00;
@@ -54,20 +58,11 @@ button selected {{
 
 mainbox {{
     expand: true;
-    background-color: {color0}e5;
+    background-color: @background;
     spacing: 1em;
-    width: 512px;
-    horizontal-align: 0.5;
-    padding: 32px 512px 0px;
-}}
-
-listview {{
-    fixed-columns: true;
 }}
 
 element {{
-    padding: 32px;
-    orientation: vertical;
     text-color: @inactive;
 }}
 
@@ -77,7 +72,7 @@ element selected.normal {{
 }}
 
 element normal.active {{
-    text-color: {active};
+    text-color: @white;
 }}
 
 element normal.urgent {{
@@ -86,7 +81,7 @@ element normal.urgent {{
 
 element selected.active {{
     background-color: @selected;
-    text-color: {active};
+    text-color: @white;
 }}
 
 element selected.urgent {{
@@ -94,19 +89,9 @@ element selected.urgent {{
     text-color: @white;
 }}
 
-element-icon {{
-    size: 32px;
-    horizontal-align: center;
-}}
-
-element-text {{
-    horizontal-align: 0.5;
-}}
-
 inputbar {{
     text-color: @white;
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
-    max-width: 50%;
 }}
 
 textbox-prompt-colon {{
@@ -116,4 +101,5 @@ textbox-prompt-colon {{
     text-color: @white;
 }}
 
-/* vim: ft=css */
+/* vim: ft=css 
+ */

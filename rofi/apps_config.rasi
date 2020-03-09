@@ -1,47 +1,13 @@
 configuration {
-	modi: "combi,drun,calc,emoji,window";
-	combi-modi: "drun,window";
-	columns: 5;
-	font: "Roboto 10";
-	location: 8;
-	yoffset: 0;
-	xoffset: 0;
+    theme: "muse";
+	columns: 4;
 	show-icons: true;
-	disable-history: false;
-    sort: true;
-	sorting-method: "fzf";
-    hide-scrollbar: false;
-    scrollbar-width: 4;
-    scroll-method: 1;
-	case-sensitive: false;
-	auto-select: false;
-	matching: "fuzzy";
 	fullscreen: true;
-    terminal: "alacritty";
-    ssh-client: "ssh";
-    ssh-command: "{terminal} -e /bin/bash -i -c \"{ssh-client} {host}\"";
-    run-shell-command: "{terminal} -e /usr/bin/fish -i -c \"{cmd}\"";
-    window-format: "{t}";
-    display-drun: "Apps";
-    drun-display-format: "<span>{name}</span>";
-    combi-hide-mode-prefix: true;
-}
-
-* {
-    text-color: #ffffff;
-    background-color: #00000000;
-    black: #151210;
-    white: #ffffff;
-    inactive: #6f7297;
-    orange: #ffaa00;
-    selected: #6f729720;
 }
 
 window {
-    border:  0px 0px 0px 0px;
-    text-color: @white;
-
-    children: [mainbox];
+    height: 100%;
+    width: 100%;
 }
 
 button {
@@ -53,12 +19,8 @@ button selected {
 }
 
 mainbox {
-    expand: true;
-    background-color: #151210e5;
-    spacing: 1em;
-    width: 512px;
     horizontal-align: 0.5;
-    padding: 32px 512px 0px;
+    padding: 0px 512px;
 }
 
 listview {
@@ -66,37 +28,13 @@ listview {
 }
 
 element {
-    padding: 32px;
     orientation: vertical;
-    text-color: @inactive;
-}
-
-element selected.normal {
-    background-color: @selected;
-    text-color: @white;
-}
-
-element normal.active {
-    text-color: #6f7297;
-}
-
-element normal.urgent {
-    text-color: @orange;
-}
-
-element selected.active {
-    background-color: @selected;
-    text-color: #6f7297;
-}
-
-element selected.urgent {
-    background-color: @orange;
-    text-color: @white;
+    padding: 32px;
 }
 
 element-icon {
-    size: 32px;
-    horizontal-align: center;
+    size: 48px;
+    horizontal-align: 0.5;
 }
 
 element-text {
@@ -104,16 +42,8 @@ element-text {
 }
 
 inputbar {
-    text-color: @white;
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
-    max-width: 50%;
+    padding: 64px 0px;
 }
 
-textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0em 0.5em 0em 0em;
-    text-color: @white;
-}
-
-/* vim: ft=css */
+/* vim: ft=css
+ */
