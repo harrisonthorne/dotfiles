@@ -1,9 +1,9 @@
+h1
+println
 background
 ddate
 der
-println
 vertical
-h1
 as
 modeline
 thread::spawn

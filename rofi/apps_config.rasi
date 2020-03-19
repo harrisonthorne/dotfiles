@@ -1,30 +1,7 @@
 configuration {
     theme: "muse";
-	columns: 4;
+	columns: 3;
 	show-icons: true;
-	fullscreen: true;
-}
-
-window {
-    height: 100%;
-    width: 100%;
-}
-
-button {
-    text-color: @inactive;
-}
-
-button selected {
-    text-color: @white;
-}
-
-mainbox {
-    horizontal-align: 0.5;
-    padding: 0px 512px;
-}
-
-listview {
-    fixed-columns: true;
 }
 
 element {
@@ -39,10 +16,6 @@ element-icon {
 
 element-text {
     horizontal-align: 0.5;
-}
-
-inputbar {
-    padding: 64px 0px;
 }
 
 /* vim: ft=css

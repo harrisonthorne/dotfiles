@@ -1,7 +1,7 @@
 configuration {{
 	modi: "drun,emoji,window";
 	combi-modi: "drun,window";
-	font: "Roboto 10";
+	font: "Cantarell 10";
 	location: 8;
 	yoffset: 0;
 	xoffset: 0;
@@ -36,20 +36,22 @@ configuration {{
     background-color: #00000000;
     background: {color0}e5;
     white: #ffffff;
-    inactive: {active};
+    dim: {active};
     orange: #ffaa00;
     selected: {active}20;
 }}
 
 window {{
-    border:  0px 0px 0px 0px;
     text-color: @white;
+
+    height: 100%;
+    width: 512px;
 
     children: [mainbox];
 }}
 
 button {{
-    text-color: @inactive;
+    text-color: @dim;
 }}
 
 button selected {{
@@ -60,10 +62,11 @@ mainbox {{
     expand: true;
     background-color: @background;
     spacing: 1em;
+    padding: 32px;
 }}
 
 element {{
-    text-color: @inactive;
+    text-color: @dim;
 }}
 
 element selected.normal {{
@@ -91,14 +94,20 @@ element selected.urgent {{
 
 inputbar {{
     text-color: @white;
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    children:   [ prompt,spacer,entry,case-indicator ];
 }}
 
-textbox-prompt-colon {{
+prompt {{
+    text-color: @dim;
+}}
+
+spacer {{
     expand:     false;
-    str:        ":";
     margin:     0em 0.5em 0em 0em;
-    text-color: @white;
+}}
+
+case-indicator {{
+    text-color: @dim;
 }}
 
 /* vim: ft=css 

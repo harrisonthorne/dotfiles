@@ -10,6 +10,7 @@ set $dpmsoff "swaymsg 'output * dpms off'"
 set $dpmson "swaymsg 'output * dpms on'"
 
 # startup apps
+exec muse-status-daemon &
 exec rot8 &
 exec light -I &
 exec sh $HOME/.config/wpg/wp_init.sh &
@@ -22,15 +23,15 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always "killall mako; mako &"
-exec_always gsettings set $gnome-schema gtk-theme 'Adwaita'
+exec_always gsettings set $gnome-schema gtk-theme 'alto-gtk'
 exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'
 exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
-exec_always gsettings set $gnome-schema font-name 'Roboto 10'
+exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
 
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p {color15.strip} -s {active.strip} | lemonbar -B "#e5{color0.strip}" -d -g x32 -f "Roboto:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p {color15.strip} -s {active.strip} | lemonbar -B "#e5{color0.strip}" -d -g x32 -f "Cantarell:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
 set $active       {active}e5
@@ -59,7 +60,7 @@ client.placeholder      $black          $black          $inactive       $black  
 client.background       $black
 
 # Font for window titles
-font pango: Roboto 10
+font pango: Cantarell 10
 title_align center
 
 # others
@@ -301,7 +302,7 @@ output "*" {{
 bar {{
     status_command "muse-status -p {color15.strip} -s {active.strip}"
     # status_command i3status
-    font pango: Roboto 10
+    font pango: Cantarell 10
         mode dock
         modifier $mod
         separator_symbol "    "
@@ -315,7 +316,7 @@ bar {{
                 statusline $white
                 separator $inactive
                 focused_workspace $black $black $white
-                active_workspace $black $black $inactive
+                active_workspace $black $black $active
                 inactive_workspace $black $black $inactive
                 urgent_workspace $black $black $warning
                 binding_mode $black $black $warning

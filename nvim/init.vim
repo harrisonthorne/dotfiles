@@ -16,6 +16,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'psliwka/vim-smoothie'
 Plug 'sheerun/vim-polyglot'             " languages
 Plug 'tpope/vim-abolish'                " camelCase to snake_case
+Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
 call plug#end()

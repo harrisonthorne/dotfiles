@@ -7,6 +7,7 @@ application/x-logisim=logisim.desktop
 x-scheme-handler/mailto=userapp-Evolution-8BBWB0.desktop
 x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/webcal=org.gnome.Evolution.desktop
+x-scheme-handler/msteams=teams.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Evolution-8BBWB0.desktop;

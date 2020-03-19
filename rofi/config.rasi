@@ -3,15 +3,6 @@ configuration {
     columns: 1;
 }
 
-window {
-    height: 100%;
-    width: 512px;
-}
-
-mainbox {
-    padding: 32px;
-}
-
 element {
     padding: 12px;
 }
