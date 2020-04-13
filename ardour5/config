@@ -178,10 +178,12 @@
       <Window name="RPM-646" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="RPM-27651" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="P-544-575" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
+      <Window name="P-544-58957" visible="0" x-off="192" y-off="238" x-size="1132" y-size="487" custom-ui="1"/>
       <Window name="P-544-574" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
       <Window name="P-544-576" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
       <Window name="P-544-577" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
       <Window name="PM-575-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="PM-58957-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-574-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-576-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-577-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
@@ -201,13 +203,11 @@
       <Window name="PM-27681-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-27683-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="PM-27684-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-544-58957" visible="0" x-off="757" y-off="537" x-size="1132" y-size="487" custom-ui="1"/>
-      <Window name="PM-58957-" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Tearoffs/>
     </UI>
     <AudioMIDISetup>
       <EngineStates>
-        <State backend="JACK" driver="ALSA" device="HD-Audio Generic" input-device="" output-device="" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" active="1" use-buffered-io="0" midi-option="" lru="1586796573">
+        <State backend="JACK" driver="ALSA" device="HD-Audio Generic" input-device="" output-device="" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" active="1" use-buffered-io="0" midi-option="" lru="1586805109">
           <MIDIDevices/>
         </State>
         <State backend="JACK" driver="" device="HD-Audio Generic" input-device="HD-Audio Generic" output-device="HD-Audio Generic" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" active="0" use-buffered-io="0" midi-option="" lru="1585462127">

@@ -171,15 +171,15 @@ nnoremap <leader>gor :!go run *.go
 " Lanuage Server shortcuts
 nnoremap <silent> <leader>ca :CocAction<CR>
 nnoremap <silent> <leader>cc :CocCommand<space>
-nnoremap <silent> <leader>cr <Plug>(coc-rename)
-nnoremap <silent> <leader>cx <Plug>(coc-format)
-nnoremap <silent> <leader>ct <Plug>(coc-type-definition)
-nnoremap <silent> <leader>cf <Plug>(coc-references)
-nnoremap <silent> <leader>cq <Plug>(coc-fix-current)
-nnoremap <silent> <leader>ci <Plug>(coc-diagnostic-info)
-nnoremap <silent> <leader>cn <Plug>(coc-diagnostic-next)
-nnoremap <silent> <leader>cp <Plug>(coc-diagnostic-prev)
-nnoremap <silent> <leader>/ <Plug>(coc-definition)
+nmap <silent> <leader>cr <Plug>(coc-rename)
+nmap <silent> <leader>cx <Plug>(coc-format)
+nmap <silent> <leader>ct <Plug>(coc-type-definition)
+nmap <silent> <leader>cf <Plug>(coc-references)
+nmap <silent> <leader>cq <Plug>(coc-fix-current)
+nmap <silent> <leader>ci <Plug>(coc-diagnostic-info)
+nmap <silent> <leader>cn <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>cp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>/ <Plug>(coc-definition)
 nnoremap <silent> <leader>? :call CocAction('doHover')<CR>
 nnoremap <silent> K :call CocAction('doHover')<CR>
 
