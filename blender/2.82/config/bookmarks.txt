@@ -1,4 +1,9 @@
 [Bookmarks]
 [Recent]
+/home/harrisonthorne/Pictures/Wallpapers/Scenes/
 /home/harrisonthorne/Drive/Documents/Blender/
+/home/harrisonthorne/Videos/
+/home/harrisonthorne/Videos/projects/tech_comm_presentation/
+/home/harrisonthorne/
+/home/harrisonthorne/Pictures/Wallpapers/
 /tmp/

@@ -1,0 +1,15 @@
+FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore node_modules -g ""'
+GOPATH=$HOME/go
+RUSTBIN=$HOME/.cargo/bin
+WINEPREFIX=$HOME/.wine/
+PATH=$GOPATH/bin:$RUSTBIN:$PATH:$HOME/.local/bin
+BROWSER=/bin/brave
+EDITOR=/bin/nvim
+QT_QPA_PLATFORMTHEME=qt5ct
+ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+_JAVA_AWT_WM_NONREPARENTING=1
+LEDGER_FILE=$HOME/Notebook/ledger/main.journal
+SXHKD_SHELL='/bin/sh'
+XDG_SESSION_TYPE=wayland
+EIX_LIMIT=0
+XDG_CONFIG_HOME=/home/harrisonthorne/.config

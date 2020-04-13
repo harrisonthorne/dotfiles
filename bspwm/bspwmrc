@@ -12,9 +12,9 @@ killall lemonbar
 $HOME/.config/bspwm/panel.sh &
 
 bspc config border_width         4
-bspc config normal_border_color  "#060607"
-bspc config active_border_color  "#436477"
-bspc config focused_border_color "#6191ae"
+bspc config normal_border_color  "#0B0907"
+bspc config active_border_color  "#6d7f8c"
+bspc config focused_border_color "#9fb8cb"
 
 bspc config window_gap           8
 

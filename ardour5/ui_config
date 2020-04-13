@@ -22,7 +22,7 @@
     <Option name="keyboard-layout" value="ansi"/>
     <Option name="keyboard-layout-name" value="ansi"/>
     <Option name="default-bindings" value="ardour"/>
-    <Option name="only-copy-imported-files" value="0"/>
+    <Option name="only-copy-imported-files" value="1"/>
     <Option name="autoplay-files" value="0"/>
     <Option name="default-narrow_ms" value="0"/>
     <Option name="name-new-markers" value="0"/>

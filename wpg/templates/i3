@@ -19,12 +19,12 @@ exec compton &
 exec dunst &
 
 # Use custom colors
-set $inactive     #436477
+set $inactive     #6d7f8c
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #6191ae
-set $black        #060607c0
-set $fadedBlack   #060607c0
+set $white        #9fb8cb
+set $black        #0B0907c0
+set $fadedBlack   #0B0907c0
 set $transparent  #00000000
 
 set $TERMINAL kitty

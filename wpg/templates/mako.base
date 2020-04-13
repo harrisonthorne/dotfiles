@@ -1,7 +1,7 @@
 default-timeout=10000
 anchor=top-right
 background-color={color0}CC
-font=Roboto 10
+font=Cantarell 10
 padding=16,32
 margin=4
 width=512

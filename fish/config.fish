@@ -3,9 +3,11 @@ if status is-interactive
 end
 
 bash /etc/profile
+bash ~/.bashrc
 
 alias system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
-alias imv="imv -e Monospace:13"
+# alias imv="imv -e Monospace:13"
+alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
 
 set fish_greeting ""
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
@@ -18,17 +20,18 @@ set -gx EDITOR /bin/nvim
 set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
-set -gx LEDGER_FILE $HOME/Notebook/ledger/main.journal
+set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx XDG_SESSION_TYPE wayland
 set -gx EIX_LIMIT 0
 
 # Start desktop at login
 if status is-login
-    if test -z "$DISPLAY" # -a $XDG_VTNR = 1
+    # removing; sway is started at boot via systemd service for the time being
+    #    if test -z "$DISPLAY"
         # startx -- -keeptty > ~/startx.log
-        sway > sway.log
-    end
+        # sway > sway.log ^ sway.err
+    # end
 else
     eval (keychain -q --agents ssh --eval id_rsa_github id_rsa_bitbucket aur)
 end
@@ -56,4 +59,3 @@ function nohup
     command nohup $argv </dev/null >/dev/null 2>&1 & disown
 end
 
-bash ~/.bashrc

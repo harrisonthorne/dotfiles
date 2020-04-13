@@ -4,6 +4,13 @@ syntax on
 
 let mapleader=","
 
+let g:ale_sign_error = 'X'
+let g:ale_sign_warning = '!'
+let g:ale_sign_info = 'i'
+let g:ale_sign_style_error = 'S'
+let g:ale_sign_style_warning = 'S'
+let g:ale_sign_highlight_linenrs = 1
+
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ledger/vim-ledger'                " Ledger
 Plug 'deviantfero/wpgtk.vim'
@@ -19,6 +26,7 @@ Plug 'tpope/vim-abolish'                " camelCase to snake_case
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-commentary'             " commentary
 Plug 'tpope/vim-fugitive'               " Vim fugitive
+" Plug 'dense-analysis/ale'                         " ale
 call plug#end()
 
 let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore-dir={.git,node_modules}'
@@ -64,6 +72,7 @@ set lbr
 set list listchars=tab:\>\ ,trail:·
 set mouse=a
 set nobackup
+set nowritebackup
 set cursorline
 set noshowmode " hides -- INSERT --
 set noswapfile
@@ -74,10 +83,10 @@ set number
 set rnu
 " set runtimepath+=~/.config/nvim/plugged/deoplete.nvim
 set shiftwidth=4
-set shortmess=aFTW
+set shortmess=caFTW
 set si   " Smart indent
-set signcolumn=auto:1
-"set signcolumn=yes
+"set signcolumn=auto:1
+set signcolumn=yes:1
 set smartcase
 set softtabstop=4
 set scrolloff=5
@@ -144,19 +153,14 @@ noremap <leader>te :tabe<CR>
 
 " splitting shortcuts
 noremap <leader>v :vs<CR>
-noremap <leader>nv :vs<CR>:FZF<CR>
 noremap <leader>s :sp<CR>
+noremap <leader>nv :vs<CR>:FZF<CR>
 noremap <leader>ns :sp<CR>:FZF<CR>
 noremap <leader>nt :tabe<CR>:FZF<CR>
 
 " Fugitive shortcuts
 noremap <leader>gg :Git
 noremap <leader>gs :Gstatus<CR>
-noremap <leader>gc :Gcommit -m
-noremap <leader>gd :Gvdiff<CR>
-noremap <leader>gb :Git checkout
-noremap <leader>gpl :Gpull
-noremap <leader>gph :Gpush
 
 " Golang shortcuts
 nnoremap <silent> <leader>gof :!gofmt -s -w "%"<CR>
@@ -165,17 +169,19 @@ nnoremap <leader>goi :!go install<CR>
 nnoremap <leader>gor :!go run *.go
 
 " Lanuage Server shortcuts
-nmap <silent> <leader>ca :CocAction<CR>
-nmap <silent> <leader>cc :CocCommand\ |
-nmap <silent> <leader>cr <Plug>(coc-rename)
-nmap <silent> <leader>cf <Plug>(coc-format)
-nmap <silent> <leader>ct <Plug>(coc-type-definition)
-nmap <silent> <leader>cx <Plug>(coc-references)
-nmap <silent> <leader>cq <Plug>(coc-fix-current)
-nmap <silent> <leader>ci <Plug>(coc-diagnostic-info)
-nmap <silent> <leader>/ <Plug>(coc-definition)
-nmap <silent> <leader>? :call CocAction('doHover')<CR>
-nmap <silent> K :call CocAction('doHover')<CR>
+nnoremap <silent> <leader>ca :CocAction<CR>
+nnoremap <silent> <leader>cc :CocCommand<space>
+nnoremap <silent> <leader>cr <Plug>(coc-rename)
+nnoremap <silent> <leader>cx <Plug>(coc-format)
+nnoremap <silent> <leader>ct <Plug>(coc-type-definition)
+nnoremap <silent> <leader>cf <Plug>(coc-references)
+nnoremap <silent> <leader>cq <Plug>(coc-fix-current)
+nnoremap <silent> <leader>ci <Plug>(coc-diagnostic-info)
+nnoremap <silent> <leader>cn <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>cp <Plug>(coc-diagnostic-prev)
+nnoremap <silent> <leader>/ <Plug>(coc-definition)
+nnoremap <silent> <leader>? :call CocAction('doHover')<CR>
+nnoremap <silent> K :call CocAction('doHover')<CR>
 
 nnoremap <silent> <leader>xt :tabe<CR>:terminal<CR>i
 nnoremap <silent> <leader>xv :vs<CR>:terminal<CR>i
@@ -184,7 +190,6 @@ nnoremap <silent> <leader>xs :sp<CR>:terminal<CR>i
 
 " Misc shortcuts
 noremap <silent> <leader>e :CocCommand explorer<CR>
-noremap <silent> <leader>P :Prettier<CR>
 noremap <silent> <leader>q :q<CR>
 noremap <silent> <leader>pwd :pwd<CR>
 noremap <silent> <leader>pp :!pandoc "%" -o "%.pdf"<CR>
@@ -208,6 +213,9 @@ nnoremap <leader>xp :cprev<CR>
 nnoremap <leader>xN :cnfile<CR>
 nnoremap <leader>xP :cpfile<CR>
 
+" buffer shortcuts
+nnoremap <leader>b :ls<CR>:b<space>
+
 " jump to floating window
 nnoremap <leader>f <Plug>(coc-float-jump)
 
@@ -218,7 +226,6 @@ nnoremap ! :!
 " autocommands
 augroup auto_commands
     autocmd!
-    autocmd FileType defx call s:defx_my_settings()
     autocmd FileType markdown call SetupMarkdown()
     autocmd FileType json syntax match Comment +\/\/.\+$+
     autocmd BufWinLeave * silent! mkview
@@ -252,6 +259,7 @@ hi ErrorMsg guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
 hi WarningMsg guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
 hi InfoMsg guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
 
+" Coc highlights
 hi link CocUnderline InfoMsg
 hi link CocErrorHighlight ErrorMsg
 hi link CocWarningHighlight WarningMsg
@@ -267,6 +275,23 @@ hi CocInfoSign guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold
 hi CocStyleErrorSign guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
 hi CocStyleWarningSign guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
 
+" ALE highlights
+hi link ALEError ErrorMsg
+hi link ALEWarning WarningMsg
+hi link ALEInfo InfoMsg
+hi link ALEErrorLine ErrorMsg
+hi link ALEWarningLine WarningMsg
+hi link ALEInfoLine InfoMsg
+hi link ALEErrorSign ErrorMsg
+hi link ALEWarningSign WarningMsg
+hi link ALEInfoSign InfoMsg
+hi link ALEErrorSignLineNr ErrorMsg
+hi link ALEWarningSignLineNr WarningMsg
+hi link ALEInfoSignLineNr InfoMsg
+hi ALEInfoSign guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold term=bold
+hi ALEStyleErrorSign guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
+hi ALEStyleWarningSign guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
+
 hi VertSplit guibg=NONE guifg=8 gui=NONE ctermbg=NONE ctermfg=8 cterm=NONE
 hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
 hi StatusLine cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
@@ -277,6 +302,7 @@ hi SpecialComment ctermfg=4 ctermbg=NONE guibg=NONE cterm=bold,italic gui=bold,i
 hi Delimiter ctermbg=NONE guibg=NONE
 hi Exception ctermbg=NONE guibg=NONE
 hi SpecialChar ctermbg=NONE guibg=NONE
+hi Special ctermfg=9 guifg=9
 hi Typedef ctermbg=NONE guibg=NONE
 hi Type ctermfg=10 guifg=10
 hi PreProc ctermfg=14 guifg=14

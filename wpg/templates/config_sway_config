@@ -31,18 +31,18 @@ exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p fcfffd -s 6191ae | lemonbar -B "#e5060607" -d -g x32 -f "Cantarell:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p f9fdff -s 9fb8cb | lemonbar -B "#e50B0907" -d -g x32 -f "Cantarell:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $active       #6191aee5
-set $inactive     #436477e5
+set $active       #9fb8cbe5
+set $inactive     #6d7f8ce5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #fcfffd
-set $black        #060607e5
-set $gray         #1c1c22e5
-set $opaqueGray   #1c1c22
-set $fadedBlack   #060607c0
+set $white        #f9fdff
+set $black        #0B0907e5
+set $gray         #2a2219e5
+set $opaqueGray   #2a2219
+set $fadedBlack   #0B0907c0
 set $transparent  #00000000
 
 set $TERMINAL alacritty
@@ -300,7 +300,7 @@ output "*" {
 }
 
 bar {
-    status_command "muse-status -p fcfffd -s 6191ae"
+    status_command "muse-status -p f9fdff -s 9fb8cb"
     # status_command i3status
     font pango: Cantarell 10
         mode dock

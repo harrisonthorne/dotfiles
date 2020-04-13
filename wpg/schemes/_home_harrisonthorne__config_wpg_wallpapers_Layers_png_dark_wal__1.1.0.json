@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Layers.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0a6a19",
+        "foreground": "#f2fffd",
+        "cursor": "#f2fffd"
+    },
+    "colors": {
+        "color0": "#0a6a19",
+        "color1": "#5C238E",
+        "color2": "#42BB73",
+        "color3": "#A48ABE",
+        "color4": "#7219B3",
+        "color5": "#8F51A4",
+        "color6": "#8FB6BA",
+        "color7": "#cfe5d9",
+        "color8": "#0d9823",
+        "color9": "#7821c4",
+        "color10": "#45ff92",
+        "color11": "#d59eff",
+        "color12": "#9613f6",
+        "color13": "#c159e5",
+        "color14": "#a4fdff",
+        "color15": "#f2fffd"
+    }
+}
