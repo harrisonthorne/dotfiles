@@ -16,7 +16,7 @@
     "rust.clippy_preference": "on",
     "rust-client.updateOnStartup": true,
     "rust.cfg_test": true,
-    "rust-analyzer.updates.channel": "nightly",
+    "rust-analyzer.updates.channel": "stable",
     "rust-analyzer.notifications.cargoTomlNotFound": false,
     "rust-analyzer.checkOnSave.command": "clippy",
     "diagnostic.displayByAle": false,

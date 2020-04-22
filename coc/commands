@@ -1,6 +1,8 @@
-rust-analyzer.run
+snippets.openSnippetFiles
+snippets.editSnippets
 explorer
 rust-analyzer.reload
+rust-analyzer.run
 rust-analyzer.analyzerStatus
 rust-analyzer.upgrade
 "rename"
@@ -10,6 +12,5 @@ rust-analyzer.showReferences
 rust-analyzer.joinLines
 workspace.diagnosticRelated
 rust-analyzer.syntaxTree
-snippets.editSnippets
 rust-analyzer.collectGarbage
 rust-analyzer.stopCargoWatch

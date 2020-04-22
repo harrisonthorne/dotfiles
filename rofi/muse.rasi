@@ -15,7 +15,7 @@ configuration {
 	auto-select: false;
 	matching: "fuzzy";
 	fullscreen: false;
-    terminal: "alacritty";
+    terminal: "kitty";
     ssh-client: "ssh";
     ssh-command: "{terminal} -e /bin/bash -i -c \"{ssh-client} {host}\"";
     run-shell-command: "{terminal} -e /usr/bin/fish -i -c \"{cmd}\"";
@@ -34,11 +34,11 @@ configuration {
 * {
     text-color: #ffffff;
     background-color: #00000000;
-    background: #0B0907e5;
+    background: #141f19e5;
     white: #ffffff;
-    dim: #9fb8cb;
+    dim: #99cbcb;
     orange: #ffaa00;
-    selected: #9fb8cb20;
+    selected: #99cbcb20;
 }
 
 window {

@@ -1,11 +1,11 @@
 set $mod Mod4
 
 # exit sway
-bindsym $mod+Shift+e exec paplay "$HOME/Drive/Music/MuseSounds/Goodbye.wav" && swaymsg exit
+bindsym $mod+Shift+e exec paplay "$HOME/Music/MuseSounds/Goodbye.wav" && swaymsg exit
 
 # some convenience variables
 set $locker "sh $HOME/.config/sway/lock.sh"
-set $lockWarningCmd "paplay $HOME/Drive/Music/MuseSounds/LockWarning.ogg && notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
+set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.' && paplay $HOME/Music/MuseSounds/LockWarning.wav"
 set $dpmsoff "swaymsg 'output * dpms off'"
 set $dpmson "swaymsg 'output * dpms on'"
 
@@ -31,21 +31,21 @@ exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
 # status bar stuff
 # exec_always killall muse-status
 # exec_always killall lemonbar
-# exec_always muse-status -p f9fdff -s 9fb8cb | lemonbar -B "#e50B0907" -d -g x32 -f "Cantarell:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
+# exec_always muse-status -p f1feff -s 99cbcb | lemonbar -B "#e5141f19" -d -g x32 -f "Cantarell:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
 
 # Use custom colors
-set $active       #9fb8cbe5
-set $inactive     #6d7f8ce5
+set $active       #99cbcbe5
+set $inactive     #698c8ce5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #f9fdff
-set $black        #0B0907e5
-set $gray         #2a2219e5
-set $opaqueGray   #2a2219
-set $fadedBlack   #0B0907c0
+set $white        #f1feff
+set $black        #141f19e5
+set $gray         #273d31e5
+set $opaqueGray   #273d31
+set $fadedBlack   #141f19c0
 set $transparent  #00000000
 
-set $TERMINAL alacritty
+set $TERMINAL kitty
 set $SHELL /usr/bin/fish
 
 set $screenshot "sh $HOME/.config/sway/screenshot.sh"
@@ -78,8 +78,8 @@ floating_maximum_size 1856 x 1016
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-set $volume_up "$HOME/Drive/Music/MuseSounds/Volume.wav"
-set $volume_down "$HOME/Drive/Music/MuseSounds/VolumeDown.wav"
+set $volume_up "$HOME/Music/MuseSounds/Volume.wav"
+set $volume_down "$HOME/Music/MuseSounds/VolumeDown.wav"
 
 # Pulse Audio controls
 bindsym --locked XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && muse-status notify volume; paplay $volume_up"
@@ -115,7 +115,6 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -161,6 +160,9 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px 16 px; inhibit_idle open
 bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px 16 px; inhibit_idle open
 
+# switch between floating/tiled layers
+bindsym $mod+z focus mode_toggle
+
 # disables swayidle for fullscreen windows
 for_window [class=".*"] inhibit_idle fullscreen
 
@@ -177,10 +179,10 @@ bindsym $mod+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
 # files, nvim, notebook, new note
-bindsym $mod+e exec $TERMINAL -t "Files" -e $SHELL -i -c ranger
-bindsym $mod+n exec $TERMINAL -t Neovim -e $SHELL -i -c nvim
-bindsym $mod+Shift+n exec $TERMINAL -t Notebook -e $SHELL -i -c "ranger ~/Notebook"
-bindsym $mod+Control+n exec $TERMINAL -t "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
+bindsym $mod+e exec $TERMINAL -T "Files" -e $SHELL -i -c ranger
+bindsym $mod+n exec $TERMINAL -T Neovim -e $SHELL -i -c nvim
+bindsym $mod+Shift+n exec $TERMINAL -T Notebook -e $SHELL -i -c "ranger ~/Notebook"
+bindsym $mod+Control+n exec $TERMINAL -T "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
 
 # lock
 bindsym $mod+Escape exec $locker
@@ -300,12 +302,12 @@ output "*" {
 }
 
 bar {
-    status_command "muse-status -p f9fdff -s 9fb8cb"
+    status_command "muse-status -p f1feff -s 99cbcb"
     # status_command i3status
     font pango: Cantarell 10
         mode dock
         modifier $mod
-        separator_symbol "    "
+        separator_symbol "      "
         position top
         workspace_buttons yes
         height 32
@@ -318,9 +320,9 @@ bar {
                 focused_workspace $black $black $white
                 active_workspace $black $black $active
                 inactive_workspace $black $black $inactive
-                urgent_workspace $black $black $warning
+                urgent_workspace $warning $warning $black
                 binding_mode $black $black $warning
         }
 }
 
-exec paplay "$HOME/Drive/Music/MuseSounds/Hello.ogg" &
+exec paplay "$HOME/Music/MuseSounds/Hello.wav" &

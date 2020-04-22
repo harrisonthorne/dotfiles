@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/harrisonthorne/Documents/Iosevka'
+let g:netrw_dirhist_8='/home/harrisonthorne/Documents/rust_projects/learn-wgpu/res'
 let g:netrw_dirhist_7='/home/harrisonthorne/.config/cmus'
 let g:netrw_dirhist_6='/home/harrisonthorne/.config/hunter'
 let g:netrw_dirhist_5='/home/harrisonthorne/.config/blender/2.82/scripts/presets'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_3='/home/harrisonthorne/.config/blender/2.82/scripts/presets
 let g:netrw_dirhist_2='/home/harrisonthorne/.config/blender/2.82/scripts/presets/operator'
 let g:netrw_dirhist_1='/home/harrisonthorne/.config/blender/2.82/scripts/presets'
 let g:netrw_dirhist_0='/home/harrisonthorne/.config/blender/2.82/scripts'
-let g:netrw_dirhist_9='/home/harrisonthorne/.config/blender/2.82'
-let g:netrw_dirhist_8='/home/harrisonthorne/.config/blender/2.82/config'

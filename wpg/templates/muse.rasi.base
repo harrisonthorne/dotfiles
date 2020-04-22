@@ -15,7 +15,7 @@ configuration {{
 	auto-select: false;
 	matching: "fuzzy";
 	fullscreen: false;
-    terminal: "alacritty";
+    terminal: "kitty";
     ssh-client: "ssh";
     ssh-command: "{{terminal}} -e /bin/bash -i -c \"{{ssh-client}} {{host}}\"";
     run-shell-command: "{{terminal}} -e /usr/bin/fish -i -c \"{{cmd}}\"";

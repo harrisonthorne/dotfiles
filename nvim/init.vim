@@ -12,7 +12,7 @@ let g:ale_sign_style_warning = 'S'
 let g:ale_sign_highlight_linenrs = 1
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'ledger/vim-ledger'                " Ledger
+Plug 'airblade/vim-gitgutter'
 Plug 'deviantfero/wpgtk.vim'
 Plug 'dhruvasagar/vim-table-mode'		" Tables!
 Plug 'honza/vim-snippets'               " Snippets
@@ -30,10 +30,10 @@ Plug 'tpope/vim-fugitive'               " Vim fugitive
 call plug#end()
 
 let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore-dir={.git,node_modules}'
-let g:comfortable_motion_no_default_key_mappings = 1
-let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
+let g:fzf_preview_window = 'right:50%'
+let g:gitgutter_map_keys = 0
+let g:gitgutter_sign_allow_clobber = 1
 let g:go_fmt_autosave = 0
-let g:ledger_bin = 'hledger'
 let g:startify_custom_header = startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
 let g:startify_lists = [
             \ { 'type': 'sessions',  'header': ['   Sessions']             },
@@ -43,10 +43,8 @@ let g:startify_lists = [
             \ { 'type': 'commands',  'header': ['   Commands']             },
             \ ]
 let g:startify_session_persistence = 1
-let g:user_emmet_leader_key=','
 let g:tex_conceal = ""
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_math = 1
+let g:user_emmet_leader_key=','
 
 set autowriteall
 set autoread
@@ -60,7 +58,7 @@ set conceallevel=1
 set diffopt+=hiddenoff
 set equalalways
 set fillchars+=vert:\||
-set fillchars+=fold:\ |
+set fillchars+=fold:~
 set fillchars+=stl:-
 set fillchars+=stlnc:-
 set expandtab
@@ -81,11 +79,9 @@ set nowb
 set nowrap
 set number
 set rnu
-" set runtimepath+=~/.config/nvim/plugged/deoplete.nvim
 set shiftwidth=4
 set shortmess=caFTW
 set si   " Smart indent
-"set signcolumn=auto:1
 set signcolumn=yes:1
 set smartcase
 set softtabstop=4
@@ -116,10 +112,10 @@ nnoremap <silent> k gk
 
 inoremap <silent><expr> <C-n> coc#refresh()
 " FZF/skim
-map <C-p> :FZF<CR>
+map <C-p> :Files<CR>
 
 " todo list
-nnoremap <leader>to :Ag (NOTE)\|(XXX)\|(FIXME)\|(TODO)<cr>
+nnoremap <leader>to :Ag (note)\|(xxx)\|(fixme)\|(todo)<cr>
 
 " easily edit init.vim file
 map <leader>rc :tabe ~/.config/nvim/init.vim<CR>
@@ -217,7 +213,7 @@ nnoremap <leader>xP :cpfile<CR>
 nnoremap <leader>b :ls<CR>:b<space>
 
 " jump to floating window
-nnoremap <leader>f <Plug>(coc-float-jump)
+nmap <leader>f <Plug>(coc-float-jump)
 
 inoremap jj <esc>
 inoremap fj <esc>

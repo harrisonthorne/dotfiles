@@ -1,41 +1,47 @@
 exec_always $HOME/.fehbg &
+exec_always killall muse-status-dae
 
 set $mod Mod4
 
 # exit sway
-bindsym $mod+Shift+e exec --no-startup-id paplay "$HOME/drive/Music/MuseSounds/Goodbye.ogg" && i3-msg exit
+bindsym $mod+Shift+e exec paplay "$HOME/Music/MuseSounds/Goodbye.wav" && i3-msg exit
 
 # some convenience variables
-set $locker "sh $HOME/.config/sway/lock.sh"
-set $lockWarningCmd "paplay $HOME/drive/Music/MuseSounds/LockWarning.ogg && notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
-# set $dpmsoff "swaymsg 'output * dpms off'"
-# set $dpmson "swaymsg 'output * dpms on'"
+set $locker "sh $HOME/.config/i3/lock.sh"
+set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.' && paplay $HOME/Music/MuseSounds/LockWarning.wav"
 
 # startup apps
+exec picom --experimental-backends &
+exec muse-status-daemon &
+exec dunst &
+exec rot8 --touchscreen ELAN0732:00 04F3:2537 --display eDP &
+exec light -I &
+exec sh $HOME/.config/wpg/wp_init.sh &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec redshift &
-exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dpmsoff resume $dpmson before-sleep $locker &
-exec compton &
-exec dunst &
+exec syncthing --no-browser &
 
 # Use custom colors
-set $inactive     {inactive}
+set $active       {active}e5
+set $inactive     {inactive}e5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        {active}
-set $black        {color0}c0
+set $white        {color15}
+set $black        {color0}e5
+set $gray         {color8}e5
+set $opaqueGray   {color8}
 set $fadedBlack   {color0}c0
 set $transparent  #00000000
 
 set $TERMINAL kitty
-set $SHELL /bin/fish
+set $SHELL /usr/bin/fish
 
 set $screenshot "sh $HOME/.config/i3/screenshot.sh"
 
 # Window colors
 # class                 border          backgr.         text            indicator       child_border
-client.focused          $black          $black          $white          $black          $black
-client.focused_inactive $black          $black          $white          $black          $black
+client.focused          $gray           $gray           $white          $black          $gray
+client.focused_inactive $black          $black          $active         $black          $black
 client.unfocused        $black          $black          $inactive       $black          $black
 client.urgent           $warning        $warning        $black          $warning        $warning
 client.placeholder      $black          $black          $inactive       $black          $black
@@ -43,13 +49,16 @@ client.background       $black
 title_align center
 
 # Font for window titles
-font pango: Roboto 10
+font pango: Cantarell 10
 title_align center
 
+# others
+default_orientation auto
+focus_follows_mouse yes
+
 # disable borders and titlebars
-default_border pixel 0
-default_floating_border pixel 0
-smart_borders on
+default_border normal 4
+default_floating_border normal 4
 
 # floating window size constraints
 floating_minimum_size -1 x -1
@@ -58,43 +67,37 @@ floating_maximum_size 1856 x 1016
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-set $pop /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+set $volume_up '$HOME/Music/MuseSounds/Volume.wav'
+set $volume_down '$HOME/Music/MuseSounds/VolumeDown.wav'
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+ unmute && paplay $pop
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- unmute && paplay $pop
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && paplay $pop # mute sound
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && muse-status notify volume; paplay $volume_up"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master 5%- unmute && muse-status notify volume; paplay $volume_down"
+bindsym XF86AudioMute exec "amixer sset Master toggle && muse-status notify volume; paplay $volume_up"
 
 # Media player controls
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle
-bindsym XF86AudioNext exec --no-startup-id mpc next
-bindsym XF86AudioPrev exec --no-startup-id mpc cdprev
+bindsym XF86AudioPlay exec mpc toggle || playerctl play-pause
+bindsym XF86AudioNext exec mpc next || playerctl next
+bindsym XF86AudioPrev exec mpc cdprev || playerctl previous
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 2
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 2
+bindsym XF86MonBrightnessUp exec light -A 2 && muse-status notify brightness
+bindsym XF86MonBrightnessDown exec light -U 2 && muse-status notify brightness
 
 # Gaps between windows
 gaps inner 16
-bindsym $mod+equal gaps inner all set 16
-bindsym $mod+minus gaps inner all set 0
-smart_gaps on
+hide_edge_borders none
+bindsym $mod+equal "gaps inner all set 16; hide_edge_borders none"
+bindsym $mod+minus "gaps inner all set 0; hide_edge_borders smart"
 
 # start a terminal
 bindsym $mod+Return exec $TERMINAL
 
-# kill focused window
-bindsym $mod+q kill
-
 # start rofi
-bindsym $mod+a exec --no-startup-id rofi -show combi
-bindsym $mod+Control+a exec --no-startup-id rofi -show drun
-bindsym $mod+Control+s exec --no-startup-id rofi -show ssh
-bindsym $mod+Control+f exec --no-startup-id rofi -show find -modi find:$HOME/.config/rofi/finder.sh
-bindsym $mod+Control+w exec --no-startup-id rofi -show window
-bindsym $mod+Control+z exec --no-startup-id sh $HOME/.config/rofi/monitor_layout.sh
-bindsym $mod+Control+c exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
-
+bindsym $mod+a exec rofi -show drun -config ~/.config/rofi/apps_config.rasi
+bindsym $mod+Control+e exec rofi -show emoji -modi emoji
+bindsym $mod+Control+w exec rofi -show window
+bindsym $mod+c exec rofi -show calc -no-sort
 
 # change focus
 bindsym $mod+h focus left
@@ -114,24 +117,40 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
+# alternatively, you can use the arrow keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+o split h
+# move focused workspace
+bindsym $mod+Mod1+h move workspace to left
+bindsym $mod+Mod1+j move workspace to down
+bindsym $mod+Mod1+k move workspace to up
+bindsym $mod+Mod1+l move workspace to right
 
-# split in vertical orientation
-bindsym $mod+v split v
+# (arrow keys for workspace)
+bindsym $mod+Mod1+Left move workspace to left
+bindsym $mod+Mod1+Down move workspace to down
+bindsym $mod+Mod1+Up move workspace to up
+bindsym $mod+Mod1+Right move workspace to right
+
+
+# close window
+bindsym $mod+q kill
+
+# toggle split direction
+bindsym $mod+o split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # floating video mode
-bindsym $mod+d fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 8; move position 1548 px 16 px #; inhibit_idle open
-bindsym $mod+Shift+d fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 8; move position 1193 px 16 px #; inhibit_idle open
+bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px 16 px; inhibit_idle open
+bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px 16 px; inhibit_idle open
+
+# switch between floating/tiled layers
+bindsym $mod+z focus mode_toggle
 
 # disables swayidle for fullscreen windows
 # for_window [class=".*"] inhibit_idle fullscreen
@@ -143,35 +162,32 @@ bindsym $mod+u layout stacking
 
 # app shortcuts
 bindsym $mod+w exec brave
-bindsym $mod+e exec $TERMINAL -T ranger -e $SHELL -i -c ranger
-bindsym $mod+b exec $TERMINAL -T ncmpcpp -e $SHELL -i -c ncmpcpp
-bindsym $mod+n exec $TERMINAL -T nvim -e $SHELL -i -c nvim
-bindsym $mod+c exec gnome-calculator
+bindsym $mod+b exec spotify
 bindsym $mod+m exec evolution
-bindsym $mod+g exec sh $HOME/.config/sway/drive.sh
-bindsym $mod+Control+r exec sh $HOME/.config/sway/toggle_redshift.sh
+bindsym $mod+p exec pavucontrol
+bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
+
+# files, nvim, notebook, new note
+bindsym $mod+e exec $TERMINAL -T "Files" -e $SHELL -i -c ranger
+bindsym $mod+n exec $TERMINAL -T Neovim -e $SHELL -i -c nvim
+bindsym $mod+Shift+n exec $TERMINAL -T Notebook -e $SHELL -i -c "ranger ~/Notebook"
+bindsym $mod+Control+n exec $TERMINAL -T "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
 
 # lock
-bindsym $mod+Escape exec --no-startup-id $locker
+bindsym $mod+Escape exec $locker
 
 # screenshot
-bindsym --release $mod+Print exec --no-startup-id $screenshot
+bindsym --release $mod+Print exec $screenshot
+bindsym --release $mod+Control+Print exec sh $HOME/.config/i3/screenshot.sh -s
 
 # video capture
-bindsym --release $mod+Shift+Print exec --no-startup-id sh $HOME/.config/i3/videocapture.sh
+bindsym --release $mod+Shift+Print exec sh $HOME/.config/i3/videocapture.sh
 
 # toggle tiling / floating
-bindsym $mod+space floating enable, border pixel 0
-bindsym $mod+Shift+space floating disable, border pixel 0
+bindsym $mod+s floating toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+Control+space focus mode_toggle
-
-# focus the parent container
-# bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
+# start mivy
+bindsym $mod+d exec mivy
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -211,65 +227,65 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # scratchpad
-bindsym $mod+p move scratchpad
-bindsym $mod+Shift+p scratchpad show
+bindsym $mod+v move scratchpad
+bindsym $mod+Shift+v scratchpad show
 
 # reload with same wallpaper
-bindsym $mod+Shift+c exec "wpg -ns $(wpg -c)"
+bindsym $mod+Shift+c exec wpg -s $(wpg -c)
 
 # reload with random wallpaper
-bindsym $mod+Shift+r exec "sh $HOME/.config/i3/reload.sh --reload-i3"
+bindsym $mod+Shift+r exec wpg -m
 
 # modes
 bindsym $mod+r mode "Resize mode"
 
 # resize window (you can also use the mouse for that)
 mode "Resize mode" {{
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 20 px or 5 ppt
-        bindsym j resize grow height 20 px or 5 ppt
-        bindsym k resize shrink height 20 px or 5 ppt
-        bindsym l resize grow width 20 px or 5 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+    bindsym h resize shrink width 20 px
+    bindsym j resize grow height 20 px
+    bindsym k resize shrink height 20 px
+    bindsym l resize grow width 20 px
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 20 px or 5 ppt
-        bindsym Down resize grow height 20 px or 5 ppt
-        bindsym Up resize shrink height 20 px or 5 ppt
-        bindsym Right resize grow width 20 px or 5 ppt
+# same bindings, but for the arrow keys
+    bindsym Left resize shrink width 20 px
+    bindsym Down resize grow height 20 px
+    bindsym Up resize shrink height 20 px
+    bindsym Right resize grow width 20 px
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+# back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }}
 
 bar {{
     i3bar_command i3bar -t
-    status_command i3status
+    status_command "muse-status -p {color15.strip} -s {active.strip}"
+    # status_command i3status
+    font pango: Cantarell 10
     mode dock
     modifier $mod
-    separator_symbol "        "
+    separator_symbol "    "
     position top
     workspace_buttons yes
     height 32
     tray_output none
-    font "pango: Roboto 10"
-
     colors {{
-        background $fadedBlack
+        background $black
         statusline $white
         separator $inactive
-        focused_workspace $fadedBlack $fadedBlack $white
-        active_workspace $fadedBlack $fadedBlack $inactive
-        inactive_workspace $fadedBlack $fadedBlack $inactive
-        urgent_workspace $fadedBlack $fadedBlack $warning
-        binding_mode $fadedBlack $fadedBlack $warning
+        focused_workspace $black $black $white
+        active_workspace $black $black $active
+        inactive_workspace $black $black $inactive
+        urgent_workspace $warning $warning $black
+        binding_mode $black $black $warning
     }}
 }}
 
-exec --no-startup-id paplay "$HOME/drive/Music/MuseSounds/Hello.ogg"
+exec --no-startup-id paplay "$HOME/Music/MuseSounds/Hello.wav"

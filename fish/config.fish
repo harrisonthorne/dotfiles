@@ -10,20 +10,21 @@ alias system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
 
 set fish_greeting ""
-set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
-set -gx GOPATH $HOME/go
-set -gx RUSTBIN $HOME/.cargo/bin
-set -gx WINEPREFIX $HOME/.wine/
-set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
+set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
 set -gx BROWSER /bin/brave
 set -gx EDITOR /bin/nvim
-set -gx QT_QPA_PLATFORMTHEME qt5ct
-set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
-set -gx _JAVA_AWT_WM_NONREPARENTING 1
-set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
-set -gx SXHKD_SHELL '/bin/sh'
-set -gx XDG_SESSION_TYPE wayland
 set -gx EIX_LIMIT 0
+set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
+set -gx GOPATH $HOME/go
+set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
+set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
+set -gx QT_QPA_PLATFORMTHEME qt5ct
+set -gx RUSTBIN $HOME/.cargo/bin
+set -gx SXHKD_SHELL '/bin/sh'
+set -gx WINEPREFIX $HOME/.wine/
+set -gx XDG_CURRENT_DESKTOP sway
+set -gx XDG_SESSION_TYPE wayland
+set -gx _JAVA_AWT_WM_NONREPARENTING 1
 
 # Start desktop at login
 if status is-login
