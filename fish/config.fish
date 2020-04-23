@@ -17,14 +17,14 @@ set -gx EIX_LIMIT 0
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
 set -gx GOPATH $HOME/go
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
-set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
 set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx WINEPREFIX $HOME/.wine/
 set -gx XDG_CURRENT_DESKTOP sway
-set -gx XDG_SESSION_TYPE wayland
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
+
+set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
 
 # Start desktop at login
 if status is-login

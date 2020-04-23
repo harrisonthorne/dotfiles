@@ -67,8 +67,8 @@ floating_maximum_size 1856 x 1016
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-set $volume_up '$HOME/Music/MuseSounds/Volume.wav'
-set $volume_down '$HOME/Music/MuseSounds/VolumeDown.wav'
+set $volume_up $HOME/Music/MuseSounds/Volume.wav
+set $volume_down $HOME/Music/MuseSounds/VolumeDown.wav
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && muse-status notify volume; paplay $volume_up"

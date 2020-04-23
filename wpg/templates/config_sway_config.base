@@ -28,11 +28,6 @@ exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'
 exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
 exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
 
-# status bar stuff
-# exec_always killall muse-status
-# exec_always killall lemonbar
-# exec_always muse-status -p {color15.strip} -s {active.strip} | lemonbar -B "#e5{color0.strip}" -d -g x32 -f "Cantarell:pixelsize=13" -f "MaterialDesignIcons:pixelsize=17" $o | sh &
-
 # Use custom colors
 set $active       {active}e5
 set $inactive     {inactive}e5
@@ -249,39 +244,39 @@ bindsym $mod+Shift+v scratchpad show
 bindsym $mod+Shift+c exec wpg -s $(wpg -c)
 
 # reload with random wallpaper
-    bindsym $mod+Shift+r exec wpg -m
+bindsym $mod+Shift+r exec wpg -m
 
 # modes
-    bindsym $mod+r mode "Resize mode"
+bindsym $mod+r mode "Resize mode"
 
 # resize window (you can also use the mouse for that)
-    mode "Resize mode" {{
+mode "Resize mode" {{
 # These bindings trigger as soon as you enter the resize mode
 
 # Pressing left will shrink the window’s width.
 # Pressing right will grow the window’s width.
 # Pressing up will shrink the window’s height.
 # Pressing down will grow the window’s height.
-bindsym h resize shrink width 20 px
-bindsym j resize grow height 20 px
-bindsym k resize shrink height 20 px
-bindsym l resize grow width 20 px
+    bindsym h resize shrink width 20 px
+    bindsym j resize grow height 20 px
+    bindsym k resize shrink height 20 px
+    bindsym l resize grow width 20 px
 
 # same bindings, but for the arrow keys
-            bindsym Left resize shrink width 20 px
-            bindsym Down resize grow height 20 px
-            bindsym Up resize shrink height 20 px
-            bindsym Right resize grow width 20 px
+    bindsym Left resize shrink width 20 px
+    bindsym Down resize grow height 20 px
+    bindsym Up resize shrink height 20 px
+    bindsym Right resize grow width 20 px
 
 # back to normal: Enter or Escape or $mod+r
-            bindsym Return mode "default"
-            bindsym Escape mode "default"
-            bindsym $mod+r mode "default"
-    }}
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}}
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {{
     tap enabled
-        natural_scroll enabled
+    natural_scroll enabled
 }}
 
 input "1267:9527:ELAN0732:00_04F3:2537" {{
@@ -290,7 +285,7 @@ input "1267:9527:ELAN0732:00_04F3:2537" {{
 
 input "*" {{
     xkb_layout us
-# xkb_variant colemak
+    # xkb_variant colemak
 }}
 
 output eDP-1 {{
@@ -303,26 +298,25 @@ output "*" {{
 
 bar {{
     status_command "muse-status -p {color15.strip} -s {active.strip}"
-    # status_command i3status
     font pango: Cantarell 10
-        mode dock
-        modifier $mod
-        separator_symbol "      "
-        position top
-        workspace_buttons yes
-        height 32
-        status_edge_padding 16
-        tray_output none
-        colors {{
-            background $black
-                statusline $white
-                separator $inactive
-                focused_workspace $black $black $white
-                active_workspace $black $black $active
-                inactive_workspace $black $black $inactive
-                urgent_workspace $warning $warning $black
-                binding_mode $black $black $warning
-        }}
+    mode dock
+    modifier $mod
+    separator_symbol "    "
+    position top
+    workspace_buttons yes
+    height 32
+    status_edge_padding 16
+    tray_output none
+    colors {{
+        background $black
+        statusline $white
+        separator $inactive
+        focused_workspace $black $black $white
+        active_workspace $black $black $active
+        inactive_workspace $black $black $inactive
+        urgent_workspace $warning $warning $black
+        binding_mode $black $black $warning
+    }}
 }}
 
 exec paplay "$HOME/Music/MuseSounds/Hello.wav" &

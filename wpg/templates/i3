@@ -22,15 +22,15 @@ exec redshift &
 exec syncthing --no-browser &
 
 # Use custom colors
-set $active       #99cbcbe5
-set $inactive     #698c8ce5
+set $active       #909cb3e5
+set $inactive     #636b7be5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #f1feff
-set $black        #141f19e5
-set $gray         #273d31e5
-set $opaqueGray   #273d31
-set $fadedBlack   #141f19c0
+set $white        #fffff9
+set $black        #191808e5
+set $gray         #3f3d13e5
+set $opaqueGray   #3f3d13
+set $fadedBlack   #191808c0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -67,8 +67,8 @@ floating_maximum_size 1856 x 1016
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-set $volume_up '$HOME/Music/MuseSounds/Volume.wav'
-set $volume_down '$HOME/Music/MuseSounds/VolumeDown.wav'
+set $volume_up $HOME/Music/MuseSounds/Volume.wav
+set $volume_down $HOME/Music/MuseSounds/VolumeDown.wav
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && muse-status notify volume; paplay $volume_up"
@@ -266,7 +266,7 @@ mode "Resize mode" {
 
 bar {
     i3bar_command i3bar -t
-    status_command "muse-status -p f1feff -s 99cbcb"
+    status_command "muse-status -p fffff9 -s 909cb3"
     # status_command i3status
     font pango: Cantarell 10
     mode dock

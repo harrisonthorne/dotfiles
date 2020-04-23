@@ -21,12 +21,12 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \
-    -fill "#141f19" \
+    -fill "#191808" \
     -colorize 75% \
     "$tmpbg"
 
-primary="f1feffff"
-secondary="99cbcbe5"
+primary="fffff9ff"
+secondary="909cb3e5"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \
     -e \
