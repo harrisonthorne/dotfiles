@@ -1,5 +1,5 @@
 exec_always $HOME/.fehbg &
-exec_always killall muse-status-dae
+exec_always "killall muse-status-dae; muse-status-daemon &"
 
 set $mod Mod4
 
@@ -12,7 +12,6 @@ set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your
 
 # startup apps
 exec picom --experimental-backends &
-exec muse-status-daemon &
 exec dunst &
 exec rot8 --touchscreen ELAN0732:00 04F3:2537 --display eDP &
 exec light -I &
@@ -40,8 +39,8 @@ set $screenshot "sh $HOME/.config/i3/screenshot.sh"
 
 # Window colors
 # class                 border          backgr.         text            indicator       child_border
-client.focused          $gray           $gray           $white          $black          $gray
-client.focused_inactive $black          $black          $active         $black          $black
+client.focused          $inactive       $inactive       $white          $active         $inactive
+client.focused_inactive $gray           $gray           $white          $gray           $gray
 client.unfocused        $black          $black          $inactive       $black          $black
 client.urgent           $warning        $warning        $black          $warning        $warning
 client.placeholder      $black          $black          $inactive       $black          $black
@@ -56,9 +55,10 @@ title_align center
 default_orientation auto
 focus_follows_mouse yes
 
-# disable borders and titlebars
-default_border normal 4
-default_floating_border normal 4
+# borders and titlebars
+default_border pixel 4
+default_floating_border pixel 4
+for_window [class=".*"] border pixel 4
 
 # floating window size constraints
 floating_minimum_size -1 x -1

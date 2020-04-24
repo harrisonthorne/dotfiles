@@ -34,11 +34,11 @@ configuration {
 * {
     text-color: #ffffff;
     background-color: #00000000;
-    background: #191808e5;
+    background: #1f2013e5;
     white: #ffffff;
-    dim: #909cb3;
+    dim: #2e979f;
     orange: #ffaa00;
-    selected: #909cb320;
+    selected: #2e979f20;
 }
 
 window {

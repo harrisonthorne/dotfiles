@@ -1,5 +1,5 @@
 exec_always $HOME/.fehbg &
-exec_always killall muse-status-dae
+exec_always "killall muse-status-dae; muse-status-daemon &"
 
 set $mod Mod4
 
@@ -12,7 +12,6 @@ set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your
 
 # startup apps
 exec picom --experimental-backends &
-exec muse-status-daemon &
 exec dunst &
 exec rot8 --touchscreen ELAN0732:00 04F3:2537 --display eDP &
 exec light -I &
@@ -22,15 +21,15 @@ exec redshift &
 exec syncthing --no-browser &
 
 # Use custom colors
-set $active       #909cb3e5
-set $inactive     #636b7be5
+set $active       #2e979fe5
+set $inactive     #20676de5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #fffff9
-set $black        #191808e5
-set $gray         #3f3d13e5
-set $opaqueGray   #3f3d13
-set $fadedBlack   #191808c0
+set $white        #f6feff
+set $black        #1f2013e5
+set $gray         #3d3f25e5
+set $opaqueGray   #3d3f25
+set $fadedBlack   #1f2013c0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -40,8 +39,8 @@ set $screenshot "sh $HOME/.config/i3/screenshot.sh"
 
 # Window colors
 # class                 border          backgr.         text            indicator       child_border
-client.focused          $gray           $gray           $white          $black          $gray
-client.focused_inactive $black          $black          $active         $black          $black
+client.focused          $inactive       $inactive       $white          $active         $inactive
+client.focused_inactive $gray           $gray           $white          $gray           $gray
 client.unfocused        $black          $black          $inactive       $black          $black
 client.urgent           $warning        $warning        $black          $warning        $warning
 client.placeholder      $black          $black          $inactive       $black          $black
@@ -56,9 +55,10 @@ title_align center
 default_orientation auto
 focus_follows_mouse yes
 
-# disable borders and titlebars
-default_border normal 4
-default_floating_border normal 4
+# borders and titlebars
+default_border pixel 4
+default_floating_border pixel 4
+for_window [class=".*"] border pixel 4
 
 # floating window size constraints
 floating_minimum_size -1 x -1
@@ -266,7 +266,7 @@ mode "Resize mode" {
 
 bar {
     i3bar_command i3bar -t
-    status_command "muse-status -p fffff9 -s 909cb3"
+    status_command "muse-status -p f6feff -s 2e979f"
     # status_command i3status
     font pango: Cantarell 10
     mode dock
