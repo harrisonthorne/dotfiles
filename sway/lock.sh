@@ -19,20 +19,26 @@ fi
 tmpbg='/tmp/screen.png'
 
 cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
+# /usr/bin/convert "$tmpbg" \
+#     -gravity center \
+#     -extent 1920x1080 \
+#     -resize 5% \
+#     -blur 1x2 \
+#     -resize 2000% \
+#     -fill "#0a0c07" \
+#     -colorize 75% \
+#     "$tmpbg"
 /usr/bin/convert "$tmpbg" \
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \
-    -resize 5% \
-    -blur 1x2 \
-    -resize 2000% \
-    -fill "#1f2013" \
+    -fill "#0a0c07" \
     -colorize 75% \
     "$tmpbg"
 
-primary="f6feffc0"
-primaryFaded="f6feff20"
-secondary="2e979f20"
+primary="effdffc0"
+primaryFaded="effdff20"
+secondary="6c99cb20"
 transparent="00000000"
 orange="ffaa00"
 
