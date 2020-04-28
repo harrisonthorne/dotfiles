@@ -236,7 +236,7 @@
     </UI>
     <AudioMIDISetup>
       <EngineStates>
-        <State backend="JACK" driver="ALSA" device="HD-Audio Generic" input-device="" output-device="" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" active="1" use-buffered-io="0" midi-option="" lru="1587841658">
+        <State backend="JACK" driver="ALSA" device="HD-Audio Generic" input-device="" output-device="" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" active="1" use-buffered-io="0" midi-option="" lru="1587961928">
           <MIDIDevices/>
         </State>
         <State backend="JACK" driver="" device="HD-Audio Generic" input-device="HD-Audio Generic" output-device="HD-Audio Generic" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" active="0" use-buffered-io="0" midi-option="" lru="1585462127">

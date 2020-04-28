@@ -26,7 +26,7 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
     "$tmpbg"
 
 primary="effdffff"
-secondary="6c99cbe5"
+secondary="71a5cbe5"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \
     -e \

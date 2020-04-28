@@ -251,9 +251,9 @@ hi Error guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
 hi Warning guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
 hi Info guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
 
-hi ErrorMsg guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
-hi WarningMsg guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
-hi InfoMsg guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
+hi link Error ErrorMsg
+hi link Warning WarningMsg
+hi link Info InfoMsg
 
 " Coc highlights
 hi link CocUnderline InfoMsg
@@ -293,8 +293,8 @@ hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
 hi StatusLine cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
 hi Normal ctermbg=NONE guibg=NONE
 hi NonText cterm=NONE gui=NONE ctermbg=NONE guibg=NONE
-hi Comment ctermbg=NONE guibg=NONE
-hi SpecialComment ctermfg=4 ctermbg=NONE guibg=NONE cterm=bold,italic gui=bold,italic term=bold,italic
+hi Comment ctermbg=NONE guibg=NONE ctermfg=12 guifg=12
+hi SpecialComment ctermfg=12 ctermbg=NONE ctermfg=12 guibg=NONE cterm=bold,italic gui=bold,italic term=bold,italic
 hi Delimiter ctermbg=NONE guibg=NONE
 hi Exception ctermbg=NONE guibg=NONE
 hi SpecialChar ctermbg=NONE guibg=NONE
@@ -304,6 +304,9 @@ hi Type ctermfg=10 guifg=10
 hi PreProc ctermfg=14 guifg=14
 hi Whitespace ctermfg=8 guifg=8
 hi Title cterm=bold gui=bold ctermfg=13 guifg=13
+hi Search ctermfg=15 guifg=15 ctermbg=240 guifg=240 cterm=italic gui=italic
+hi IncSearch cterm=bold,italic,reverse gui=bold,italic,reverse
+hi Visual ctermbg=240 guifg=240
 
 hi link javaScriptLineComment Comment
 
@@ -322,6 +325,12 @@ hi PmenuThumb cterm=NONE gui=NONE ctermbg=5 ctermfg=5 guibg=5 guifg=5
 
 hi SpellBad ctermfg=196 ctermbg=NONE guifg=196 guibg=NONE cterm=italic,undercurl gui=italic,undercurl
 hi SpellCap ctermfg=201 ctermbg=NONE guifg=201 guibg=NONE
+
+hi SpecialKey ctermfg=14 guifg=14
+hi Directory ctermfg=14 guifg=14
+hi Question ctermfg=10 guifg=10
+hi link MoreMsg Question
+hi link NvimInternalError ErrorMsg
 
 fu! SaveLastSession()
     execute 'mksession! ' . '~/.vim/session/previous'

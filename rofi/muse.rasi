@@ -36,9 +36,9 @@ configuration {
     background-color: #00000000;
     background: #0a0c07e5;
     white: #ffffff;
-    dim: #6c99cb;
+    dim: #71a5cb;
     orange: #ffaa00;
-    selected: #6c99cb20;
+    selected: #71a5cb20;
 }
 
 window {
