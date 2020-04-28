@@ -325,12 +325,15 @@ hi PmenuThumb cterm=NONE gui=NONE ctermbg=5 ctermfg=5 guibg=5 guifg=5
 
 hi SpellBad ctermfg=196 ctermbg=NONE guifg=196 guibg=NONE cterm=italic,undercurl gui=italic,undercurl
 hi SpellCap ctermfg=201 ctermbg=NONE guifg=201 guibg=NONE
+hi SpellRare ctermfg=214 ctermbg=NONE guifg=214 guibg=NONE cterm=italic,undercurl gui=italic,undercurl
+hi! link SpellLocal SpellRare
+hi! link Todo SpellLocal
 
 hi SpecialKey ctermfg=14 guifg=14
 hi Directory ctermfg=14 guifg=14
 hi Question ctermfg=10 guifg=10
-hi link MoreMsg Question
-hi link NvimInternalError ErrorMsg
+hi! link MoreMsg Question
+hi! link NvimInternalError Error
 
 fu! SaveLastSession()
     execute 'mksession! ' . '~/.vim/session/previous'
