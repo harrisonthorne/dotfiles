@@ -129,18 +129,29 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# move focused workspace
-bindsym $mod+Mod1+h move workspace to left
-bindsym $mod+Mod1+j move workspace to down
-bindsym $mod+Mod1+k move workspace to up
-bindsym $mod+Mod1+l move workspace to right
+# move focused workspace to outputs
+bindsym $mod+Control+h move workspace to left
+bindsym $mod+Control+j move workspace to down
+bindsym $mod+Control+k move workspace to up
+bindsym $mod+Control+l move workspace to right
+
+# (arrow keys for moving workspace)
+bindsym $mod+Control+Left move workspace to left
+bindsym $mod+Control+Down move workspace to down
+bindsym $mod+Control+Up move workspace to up
+bindsym $mod+Control+Right move workspace to right
+
+# focus outputs
+bindsym $mod+Mod1+h focus output left
+bindsym $mod+Mod1+j focus output down
+bindsym $mod+Mod1+k focus output up
+bindsym $mod+Mod1+l focus output right
 
 # (arrow keys for workspace)
-bindsym $mod+Mod1+Left move workspace to left
-bindsym $mod+Mod1+Down move workspace to down
-bindsym $mod+Mod1+Up move workspace to up
-bindsym $mod+Mod1+Right move workspace to right
-
+bindsym $mod+Mod1+Left focus output left
+bindsym $mod+Mod1+Down focus output down
+bindsym $mod+Mod1+Up focus output up
+bindsym $mod+Mod1+Right focus output right
 
 # close window
 bindsym $mod+q kill
@@ -157,6 +168,8 @@ bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; st
 
 # switch between floating/tiled layers
 bindsym $mod+z focus mode_toggle
+bindsym $mod+p focus parent
+bindsym $mod+Shift+p focus child
 
 # disables swayidle for fullscreen windows
 for_window [class=".*"] inhibit_idle fullscreen
@@ -170,7 +183,7 @@ bindsym $mod+u layout stacking
 bindsym $mod+w exec brave
 bindsym $mod+b exec spotify
 bindsym $mod+m exec evolution
-bindsym $mod+p exec pavucontrol
+bindsym $mod+Control+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
 # files, nvim, notebook, new note

@@ -54,7 +54,7 @@ set clipboard+=unnamedplus
 set cmdheight=2
 set complete+=kspell                    " spell check
 set completeopt+=preview
-set conceallevel=1
+set conceallevel=2
 set diffopt+=hiddenoff
 set equalalways
 set fillchars+=vert:\||
@@ -247,13 +247,13 @@ hi CursorLine guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
 hi CursorColumn guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
 hi Folded guibg=0 ctermbg=0 guifg=4 ctermfg=4 gui=italic cterm=italic
 
-hi Error guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
-hi Warning guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
-hi Info guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
+hi! Error guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
+hi! Warning guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
+hi! Info guibg=NONE ctermbg=NONE guifg=51 ctermfg=51 gui=bold cterm=bold
 
-hi link Error ErrorMsg
-hi link Warning WarningMsg
-hi link Info InfoMsg
+hi! link ErrorMsg Error
+hi! link WarningMsg Warning
+hi! link InfoMsg Info
 
 " Coc highlights
 hi link CocUnderline InfoMsg
@@ -297,7 +297,7 @@ hi Comment ctermbg=NONE guibg=NONE ctermfg=12 guifg=12
 hi SpecialComment ctermfg=12 ctermbg=NONE ctermfg=12 guibg=NONE cterm=bold,italic gui=bold,italic term=bold,italic
 hi Delimiter ctermbg=NONE guibg=NONE
 hi Exception ctermbg=NONE guibg=NONE
-hi SpecialChar ctermbg=NONE guibg=NONE
+hi SpecialChar ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
 hi Special ctermfg=9 guifg=9
 hi Typedef ctermbg=NONE guibg=NONE
 hi Type ctermfg=10 guifg=10
@@ -325,7 +325,7 @@ hi PmenuThumb cterm=NONE gui=NONE ctermbg=5 ctermfg=5 guibg=5 guifg=5
 
 hi SpellBad ctermfg=196 ctermbg=NONE guifg=196 guibg=NONE cterm=italic,undercurl gui=italic,undercurl
 hi SpellCap ctermfg=201 ctermbg=NONE guifg=201 guibg=NONE
-hi SpellRare ctermfg=214 ctermbg=NONE guifg=214 guibg=NONE cterm=italic,undercurl gui=italic,undercurl
+hi SpellRare ctermfg=214 ctermbg=NONE guifg=214 guibg=NONE cterm=italic gui=italic
 hi! link SpellLocal SpellRare
 hi! link Todo SpellLocal
 

@@ -1,7 +1,7 @@
+rust-analyzer.reload
 explorer
 snippets.openSnippetFiles
 snippets.editSnippets
-rust-analyzer.reload
 rust-analyzer.run
 rust-analyzer.analyzerStatus
 rust-analyzer.upgrade
