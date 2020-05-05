@@ -29,15 +29,15 @@ exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
 exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
 
 # Use custom colors
-set $active       #93aec1e5
-set $inactive     #657785e5
+set $active       #8383a9c0
+set $inactive     #5a5a74c0
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #ffffef
-set $black        #0B0D04e5
-set $gray         #2c350ee5
-set $opaqueGray   #2c350e
-set $fadedBlack   #0B0D04c0
+set $white        #fdfdff
+set $black        #0C0D11c0
+set $gray         #20232ec0
+set $opaqueGray   #20232e
+set $fadedBlack   #0C0D11c0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -310,7 +310,7 @@ output "*" {
 }
 
 bar {
-    status_command "muse-status -p ffffef -s 93aec1"
+    status_command "muse-status -p fdfdff -s 8383a9"
     font pango: Cantarell 10
     mode dock
     modifier $mod

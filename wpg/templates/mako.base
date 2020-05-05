@@ -1,6 +1,6 @@
 default-timeout=10000
 anchor=top-right
-background-color={color0}CC
+background-color={color0}C0
 font=Cantarell 10
 padding=16,32
 margin=4
@@ -14,7 +14,7 @@ layer=overlay
 format=<b>%s</b>\n%b
 
 [urgency=low]
-text-color={active}c0
+text-color={active}
 
 [urgency=high]
-border-color=#ffaa00cc
+border-color=#ffaa00c0

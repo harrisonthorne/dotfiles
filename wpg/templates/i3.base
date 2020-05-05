@@ -146,8 +146,8 @@ bindsym $mod+o split toggle
 bindsym $mod+f fullscreen toggle
 
 # floating video mode
-bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px 16 px; inhibit_idle open
-bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px 16 px; inhibit_idle open
+bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px 16 px
+bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px 16 px
 
 # switch between floating/tiled layers
 bindsym $mod+z focus mode_toggle

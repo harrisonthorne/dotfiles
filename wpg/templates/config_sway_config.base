@@ -29,13 +29,13 @@ exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
 exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
 
 # Use custom colors
-set $active       {active}e5
-set $inactive     {inactive}e5
+set $active       {active}c0
+set $inactive     {inactive}c0
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
 set $white        {color15}
-set $black        {color0}e5
-set $gray         {color8}e5
+set $black        {color0}c0
+set $gray         {color8}c0
 set $opaqueGray   {color8}
 set $fadedBlack   {color0}c0
 set $transparent  #00000000

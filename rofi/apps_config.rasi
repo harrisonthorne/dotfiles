@@ -1,7 +1,14 @@
 configuration {
     theme: "muse";
-	columns: 3;
+	columns: 10;
+    rows: 1;
 	show-icons: true;
+    location: 6;
+}
+
+window {
+    width: 100%;
+    height: 232px;
 }
 
 element {

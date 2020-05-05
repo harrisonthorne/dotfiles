@@ -21,15 +21,15 @@ exec redshift &
 exec syncthing --no-browser &
 
 # Use custom colors
-set $active       #93aec1e5
-set $inactive     #657785e5
+set $active       #8383a9e5
+set $inactive     #5a5a74e5
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #ffffef
-set $black        #0B0D04e5
-set $gray         #2c350ee5
-set $opaqueGray   #2c350e
-set $fadedBlack   #0B0D04c0
+set $white        #fdfdff
+set $black        #0C0D11e5
+set $gray         #20232ee5
+set $opaqueGray   #20232e
+set $fadedBlack   #0C0D11c0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -146,8 +146,8 @@ bindsym $mod+o split toggle
 bindsym $mod+f fullscreen toggle
 
 # floating video mode
-bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px 16 px; inhibit_idle open
-bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px 16 px; inhibit_idle open
+bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px 16 px
+bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px 16 px
 
 # switch between floating/tiled layers
 bindsym $mod+z focus mode_toggle
@@ -266,7 +266,7 @@ mode "Resize mode" {
 
 bar {
     i3bar_command i3bar -t
-    status_command "muse-status -p ffffef -s 93aec1"
+    status_command "muse-status -p fdfdff -s 8383a9"
     # status_command i3status
     font pango: Cantarell 10
     mode dock

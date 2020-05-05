@@ -304,9 +304,9 @@ hi Type ctermfg=10 guifg=10
 hi PreProc ctermfg=14 guifg=14
 hi Whitespace ctermfg=8 guifg=8
 hi Title cterm=bold gui=bold ctermfg=13 guifg=13
-hi Search ctermfg=15 guifg=15 ctermbg=240 guifg=240 cterm=italic gui=italic
+hi Search ctermfg=15 guifg=15 ctermbg=238 guifg=238 cterm=italic gui=italic
 hi IncSearch cterm=bold,italic,reverse gui=bold,italic,reverse
-hi Visual ctermbg=240 guifg=240
+hi Visual ctermbg=238 guifg=238
 
 hi link javaScriptLineComment Comment
 
@@ -327,7 +327,7 @@ hi SpellBad ctermfg=196 ctermbg=NONE guifg=196 guibg=NONE cterm=italic,undercurl
 hi SpellCap ctermfg=201 ctermbg=NONE guifg=201 guibg=NONE
 hi SpellRare ctermfg=214 ctermbg=NONE guifg=214 guibg=NONE cterm=italic gui=italic
 hi! link SpellLocal SpellRare
-hi! link Todo SpellLocal
+hi! Todo ctermfg=214 ctermbg=NONE guifg=214 guibg=NONE cterm=italic,bold gui=italic,bold
 
 hi SpecialKey ctermfg=14 guifg=14
 hi Directory ctermfg=14 guifg=14
