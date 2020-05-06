@@ -272,41 +272,41 @@ hi CocStyleErrorSign guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cter
 hi CocStyleWarningSign guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
 
 " ALE highlights
-hi link ALEError ErrorMsg
-hi link ALEWarning WarningMsg
-hi link ALEInfo InfoMsg
-hi link ALEErrorLine ErrorMsg
-hi link ALEWarningLine WarningMsg
-hi link ALEInfoLine InfoMsg
-hi link ALEErrorSign ErrorMsg
-hi link ALEWarningSign WarningMsg
-hi link ALEInfoSign InfoMsg
-hi link ALEErrorSignLineNr ErrorMsg
-hi link ALEWarningSignLineNr WarningMsg
-hi link ALEInfoSignLineNr InfoMsg
-hi ALEInfoSign guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold term=bold
-hi ALEStyleErrorSign guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
-hi ALEStyleWarningSign guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
+hi! link ALEError ErrorMsg
+hi! link ALEWarning WarningMsg
+hi! link ALEInfo InfoMsg
+hi! link ALEErrorLine ErrorMsg
+hi! link ALEWarningLine WarningMsg
+hi! link ALEInfoLine InfoMsg
+hi! link ALEErrorSign ErrorMsg
+hi! link ALEWarningSign WarningMsg
+hi! link ALEInfoSign InfoMsg
+hi! link ALEErrorSignLineNr ErrorMsg
+hi! link ALEWarningSignLineNr WarningMsg
+hi! link ALEInfoSignLineNr InfoMsg
+hi! ALEInfoSign guibg=NONE ctermbg=NONE guifg=cyan ctermfg=51 gui=bold cterm=bold term=bold
+hi! ALEStyleErrorSign guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold term=bold
+hi! ALEStyleWarningSign guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold term=bold
 
-hi VertSplit guibg=NONE guifg=8 gui=NONE ctermbg=NONE ctermfg=8 cterm=NONE
-hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
-hi StatusLine cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
-hi Normal ctermbg=NONE guibg=NONE
-hi NonText cterm=NONE gui=NONE ctermbg=NONE guibg=NONE
-hi Comment ctermbg=NONE guibg=NONE ctermfg=12 guifg=12
-hi SpecialComment ctermfg=12 ctermbg=NONE ctermfg=12 guibg=NONE cterm=bold,italic gui=bold,italic term=bold,italic
-hi Delimiter ctermbg=NONE guibg=NONE
-hi Exception ctermbg=NONE guibg=NONE
-hi SpecialChar ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
-hi Special ctermfg=9 guifg=9
-hi Typedef ctermbg=NONE guibg=NONE
-hi Type ctermfg=10 guifg=10
-hi PreProc ctermfg=14 guifg=14
-hi Whitespace ctermfg=8 guifg=8
-hi Title cterm=bold gui=bold ctermfg=13 guifg=13
-hi Search ctermfg=15 guifg=15 ctermbg=238 guifg=238 cterm=italic gui=italic
-hi IncSearch cterm=bold,italic,reverse gui=bold,italic,reverse
-hi Visual ctermbg=238 guifg=238
+hi! VertSplit guibg=NONE guifg=8 gui=NONE ctermbg=NONE ctermfg=8 cterm=NONE
+hi! StatusLineNC cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
+hi! StatusLine cterm=NONE ctermbg=NONE ctermfg=8 guibg=NONE guifg=8
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText cterm=NONE gui=NONE ctermbg=NONE guibg=NONE
+hi! Comment ctermbg=NONE guibg=NONE ctermfg=12 guifg=12
+hi! SpecialComment ctermfg=12 ctermbg=NONE ctermfg=12 guibg=NONE cterm=bold,italic gui=bold,italic term=bold,italic
+hi! Delimiter ctermbg=NONE guibg=NONE
+hi! Exception ctermbg=NONE guibg=NONE
+hi! SpecialChar ctermfg=13 guifg=13 ctermbg=NONE guibg=NONE
+hi! Special ctermfg=9 guifg=9
+hi! Typedef ctermbg=NONE guibg=NONE
+hi! Type ctermfg=10 guifg=10
+hi! PreProc ctermfg=14 guifg=14
+hi! Whitespace ctermfg=8 guifg=8
+hi! Title cterm=bold gui=bold ctermfg=13 guifg=13
+hi! Search ctermfg=15 guifg=15 ctermbg=240 guibg=240 cterm=italic gui=italic
+hi! IncSearch cterm=bold,italic,reverse gui=bold,italic,reverse
+hi! Visual ctermbg=240 guibg=240 ctermfg=15 guifg=15
 
 hi link javaScriptLineComment Comment
 

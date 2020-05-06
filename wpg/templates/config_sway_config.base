@@ -10,7 +10,6 @@ set $dpmsoff "swaymsg 'output * dpms off'"
 set $dpmson "swaymsg 'output * dpms on'"
 
 # startup apps
-exec muse-status-daemon &
 exec rot8 &
 exec light -I &
 exec sh $HOME/.config/wpg/wp_init.sh &
@@ -22,6 +21,7 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 
 set $gnome-schema org.gnome.desktop.interface
 
+exec_always "killall muse-status-dae; muse-status-daemon &"
 exec_always "killall mako; mako &"
 exec_always gsettings set $gnome-schema gtk-theme 'alto-gtk'
 exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'

@@ -10,7 +10,6 @@ set $dpmsoff "swaymsg 'output * dpms off'"
 set $dpmson "swaymsg 'output * dpms on'"
 
 # startup apps
-exec muse-status-daemon &
 exec rot8 &
 exec light -I &
 exec sh $HOME/.config/wpg/wp_init.sh &
@@ -22,6 +21,7 @@ exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dp
 
 set $gnome-schema org.gnome.desktop.interface
 
+exec_always "killall muse-status-dae; muse-status-daemon &"
 exec_always "killall mako; mako &"
 exec_always gsettings set $gnome-schema gtk-theme 'alto-gtk'
 exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'
@@ -29,15 +29,15 @@ exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
 exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
 
 # Use custom colors
-set $active       #8383a9c0
-set $inactive     #5a5a74c0
+set $active       #8a7494c0
+set $inactive     #5f4f66c0
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #fdfdff
-set $black        #0C0D11c0
-set $gray         #20232ec0
-set $opaqueGray   #20232e
-set $fadedBlack   #0C0D11c0
+set $white        #ffffed
+set $black        #151516c0
+set $gray         #2d2d2fc0
+set $opaqueGray   #2d2d2f
+set $fadedBlack   #151516c0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -310,7 +310,7 @@ output "*" {
 }
 
 bar {
-    status_command "muse-status -p fdfdff -s 8383a9"
+    status_command "muse-status -p ffffed -s 8a7494"
     font pango: Cantarell 10
     mode dock
     modifier $mod
