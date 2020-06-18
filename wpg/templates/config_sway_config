@@ -10,6 +10,7 @@ set $dpmsoff "swaymsg 'output * dpms off'"
 set $dpmson "swaymsg 'output * dpms on'"
 
 # startup apps
+exec xrdb -load ~/.Xresources
 exec rot8 &
 exec light -I &
 exec sh $HOME/.config/wpg/wp_init.sh &
@@ -17,27 +18,24 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec xhost si:localuser:root &
 exec redshift &
 exec syncthing --no-browser &
-exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 305 $dpmsoff resume $dpmson before-sleep $locker &
+exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 315 $dpmsoff resume $dpmson before-sleep $locker &
 
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always "killall muse-status-dae; muse-status-daemon &"
 exec_always "killall mako; mako &"
-exec_always gsettings set $gnome-schema gtk-theme 'alto-gtk'
+exec_always gsettings set $gnome-schema gtk-theme 'Adwaita'
 exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'
 exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
 exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
 
 # Use custom colors
-set $active       #8a7494c0
-set $inactive     #5f4f66c0
-set $warning      #ffaa00
-set $warningAlpha #ffaa00c0
-set $white        #ffffed
-set $black        #151516c0
-set $gray         #2d2d2fc0
-set $opaqueGray   #2d2d2f
-set $fadedBlack   #151516c0
+set $active       #889db8e5
+set $inactive     #5e6c7ee5
+set $white        #fcfeff
+set $black        #0d0c0ee5
+set $gray         #262229e5
+set $warning      #ffaa00e5
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -46,13 +44,16 @@ set $SHELL /usr/bin/fish
 set $screenshot "sh $HOME/.config/sway/screenshot.sh"
 
 # Window colors
-# class                 border          backgr.         text            indicator       child_border
-client.focused          $gray           $gray           $white          $black          $gray
-client.focused_inactive $black          $black          $active         $black          $black
-client.unfocused        $black          $black          $inactive       $black          $black
-client.urgent           $warning        $warning        $black          $warning        $warning
-client.placeholder      $black          $black          $inactive       $black          $black
+# class                 border          backgr.         text
+client.focused          $gray           $gray           $white
+client.focused_inactive $black          $black          $active
+client.unfocused        $black          $black          $inactive
+client.urgent           $warning        $warning        $black
+client.placeholder      $black          $black          $inactive
 client.background       $black
+
+# start xwayland asap
+xwayland force
 
 # Font for window titles
 font pango: Cantarell 10
@@ -78,7 +79,7 @@ set $volume_down "$HOME/Music/MuseSounds/VolumeDown.wav"
 
 # Pulse Audio controls
 bindsym --locked XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && muse-status notify volume; paplay $volume_up"
-bindsym --locked XF86AudioLowerVolume exec "amixer -q sset Master 5%- unmute && muse-status notify volume; paplay $volume_down"
+bindsym --locked XF86AudioLowerVolume exec "amixer -q sset Master 5%- && muse-status notify volume; paplay $volume_down"
 bindsym --locked XF86AudioMute exec "amixer sset Master toggle && muse-status notify volume; paplay $volume_up"
 
 # Media player controls
@@ -163,8 +164,8 @@ bindsym $mod+o split toggle
 bindsym $mod+f fullscreen toggle
 
 # floating video mode
-bindsym $mod+i fullscreen disable; floating enable; resize set 356 200; sticky enable; border pixel 4; move position 1548 px 16 px; inhibit_idle open
-bindsym $mod+Shift+i fullscreen disable; floating enable; resize set 711 400; sticky enable; border pixel 4; move position 1193 px 16 px; inhibit_idle open
+bindsym $mod+i fullscreen disable; floating enable; sticky enable; border pixel 4; resize set 356 200; move position 1548 px 16 px; inhibit_idle open
+bindsym $mod+Shift+i fullscreen disable; floating enable; sticky enable; border pixel 4; resize set 711 400; move position 1193 px 16 px; inhibit_idle open
 
 # switch between floating/tiled layers
 bindsym $mod+z focus mode_toggle
@@ -180,9 +181,10 @@ bindsym $mod+y layout toggle split
 bindsym $mod+u layout stacking
 
 # app shortcuts
-bindsym $mod+w exec brave
+bindsym $mod+w exec firefox
 bindsym $mod+b exec spotify
-bindsym $mod+m exec evolution
+bindsym $mod+m exec $TERMINAL -T "Authenticator" -e $SHELL -i -c gashell
+bindsym $mod+g exec ./gaming_mode.sh
 bindsym $mod+Control+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
@@ -207,7 +209,7 @@ bindsym Control+Escape exec makoctl dismiss
 bindsym $mod+Space exec makoctl invoke
 
 # toggle tiling / floating
-bindsym $mod+s floating toggle
+bindsym $mod+s floating toggle; border normal 4
 
 # start mivy
 bindsym $mod+d exec mivy
@@ -310,7 +312,7 @@ output "*" {
 }
 
 bar {
-    status_command "muse-status -p ffffed -s 8a7494"
+    status_command "muse-status -p fcfeff -s 5e6c7e"
     font pango: Cantarell 10
     mode dock
     modifier $mod

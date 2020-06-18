@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Sign.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0a0a04",
+        "foreground": "#fafdff",
+        "cursor": "#fafdff"
+    },
+    "colors": {
+        "color0": "#0a0a04",
+        "color1": "#C5C3BF",
+        "color2": "#79847E",
+        "color3": "#988B67",
+        "color4": "#E1DED6",
+        "color5": "#C6B8B0",
+        "color6": "#AFABA5",
+        "color7": "#e5e8ed",
+        "color8": "#2f2f10",
+        "color9": "#ffffdf",
+        "color10": "#8cbba2",
+        "color11": "#d6bc75",
+        "color12": "#ffffdf",
+        "color13": "#ffe8cc",
+        "color14": "#f9e2c0",
+        "color15": "#fafdff"
+    }
+}

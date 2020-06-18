@@ -4,7 +4,7 @@ if pgrep -x swaylock >/dev/null
 then
     echo "swaylock is already running"
 else
-    paplay "$HOME/Music/MuseSounds/Lock.ogg" &
+    paplay "$HOME/Music/MuseSounds/Lock.wav" &
 fi
 
 FORK='-f'

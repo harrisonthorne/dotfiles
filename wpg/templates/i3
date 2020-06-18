@@ -21,15 +21,15 @@ exec redshift &
 exec syncthing --no-browser &
 
 # Use custom colors
-set $active       #8a7494c0
-set $inactive     #5f4f66c0
+set $active       #889db8c0
+set $inactive     #5e6c7ec0
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #ffffed
-set $black        #151516c0
-set $gray         #2d2d2fc0
-set $opaqueGray   #2d2d2f
-set $fadedBlack   #151516c0
+set $white        #fcfeff
+set $black        #0d0c0ec0
+set $gray         #262229c0
+set $opaqueGray   #262229
+set $fadedBlack   #0d0c0ec0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -174,7 +174,7 @@ bindsym $mod+y layout toggle split
 bindsym $mod+u layout stacking
 
 # app shortcuts
-bindsym $mod+w exec brave
+bindsym $mod+w exec firefox
 bindsym $mod+b exec spotify
 bindsym $mod+m exec evolution
 bindsym $mod+Control+p exec pavucontrol
@@ -279,7 +279,7 @@ mode "Resize mode" {
 
 bar {
     i3bar_command i3bar -t
-    status_command "muse-status -p ffffed -s 8a7494"
+    status_command "muse-status -p fcfeff -s 889db8"
     # status_command i3status
     font pango: Cantarell 10
     mode dock

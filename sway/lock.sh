@@ -4,7 +4,7 @@ if pgrep -x swaylock >/dev/null
 then
     echo "swaylock is already running"
 else
-    paplay "$HOME/Music/MuseSounds/Lock.ogg" &
+    paplay "$HOME/Music/MuseSounds/Lock.wav" &
 fi
 
 FORK='-f'
@@ -25,20 +25,20 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
 #     -resize 5% \
 #     -blur 1x2 \
 #     -resize 2000% \
-#     -fill "#151516" \
+#     -fill "#0d0c0e" \
 #     -colorize 75% \
 #     "$tmpbg"
 /usr/bin/convert "$tmpbg" \
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \
-    -fill "#151516" \
+    -fill "#0d0c0e" \
     -colorize 75% \
     "$tmpbg"
 
-primary="ffffedc0"
-primaryFaded="ffffed20"
-secondary="8a749420"
+primary="fcfeffc0"
+primaryFaded="fcfeff20"
+secondary="889db820"
 transparent="00000000"
 orange="ffaa00"
 

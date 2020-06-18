@@ -174,7 +174,7 @@ bindsym $mod+y layout toggle split
 bindsym $mod+u layout stacking
 
 # app shortcuts
-bindsym $mod+w exec brave
+bindsym $mod+w exec firefox
 bindsym $mod+b exec spotify
 bindsym $mod+m exec evolution
 bindsym $mod+Control+p exec pavucontrol

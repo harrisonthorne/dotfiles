@@ -3,6 +3,7 @@ filetype plugin indent on
 syntax on
 
 let mapleader=","
+nnoremap <bslash> ,
 
 let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '!'
@@ -44,6 +45,7 @@ let g:startify_lists = [
             \ ]
 let g:startify_session_persistence = 1
 let g:tex_conceal = ""
+let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key=','
 
 set autowriteall
@@ -185,7 +187,7 @@ nnoremap <silent> <leader>xx :terminal<CR>i
 nnoremap <silent> <leader>xs :sp<CR>:terminal<CR>i
 
 " Misc shortcuts
-noremap <silent> <leader>e :CocCommand explorer<CR>
+noremap <silent> <leader>e :Lex<CR>
 noremap <silent> <leader>q :q<CR>
 noremap <silent> <leader>pwd :pwd<CR>
 noremap <silent> <leader>pp :!pandoc "%" -o "%.pdf"<CR>
@@ -213,7 +215,7 @@ nnoremap <leader>xP :cpfile<CR>
 nnoremap <leader>b :ls<CR>:b<space>
 
 " jump to floating window
-nmap <leader>f <Plug>(coc-float-jump)
+nmap <leader>f <plug>(coc-float-jump)
 
 inoremap jj <esc>
 inoremap fj <esc>
@@ -228,8 +230,7 @@ augroup auto_commands
     autocmd BufWinEnter * silent! loadview
     autocmd VimLeave * call SaveLastSession()
     autocmd BufEnter * checktime
-    autocmd InsertLeave * nested call AutoSave()
-    autocmd CursorHold * call coc#refresh()
+    autocmd CursorHold,InsertLeave * nested call AutoSave()
 augroup END
 
 " au CursorHold,InsertLeave * nested update
@@ -308,7 +309,8 @@ hi! Search ctermfg=15 guifg=15 ctermbg=240 guibg=240 cterm=italic gui=italic
 hi! IncSearch cterm=bold,italic,reverse gui=bold,italic,reverse
 hi! Visual ctermbg=240 guibg=240 ctermfg=15 guifg=15
 
-hi link javaScriptLineComment Comment
+hi! link javaScriptLineComment Comment
+hi! CocRustChainingHint cterm=italic gui=italic ctermfg=4 guifg=4 ctermbg=NONE guibg=NONE
 
 hi DiffAdd ctermbg=NONE guibg=NONE ctermfg=48 guifg=green
 hi DiffChange ctermbg=NONE guibg=NONE ctermfg=214 guifg=orange
@@ -500,6 +502,10 @@ augroup status
     autocmd!
     autocmd BufEnter,WinEnter,BufRead,BufWinEnter * :setlocal statusline=%!ActiveStatus()
     autocmd BufLeave,WinLeave * :setlocal statusline=%!InactiveStatus()
+augroup END
+
+augroup emmet
+    autocmd! FileType html EmmetInstall
 augroup END
 
 "" Tab line

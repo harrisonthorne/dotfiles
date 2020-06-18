@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATE=`date +%s`
+DATE=`date +%Y%m%d-%H%M%S`
 
 folder=$HOME/Pictures/Screenshots
 if [ ! -f $folder ]; then

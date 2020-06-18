@@ -132,8 +132,8 @@
          id="rect"
          style="fill:blue;"
          usecurrent="1"
-         width="101.867"
-         height="112.169"
+         width="385.009"
+         height="423.946"
          rx="0"
          ry="0" />
       <eventcontext
@@ -171,8 +171,8 @@
          end="0"
          start="0"
          usecurrent="1"
-         rx="32.5"
-         ry="32.5" />
+         rx="122.835"
+         ry="122.835" />
       <eventcontext
          id="star"
          magnitude="5"
@@ -198,7 +198,8 @@
          selcue="1"
          style="stroke-width:1px;"
          usecurrent="0"
-         average_all_sketches="1" />
+         average_all_sketches="1"
+         pressure="0" />
       <eventcontext
          id="pen"
          mode="drag"
@@ -334,19 +335,19 @@
        gradientdrag="1"
        font_sample="AaBbCcIiPpQq12369$€¢?.;/()"
        show_sample_in_list="1"
+       use_svg2="1"
        style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;letter-spacing:0px;word-spacing:0px;text-anchor:end;text-align:end"
        selcue="1"
        outer_style="0"
        align_mode="1">
       <group
-         display_unit="0"
-         id="lineheight" />
+         id="lineheight"
+         display_unit="0" />
     </eventcontext>
     <eventcontext
        id="nodes"
        selcue="1"
        gradientdrag="1"
-       highlight_color="4278190335"
        pathflash_enabled="1"
        pathflash_unselected="0"
        pathflash_timeout="500"
@@ -361,7 +362,8 @@
        x="0"
        y="0"
        edit_clipping_paths="0"
-       edit_masks="0" />
+       edit_masks="0"
+       highlight_color="4278190335" />
     <eventcontext
        id="tweak"
        selcue="0"
@@ -426,12 +428,12 @@
        offset="0"
        offsetunits="cm" />
     <group
-       unit="px"
-       offset="5"
-       scale="100"
-       precision="2"
+       id="measure"
        fontsize="10"
-       id="measure" />
+       precision="2"
+       scale="100"
+       offset="5"
+       unit="px" />
   </group>
   <group
      id="palette">
@@ -578,8 +580,8 @@
        page="0"
        x="0"
        y="0"
-       w="411"
-       h="404"
+       w="458"
+       h="441"
        visible="1"
        state="2"
        placement="2" />
@@ -600,8 +602,8 @@
        id="spellcheck"
        w="200"
        h="250"
-       lang="en_US"
-       ignorenumbers="1" />
+       ignorenumbers="1"
+       lang="en_US" />
     <group
        id="documentoptions"
        state="1"
@@ -645,8 +647,8 @@
        panel_border="0"
        x="0"
        y="0"
-       w="411"
-       h="516"
+       w="458"
+       h="479"
        visible="1"
        state="2"
        placement="1">
@@ -673,12 +675,13 @@
     <group
        id="open"
        enable_preview="1"
-       path="/home/harrisonthorne/Drive/Documents/Inkscape/" />
+       path="/home/harrisonthorne/Downloads/" />
     <group
        id="import"
        enable_preview="1"
        path="/home/harrisonthorne/Documents/college/digital-systems/"
        ask="0"
+       ask_svg="1"
        link="embed"
        scale="auto"
        forcexdpi="0" />
@@ -721,10 +724,10 @@
     <group
        id="undo-history" />
     <group
-       id="transparency"
-       on-focus="1.0"
+       animate-time="100"
        on-blur="0.50"
-       animate-time="100" />
+       on-focus="1.0"
+       id="transparency" />
   </group>
   <group
      id="printing">
@@ -868,8 +871,8 @@
        id="dialogsskiptaskbar"
        value="1" />
     <group
-       id="defaultwindowsize"
-       value="2" />
+       value="2"
+       id="defaultwindowsize" />
     <group
        id="arenatilescachesize"
        value="8192" />
@@ -927,14 +930,14 @@
        id="outlinemode"
        value="0" />
     <group
-       id="ocalurl"
-       str="openclipart.org" />
+       str="openclipart.org"
+       id="ocalurl" />
     <group
-       id="ocalusername"
-       str="" />
+       str=""
+       id="ocalusername" />
     <group
-       id="ocalpassword"
-       str="" />
+       str=""
+       id="ocalpassword" />
     <group
        id="wireframecolors"
        onlight="255"
@@ -990,10 +993,10 @@
          origin_y="0.0"
          spacing_x="1.0"
          spacing_y="1.0"
-         color="1061158688"
-         empcolor="1061158720"
          empspacing="5"
-         dotted="0" />
+         dotted="0"
+         color="1061158688"
+         empcolor="1061158720" />
       <group
          id="axonom"
          units="mm"
@@ -1002,9 +1005,9 @@
          spacing_y="1.0"
          angle_x="30.0"
          angle_z="30.0"
+         empspacing="5"
          color="1061158688"
-         empcolor="1061158720"
-         empspacing="5" />
+         empcolor="1061158720" />
     </group>
     <group
        id="workarounds"
@@ -1012,6 +1015,12 @@
        partialdynamic="0" />
     <group
        id="rendering" />
+    <group
+       id="svgeditor"
+       value="inkscape" />
+    <group
+       id="dash"
+       scale="1" />
   </group>
   <group
      id="extensions"
@@ -1127,4 +1136,13 @@
   <group
      id="ui"
      language="" />
+  <group
+     id="theme"
+     defaultTheme="Adwaita"
+     defaultIconTheme="Flat-Remix-Blue-Dark"
+     gtkTheme="Adwaita"
+     iconTheme="Flat-Remix-Blue-Dark"
+     menuIcons_canvas="0"
+     menuIcons_layers="0"
+     menuIcons_objects="0" />
 </inkscape>

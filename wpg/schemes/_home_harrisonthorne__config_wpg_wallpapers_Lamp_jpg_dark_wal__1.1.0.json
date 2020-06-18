@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Lamp.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#060704",
+        "foreground": "#fffff3",
+        "cursor": "#fffff3"
+    },
+    "colors": {
+        "color0": "#060704",
+        "color1": "#F2D9A0",
+        "color2": "#536876",
+        "color3": "#B08349",
+        "color4": "#455967",
+        "color5": "#5D7483",
+        "color6": "#617787",
+        "color7": "#f6f5e1",
+        "color8": "#212814",
+        "color9": "#ffffb1",
+        "color10": "#5e89a6",
+        "color11": "#f5ac4e",
+        "color12": "#4e7591",
+        "color13": "#6a99b8",
+        "color14": "#6f9dbe",
+        "color15": "#fffff3"
+    }
+}

@@ -1,11 +1,12 @@
 {
 	"suggest.minTriggerInputLength": 1,
 	"coc.preferences.previewAutoClose": true,
+    "coc.preferences.extensionUpdateCheck": "weekly",
+    "coc.preferences.bracketEnterImprove": true,
 	"diagnostic.infoSign": "i",
 	"diagnostic.hintSign": ">",
 	"diagnostic.errorSign": "X",
 	"diagnostic.warningSign": "!",
-	"diagnostic.joinMessageLines": false,
 	"diagnostic.refreshAfterSave": false,
 	"diagnostic.refreshOnInsertMode": true,
     "suggest.triggerCompletionWait": 300,
@@ -19,12 +20,30 @@
     "rust-analyzer.updates.channel": "stable",
     "rust-analyzer.notifications.cargoTomlNotFound": false,
     "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.callInfo.full": true,
     "diagnostic.displayByAle": false,
-	"languageserver": {
-		"golang": {
-			"command": "gopls",
-			"filetypes": ["go"],
-			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"]
+    "rust-analyzer.inlayHints.chainingHints": true,
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
         }
     }
 }

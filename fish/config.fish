@@ -11,13 +11,13 @@ alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- 
 
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
-set -gx BROWSER /bin/brave
+set -gx BROWSER /bin/firefox
 set -gx EDITOR /bin/nvim
 set -gx EIX_LIMIT 0
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
 set -gx GOPATH $HOME/go
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
-set -gx QT_QPA_PLATFORMTHEME qt5ct
+set -gx QT_STYLE_OVERRIDE adwaita-dark
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx WINEPREFIX $HOME/.wine/

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Blinds.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#07070A",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#07070A",
+        "color1": "#939391",
+        "color2": "#C2C2BE",
+        "color3": "#B2B1AF",
+        "color4": "#B5BCC8",
+        "color5": "#959BA5",
+        "color6": "#798698",
+        "color7": "#dfdfdf",
+        "color8": "#1b1b28",
+        "color9": "#d1d1a9",
+        "color10": "#ffffde",
+        "color11": "#feedcc",
+        "color12": "#d2edff",
+        "color13": "#adc4ea",
+        "color14": "#8babd7",
+        "color15": "#ffffff"
+    }
+}

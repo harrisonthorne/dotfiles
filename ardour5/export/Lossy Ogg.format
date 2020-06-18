@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportFormatSpecification name="Lossy Ogg" id="d572efba-2847-478f-b5e6-78ac89b9f93d" with-cue="1" with-toc="1" with-mp4chaps="1" command="" analyse="0" soundcloud-upload="0">
+  <Encoding id="F_Ogg" type="T_Sndfile" extension="ogg" name="Ogg Vorbis" has-sample-format="1" channel-limit="256"/>
+  <SampleRate rate="SR_Session"/>
+  <SRCQuality quality="SRC_SincBest"/>
+  <EncodingOptions>
+    <Option name="sample-format" value="SF_Vorbis"/>
+    <Option name="dithering" value="D_None"/>
+    <Option name="tag-metadata" value="0"/>
+    <Option name="tag-support" value="1"/>
+    <Option name="broadcast-info" value="0"/>
+  </EncodingOptions>
+  <Processing>
+    <Normalize enabled="0" loudness="0" dbfs="0" lufs="-23" dbtp="-1"/>
+    <Silence>
+      <Start>
+        <Trim enabled="0"/>
+        <Add enabled="0">
+          <Duration format="Timecode" hours="0" minutes="0" seconds="0" frames="0"/>
+        </Add>
+      </Start>
+      <End>
+        <Trim enabled="1"/>
+        <Add enabled="0">
+          <Duration format="Timecode" hours="0" minutes="0" seconds="0" frames="0"/>
+        </Add>
+      </End>
+    </Silence>
+  </Processing>
+</ExportFormatSpecification>

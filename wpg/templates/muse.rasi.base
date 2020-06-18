@@ -32,7 +32,7 @@ configuration {{
 * {{
     text-color: #ffffff;
     background-color: #00000000;
-    background: {color0}c0;
+    background: {color0}e5;
     white: #ffffff;
     dim: {active};
     orange: #ffaa00;

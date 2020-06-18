@@ -5,6 +5,7 @@ BraveSoftware/
 Cadence/
 chromium/
 cmus/
+Code/
 Code - OSS/
 configstore/
 dconf/
@@ -29,7 +30,7 @@ pulse/
 remmina/
 syncthing/
 falkTX/
-Code/
+gashell/
 node_modules/
 kak/autoload/
 GIMP/
