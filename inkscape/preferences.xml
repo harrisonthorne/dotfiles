@@ -327,7 +327,7 @@
        id="lpetool"
        mode="drag"
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;"
-       unit="px"
+       unit="mm"
        show_bbox="1" />
     <eventcontext
        id="text"
@@ -341,8 +341,8 @@
        outer_style="0"
        align_mode="1">
       <group
-         id="lineheight"
-         display_unit="0" />
+         display_unit="0"
+         id="lineheight" />
     </eventcontext>
     <eventcontext
        id="nodes"
@@ -428,12 +428,12 @@
        offset="0"
        offsetunits="cm" />
     <group
-       id="measure"
-       fontsize="10"
-       precision="2"
-       scale="100"
+       unit="px"
        offset="5"
-       unit="px" />
+       scale="100"
+       precision="2"
+       fontsize="10"
+       id="measure" />
   </group>
   <group
      id="palette">
@@ -724,10 +724,10 @@
     <group
        id="undo-history" />
     <group
-       animate-time="100"
-       on-blur="0.50"
+       id="transparency"
        on-focus="1.0"
-       id="transparency" />
+       on-blur="0.50"
+       animate-time="100" />
   </group>
   <group
      id="printing">
@@ -871,8 +871,8 @@
        id="dialogsskiptaskbar"
        value="1" />
     <group
-       value="2"
-       id="defaultwindowsize" />
+       id="defaultwindowsize"
+       value="2" />
     <group
        id="arenatilescachesize"
        value="8192" />
@@ -930,14 +930,14 @@
        id="outlinemode"
        value="0" />
     <group
-       str="openclipart.org"
-       id="ocalurl" />
+       id="ocalurl"
+       str="openclipart.org" />
     <group
-       str=""
-       id="ocalusername" />
+       id="ocalusername"
+       str="" />
     <group
-       str=""
-       id="ocalpassword" />
+       id="ocalpassword"
+       str="" />
     <group
        id="wireframecolors"
        onlight="255"
@@ -1137,12 +1137,12 @@
      id="ui"
      language="" />
   <group
-     id="theme"
-     defaultTheme="Adwaita"
-     defaultIconTheme="Flat-Remix-Blue-Dark"
-     gtkTheme="Adwaita"
-     iconTheme="Flat-Remix-Blue-Dark"
-     menuIcons_canvas="0"
+     menuIcons_objects="0"
      menuIcons_layers="0"
-     menuIcons_objects="0" />
+     menuIcons_canvas="0"
+     iconTheme="Flat-Remix-Blue-Dark"
+     gtkTheme="Adwaita"
+     defaultIconTheme="Flat-Remix-Blue-Dark"
+     defaultTheme="Adwaita"
+     id="theme" />
 </inkscape>

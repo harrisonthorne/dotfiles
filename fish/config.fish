@@ -8,6 +8,7 @@ bash ~/.bashrc
 alias system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
 # alias imv="imv -e Monospace:13"
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
+alias encrypt="gpg -c"
 
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
@@ -17,7 +18,7 @@ set -gx EIX_LIMIT 0
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
 set -gx GOPATH $HOME/go
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
-set -gx QT_STYLE_OVERRIDE adwaita-dark
+set -gx QT_QPA_PLATFORMTHEME gtk
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx WINEPREFIX $HOME/.wine/
@@ -60,3 +61,31 @@ function nohup
     command nohup $argv </dev/null >/dev/null 2>&1 & disown
 end
 
+function crypt-edit
+    if count $argv > /dev/null
+        # set temp file
+        set temp (mktemp)
+
+        if test -e $argv[1]
+            # decrypt the file
+            echo "decrypting file..."
+            gpg --batch --yes -o $temp -d $argv[1]
+        else
+            echo "$argv[1] doesn't exist, but we'll create it"
+        end
+
+        # edit it
+        $EDITOR $temp
+
+        # re-encrypt the file
+        echo "encrypting file..."
+        gpg --batch --yes -o $argv[1] -c $temp
+
+        # remove decrypted file
+        rm -f $temp
+
+        echo "all done!"
+    else
+        echo "no file given."
+    end
+end

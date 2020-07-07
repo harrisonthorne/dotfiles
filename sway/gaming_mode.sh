@@ -1,23 +1,30 @@
 #!/bin/bash
 
-kill_progs=("syncthing" "brave" "rot8" "redshift")
+kill_progs=(syncthing firefox rot8 redshift)
 
-mesg="<b>Gaming mode</b>\n\nThe following programs will be terminated and Steam will start. You will need to start them again afterwards.\n\n"
-for prog in $kill_progs; do
-    mesg+="\t$prog\n"
+mesg="<b>Gaming mode</b>
+
+The following programs will be terminated and Steam will start. You will need to start them again afterwards.
+
+"
+
+for prog in "${kill_progs[@]}"; do
+    mesg+=$'\t'$prog$'\n'
 done
-mesg+="\nIs this okay?"
+mesg+=$'\n'Is this okay?
 
 no="No"
 yes="Go ahead"
 
-answer=$(echo -e "$no\n$yes" | rofi -dmenu -p '' -mesg "$mesg")
+answer=$(echo -e "$no\n$yes" | rofi -dmenu -i -p '' -mesg "$mesg")
 
 if [ "$answer" = "$yes" ]; then
-    for prog in $kill_progs; do
+    for prog in "${kill_progs[@]}"; do
         killall $prog
     done
 
+    notify-send "Steam is starting" "Just a moment..."
+
     # run steam
-    steam -steamos -bigpicture
+    steam -bigpicture
 fi

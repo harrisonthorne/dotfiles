@@ -1,0 +1,7 @@
+# BirdFont settings
+# Version: 1.0
+theme "dark.theme"
+last_file "/home/harrisonthorne/.birdfont"
+window_width "1920"
+window_height "1023"
+theme_version "1"

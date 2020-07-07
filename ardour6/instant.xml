@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <instant>
-  <Main x="4" y="57" w="952" h="1019" current-tab="editor"/>
-  <Editor id="41" edit-horizontal-pane-pos="0.70937502384185791" notebook-shrunk="0" edit-vertical-pane-pos="0.89999997615814209" mixer-width="Wide" zoom-focus="ZoomFocusPlayhead" zoom="1105" grid-type="GridTypeBeatDiv8" snap-mode="SnapNormal" internal-grid-type="GridTypeBeat" internal-snap-mode="SnapNormal" pre-internal-grid-type="GridTypeBeatDiv8" pre-internal-snap-mode="SnapNormal" edit-point="EditAtMouse" visible-track-count="-1" playhead="96000" left-frame="0" y-origin="0" maximised="0" follow-playhead="1" stationary-playhead="0" mouse-mode="MouseAudition" join-object-range="0" show-editor-mixer="0" show-editor-list="1" editor-list-page="5" show-marker-lines="0" nudge-clock-value="240000">
+  <Main x="0" y="57" w="1920" h="1023" current-tab="editor"/>
+  <Editor id="41" edit-horizontal-pane-pos="0.54322916269302368" notebook-shrunk="0" edit-vertical-pane-pos="0.89999997615814209" mixer-width="Wide" zoom-focus="ZoomFocusPlayhead" zoom="3753" grid-type="GridTypeBeatDiv2" snap-mode="SnapNormal" internal-grid-type="GridTypeBeat" internal-snap-mode="SnapNormal" pre-internal-grid-type="GridTypeBeatDiv2" pre-internal-snap-mode="SnapNormal" edit-point="EditAtMouse" visible-track-count="-1" playhead="5389405" left-frame="837142" y-origin="695" maximised="0" follow-playhead="1" stationary-playhead="0" mouse-mode="MouseObject" join-object-range="0" show-editor-mixer="0" show-editor-list="1" editor-list-page="2" show-marker-lines="0" nudge-clock-value="240000">
     <Window name="Editor" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" tabbed="1"/>
     <Buttons>
       <Press/>
@@ -9,17 +9,54 @@
     </Buttons>
     <Selection>
       <Regions>
-        <Region id="4941"/>
+        <Region id="14028"/>
+        <Region id="11564"/>
+        <Region id="9597"/>
+        <Region id="9479"/>
+        <Region id="9202"/>
+        <Region id="9191"/>
+        <Region id="9023"/>
+        <Region id="5889"/>
+        <Region id="5075"/>
+        <Region id="9041"/>
+        <Region id="6012"/>
       </Regions>
-      <MIDINotes region-id="55865">
-        <note note-id="94499"/>
+      <MIDINotes region-id="11564">
+        <note note-id="139314"/>
+        <note note-id="139363"/>
+        <note note-id="139414"/>
+        <note note-id="139467"/>
+        <note note-id="139522"/>
+        <note note-id="139807"/>
+        <note note-id="139866"/>
+        <note note-id="139927"/>
+        <note note-id="139990"/>
+        <note note-id="140055"/>
+        <note note-id="140122"/>
+        <note note-id="140191"/>
+        <note note-id="140262"/>
+        <note note-id="140335"/>
+        <note note-id="140410"/>
+        <note note-id="140487"/>
+        <note note-id="140566"/>
+        <note note-id="140647"/>
+        <note note-id="197590"/>
+        <note note-id="197689"/>
+        <note note-id="140742"/>
+        <note note-id="140974"/>
+        <note note-id="141061"/>
+        <note note-id="141150"/>
+        <note note-id="141241"/>
+        <note note-id="141334"/>
+        <note note-id="139267"/>
+        <note note-id="139222"/>
       </MIDINotes>
     </Selection>
     <RegionList/>
     <EditorLocations clock-mode="BBT"/>
   </Editor>
-  <Mixer mixer-rhs-pane1-pos="0.60000002384185791" mixer-rhs_pane2-pos="0.69999998807907104" mixer-list-hpane-pos="0.20000000298023224" mixer-inner-pane-pos="0.79098361730575562" narrow-strips="0" show-mixer="1" maximised="0" show-mixer-list="1" monitor-section-visible="0" foldback-strip-visible="1" show-vca-pane="1">
-    <Window name="Mixer" visible="1" x-off="964" y-off="57" x-size="952" y-size="1019" tabbed="0"/>
+  <Mixer mixer-rhs-pane1-pos="0.60000002384185791" mixer-rhs_pane2-pos="0.69999998807907104" mixer-list-hpane-pos="0.20000000298023224" mixer-inner-pane-pos="0.79098361730575562" narrow-strips="0" show-mixer="0" maximised="0" show-mixer-list="1" monitor-section-visible="0" foldback-strip-visible="1" show-vca-pane="1">
+    <Window name="Mixer" visible="0" x-off="0" y-off="57" x-size="952" y-size="1019" tabbed="0"/>
   </Mixer>
   <Preferences>
     <Window name="Preferences" visible="0" x-off="700" y-off="100" x-size="1004" y-size="710" tabbed="0"/>

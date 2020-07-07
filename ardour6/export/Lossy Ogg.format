@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExportFormatSpecification name="Lossy Ogg" id="d572efba-2847-478f-b5e6-78ac89b9f93d" with-cue="1" with-toc="1" with-mp4chaps="1" command="" analyse="0" soundcloud-upload="0">
+<ExportFormatSpecification name="Lossy Ogg" id="d572efba-2847-478f-b5e6-78ac89b9f93d" with-cue="0" with-toc="0" with-mp4chaps="0" command="mv %f %d/%b.oga" analyse="0" soundcloud-upload="0">
   <Encoding id="F_Ogg" type="T_Sndfile" extension="ogg" name="Ogg Vorbis" has-sample-format="1" channel-limit="256"/>
   <SampleRate rate="SR_Session"/>
   <SRCQuality quality="SRC_SincBest"/>
+  <CodecQuality quality="40"/>
   <EncodingOptions>
     <Option name="sample-format" value="SF_Vorbis"/>
     <Option name="dithering" value="D_None"/>
-    <Option name="tag-metadata" value="0"/>
+    <Option name="tag-metadata" value="1"/>
     <Option name="tag-support" value="1"/>
     <Option name="broadcast-info" value="0"/>
   </EncodingOptions>

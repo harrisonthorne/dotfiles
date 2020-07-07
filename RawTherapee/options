@@ -115,8 +115,8 @@ CustomProfileBuilderKeys=0
 
 [GUI]
 Favorites=
-WindowWidth=1920
-WindowHeight=1023
+WindowWidth=632
+WindowHeight=1019
 WindowX=0
 WindowY=0
 WindowMonitor=0

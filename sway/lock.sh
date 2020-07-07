@@ -1,22 +1,34 @@
 #!/usr/bin/env bash
 
+FORK='-f'
+STARTUP=false
+tmpbg='/tmp/lock_screen.png'
+
 if pgrep -x swaylock >/dev/null
 then
     echo "swaylock is already running"
+    exit
 else
-    paplay "$HOME/Music/MuseSounds/Lock.wav" &
+    # parse args
+    while (( "$#" )); do
+        case "$1" in
+            -n|--no-fork)
+                echo "swaylock won't fork"
+                FORK=''
+                shift
+                ;;
+            -s|--startup)
+                FORK=''
+                STARTUP=true
+                shift
+                echo
+        esac
+    done
 fi
 
-FORK='-f'
-
-if [ $# -gt 0 ]; then
-    if [ $1 = "--no-fork" ]; then
-        echo "swaylock won't fork"
-        FORK=''
-    fi
+if [ "$STARTUP" = false ] ; then
+    paplay "$HOME/Music/MuseSounds/Lock.oga" &
 fi
-
-tmpbg='/tmp/screen.png'
 
 cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
 # /usr/bin/convert "$tmpbg" \
@@ -25,20 +37,20 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
 #     -resize 5% \
 #     -blur 1x2 \
 #     -resize 2000% \
-#     -fill "#0d0c0e" \
+#     -fill "#161619" \
 #     -colorize 75% \
 #     "$tmpbg"
 /usr/bin/convert "$tmpbg" \
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \
-    -fill "#0d0c0e" \
+    -fill "#161619" \
     -colorize 75% \
     "$tmpbg"
 
-primary="fcfeffc0"
-primaryFaded="fcfeff20"
-secondary="889db820"
+primary="f3fcffc0"
+primaryFaded="f3fcff20"
+secondary="94b3cb20"
 transparent="00000000"
 orange="ffaa00"
 
@@ -83,3 +95,8 @@ swaylock $FORK -i "$tmpbg" \
 \
     --timestr="%-l:%M %P" \
     --datestr=""
+
+if [ "$STARTUP" = true ] ; then
+    paplay "$HOME/Music/MuseSounds/Hello.oga" &
+fi
+

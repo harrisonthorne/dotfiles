@@ -1,3 +1,6 @@
+exec sh $HOME/.config/wpg/wp_init.sh 
+exec sh $HOME/.config/sway/lock.sh -s
+
 set $mod Mod4
 
 # exit sway
@@ -11,23 +14,26 @@ set $dpmson "swaymsg 'output * dpms on'"
 
 # startup apps
 exec xrdb -load ~/.Xresources
-exec rot8 &
-exec light -I &
-exec sh $HOME/.config/wpg/wp_init.sh &
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec xhost si:localuser:root &
-exec redshift &
-exec syncthing --no-browser &
-exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 315 $dpmsoff resume $dpmson before-sleep $locker &
+exec rot8
+exec light -I
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec xhost si:localuser:root
+exec redshift
+exec syncthing --no-browser
+exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 315 $dpmsoff resume $dpmson before-sleep $locker
 
-set $gnome-schema org.gnome.desktop.interface
+set $gnome-desktop-schema org.gnome.desktop.interface
+set $gnome-sound-schema org.gnome.desktop.sound
 
-exec_always "killall muse-status-dae; muse-status-daemon &"
-exec_always "killall mako; mako &"
-exec_always gsettings set $gnome-schema gtk-theme 'Adwaita'
-exec_always gsettings set $gnome-schema icon-theme 'Flat-Remix-Blue-Dark'
-exec_always gsettings set $gnome-schema cursor-theme 'Adwaita'
-exec_always gsettings set $gnome-schema font-name 'Cantarell 10'
+exec_always "killall muse-status-dae; muse-status-daemon"
+exec_always "killall mako; mako"
+exec_always gsettings set $gnome-desktop-schema gtk-theme 'Adwaita'
+exec_always gsettings set $gnome-desktop-schema icon-theme 'Flat-Remix-Blue-Dark'
+exec_always gsettings set $gnome-desktop-schema cursor-theme 'Adwaita'
+exec_always gsettings set $gnome-desktop-schema font-name 'Cantarell 10'
+exec_always gsettings set $gnome-sound-schema theme-name 'musicaflight'
+exec_always gsettings set $gnome-sound-schema event-sounds true
+exec_always gsettings set $gnome-sound-schema input-feedback-sounds true
 
 # Use custom colors
 set $active       {active}e5
@@ -76,6 +82,12 @@ floating_modifier $mod
 
 set $volume_up "$HOME/Music/MuseSounds/Volume.wav"
 set $volume_down "$HOME/Music/MuseSounds/VolumeDown.wav"
+
+# Power controls
+bindsym $mod+Control+Mod1+p exec systemctl poweroff
+bindsym $mod+Control+Mod1+r exec systemctl reboot
+bindsym $mod+Control+Mod1+s exec systemctl suspend
+bindsym $mod+Control+Mod1+b exec systemctl hibernate
 
 # Pulse Audio controls
 bindsym --locked XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && muse-status notify volume; paplay $volume_up"
@@ -183,8 +195,8 @@ bindsym $mod+u layout stacking
 # app shortcuts
 bindsym $mod+w exec firefox
 bindsym $mod+b exec spotify
-bindsym $mod+m exec $TERMINAL -T "Authenticator" -e $SHELL -i -c gashell
-bindsym $mod+g exec ./gaming_mode.sh
+bindsym $mod+g exec $TERMINAL -T "Authenticator" -e $SHELL -i -c gashell
+bindsym $mod+m exec $HOME/.config/sway/gaming_mode.sh
 bindsym $mod+Control+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_redshift.sh
 
@@ -193,6 +205,12 @@ bindsym $mod+e exec $TERMINAL -T "Files" -e $SHELL -i -c ranger
 bindsym $mod+n exec $TERMINAL -T Neovim -e $SHELL -i -c nvim
 bindsym $mod+Shift+n exec $TERMINAL -T Notebook -e $SHELL -i -c "ranger ~/Notebook"
 bindsym $mod+Control+n exec $TERMINAL -T "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
+
+# ponies
+bindsym $mod+Shift+m exec $TERMINAL -e $SHELL -i -c "ranger ~/Videos/mlp/"
+
+# bored
+bindsym $mod+Shift+b exec $TERMINAL -T "YOU PRESSED THE BORED BUTTON" -e $SHELL -i -c "nvim ~/Notebook/bored.md"
 
 # lock
 bindsym $mod+Escape exec $locker
@@ -333,5 +351,3 @@ bar {{
         binding_mode $black $black $warning
     }}
 }}
-
-exec paplay "$HOME/Music/MuseSounds/Hello.wav" &

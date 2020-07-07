@@ -388,7 +388,7 @@ endfunction
 
 function! MarkdownFoldText()
     let linetext = getline(v:foldstart)
-    let txt = linetext . ' [...]'
+    let txt = linetext . ' [...] '
     return txt
 endfunction
 
