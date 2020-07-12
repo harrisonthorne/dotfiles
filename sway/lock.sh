@@ -27,7 +27,7 @@ else
 fi
 
 if [ "$STARTUP" = false ] ; then
-    paplay "$HOME/Music/MuseSounds/Lock.oga" &
+    paplay "$HOME/Music/MuseSounds/stereo/Lock.oga" &
 fi
 
 cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
@@ -37,20 +37,20 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
 #     -resize 5% \
 #     -blur 1x2 \
 #     -resize 2000% \
-#     -fill "#161619" \
+#     -fill "#341f0d" \
 #     -colorize 75% \
 #     "$tmpbg"
 /usr/bin/convert "$tmpbg" \
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \
-    -fill "#161619" \
+    -fill "#341f0d" \
     -colorize 75% \
     "$tmpbg"
 
-primary="f3fcffc0"
-primaryFaded="f3fcff20"
-secondary="94b3cb20"
+primary="fffcffc0"
+primaryFaded="fffcff20"
+secondary="cbbe9220"
 transparent="00000000"
 orange="ffaa00"
 
@@ -97,6 +97,6 @@ swaylock $FORK -i "$tmpbg" \
     --datestr=""
 
 if [ "$STARTUP" = true ] ; then
-    paplay "$HOME/Music/MuseSounds/Hello.oga" &
+    paplay "$HOME/Music/MuseSounds/stereo/Hello.oga" &
 fi
 

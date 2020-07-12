@@ -27,7 +27,7 @@ else
 fi
 
 if [ "$STARTUP" = false ] ; then
-    paplay "$HOME/Music/MuseSounds/Lock.oga" &
+    paplay "$HOME/Music/MuseSounds/stereo/Lock.oga" &
 fi
 
 cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
@@ -97,6 +97,6 @@ swaylock $FORK -i "$tmpbg" \
     --datestr=""
 
 if [ "$STARTUP" = true ] ; then
-    paplay "$HOME/Music/MuseSounds/Hello.oga" &
+    paplay "$HOME/Music/MuseSounds/stereo/Hello.oga" &
 fi
 

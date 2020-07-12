@@ -1,20 +1,20 @@
 default-timeout=10000
 anchor=top-right
-background-color=#161619e5
+background-color=#341f0de5
 font=Cantarell 10
 padding=16,32
 margin=0
 width=512
 height=512
-border-color=#161619e5
+border-color=#341f0de5
 border-size=4
 max-icon-size=32
-progress-color=#94b3cbFF
+progress-color=#cbbe92FF
 layer=overlay
 format=<b>%s</b>\n%b
 
 [urgency=low]
-text-color=#94b3cb
+text-color=#cbbe92
 
 [urgency=high]
 border-color=#ffaa00e5

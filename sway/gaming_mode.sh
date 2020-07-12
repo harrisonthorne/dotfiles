@@ -26,5 +26,5 @@ if [ "$answer" = "$yes" ]; then
     notify-send "Steam is starting" "Just a moment..."
 
     # run steam
-    steam -bigpicture
+    steam -bigpicture -steamos
 fi

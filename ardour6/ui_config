@@ -85,6 +85,8 @@
     <Option name="save-export-mixer-screenshot" value="0"/>
     <Option name="open-gui-after-adding-plugin" value="0"/>
     <Option name="show-inline-display-by-default" value="1"/>
+    <Option name="max-plugin-chart" value="10"/>
+    <Option name="max-plugin-recent" value="10"/>
     <Option name="prefer-inline-over-gui" value="1"/>
     <Option name="max-inline-controls" value="32"/>
     <Option name="action-table-columns" value="3"/>
@@ -103,6 +105,7 @@
     <Option name="rulers-follow-grid" value="0"/>
     <Option name="grid-follows-internal" value="0"/>
     <Option name="show-region-name" value="1"/>
+    <Option name="time-axis-name-ellipsize-mode" value="0"/>
   </UI>
   <Canvas>
     <Option name="small font" value=" 7"/>

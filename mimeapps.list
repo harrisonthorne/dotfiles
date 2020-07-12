@@ -33,3 +33,4 @@ application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 application/pdf=org.gnome.Evince.desktop;mupdf.desktop;
+text/csv=libreoffice-calc.desktop;

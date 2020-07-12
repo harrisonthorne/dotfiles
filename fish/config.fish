@@ -1,6 +1,6 @@
-if status is-interactive
-    cat ~/.config/wpg/sequences
-end
+# if status is-interactive
+#    cat ~/.config/wpg/sequences
+# end
 
 bash /etc/profile
 bash ~/.bashrc
