@@ -245,23 +245,24 @@ function helpers.round(number, decimals)
     return math.floor(number * power) / power
 end
 
-function helpers.volume_control(step)
-    local cmd
-    if step == 0 then
-        cmd = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-    else
-        sign = step > 0 and "+" or ""
-        cmd = "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ "..sign..tostring(step).."%"
-    end
-    awful.spawn.with_shell(cmd)
+function helpers.volume_down()
+    awful.spawn("amixer -q sset Master 5%-", false)
+end
+
+function helpers.volume_up()
+    awful.spawn("amixer -q sset Master 5%+ unmute", false)
+end
+
+function helpers.volume_mute_toggle()
+    awful.spawn("amixer sset Master toggle", false)
 end
 
 function helpers.send_key(c, key)
-    awful.spawn.with_shell("xdotool key --window "..tostring(c.window).." "..key)
+    awful.spawn.with_shell("xdotool key --window "..tostring(c.window).." "..key, false)
 end
 
 function helpers.send_key_sequence(c, seq)
-    awful.spawn.with_shell("xdotool type --delay 5 --window "..tostring(c.window).." "..seq)
+    awful.spawn.with_shell("xdotool type --delay 5 --window "..tostring(c.window).." "..seq, false)
 end
 
 function helpers.fake_escape()
