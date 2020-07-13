@@ -11,7 +11,7 @@ local icons = require("icons")
 local class_icons = icons.text.by_class
 
 -- TODO: These variables (and more) should ideally be retrieved through `beautiful`
-local item_font = "icomoon 15"
+local item_font = "Material Design Icons 15"
 local item_bg = x.background
 local item_size = dpi(50)
 local item_shape = helpers.squircle(1.7, 0)
@@ -234,7 +234,7 @@ local function generate_dock_icon(c, bg, fg, symbol)
 
             -- Create icon prefix
             local i = class_icons[class] or class_icons['_']
-            local prefix = "<span font_family='icomoon' foreground='"..i.color.."'>"..i.symbol.."</span>"
+            local prefix = "<span font_family='Material Design Icons' foreground='"..i.color.."'>"..i.symbol.."</span>"
 
             -- Generate input for rofi
             -- Each line corresponds to 1 client

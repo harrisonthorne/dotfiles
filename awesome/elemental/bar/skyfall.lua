@@ -74,13 +74,13 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create text weather widget
     local text_weather = require("noodle.text_weather")
     local weather_widget_icon = text_weather:get_all_children()[1]
-    weather_widget_icon.font = "Typicons 11"
+    weather_widget_icon.font = "Material Design Icons 11"
     local weather_widget_text = text_weather:get_all_children()[2]
     weather_widget_text.font = "sans 9"
 
     -- Create a window control widget
     local close_button = wibox.widget.textbox()
-    close_button.font = "Typicons 11"
+    close_button.font = "Material Design Icons 11"
     close_button.markup = helpers.colorize_text("", x.color1)
     close_button:buttons(gears.table.join(
         awful.button({ }, 1, function ()
@@ -97,7 +97,7 @@ awful.screen.connect_for_each_screen(function(s)
             end
         end)
     ))
-    maximize_button.font = "Typicons 11"
+    maximize_button.font = "Material Design Icons 11"
     maximize_button.markup = helpers.colorize_text("", x.color5)
     local minimize_button = wibox.widget.textbox()
     minimize_button:buttons(gears.table.join(
@@ -107,7 +107,7 @@ awful.screen.connect_for_each_screen(function(s)
             end
         end)
     ))
-    minimize_button.font = "Typicons 11"
+    minimize_button.font = "Material Design Icons 11"
     minimize_button.markup = helpers.colorize_text("", x.color6)
 
     local window_buttons = wibox.widget {

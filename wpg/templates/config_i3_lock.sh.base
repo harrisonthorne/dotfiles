@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-paplay "$HOME/Drive/Music/MuseSounds/Lock.ogg"
+paplay "$HOME/Drive/Music/MuseSounds/Lock.oga"
 
 FORK=''
 

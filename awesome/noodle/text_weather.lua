@@ -11,7 +11,7 @@ elseif user.weather_units == "imperial" then
 end
 
 -- Text icons
--- 'Typicons' font
+-- 'Material Design Icons' font
 -- local sun_icon = ""
 -- local moon_icon = ""
 -- local dcloud_icon = ""
@@ -23,7 +23,7 @@ end
 -- local mist_icon = ""
 -- local whatever_icon = ""
 
--- 'Icomoon' font (filled variant)
+-- 'Material Design Icons' font (filled variant)
 local sun_icon = ""
 local moon_icon = ""
 local dcloud_icon = ""

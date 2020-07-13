@@ -7,8 +7,8 @@ local beautiful = require("beautiful")
 local helpers = require("helpers")
 
 -- Appearance
--- icomoon symbols
-local icon_font = "icomoon bold 45"
+-- Material Design Icons symbols
+local icon_font = "Material Design Icons bold 45"
 local poweroff_text_icon = ""
 local reboot_text_icon = ""
 local suspend_text_icon = ""
@@ -20,8 +20,8 @@ local exit_text_icon = ""
 -- local exit_text_icon = ""
 local lock_text_icon = ""
 
--- Typicons symbols
--- local icon_font = "Typicons 90"
+-- Material Design Icons symbols
+-- local icon_font = "Material Design Icons 90"
 -- local poweroff_text_icon = ""
 -- local reboot_text_icon = ""
 -- local suspend_text_icon = ""

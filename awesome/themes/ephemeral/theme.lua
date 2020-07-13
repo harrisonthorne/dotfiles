@@ -203,7 +203,7 @@ for i = 1, ntags do
 end
 
 -- Noodle Text Taglist
-theme.taglist_text_font = "icomoon 15"
+theme.taglist_text_font = "Material Design Icons 15"
 -- theme.taglist_text_font = "sans bold 15"
 theme.taglist_text_empty    = {"","","","","","","","","",""}
 theme.taglist_text_occupied = {"","","","","","","","","",""}
@@ -383,7 +383,7 @@ theme.awesome_icon = theme_assets.awesome_icon(
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "/usr/share/icons/Numix"
+theme.icon_theme = "/usr/share/icons/Flat-Remix-Blue-Dark"
 
 return theme
 

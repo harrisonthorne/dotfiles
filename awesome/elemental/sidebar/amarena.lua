@@ -26,8 +26,8 @@ end
 -- Weather widget with text icons
 local weather_widget = require("noodle.text_weather")
 local weather_widget_icon = weather_widget:get_all_children()[1]
--- weather_widget_icon.font = "Typicons 18"
-weather_widget_icon.font = "icomoon 16"
+-- weather_widget_icon.font = "Material Design Icons 18"
+weather_widget_icon.font = "Material Design Icons 16"
 weather_widget_icon.align = "center"
 weather_widget_icon.valign = "center"
 -- So that content does not get cropped
@@ -189,14 +189,14 @@ mpd_song:buttons(gears.table.join(
 ))
 
 local search_icon = wibox.widget {
-    font = "icomoon bold 10",
+    font = "Material Design Icons bold 10",
     align = "center",
     valign = "center",
     widget = wibox.widget.textbox()
 }
 
 local reset_search_icon = function ()
-    search_icon.markup = helpers.colorize_text("", x.color3)
+    search_icon.markup = helpers.colorize_text("\u{F0DA5}", x.color3)
 end
 reset_search_icon()
 
@@ -238,7 +238,7 @@ local search = wibox.widget{
 }
 
 local function generate_prompt_icon(icon, color)
-    return "<span font='icomoon 10' foreground='" .. color .."'>" .. icon .. "</span> "
+    return "<span font='Material Design Icons 10' foreground='" .. color .."'>" .. icon .. "</span> "
 end
 
 function sidebar_activate_prompt(action)
@@ -246,9 +246,9 @@ function sidebar_activate_prompt(action)
     search_icon.visible = false
     local prompt
     if action == "run" then
-        prompt = generate_prompt_icon("", x.color2)
+        prompt = generate_prompt_icon("\u{F070E}", x.color2)
     elseif action == "web_search" then
-        prompt = generate_prompt_icon("", x.color4)
+        prompt = generate_prompt_icon("\u{F0349}", x.color4)
     end
     helpers.prompt(action, search_text, prompt, function()
         search_icon.visible = true

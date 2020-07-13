@@ -16,7 +16,7 @@ local lock_animation_icon = wibox.widget {
     -- Set forced size to prevent flickering when the icon rotates
     forced_height = dpi(80),
     forced_width = dpi(80),
-    font = "icomoon 40",
+    font = "Material Design Icons 40",
     align = "center",
     valign = "center",
     widget = wibox.widget.textbox(lock_screen_symbol)
@@ -53,7 +53,7 @@ end
 -- Items
 local day_of_the_week = wibox.widget {
     -- Fancy font
-    font = "Scriptina Bold 80",
+    font = "sans 80",
     -- font = "Space Craft 50",
     -- font = "Razed Galerie 70",
     -- font = "A-15-BIT 70",

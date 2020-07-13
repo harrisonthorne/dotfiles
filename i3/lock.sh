@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-paplay "$HOME/Drive/Music/MuseSounds/Lock.ogg"
+paplay "$HOME/Drive/Music/MuseSounds/Lock.oga"
 
 FORK=''
 
@@ -21,12 +21,12 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \
-    -fill "#341f0d" \
+    -fill "#0a0d0a" \
     -colorize 75% \
     "$tmpbg"
 
-primary="fffcffff"
-secondary="cbbe92e5"
+primary="faf1ffff"
+secondary="a45ab3e5"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \
     -e \

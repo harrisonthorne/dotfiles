@@ -17,7 +17,7 @@ local default_icon = ""
 -- Custom text icons according to the notification's app_name
 -- plus whether the title should be visible or not
 -- (This will be removed when notification rules are released)
--- Using icomoon font
+-- Using Material Design Icons font
 local app_config = {
     ['battery'] = { icon = "", title = false },
     ['charger'] = { icon = "", title = false },
@@ -50,8 +50,8 @@ naughty.connect_signal("request::display", function(n)
     -- text/markup value from the notification before creating the
     -- naughty.layout.box.
     local custom_notification_icon = wibox.widget {
-        font = "icomoon 18",
-        -- font = "icomoon bold 40",
+        font = "Material Design Icons 18",
+        -- font = "Material Design Icons bold 40",
         align = "center",
         valign = "center",
         widget = wibox.widget.textbox

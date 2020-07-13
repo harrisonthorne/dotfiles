@@ -5,15 +5,14 @@ local gears = require("gears")
 local wibox = require("wibox")
 
 -- Disable popup tooltip on titlebar button hover
-awful.titlebar.enable_tooltip = false
+awful.titlebar.enable_tooltip = true
 
 local decorations = {}
 
 -- >> Default decoration management functions
 -- They make sure not to affect custom decorations added on the same position
--- as the default titlebar
--- Can be overrided by the selected decoration theme when the titlebar
--- configuration is more complex
+-- as the default titlebar Can be overrided by the selected decoration theme
+-- when the titlebar configuration is more complex
 function decorations.hide(c)
     if not c.custom_decoration or not c.custom_decoration[beautiful.titlebar_position] then
         awful.titlebar.hide(c, beautiful.titlebar_position)

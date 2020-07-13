@@ -11,68 +11,14 @@
 --]]
 
 
-local themes = {
-    "manta",        -- 1 --
-    "lovelace",     -- 2 --
-    "skyfall",      -- 3 --
-    "ephemeral",    -- 4 --
-    "amarena",      -- 5 --
-}
--- Change this number to use a different theme
-local theme = themes[5]
--- ===================================================================
--- Affects the window appearance: titlebar, titlebar buttons...
-local decoration_themes = {
-    "lovelace",       -- 1 -- Standard titlebar with 3 buttons (close, max, min)
-    "skyfall",        -- 2 -- No buttons, only title
-    "ephemeral",      -- 3 -- Text-generated titlebar buttons
-}
-local decoration_theme = decoration_themes[3]
--- ===================================================================
--- Statusbar themes. Multiple bars can be declared in each theme.
-local bar_themes = {
-    "manta",        -- 1 -- Taglist, client counter, date, time, layout
-    "lovelace",     -- 2 -- Start button, taglist, layout
-    "skyfall",      -- 3 -- Weather, taglist, window buttons, pop-up tray
-    "ephemeral",    -- 4 -- Taglist, start button, tasklist, and more buttons
-    "amarena",      -- 5 -- Minimal taglist and dock with autohide
-}
-local bar_theme = bar_themes[5]
-
--- ===================================================================
--- Affects which icon theme will be used by widgets that display image icons.
-local icon_themes = {
-    "linebit",        -- 1 -- Neon + outline
-    "drops",          -- 2 -- Pastel + filled
-}
-local icon_theme = icon_themes[2]
--- ===================================================================
-local notification_themes = {
-    "lovelace",       -- 1 -- Plain with standard image icons
-    "ephemeral",      -- 2 -- Outlined text icons and a rainbow stripe
-    "amarena",        -- 3 -- Filled text icons on the right, text on the left
-}
-local notification_theme = notification_themes[3]
--- ===================================================================
-local sidebar_themes = {
-    "lovelace",       -- 1 -- Uses image icons
-    "amarena",        -- 2 -- Text-only (consumes less RAM)
-}
-local sidebar_theme = sidebar_themes[2]
--- ===================================================================
-local dashboard_themes = {
-    "skyfall",        -- 1 --
-    "amarena",        -- 2 -- Displays coronavirus stats
-}
-local dashboard_theme = dashboard_themes[2]
--- ===================================================================
-local exit_screen_themes = {
-    "lovelace",      -- 1 -- Uses image icons
-    "ephemeral",     -- 2 -- Uses text-generated icons (consumes less RAM)
-}
-local exit_screen_theme = exit_screen_themes[2]
--- ===================================================================
--- User variables and preferences
+local theme = "amarena"
+local decoration_theme = "ephemeral"
+local bar_theme = "amarena"
+local icon_theme = "linebit"
+local notification_theme = "amarena"
+local sidebar_theme = "amarena"
+local dashboard_theme = "amarena"
+local exit_screen_theme = "ephemeral"
 user = {
     -- >> Default applications <<
     -- Check apps.lua for more
@@ -80,9 +26,9 @@ user = {
     floating_terminal = "kitty -1",
     browser = "firefox",
     file_manager = "kitty -1 --class files -e ranger",
-    editor = "kitty -1 --class editor -e vim",
-    email_client = "kitty -1 --class email -e neomutt",
-    music_client = "kitty -o font_size=12 --class music -e ncmpcpp",
+    editor = "kitty -1 --class editor -e nvim",
+    email_client = "thunderbird",
+    music_client = "spotify",
 
     -- >> Web Search <<
     web_search_cmd = "xdg-open https://duckduckgo.com/?q=",
@@ -297,6 +243,19 @@ end)
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+-- Focus on hover
+client.connect_signal("mouse::enter", function(c)                                                                                                                           
+    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+        and awful.client.focus.filter(c) then
+        client.focus = c 
+    end 
+end)
+
+-- nice rounded corners
+client.connect_signal("manage", function (c)
+    c.shape = gears.shape.rounded_rect
+end)
+
 -- Tags
 -- ===================================================================
 awful.screen.connect_for_each_screen(function(s)
@@ -381,7 +340,6 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "DTA",  -- Firefox addon DownThemAll.
                 "copyq",  -- Includes session name in class.
                 "floating_terminal",
                 "riotclientux.exe",
@@ -397,7 +355,6 @@ awful.rules.rules = {
                 "Nvidia-settings",
             },
             name = {
-                "Event Tester",  -- xev
                 "MetaMask Notification",
             },
             role = {
@@ -487,36 +444,14 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "install league of legends (riot client live).exe",
-                "gw2-64.exe",
-                "battle.net.exe",
-                "riotclientservices.exe",
-                "leagueclientux.exe",
-                "riotclientux.exe",
-                "leagueclient.exe",
-                "^editor$",
-                "markdown_input"
             },
             class = {
-                "qutebrowser",
-                "Sublime_text",
-                "Subl3",
-                --"discord",
-                --"TelegramDesktop",
-                "firefox",
-                "Nightly",
-                "Steam",
-                "Lutris",
-                "Chromium",
-                "^editor$",
-                "markdown_input"
-                -- "Thunderbird",
             },
             type = {
               "splash"
             },
             name = {
-                "^discord.com is sharing your screen.$" -- Discord (running in browser) screen sharing popup
+                -- "^discord.com is sharing your screen.$" -- Discord (running in browser) screen sharing popup
             }
         },
         callback = function(c)
@@ -543,9 +478,6 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "TelegramDesktop",
-                "firefox",
-                "Nightly",
             },
             type = {
                 "dialog",
@@ -788,184 +720,7 @@ awful.rules.rules = {
                 end
             end)
         end
-    },
-
-    -- League of Legends client QoL fixes
-    {
-        rule = { instance = "league of legends.exe" },
-        properties = {},
-        callback = function (c)
-            local matcher = function (c)
-                return awful.rules.match(c, { instance = "leagueclientux.exe" })
-            end
-            -- Minimize LoL client after game window opens
-            for c in awful.client.iterate(matcher) do
-                c.urgent = false
-                c.minimized = true
-            end
-
-            -- Unminimize LoL client after game window closes
-            c:connect_signal("unmanage", function()
-                for c in awful.client.iterate(matcher) do
-                    c.minimized = false
-                end
-            end)
-        end
-    },
-
-    ---------------------------------------------
-    -- Start application on specific workspace --
-    ---------------------------------------------
-    -- Browsing
-    {
-        rule_any = {
-            class = {
-                "firefox",
-                "Nightly",
-                -- "qutebrowser",
-            },
-        },
-        except_any = {
-            role = { "GtkFileChooserDialog" },
-            instance = { "Toolkit" },
-            type = { "dialog" }
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[1] },
-    },
-
-    -- Games
-    {
-        rule_any = {
-            class = {
-                "underlords",
-                "lt-love",
-                "portal2_linux",
-                "deadcells",
-                "csgo_linux64",
-                "EtG.x86_64",
-                "factorio",
-                "dota2",
-                "Terraria.bin.x86",
-                "dontstarve_steam",
-                "Wine",
-                "trove.exe"
-            },
-            instance = {
-                "love.exe",
-                "synthetik.exe",
-                "pathofexile_x64steam.exe",
-                "leagueclient.exe",
-                "glyphclientapp.exe"
-            },
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[2] }
-    },
-
-    -- Chatting
-    {
-        rule_any = {
-            class = {
-                "Chromium",
-                "Chromium-browser",
-                "discord",
-                "TelegramDesktop",
-                "Signal",
-                "Slack",
-                "TeamSpeak 3",
-                "zoom",
-                "weechat",
-                "6cord",
-            },
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[3] }
-    },
-
-    -- Editing
-    {
-        rule_any = {
-            class = {
-                "^editor$",
-                -- "Emacs",
-                -- "Subl3",
-            },
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[4] }
-    },
-
-    -- System monitoring
-    {
-        rule_any = {
-            class = {
-                "htop",
-            },
-            instance = {
-                "htop",
-            },
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[5] }
-    },
-
-    -- Image editing
-    {
-        rule_any = {
-            class = {
-                "Gimp",
-                "Inkscape",
-            },
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[6] }
-    },
-
-    -- Mail
-    {
-        rule_any = {
-            class = {
-                "email",
-            },
-            instance = {
-                "email",
-            },
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[7] }
-    },
-
-    -- Game clients/launchers
-    {
-        rule_any = {
-            class = {
-                "Steam",
-                "battle.net.exe",
-                "Lutris",
-            },
-            name = {
-                "Steam",
-            }
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[8] }
-    },
-
-    -- Miscellaneous
-    -- All clients that I want out of my way when they are running
-    {
-        rule_any = {
-            class = {
-                "torrent",
-                "Transmission",
-                "Deluge",
-                "VirtualBox Manager",
-                "KeePassXC"
-            },
-            instance = {
-                "torrent",
-                "qemu",
-            }
-        },
-        except_any = {
-            type = { "dialog" }
-        },
-        properties = { screen = 1, tag = awful.screen.focused().tags[10] }
-    },
-
+    }
 }
 -- (Rules end here) ..................................................
 -- ===================================================================
@@ -990,7 +745,6 @@ client.connect_signal("manage", function (c)
     --     awful.placement.no_offscreen(c)
     --     awful.placement.no_overlap(c)
     -- end
-
 end)
 
 -- When a client starts up in fullscreen, resize it to cover the fullscreen a short moment later

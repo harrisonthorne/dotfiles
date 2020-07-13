@@ -103,7 +103,7 @@ local control_button_bg_hover = x.color0
 local control_button = function(c, symbol, color, size, on_click, on_right_click)
     local icon = wibox.widget{
         markup = helpers.colorize_text(symbol, color),
-        font = "icomoon 12",
+        font = "Material Design Icons 12",
         align = "center",
         valign = "center",
         widget = wibox.widget.textbox()
@@ -174,7 +174,7 @@ local volume = wibox.widget {
     helpers.horizontal_pad(dpi(3)),
     {
         align = "left",
-        font = "icomoon 16",
+        font = "Material Design Icons 16",
         markup = helpers.colorize_text("", x.color1),
         widget = wibox.widget.textbox()
     },

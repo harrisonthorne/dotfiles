@@ -182,8 +182,8 @@ end)
 local disk_icon = wibox. widget {
     align = "center",
     valign = "center",
-    font = "icomoon 23",
-    markup = helpers.colorize_text("", x.color4),
+    font = "Material Design Icons 23",
+    markup = helpers.colorize_text("\u{F02CA}", x.color4),
     widget = wibox.widget.textbox()
 }
 
@@ -258,70 +258,6 @@ local bookmarks = wibox.widget {
 }
 
 local bookmarks_box = create_boxed_widget(bookmarks, dpi(200), dpi(300), x.background)
-
--- Corona
-local corona_cases = wibox.widget.textbox()
-local corona_deaths = wibox.widget.textbox()
-local corona = wibox.widget {
-    {
-        align = "center",
-        valign = "center",
-        font = "Sans bold 20",
-        markup = helpers.colorize_text("Pandemic", x.color2),
-        widget = wibox.widget.textbox()
-    },
-    {
-        {
-            align = "center",
-            valign = "center",
-            font = "icomoon 20",
-            markup = helpers.colorize_text("", x.color3),
-            widget = wibox.widget.textbox()
-        },
-        {
-            align = "center",
-            valign = "center",
-            font = "sans medium 14",
-            widget = corona_cases
-        },
-        spacing = dpi(6),
-        layout = wibox.layout.fixed.horizontal
-    },
-    {
-        {
-            align = "center",
-            valign = "center",
-            font = "icomoon 20",
-            markup = helpers.colorize_text("", x.color1),
-            widget = wibox.widget.textbox()
-        },
-        {
-            align = "center",
-            valign = "center",
-            font = "sans medium 14",
-            widget = corona_deaths
-        },
-        spacing = dpi(6),
-        layout = wibox.layout.fixed.horizontal
-    },
-    spacing = dpi(20),
-    layout = wibox.layout.fixed.vertical
-}
-awesome.connect_signal("evil::coronavirus", function(cases_total, cases_today, deaths_total, deaths_today)
-    corona_cases.markup = cases_total.." <i>(+"..cases_today..")</i>"
-    corona_deaths.markup = deaths_total.." <i>(+"..deaths_today..")</i>"
-end)
-
-local corona_box = create_boxed_widget(corona, dpi(200), dpi(180), x.background)
-
-corona_box:buttons(gears.table.join(
-    -- Left click - Go to a more detailed website
-    awful.button({ }, 1, function ()
-        awful.spawn.with_shell(user.browser.." https://www.worldometers.info/coronavirus/")
-        dashboard_hide()
-    end)
-))
-helpers.add_hover_cursor(corona_box, "hand1")
 
 -- Fortune
 local fortune_command = "fortune -n 140 -s"
@@ -417,10 +353,10 @@ local function create_url_petal(text, bg_color, hover_color, url, tl, tr, br, bl
 end
 
 -- Create the containers
-local petal_top_left = create_url_petal("GH", x.color4, x.color12, "https://github.com/elenapan/dotfiles", true, true, false, true)
-local petal_top_right = create_url_petal("YT", x.color1, x.color9, "https://youtube.com/", true, true, true, false)
-local petal_bottom_right = create_url_petal("4C", x.color2, x.color10, "https://4chan.org/",false, true, true, true)
-local petal_bottom_left = create_url_petal("RD", x.color3, x.color11, "https://reddit.com/",true, false, true, true)
+local petal_top_left = create_url_petal("GH", x.color4, x.color15, "https://github.com/elenapan/dotfiles", true, true, false, true)
+local petal_top_right = create_url_petal("YT", x.color1, x.color15, "https://youtube.com/", true, true, true, false)
+local petal_bottom_right = create_url_petal("4C", x.color2, x.color15, "https://4chan.org/",false, true, true, true)
+local petal_bottom_left = create_url_petal("RD", x.color3, x.color15, "https://reddit.com/",true, false, true, true)
 
 -- Add clickable effects on hover
 helpers.add_hover_cursor(petal_top_left, "hand1")
@@ -452,8 +388,8 @@ local uptime = wibox.widget {
     {
         align = "center",
         valign = "center",
-        font = "icomoon 20",
-        markup = helpers.colorize_text("", x.color3),
+        font = "Material Design Icons 20",
+        markup = helpers.colorize_text("\u{F0322}", x.color3),
         widget = wibox.widget.textbox()
     },
     {
@@ -481,8 +417,8 @@ helpers.add_hover_cursor(uptime_box, "hand1")
 local notification_state = wibox.widget {
     align = "center",
     valign = "center",
-    font = "icomoon 25",
-    widget = wibox.widget.textbox("")
+    font = "Material Design Icons 25",
+    widget = wibox.widget.textbox("\u{F009C}")
 }
 local function update_notification_state_icon()
     if naughty.suspended then
@@ -506,8 +442,8 @@ helpers.add_hover_cursor(notification_state_box, "hand1")
 local screenshot = wibox.widget {
     align = "center",
     valign = "center",
-    font = "icomoon 25",
-    markup = helpers.colorize_text("", x.color3),
+    font = "Material Design Icons 25",
+    markup = helpers.colorize_text("\u{F0100}", x.color3),
     widget = wibox.widget.textbox()
 }
 local screenshot_box = create_boxed_widget(screenshot, dpi(150), dpi(78), x.background)

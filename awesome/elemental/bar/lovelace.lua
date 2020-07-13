@@ -31,7 +31,7 @@ start_widget:buttons(gears.table.join(
 -- Create item separator
 textseparator = wibox.widget.textbox()
 textseparator.text = beautiful.separator_text
-textseparator.font = "hurmit nerd font bold 14"
+textseparator.font = "Material Design Icons bold 14"
 textseparator.markup = helpers.colorize_text(textseparator.text, beautiful.separator_fg)
 
 -- Create padding

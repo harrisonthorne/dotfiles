@@ -10,7 +10,7 @@ local helpers = require("helpers")
 -- Helper function that creates a button widget
 local create_button = function (symbol, color, bg_color, hover_color)
     local widget = wibox.widget {
-        font = "icomoon 14",
+        font = "Material Design Icons 14",
         align = "center",
         id = "text_role",
         valign = "center",

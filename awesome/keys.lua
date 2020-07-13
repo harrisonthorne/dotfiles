@@ -304,15 +304,15 @@ keys.globalkeys = gears.table.join(
             end
         end,
         {description = "activate sidebar run prompt", group = "awesome"}),
-    -- Web search TODO: this needs a key
-    -- awful.key({ superkey, ctrlkey }, "s",
-    --     function ()
-    --         -- Not all sidebars have a prompt
-    --         if sidebar_activate_prompt then
-    --             sidebar_activate_prompt("web_search")
-    --         end
-    --     end,
-    --     {description = "activate sidebar web search prompt", group = "awesome"}),
+    -- Web search
+    awful.key({ superkey, shiftkey }, "w",
+        function ()
+            -- Not all sidebars have a prompt
+            if sidebar_activate_prompt then
+                sidebar_activate_prompt("web_search")
+            end
+        end,
+        {description = "activate sidebar web search prompt", group = "awesome"}),
 
     -- Dismiss notifications and elements that connect to the dismiss signal
     awful.key( { ctrlkey }, "space",
@@ -363,15 +363,17 @@ keys.globalkeys = gears.table.join(
     --     {description = "(un)mute microphone", group = "volume"}),
 
     -- Screenshots
-    awful.key( { }, "Print", function() apps.screenshot("full") end,
-        {description = "take full screenshot", group = "screenshots"}),
-    awful.key( { superkey, shiftkey }, "c", function() apps.screenshot("selection") end,
-        {description = "select area to capture", group = "screenshots"}),
-    awful.key( { superkey, ctrlkey }, "c", function() apps.screenshot("clipboard") end,
-        {description = "select area to copy to clipboard", group = "screenshots"}),
-    awful.key( { superkey }, "Print", function() apps.screenshot("browse") end,
+    awful.key( { superkey }, "Print", function() apps.screenshot("full") end,
+        {description = "take screenshot", group = "screenshots"}),
+    -- awful.key( { superkey, altkey }, "Print", function() apps.screenshot("clipboard") end,
+    --     {description = "copy full screenshot to clipboard", group = "screenshots"}),
+    awful.key( { superkey, ctrlkey }, "Print", function() apps.screenshot("selection") end,
+        {description = "take area screenshot", group = "screenshots"}),
+    awful.key( { superkey, ctrlkey, altkey }, "Print", function() apps.screenshot("clipboard") end,
+        {description = "copy area to clipboard", group = "screenshots"}),
+    awful.key( { ctrlkey, altkey }, "Print", function() apps.screenshot("browse") end,
         {description = "browse screenshots", group = "screenshots"}),
-    awful.key( { superkey, shiftkey }, "Print", function() apps.screenshot("gimp") end,
+    awful.key( { ctrlkey }, "Print", function() apps.screenshot("gimp") end,
         {description = "edit most recent screenshot with gimp", group = "screenshots"}),
     -- Toggle tray visibility
     awful.key({ superkey }, "=",

@@ -73,7 +73,7 @@ exit:buttons(gears.table.join(
 -- Weather widget with text icons
 local weather_widget = require("noodle.text_weather")
 local weather_widget_icon = weather_widget:get_all_children()[1]
-weather_widget_icon.font = "Typicons 25"
+weather_widget_icon.font = "Material Design Icons 25"
 local weather_widget_text = weather_widget:get_all_children()[2]
 weather_widget_text.font = "sans 14"
 
