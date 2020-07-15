@@ -5,13 +5,13 @@ local beautiful = require("beautiful")
 
 local helpers = require("helpers")
 
-local stroke = x.background
+local stroke = colors.background
 -- local stroke = "#000000"
 local transparent = "#00000000"
-local happy_color = x.color2
-local sad_color = x.color1
-local ok_color = x.color3
-local charging_color = x.color6
+local happy_color = colors.color2
+local sad_color = colors.color1
+local ok_color = colors.color3
+local charging_color = colors.color6
 
 -- Not great not terrible
 local ok_threshold = 45

@@ -35,7 +35,7 @@ function notifications.notify_dwim(args, notif)
     return n
 end
 
-function notifications.init(theme_name)
+function notifications.init()
     -- Initialize various notification daemons
     require("notifications.volume")
     require("notifications.brightness")
@@ -44,7 +44,7 @@ function notifications.init(theme_name)
     require("notifications.league_of_legends")
     require("notifications.keyboardlayout")
     -- Load theme
-    require("notifications.themes." .. theme_name)
+    require("notifications.theme")
 end
 
 -- Handle notification icon

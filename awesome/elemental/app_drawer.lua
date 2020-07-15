@@ -67,23 +67,23 @@ local function create_button(symbol, color, hover_color, cmd, key)
 end
 
 -- Create app buttons
-local browser = create_button("", x.color3, x.color11, apps.browser, "w")
-local discord = create_button("", x.color5, x.color13, apps.discord, "d")
-local telegram = create_button("", x.color4, x.color12, apps.telegram, "t")
-local mail = create_button("", x.color6, x.color14, apps.mail, "m")
-local files = create_button("", x.color3, x.color11, apps.file_manager, "f")
-local gimp = create_button("", x.color5, x.color13, apps.gimp, "g")
-local youtube = create_button("", x.color1, x.color9, apps.youtube, "y")
-local networks = create_button("", x.color3, x.color11, apps.networks, "n")
-local passwords = create_button("", x.color1, x.color9, apps.passwords, "p")
-local night_mode = create_button("", x.color1, x.color9, apps.night_mode, "x")
-local record = create_button("", x.color4, x.color12, apps.record, "r")
-local lutris = create_button("", x.color6, x.color14, apps.lutris, "l")
-local steam = create_button("", x.color2, x.color10, apps.steam, "s")
-local org = create_button("", x.color2, x.color10, apps.org, "o")
-local compositor = create_button("", x.color5, x.color13, apps.compositor, "z")
+local browser = create_button("", colors.color3, colors.color11, apps.browser, "w")
+local discord = create_button("", colors.color5, colors.color13, apps.discord, "d")
+local telegram = create_button("", colors.color4, colors.color12, apps.telegram, "t")
+local mail = create_button("", colors.color6, colors.color14, apps.mail, "m")
+local files = create_button("", colors.color3, colors.color11, apps.file_manager, "f")
+local gimp = create_button("", colors.color5, colors.color13, apps.gimp, "g")
+local youtube = create_button("", colors.color1, colors.color9, apps.youtube, "y")
+local networks = create_button("", colors.color3, colors.color11, apps.networks, "n")
+local passwords = create_button("", colors.color1, colors.color9, apps.passwords, "p")
+local night_mode = create_button("", colors.color1, colors.color9, apps.night_mode, "x")
+local record = create_button("", colors.color4, colors.color12, apps.record, "r")
+local lutris = create_button("", colors.color6, colors.color14, apps.lutris, "l")
+local steam = create_button("", colors.color2, colors.color10, apps.steam, "s")
+local org = create_button("", colors.color2, colors.color10, apps.org, "o")
+local compositor = create_button("", colors.color5, colors.color13, apps.compositor, "z")
 
-local restart_awesome = create_button("", x.color4, x.color12)
+local restart_awesome = create_button("", colors.color4, colors.color12)
 restart_awesome:buttons(gears.table.join(
     awful.button({ }, 1, awesome.restart)
 ))
@@ -93,15 +93,15 @@ app_drawer = wibox({visible = false, ontop = true, type = "dock"})
 awful.placement.maximize(app_drawer)
 
 app_drawer.bg = "#00000000"
--- app_drawer.bg = beautiful.app_drawer_bg or x.background or "#111111"
-app_drawer.fg = beautiful.app_drawer_fg or x.foreground or "#FEFEFE"
+-- app_drawer.bg = beautiful.app_drawer_bg or colors.background or "#111111"
+app_drawer.fg = beautiful.app_drawer_fg or colors.foreground or "#FEFEFE"
 
 -- Add app drawer or mask to each screen
 for s in screen do
     if s == screen.primary then
         s.app_drawer = app_drawer
     else
-        s.app_drawer = helpers.screen_mask(s, beautiful.lock_screen_bg or beautiful.exit_screen_bg or x.background)
+        s.app_drawer = helpers.screen_mask(s, beautiful.lock_screen_bg or beautiful.exit_screen_bg or colors.background)
     end
 end
 
@@ -196,13 +196,13 @@ app_drawer:setup {
     {
         -- Stripes
         create_stripe({browser, youtube, discord, telegram}, "#00000000"),
-        create_stripe({mail, org, files, passwords}, x.color8.."20"),
-        create_stripe({gimp, record, lutris, steam}, x.color8.."40"),
-        create_stripe({networks, night_mode, compositor, restart_awesome}, x.color8.."60"),
+        create_stripe({mail, org, files, passwords}, colors.color8.."20"),
+        create_stripe({gimp, record, lutris, steam}, colors.color8.."40"),
+        create_stripe({networks, night_mode, compositor, restart_awesome}, colors.color8.."60"),
         layout = wibox.layout.flex.vertical
     },
-    bg = x.background,
-    -- bg = x.background.."AA",
+    bg = colors.background,
+    -- bg = colors.background.."AA",
     -- bg = "#00000000",
     widget = wibox.container.background
 }

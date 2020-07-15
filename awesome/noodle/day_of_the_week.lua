@@ -10,14 +10,14 @@ dummy_textclock.visible = false
 
 local dotw_initials = {"M", "T", "W", "T", "F", "S", "S"}
 local dotw_colors = {
-    x.color9,
-    x.color9,
-    x.color9,
-    x.color9,
-    x.color9,
+    colors.color9,
+    colors.color9,
+    colors.color9,
+    colors.color9,
+    colors.color9,
     -- Different color for weekends ^_^
-    x.color13,
-    x.color13,
+    colors.color13,
+    colors.color13,
 }
 
 local dotw_textboxes = {}
@@ -25,7 +25,7 @@ local dotw_textboxes = {}
 local create_dotw_container = function (text, color)
     local text = wibox.widget.textbox(text)
     text.font = "sans bold 10"
-    -- text.markup = "<span foreground='" .. x.background .."'>" .. text .. "</span>"
+    -- text.markup = "<span foreground='" .. colors.background .."'>" .. text .. "</span>"
     text.align = "center"
     text.valign = "center"
     table.insert(dotw_textboxes, text)
@@ -72,7 +72,7 @@ local update_dotw = function ()
         for i=1,7 do
             dotw_containers[i].bg = "#00000000"
             -- dotw_textboxes[i].markup = 
-            --     "<span foreground='" .. x.color8 .."'>"
+            --     "<span foreground='" .. colors.color8 .."'>"
             --     .. dotw_initials[i] .. "</span>"
         end
         dotw_containers[index].bg = dotw_colors[index]

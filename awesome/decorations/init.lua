@@ -195,10 +195,8 @@ decorations.text_button = function (c, symbol, font, color, unfocused_color, hov
 end
 
 -- Load theme and custom decorations
-function decorations.init(theme_name)
-    require("decorations.themes." .. theme_name)
-    -- Custom decorations for specific clients
-    require("decorations.mpd")
+function decorations.init()
+    require("decorations.titlebar")
 end
 
 return decorations

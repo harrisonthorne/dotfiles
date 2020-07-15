@@ -5,12 +5,12 @@ local wibox = require("wibox")
 local helpers = require("helpers")
 
 local mpd_prev_symbol = wibox.widget.textbox()
-mpd_prev_symbol.markup = helpers.colorize_text("", x.foreground)
+mpd_prev_symbol.markup = helpers.colorize_text("", colors.foreground)
 mpd_prev_symbol.font = "Material Icons Bold 18"
 mpd_prev_symbol.align = "center"
 mpd_prev_symbol.valign = "center"
 local mpd_next_symbol = wibox.widget.textbox()
-mpd_next_symbol.markup = helpers.colorize_text("", x.foreground)
+mpd_next_symbol.markup = helpers.colorize_text("", colors.foreground)
 mpd_next_symbol.font = "Material Icons Bold 18"
 mpd_next_symbol.align = "center"
 mpd_next_symbol.valign = "center"
@@ -21,7 +21,7 @@ big_note.font = "Material Icons Bold 15"
 big_note.align = "center"
 local small_note = wibox.widget.textbox()
 small_note.align = "center"
-small_note.markup = helpers.colorize_text(note_symbol, x.foreground)
+small_note.markup = helpers.colorize_text(note_symbol, colors.foreground)
 small_note.font = "Material Icons Bold 11"
 -- small_note.valign = "bottom"
 local double_note = wibox.widget {
@@ -82,20 +82,20 @@ local music_playing_counter = 0
 local last_artist
 local last_title
 local music_playing_colors = {
-    x.color1,
-    x.color2,
-    x.color3,
-    x.color4,
-    x.color5,
-    x.color6,
+    colors.color1,
+    colors.color2,
+    colors.color3,
+    colors.color4,
+    colors.color5,
+    colors.color6,
 }
 local last_color = music_playing_colors[1]
 
 awesome.connect_signal("evil::mpd", function(artist, title, paused)
     local accent, small_note_color
     if paused then
-        accent = x.foreground.."33"
-        small_note_color = x.foreground.."55"
+        accent = colors.foreground.."33"
+        small_note_color = colors.foreground.."55"
     else
         if artist ~= last_artist and title ~= last_title then
             accent = music_playing_colors[(music_playing_counter % #music_playing_colors) + 1]
@@ -106,7 +106,7 @@ awesome.connect_signal("evil::mpd", function(artist, title, paused)
         last_artist = artist
         last_title = title
         last_color = accent
-        small_note_color = x.foreground
+        small_note_color = colors.foreground
     end
 
     big_note.markup = helpers.colorize_text(note_symbol, accent)

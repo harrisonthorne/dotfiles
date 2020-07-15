@@ -86,7 +86,7 @@ keys.globalkeys = gears.table.join(
     awful.key({ superkey }, "F1", hotkeys_popup.show_help,
           {description = "show help", group = "awesome"}),
 
-    -- Focus client by direction (hjkl keys)
+    -- Focus client by direction (hjkl keys) {{{
     awful.key({ superkey }, "j",
         function()
             awful.client.focus.bydirection("down")
@@ -107,8 +107,6 @@ keys.globalkeys = gears.table.join(
             awful.client.focus.bydirection("right")
         end,
         {description = "focus right", group = "client"}),
-
-    -- Focus client by direction (arrow keys)
     awful.key({ superkey }, "Down",
         function()
             awful.client.focus.bydirection("down")
@@ -129,6 +127,7 @@ keys.globalkeys = gears.table.join(
             awful.client.focus.bydirection("right")
         end,
         {description = "focus right", group = "client"}),
+    -- }}}
 
     -- Window switcher
     awful.key({ superkey }, "Tab",
@@ -150,7 +149,7 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}),
 
-    -- Gaps
+    -- Change size of gaps {{{
     awful.key({ superkey, shiftkey }, "minus",
         function ()
             awful.tag.incgap(4, nil)
@@ -163,43 +162,34 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "decrement gap size for the current tag", group = "gaps"}
     ),
+    -- }}}
 
-    -- Kill all visible clients for the current tag
-    awful.key({ superkey, altkey }, "q",
-        function ()
-            local clients = awful.screen.focused().clients
-            for _, c in pairs(clients) do
-                c:kill()
-            end
-        end,
-        {description = "kill all visible clients for the current tag", group = "gaps"}
-    ),
-
-    -- -- TODO: These should move tags to different outputs, depending on direction
-    -- awful.key({ superkey, ctrlkey }, "Down", function (c)
-    --     helpers.resize_dwim(client.focus, "down")
-    -- end),
-    -- awful.key({ superkey, ctrlkey }, "Up", function (c)
-    --     helpers.resize_dwim(client.focus, "up")
-    -- end),
-    -- awful.key({ superkey, ctrlkey }, "Left", function (c)
-    --     helpers.resize_dwim(client.focus, "left")
-    -- end),
-    -- awful.key({ superkey, ctrlkey }, "Right", function (c)
-    --     helpers.resize_dwim(client.focus, "right")
-    -- end),
-    -- awful.key({ superkey, ctrlkey }, "j", function (c)
-    --     helpers.resize_dwim(client.focus, "down")
-    -- end),
-    -- awful.key({ superkey, ctrlkey }, "k", function (c)
-    --     helpers.resize_dwim(client.focus, "up")
-    -- end),
-    -- awful.key({ superkey, ctrlkey }, "h", function (c)
-    --     helpers.resize_dwim(client.focus, "left")
-    -- end),
-    -- awful.key({ superkey, ctrlkey }, "l", function (c)
-    --     helpers.resize_dwim(client.focus, "right")
-    -- end),
+    -- Resize windows {{{
+    awful.key({ superkey, altkey }, "Down", function (c)
+        helpers.resize_dwim(client.focus, "down")
+    end),
+    awful.key({ superkey, altkey }, "Up", function (c)
+        helpers.resize_dwim(client.focus, "up")
+    end),
+    awful.key({ superkey, altkey }, "Left", function (c)
+        helpers.resize_dwim(client.focus, "left")
+    end),
+    awful.key({ superkey, altkey }, "Right", function (c)
+        helpers.resize_dwim(client.focus, "right")
+    end),
+    awful.key({ superkey, altkey }, "j", function (c)
+        helpers.resize_dwim(client.focus, "down")
+    end),
+    awful.key({ superkey, altkey }, "k", function (c)
+        helpers.resize_dwim(client.focus, "up")
+    end),
+    awful.key({ superkey, altkey }, "h", function (c)
+        helpers.resize_dwim(client.focus, "left")
+    end),
+    awful.key({ superkey, altkey }, "l", function (c)
+        helpers.resize_dwim(client.focus, "right")
+    end),
+    -- }}}
 
     -- No need for these (single screen setup)
     --awful.key({ superkey, ctrlkey }, "j", function () awful.screen.focus_relative( 1) end,
@@ -221,10 +211,6 @@ keys.globalkeys = gears.table.join(
             end
         end,
         {description = "jump to urgent client", group = "client"}),
-
-    -- Spawn terminal
-    awful.key({ superkey }, "Return", function () awful.spawn(user.terminal) end,
-        {description = "open a terminal", group = "launcher"}),
 
     -- Reload Awesome
     awful.key({ superkey, shiftkey }, "r", awesome.restart,
@@ -288,12 +274,21 @@ keys.globalkeys = gears.table.join(
     -- Prompt
     --awful.key({ superkey },            "d",     function () awful.screen.focused().mypromptbox:run() end,
     --{description = "run prompt", group = "launcher"}),
+    --
+    -- App shortcuts {{{
+    -- Spawn terminal
+    awful.key({ superkey }, "Return", function () awful.spawn(user.terminal) end,
+        {description = "open a terminal", group = "launcher"}),
+    -- }}}
+
+    -- Rofi shortcuts {{{
     -- Run program (d for dmenu ;)
     awful.key({ superkey }, "d",
         function()
             awful.spawn.with_shell("rofi -show drun -config ~/.config/rofi/apps_config.rasi")
         end,
         {description = "launch an app", group = "launcher"}),
+    -- }}}
 
     -- Run
     awful.key({ superkey }, "r",
@@ -326,7 +321,7 @@ keys.globalkeys = gears.table.join(
     --awful.key({ superkey, ctrlkey }, "b", function() menubar.show() end,
     --{description = "show the menubar", group = "launcher"}),
 
-    -- Brightness
+    -- Brightness {{{
     awful.key( { }, "XF86MonBrightnessDown",
         function()
             awful.spawn("light -U 5", false)
@@ -337,8 +332,9 @@ keys.globalkeys = gears.table.join(
             awful.spawn("light -A 5", false)
         end,
         {description = "increase brightness", group = "brightness"}),
+    -- }}}
 
-    -- Volume Control with volume keys
+    -- Volume {{{
     awful.key( { }, "XF86AudioMute",
         function()
             helpers.volume_mute_toggle()
@@ -354,6 +350,7 @@ keys.globalkeys = gears.table.join(
             helpers.volume_up()
         end,
         {description = "raise volume", group = "volume"}),
+    -- }}}
 
     -- Microphone (V for voice)
     -- awful.key( { superkey }, "m",
@@ -362,7 +359,7 @@ keys.globalkeys = gears.table.join(
     --     end,
     --     {description = "(un)mute microphone", group = "volume"}),
 
-    -- Screenshots
+    -- Screenshots {{{
     awful.key( { superkey }, "Print", function() apps.screenshot("full") end,
         {description = "take screenshot", group = "screenshots"}),
     -- awful.key( { superkey, altkey }, "Print", function() apps.screenshot("clipboard") end,
@@ -375,12 +372,8 @@ keys.globalkeys = gears.table.join(
         {description = "browse screenshots", group = "screenshots"}),
     awful.key( { ctrlkey }, "Print", function() apps.screenshot("gimp") end,
         {description = "edit most recent screenshot with gimp", group = "screenshots"}),
-    -- Toggle tray visibility
-    awful.key({ superkey }, "=",
-        function ()
-            tray_toggle()
-        end,
-        {description = "toggle tray visibility", group = "awesome"}),
+    -- }}}
+
     -- Media keys TODO: we have keys for these
     -- awful.key({ superkey }, "period", function() awful.spawn.with_shell("mpc -q next") end,
     --     {description = "next song", group = "media"}),
@@ -396,10 +389,7 @@ keys.globalkeys = gears.table.join(
     --     {description = "mpv toggle pause/play", group = "media"}),
 
 
-    -- TODO: do we want this
-    -- awful.key({ superkey }, "q", function() apps.scratchpad() end,
-    --     {description = "scratchpad", group = "launcher"}),
-
+    -- Layouts {{{
     -- Max layout
     -- Single tap: Set max layout
     -- Double tap: Also disable floating for ALL visible clients in the tag
@@ -433,6 +423,7 @@ keys.globalkeys = gears.table.join(
                 end)
         end,
         {description = "set tiled layout", group = "tag"}),
+    -- }}}
 
     -- Dashboard
     awful.key({ superkey }, "a", function()
@@ -490,7 +481,7 @@ keys.globalkeys = gears.table.join(
 )
 
 keys.clientkeys = gears.table.join(
-    -- Move to edge or swap by direction
+    -- Move windows {{{
     awful.key({ superkey, shiftkey }, "Down", function (c)
         helpers.move_client_dwim(c, "down")
     end),
@@ -515,6 +506,7 @@ keys.clientkeys = gears.table.join(
     awful.key({ superkey, shiftkey }, "l", function (c)
         helpers.move_client_dwim(c, "right")
     end),
+    -- }}}
 
     -- Single tap: Center client 
     -- Double tap: Center client + Floating + Resize
@@ -608,9 +600,23 @@ keys.clientkeys = gears.table.join(
         end,
         {description = "normal mode", group = "client"}),
 
-    -- Close client
+    -- Closing windows {{{
+    -- Close single
     awful.key({ superkey }, "q", function (c) c:kill() end,
         {description = "close", group = "client"}),
+
+    -- Close all in tag
+    awful.key({ superkey, altkey }, "q",
+        function ()
+            local clients = awful.screen.focused().clients
+            for _, c in pairs(clients) do
+                c:kill()
+            end
+        end,
+        {description = "kill all visible clients for the current tag", group = "client"}
+    ),
+    -- }}}
+
 
     -- Toggle floating
     awful.key({ superkey }, "s",
@@ -633,14 +639,15 @@ keys.clientkeys = gears.table.join(
     awful.key({ superkey }, "x", function (c) c.sticky = not c.sticky end,
         {description = "toggle sticky", group = "client"}),
 
+    -- Minimizing/maximizing {{{
     -- Minimize
     awful.key({ superkey }, "v",
         function (c)
             c.minimized = true
         end,
         {description = "minimize", group = "client"}),
-    -- restore a minimized window
-    awful.key({ superkey, shiftkey }, "n",
+    -- Restore a minimized window
+    awful.key({ superkey }, "m",
         function ()
             local c = awful.client.restore()
             -- Focus restored client
@@ -649,13 +656,13 @@ keys.clientkeys = gears.table.join(
             end
         end,
         {description = "restore minimized", group = "client"}),
-
     -- Maximize
-    awful.key({ superkey }, "m",
+    awful.key({ superkey, shiftkey }, "m",
         function (c)
             c.maximized = not c.maximized
         end,
         {description = "(un)maximize", group = "client"})
+    -- }}}
 )
 
 -- Bind all key numbers to tags.
@@ -738,13 +745,10 @@ keys.clientbuttons = gears.table.join(
         awful.mouse.client.resize(c)
         -- awful.mouse.resize(c, nil, {jump_to_corner=true})
     end),
-
-    -- Super + scroll = Change client opacity
-    awful.button({ superkey }, 4, function(c)
-        c.opacity = c.opacity + 0.1
-    end),
-    awful.button({ superkey }, 5, function(c)
-        c.opacity = c.opacity - 0.1
+    awful.button({ superkey, altkey }, 1, function(c)
+        client.focus = c
+        awful.mouse.client.resize(c)
+        -- awful.mouse.resize(c, nil, {jump_to_corner=true})
     end)
 )
 
@@ -865,3 +869,94 @@ root.keys(keys.globalkeys)
 root.buttons(keys.desktopbuttons)
 
 return keys
+
+-- TODO: pending keybinds
+-- Super+Control+Mod1+p exec systemctl poweroff
+-- Super+Control+Mod1+r exec systemctl reboot
+-- Super+Control+Mod1+s exec systemctl suspend
+-- Super+Control+Mod1+b exec systemctl hibernate
+-- 
+-- # Media player controls
+-- XF86AudioPlay exec mpc toggle || playerctl play-pause
+-- XF86AudioNext exec mpc next || playerctl next
+-- XF86AudioPrev exec mpc cdprev || playerctl previous
+-- 
+-- # start rofi
+-- Super+a exec rofi -show drun -config ~/.config/rofi/apps_config.rasi
+-- Super+Control+e exec rofi -show emoji -modi emoji
+-- Super+Control+w exec rofi -show window
+-- Super+c exec rofi -show calc -no-sort
+-- 
+-- # move focused workspace to outputs
+-- Super+Control+h move workspace to left
+-- Super+Control+j move workspace to down
+-- Super+Control+k move workspace to up
+-- Super+Control+l move workspace to right
+-- 
+-- # (arrow keys for moving workspace)
+-- Super+Control+Left move workspace to left
+-- Super+Control+Down move workspace to down
+-- Super+Control+Up move workspace to up
+-- Super+Control+Right move workspace to right
+-- 
+-- # focus outputs
+-- Super+Mod1+h focus output left
+-- Super+Mod1+j focus output down
+-- Super+Mod1+k focus output up
+-- Super+Mod1+l focus output right
+-- 
+-- # (arrow keys for workspace)
+-- Super+Mod1+Left focus output left
+-- Super+Mod1+Down focus output down
+-- Super+Mod1+Up focus output up
+-- Super+Mod1+Right focus output right
+-- 
+-- 
+-- # floating video mode
+-- Super+i fullscreen disable; floating enable; sticky enable; border pixel 4; resize set 356 200; move position 1548 px 16 px; inhibit_idle open
+-- Super+Shift+i fullscreen disable; floating enable; sticky enable; border pixel 4; resize set 711 400; move position 1193 px 16 px; inhibit_idle open
+-- 
+-- # change container layout (stacked, tabbed, toggle split)
+-- Super+t layout tabbed
+-- Super+y layout toggle split
+-- Super+u layout stacking
+-- 
+-- # app shortcuts
+-- Super+w exec firefox
+-- Super+b exec spotify
+-- Super+g exec $TERMINAL -T "Authenticator" -e $SHELL -i -c gashell
+-- Super+m exec $HOME/.config/sway/gaming_mode.sh
+-- Super+Control+p exec pavucontrol
+-- Super+Control+r exec sh $HOME/.config/toggle_redshift.sh
+-- 
+-- # files, nvim, notebook, new note
+-- Super+e exec $TERMINAL -T "Files" -e $SHELL -i -c ranger
+-- Super+n exec $TERMINAL -T Neovim -e $SHELL -i -c nvim
+-- Super+Shift+n exec $TERMINAL -T Notebook -e $SHELL -i -c "ranger ~/Notebook"
+-- Super+Control+n exec $TERMINAL -T "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
+-- 
+-- # ponies
+-- Super+Shift+m exec $TERMINAL -e $SHELL -i -c "ranger ~/Videos/mlp/"
+-- 
+-- # bored
+-- Super+Shift+b exec $TERMINAL -T "YOU PRESSED THE BORED BUTTON" -e $SHELL -i -c "nvim ~/Notebook/bored.md"
+-- 
+-- # lock
+-- Super+Escape exec $locker
+-- 
+-- # screenshot
+-- Super+Print exec $screenshot
+-- Super+Control+Print exec "sh $HOME/.config/sway/screenshot.sh -s"
+-- 
+-- # video capture
+-- Super+Shift+Print exec sh $HOME/.config/sway/videocapture.sh
+-- 
+-- # mako notifications
+-- Control+Escape exec makoctl dismiss
+-- Super+Space exec makoctl invoke
+-- 
+-- # toggle tiling / floating
+-- Super+s floating toggle; border normal 4
+-- 
+-- # start mivy
+-- Super+d exec mivy

@@ -35,11 +35,11 @@ exec_always gsettings set $gnome-sound-schema event-sounds true
 exec_always gsettings set $gnome-sound-schema input-feedback-sounds true
 
 # Use custom colors
-set $active       #a45ab3e5
-set $inactive     #713e7be5
-set $white        #faf1ff
-set $black        #0a0d0ae5
-set $gray         #1f291fe5
+set $active       #87aacbe5
+set $inactive     #5d758ce5
+set $white        #f2fdff
+set $black        #10180ae5
+set $gray         #273b18e5
 set $warning      #ffaa00e5
 set $transparent  #00000000
 
@@ -329,7 +329,7 @@ output "*" {
 }
 
 bar {
-    status_command "muse-status -p faf1ff -s 713e7b"
+    status_command "muse-status -p f2fdff -s 5d758c"
     font pango: Cantarell 10
     mode dock
     modifier $mod

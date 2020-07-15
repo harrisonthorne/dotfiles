@@ -28,12 +28,12 @@ awesome.connect_signal("evil::battery", function(battery)
         if battery <= user.battery_threshold_critical and not battery_critical_already_notified then
             battery_critical_already_notified = true
             message = "CRITICAL"
-            -- message = helpers.colorize_text("CRITICAL", x.color9)
+            -- message = helpers.colorize_text("CRITICAL", colors.color9)
             timeout = 0
         elseif battery <= user.battery_threshold_low and not battery_low_already_notified then
             battery_low_already_notified = true
             message = "Low"
-            -- message = helpers.colorize_text("Low", x.color11)
+            -- message = helpers.colorize_text("Low", colors.color11)
             timeout = 6
         end
     else
@@ -41,7 +41,7 @@ awesome.connect_signal("evil::battery", function(battery)
         if battery > battery_full_threshold and not battery_full_already_notified then
             battery_full_already_notified = true
             message = "Full"
-            -- message = helpers.colorize_text("Full", x.color10)
+            -- message = helpers.colorize_text("Full", colors.color10)
             timeout = 6
         end
     end

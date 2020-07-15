@@ -4,22 +4,22 @@ local wibox = require("wibox")
 
 local styles = {}
 styles.month   = { padding      = 20,
-    fg_color     = x.color7,
-    bg_color     = x.background.."00",
+    fg_color     = colors.color7,
+    bg_color     = colors.background.."00",
     border_width = 0,
 }
 styles.normal  = {}
-styles.focus   = { fg_color = x.color1,
-    bg_color = x.color5..00,
+styles.focus   = { fg_color = colors.color1,
+    bg_color = colors.color5..00,
     markup   = function(t) return '<b>' .. t .. '</b>' end,
 }
-styles.header  = { fg_color = x.color4,
-    bg_color = x.color1.."00",
+styles.header  = { fg_color = colors.color4,
+    bg_color = colors.color1.."00",
     -- markup   = function(t) return '<b>' .. t .. '</b>' end,
     markup   = function(t) return '<span font_desc="sans bold 22">' .. t .. '</span>' end,
 }
-styles.weekday = { fg_color = x.color7,
-    bg_color = x.color1.."00",
+styles.weekday = { fg_color = colors.color7,
+    bg_color = colors.color1.."00",
     padding  = 3,
     markup   = function(t) return '<b>' .. t .. '</b>' end,
 }
@@ -34,9 +34,9 @@ local function decorate_cell(widget, flag, date)
     -- Change bg color for weekends
     local d = {year=date.year, month=(date.month or 1), day=(date.day or 1)}
     local weekday = tonumber(os.date('%w', os.time(d)))
-    local default_fg = x.color7
-    local default_bg = x.color0.."00"
-    -- local default_bg = (weekday==0 or weekday==6) and x.color6 or x.color14
+    local default_fg = colors.color7
+    local default_bg = colors.color0.."00"
+    -- local default_bg = (weekday==0 or weekday==6) and colors.color6 or colors.color14
     local ret = wibox.widget {
         {
             widget,
@@ -44,7 +44,7 @@ local function decorate_cell(widget, flag, date)
             widget  = wibox.container.margin
         },
         shape              = props.shape,
-        shape_border_color = props.border_color or x.background,
+        shape_border_color = props.border_color or colors.background,
         shape_border_width = props.border_width or 0,
         fg                 = props.fg_color or default_fg,
         bg                 = props.bg_color or default_bg,

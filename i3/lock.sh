@@ -1,18 +1,27 @@
 #!/usr/bin/env bash
 
-paplay "$HOME/Drive/Music/MuseSounds/Lock.oga"
-
 FORK=''
 
-if [ $# -gt 0 ]; then
-    if [ $1 = "--no-fork" ]; then
-        echo "i3lock won't fork"
-        FORK='-n'
-    fi
-fi
+# parse args
+while (( "$#" )); do
+    case "$1" in
+        -w|--warn)
+            notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'
+            paplay $HOME/Music/MuseSounds/stereo/LockWarning.oga
+            exit
+            ;;
+        -n|--no-fork)
+            echo "i3lock won't fork"
+            FORK='-n'
+            shift
+            ;;
+    esac
+done
+
+paplay "$HOME/Drive/Music/MuseSounds/stereo/Lock.oga"
 
 # suspend notifications
-pkill -u "$USER" -USR1 dunst
+# pkill -u "$USER" -USR1 dunst
 
 tmpbg='/tmp/screen.png'
 
@@ -21,12 +30,12 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \
-    -fill "#0a0d0a" \
+    -fill "#10180a" \
     -colorize 75% \
     "$tmpbg"
 
-primary="faf1ffff"
-secondary="a45ab3e5"
+primary="f2fdffff"
+secondary="87aacbe5"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \
     -e \
@@ -64,10 +73,10 @@ secondary="a45ab3e5"
     --timepos="256:256" \
     --datepos="tx:ty+64" \
 \
-    --time-font="Roboto:Thin" \
-    --date-font="Roboto" \
-    --verif-font="Roboto" \
-    --wrong-font="Roboto" \
+    --time-font="Cantarell Thin" \
+    --date-font="Cantarell" \
+    --verif-font="Cantarell" \
+    --wrong-font="Cantarell" \
 \
     --timesize=128 \
     --datesize=24 \
@@ -79,5 +88,5 @@ secondary="a45ab3e5"
     --noinputtext="" \
 
 # resume notifications
-pkill -u "$USER" -USR2 dunst
+# pkill -u "$USER" -USR2 dunst
 
