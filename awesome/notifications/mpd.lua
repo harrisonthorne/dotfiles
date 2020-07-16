@@ -1,5 +1,4 @@
 local naughty = require("naughty")
-local icons = require("icons")
 local notifications = require("notifications")
 
 notifications.mpd = {}
@@ -30,7 +29,6 @@ local send_mpd_notif = function (artist, song, paused)
                     {
                         title = "Now playing:",
                         message = "<b>"..song.."</b> by <b>"..artist.."</b>",
-                        icon = icons.image.music,
                         timeout = timeout,
                         app_name = "mpd"
                     },

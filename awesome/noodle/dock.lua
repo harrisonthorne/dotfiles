@@ -7,8 +7,6 @@ local helpers = require("helpers")
 local beautiful = require("beautiful")
 local apps = require("apps")
 local cairo = require("lgi").cairo
-local icons = require("icons")
-local class_icons = icons.text.by_class
 
 -- TODO: These variables (and more) should ideally be retrieved through `beautiful`
 local item_font = "Material Design Icons 15"
@@ -233,17 +231,16 @@ local function generate_dock_icon(c, bg, fg, symbol)
             if #clients == 0 then return end
 
             -- Create icon prefix
-            local i = class_icons[class] or class_icons['_']
-            local prefix = "<span font_family='Material Design Icons' foreground='"..i.color.."'>"..i.symbol.."</span>"
+            -- local prefix = "<span font_family='Material Design Icons' foreground='"..i.color.."'>"..i.symbol.."</span>"
 
             -- Generate input for rofi
             -- Each line corresponds to 1 client
-            local rofi_input = ""
-            for i = 1, #clients do
-                if clients[i].name then
-                    rofi_input = rofi_input..prefix..'  '..clients[i].name..'\n'
-                end
-            end
+            -- local rofi_input = ""
+            -- for i = 1, #clients do
+            --     if clients[i].name then
+            --         rofi_input = rofi_input..prefix..'  '..clients[i].name..'\n'
+            --     end
+            -- end
 
             -- Nothing to do
             if rofi_input == "" then return end
@@ -284,9 +281,9 @@ local dock = wibox.widget({
 -- Initialize dock with pinned clients
 for i = 1, #dock_pinned_classes do
     local class = dock_pinned_classes[i]
-    local i = class_icons[class] or class_icons['_']
-    dock_items[class] = generate_dock_icon({ class = class, ghost = true }, item_bg, i.color, i.symbol)
-    dock:add(dock_items[class])
+    -- local i = class_icons[class] or class_icons['_']
+    -- dock_items[class] = generate_dock_icon({ class = class, ghost = true }, item_bg, i.color, i.symbol)
+    -- TODO dock:add(class)
 end
 
 -- >> Helper functions used by signals
@@ -300,7 +297,7 @@ add_client = function(c)
 
     -- Check if we need to create a new item
     if dock_class_count[c.class] == 1 then
-        local i = class_icons[c.class] or class_icons['_']
+        -- local i = class_icons[c.class] or class_icons['_']
         if dock_pinned_launchers[c.class] then
             -- It is pinned, we dont need to create a new item, as it is
             -- already there. Instead, just show the indicator.
@@ -312,8 +309,8 @@ add_client = function(c)
             indicator.visible = true
         else
             -- Create a new item if it has not been created yet
-            dock_items[c.class] = generate_dock_icon(c, item_bg, i.color, i.symbol)
-            dock:add(dock_items[c.class])
+            -- dock_items[c.class] = generate_dock_icon(c, item_bg, i.color, i.symbol)
+            -- TODO dock:add(dock_items[c.class])
         end
     end
 

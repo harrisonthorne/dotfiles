@@ -4,35 +4,21 @@ local wibox = require("wibox")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 local helpers = require("helpers")
-local icons = require("icons")
 local notifications = require("notifications")
 
 local apps = {}
 
 apps.browser = function ()
-    awful.spawn(user.browser, { switchtotag = true })
+    awful.spawn(user.browser)
 end
 apps.file_manager = function ()
-    awful.spawn(user.file_manager, { floating = true })
+    awful.spawn(user.file_manager)
 end
 apps.telegram = function ()
-    helpers.run_or_raise({class = 'TelegramDesktop'}, false, "telegram", { switchtotag = true })
-end
-apps.discord = function ()
-    -- Run or raise Discord running in the browser, spawned with Chromium browser's app mode
-    -- >> Ubuntu / Debian
-    -- helpers.run_or_raise({instance = 'discordapp.com__channels_@me'}, false, "chromium-browser --app=\"https://discordapp.com/channels/@me\"")
-    -- >> Arch
-    helpers.run_or_raise({instance = 'discordapp.com__channels_@me'}, false, "chromium --app=\"https://discordapp.com/channels/@me\"")
-
-    -- Run or raise Discord app
-    -- helpers.run_or_raise({class = 'discord'}, false, "discord")
-end
-apps.weechat = function ()
-    helpers.run_or_raise({instance = 'weechat'}, true, user.terminal.." --class weechat -e weechat")
+    helpers.run_or_raise({class = 'TelegramDesktop'}, false, "telegram")
 end
 apps.mail = function ()
-    helpers.run_or_raise({instance = 'email'}, false, user.email_client, {switchtotag = true})
+    helpers.run_or_raise({instance = 'email'}, false, user.email_client)
 end
 apps.gimp = function ()
     helpers.run_or_raise({class = 'Gimp'}, false, "gimp")
@@ -40,67 +26,42 @@ end
 apps.steam = function ()
     helpers.run_or_raise({class = 'Steam'}, false, "steam")
 end
-apps.lutris = function ()
-    helpers.run_or_raise({class = 'Lutris'}, false, "lutris")
-end
-apps.youtube = function ()
-    awful.spawn.with_shell("rofi_mpvtube")
-end
 apps.networks = function ()
     awful.spawn.with_shell("rofi_networks")
 end
-apps.passwords = function ()
-    helpers.run_or_raise({class = 'KeePassXC'}, true, "keepassxc")
+apps.authenticator = function ()
+    helpers.run_or_raise({instance = 'authenticator'}, true, user.terminal.." --class auth -e gashell")
 end
-apps.volume = function ()
+apps.pavucontrol = function ()
     helpers.run_or_raise({class = 'Pavucontrol'}, true, "pavucontrol")
 end
-apps.torrent = function ()
-    helpers.run_or_raise({instance = 'torrent'}, true, user.terminal.." --class torrent -e transmission-remote-cli")
-end
-
 apps.editor = function ()
-    helpers.run_or_raise({instance = 'editor'}, false, user.editor, { switchtotag = true })
+    helpers.run_or_raise({instance = 'editor'}, false, user.editor)
 end
 
 -- Toggle compositor
-apps.compositor = function ()
-    awful.spawn.with_shell("sh -c 'pgrep picom > /dev/null && pkill picom || picom --config ~/.config/picom/picom.conf & disown'")
+apps.toggle_picom = function ()
+    awful.spawn.with_shell(os.getenv("HOME").."/.config/toggle_picom.sh")
 end
 
-local night_mode_notif
-apps.night_mode = function ()
-    local cmd = "pgrep redshift > /dev/null && (pkill redshift && echo 'OFF') || (echo 'ON' && redshift -l 0:0 -t 3700:3700 -r &>/dev/null &)"
-    awful.spawn.easy_async_with_shell(cmd, function(out)
-        local message = out:match('ON') and "Activated!" or "Deactivated!"
-        night_mode_notif = notifications.notify_dwim({ title = "Night mode", message = message, app_name = "night_mode", icon = icons.image.redshift }, night_mode_notif)
-    end)
-end
-
-local screenkey_notif
-apps.screenkey = function ()
-    local cmd = "pgrep screenkey > /dev/null && (pkill screenkey && echo 'OFF') || (echo 'ON' && screenkey --ignore Caps_Lock --bg-color '#FFFFFF' --font-color '#000000' &>/dev/null &)"
-    awful.spawn.easy_async_with_shell(cmd, function(out)
-        local message = out:match('ON') and "Activated!" or "Deactivated!"
-        screenkey_notif = notifications.notify_dwim({ title = "Screenkey", message = message, app_name = "screenkey", icon = icons.image.keyboard }, screenkey_notif)
-    end)
+apps.toggle_redshift = function ()
+    awful.spawn.with_shell(os.getenv("HOME").."/.config/toggle_redshift.sh")
 end
 
 apps.record = function ()
     awful.spawn.with_shell("screenrec.sh")
 end
 
--- I only use emacs for org mode :)
-apps.org = function ()
-    helpers.run_or_raise({class = 'Emacs'}, false, "emacs")
-end
-
 apps.music = function ()
     helpers.scratchpad({instance = "music"}, user.music_client)
 end
 
+apps.ponies = function ()
+    helpers.run_or_raise({instance = 'ponies'}, true, user.terminal.." --class ponies -e ranger ~/Videos/mlp")
+end
+
 apps.process_monitor = function ()
-    helpers.run_or_raise({instance = 'htop'}, false, user.terminal.." --class htop -e htop", { switchtotag = true })
+    helpers.run_or_raise({instance = 'htop'}, false, user.terminal.." --class htop -e htop")
 end
 
 apps.process_monitor_gui = function ()
@@ -108,18 +69,15 @@ apps.process_monitor_gui = function ()
 end
 
 apps.temperature_monitor = function ()
-    helpers.run_or_raise({class = 'sensors'}, false, user.terminal.." --class sensors -e watch sensors", { switchtotag = true, tag = mouse.screen.tags[5] })
+    helpers.run_or_raise({class = 'sensors'}, false, user.terminal.." --class sensors -e watch sensors", { tag = mouse.screen.tags[5] })
 end
 
 apps.battery_monitor = function ()
-    helpers.run_or_raise({class = 'battop'}, false, user.terminal.." --class battop -e battop", { switchtotag = true, tag = mouse.screen.tags[5] })
+    helpers.run_or_raise({class = 'battop'}, false, user.terminal.." --class battop -e battop", { tag = mouse.screen.tags[5] })
 end
 
-apps.markdown_input = function ()
-    helpers.scratchpad(
-        { instance = "markdown_input" },
-        user.terminal.." --class markdown_input -e nvim -c 'startinsert' /tmp/scratchpad.md",
-        nil)
+apps.quick_note = function ()
+    awful.spawn.with_shell()
 end
 
 -- Scratchpad terminal with tmux (see bin/scratchpad)
@@ -137,16 +95,15 @@ function apps.screenshot(action, delay)
         return
     elseif action == "gimp" then
         awful.spawn.with_shell("cd "..user.dirs.screenshots.." && gimp $(ls -t | head -n1)")
-        naughty.notification({ message = "Opening last screenshot with GIMP", icon = icon, app_name = screenshot_notification_app_name})
+        naughty.notification({ message = "Opening last screenshot with GIMP", app_name = screenshot_notification_app_name})
         return
     end
 
     -- Screenshot capturing actions
     local cmd
-    local timestamp = os.date("%Y.%m.%d-%H.%M.%S")
-    local filename = user.dirs.screenshots..timestamp..".screenshot.png"
+    local timestamp = os.date("%Y%m%d-%H%M%S")
+    local filename = user.dirs.screenshots.."/"..timestamp..".png"
     local maim_args = "-u -b 3 -m 5"
-    local icon = icons.image.screenshot
 
     local prefix
     if delay then
@@ -177,40 +134,46 @@ function apps.screenshot(action, delay)
         cmd = prefix.."maim "..maim_args.." "..filename
         awful.spawn.easy_async_with_shell(cmd, function()
             naughty.notification({
-                title = "Screenshot",
-                message = "Screenshot taken",
-                icon = icon,
+                title = "Screenshot saved",
+                message = "Your screenshot was saved as "..filename,
                 actions = { screenshot_open, screenshot_copy, screenshot_edit, screenshot_delete },
                 app_name = screenshot_notification_app_name,
             })
         end)
+    elseif action == "full-copy" then
+        cmd = "maim "..maim_args.." /tmp/maim_clipboard && xclip -selection clipboard -t image/png /tmp/maim_clipboard &>/dev/null && rm /tmp/maim_clipboard"
+        awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, exit_code)
+            if exit_code == 0 then
+                capture_notif = notifications.notify_dwim({ title = "Screenshot copied to clipboard", message = "The entire screen was copied.", app_name = screenshot_notification_app_name }, capture_notif)
+            else
+                naughty.destroy(capture_notif)
+            end
+        end)
     elseif action == "selection" then
         cmd = "maim "..maim_args.." -s "..filename
-        capture_notif = naughty.notification({ title = "Screenshot", message = "Select area to capture.", icon = icon, timeout = 1, app_name = screenshot_notification_app_name })
+        capture_notif = naughty.notification({ title = "Selection screenshot started", message = "Select an area to capture.", timeout = 2, app_name = screenshot_notification_app_name })
         awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, exit_code)
             naughty.destroy(capture_notif)
             if exit_code == 0 then
                 naughty.notification({
-                    title = "Screenshot",
-                    message = "Selection captured",
-                    icon = icon,
+                    title = "Selection screenshot saved",
+                    message = "Your screenshot was saved as "..filename,
                     actions = { screenshot_open, screenshot_copy, screenshot_edit, screenshot_delete },
                     app_name = screenshot_notification_app_name,
                 })
             end
         end)
     elseif action == "clipboard" then
-        capture_notif = naughty.notification({ title = "Screenshot", message = "Select area to copy to clipboard", icon = icon })
+        capture_notif = naughty.notification({ title = "Selection screenshot started", message = "Select an area of your screen to copy." })
         cmd = "maim "..maim_args.." -s /tmp/maim_clipboard && xclip -selection clipboard -t image/png /tmp/maim_clipboard &>/dev/null && rm /tmp/maim_clipboard"
         awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, exit_code)
             if exit_code == 0 then
-                capture_notif = notifications.notify_dwim({ title = "Screenshot", message = "Copied selection to clipboard", icon = icon, app_name = screenshot_notification_app_name }, capture_notif)
+                capture_notif = notifications.notify_dwim({ title = "Selection screenshot copied", message = "Your selection was copied.", app_name = screenshot_notification_app_name }, capture_notif)
             else
                 naughty.destroy(capture_notif)
             end
         end)
     end
-
 end
 
 

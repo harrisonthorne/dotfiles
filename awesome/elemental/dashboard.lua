@@ -3,7 +3,6 @@ local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
-local icons = require("icons")
 local helpers = require("helpers")
 local apps = require("apps")
 
@@ -179,7 +178,7 @@ awesome.connect_signal("evil::disk", function(used, total)
     disk_hover_text_value.markup = helpers.colorize_text(tostring(total - used).."G", colors.color4)
 end)
 
-local disk_icon = wibox. widget {
+local disk_icon = wibox.widget {
     align = "center",
     valign = "center",
     font = "Material Design Icons 23",

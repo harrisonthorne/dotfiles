@@ -7,9 +7,9 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
-local layout_icon_path = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/layout/"
-local titlebar_icon_path = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/titlebar/"
-local taglist_icon_path = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/taglist/"
+local layout_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/layout/"
+local titlebar_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/titlebar/"
+local taglist_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/taglist/"
 local tip = titlebar_icon_path --alias to save time/space
 local xrdb = xresources.get_current_theme()
 -- local theme = dofile(themes_path.."default/theme.lua")
@@ -29,13 +29,13 @@ theme.font          = "sans 10"
 theme.bg_dark       = colors.background
 theme.bg_normal     = colors.color0
 theme.bg_focus      = colors.color8
-theme.bg_urgent     = colors.color8
+theme.bg_urgent     = "#ffaa00"
 theme.bg_minimize   = colors.color8
 theme.bg_systray    = colors.background
 
 theme.fg_normal     = colors.color8
 theme.fg_focus      = colors.color4
-theme.fg_urgent     = colors.color9
+theme.fg_urgent     = colors.color0
 theme.fg_minimize   = colors.color8
 
 -- Gaps
@@ -62,11 +62,11 @@ theme.titlebar_font = "sans 10"
 theme.titlebar_title_align = "center"
 -- Titlebar position: top, bottom, left, right
 theme.titlebar_position = "top"
-theme.titlebar_bg = colors.background.."e5"
+theme.titlebar_bg = colors.background.."c0"
 -- theme.titlebar_bg_focus = colors.color12
 -- theme.titlebar_bg_normal = colors.color8
 theme.titlebar_fg_focus = colors.color15
-theme.titlebar_fg_normal = colors.color8
+theme.titlebar_fg_normal = colors.color15.."40"
 --theme.titlebar_fg = colors.color7
 
 -- Notifications
@@ -158,8 +158,8 @@ theme.tasklist_fg_normal = colors.foreground.."77"
 theme.tasklist_bg_minimize = "#00000000"
 theme.tasklist_fg_minimize = colors.color8
 -- theme.tasklist_font_minimized = "sans italic 8"
-theme.tasklist_bg_urgent = colors.background
-theme.tasklist_fg_urgent = colors.color3
+theme.tasklist_bg_urgent = "#ffaa00"
+theme.tasklist_fg_urgent = colors.color0
 theme.tasklist_spacing = dpi(0)
 theme.tasklist_align = "center"
 
@@ -169,24 +169,23 @@ theme.sidebar_bg = colors.background
 theme.sidebar_fg = colors.color7
 theme.sidebar_opacity = 0.75
 theme.sidebar_position = "left" -- left or right
-theme.sidebar_width = dpi(512)
+theme.sidebar_width = dpi(384)
 theme.sidebar_x = 0
 theme.sidebar_y = 0
-theme.sidebar_border_radius = dpi(40)
--- theme.sidebar_border_radius = theme.border_radius
+theme.sidebar_border_radius = dpi(16)
 
 -- Dashboard
-theme.dashboard_bg = colors.color0.."e5"
+theme.dashboard_bg = colors.color0.."c0"
 theme.dashboard_fg = colors.color7
 
 -- Exit screen
-theme.exit_screen_bg = colors.color0 .. "e5"
+theme.exit_screen_bg = colors.color0 .. "c0"
 theme.exit_screen_fg = colors.color7
 theme.exit_screen_font = "sans 20"
 theme.exit_screen_icon_size = dpi(180)
 
 -- Lock screen
-theme.lock_screen_bg = colors.color0.."e5"
+theme.lock_screen_bg = colors.color0.."c0"
 theme.lock_screen_fg = colors.color7
 
 -- Icon taglist
@@ -221,8 +220,8 @@ theme.taglist_text_color_empty  = { colors.background.."22", colors.background..
 
 theme.taglist_text_color_occupied  = { colors.color1.."99", colors.color2.."99", colors.color3.."99", colors.color4.."99", colors.color5.."99", colors.color6.."99", colors.color1.."99", colors.color2.."99", colors.color3.."99", colors.color4.."99" }
 theme.taglist_text_color_focused  = { colors.color9, colors.color10, colors.color11, colors.color12, colors.color13, colors.color14, colors.color9, colors.color10, colors.color11, colors.color12 }
-theme.taglist_text_color_urgent   = { colors.background, colors.background, colors.background, colors.background, colors.background, colors.background, colors.background, colors.background, colors.background, colors.background }
--- theme.taglist_text_color_urgent   = { colors.color9, colors.color10, colors.color11, colors.color12, colors.color13, colors.color14, colors.color9, colors.color10, colors.color11, colors.color12 }
+theme.taglist_text_color_urgent   = { "#ffaa00", "#ffaa00", "#ffaa00", "#ffaa00", "#ffaa00", "#ffaa00", "#ffaa00", "#ffaa00", "#ffaa00", "#ffaa00" }
+-- theme.taglist_text_color_urgent   = { colors.color0, colors.color0, colors.color0, colors.color0, colors.color0, colors.color0, colors.color0, colors.color0, colors.color0, colors.color0 }
 
 -- Prompt
 theme.prompt_fg = colors.color12
@@ -235,8 +234,8 @@ theme.taglist_bg_occupied = colors.background
 theme.taglist_fg_occupied = colors.color8
 theme.taglist_bg_empty = colors.background
 theme.taglist_fg_empty = colors.background
-theme.taglist_bg_urgent = colors.background
-theme.taglist_fg_urgent = colors.color3
+theme.taglist_bg_urgent = "#ffaa00"
+theme.taglist_fg_urgent = colors.color0
 theme.taglist_disable_icon = true
 theme.taglist_spacing = dpi(0)
 -- Generate taglist squares:
@@ -249,8 +248,8 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 )
 
 -- Variables set for theming the menu:
-theme.menu_height = dpi(35)
-theme.menu_width  = dpi(180)
+theme.menu_height = dpi(32)
+theme.menu_width  = dpi(128)
 theme.menu_bg_normal = colors.color0
 theme.menu_fg_normal= colors.color7
 theme.menu_bg_focus = colors.color8 .. "55"

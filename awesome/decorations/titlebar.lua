@@ -9,37 +9,36 @@ local decorations = require("decorations")
 -- This decoration theme will round clients according to your theme's
 -- border_radius value
 -- Disable this if using `picom` to round your corners
--- decorations.enable_rounding()
+decorations.enable_rounding()
 
 -- Button configuration
 local gen_button_size = dpi(12)
-local gen_button_margin = dpi(8)
-local gen_button_color_unfocused = colors.color8
+local gen_button_margin = dpi(6)
+local gen_button_color_unfocused = colors.color15.."20"
 local gen_button_shape = gears.shape.circle
 
 -- Add a titlebar
 client.connect_signal("request::titlebars", function(c)
     awful.titlebar(c, {font = beautiful.titlebar_font, position = beautiful.titlebar_position, size = beautiful.titlebar_size}) : setup {
-        nil,
+        {
+            helpers.horizontal_pad(gen_button_margin),
+            decorations.button(c, gen_button_shape, colors.color4, gen_button_color_unfocused, colors.color12, gen_button_size, gen_button_margin, "floating"),
+            layout = wibox.layout.fixed.horizontal
+        },
         {
             buttons = keys.titlebar_buttons,
             font = beautiful.titlebar_font,
-            align = beautiful.titlebar_title_align or "center",
-            widget = beautiful.titlebar_title_enabled and awful.titlebar.widget.titlewidget(c) or wibox.widget.textbox("")
+            align = beautiful.titlebar_title_align,
+            widget = awful.titlebar.widget.titlewidget(c)
         },
         {
-            -- AwesomeWM native buttons (images loaded from theme)
-            -- awful.titlebar.widget.minimizebutton(c),
-            -- awful.titlebar.widget.maximizedbutton(c),
-            -- awful.titlebar.widget.closebutton(c),
-
             -- Generated buttons:w
             decorations.button(c, gen_button_shape, colors.color2, gen_button_color_unfocused, colors.color10, gen_button_size, gen_button_margin, "maximize"),
             decorations.button(c, gen_button_shape, colors.color3, gen_button_color_unfocused, colors.color11, gen_button_size, gen_button_margin, "minimize"),
             decorations.button(c, gen_button_shape, colors.color1, gen_button_color_unfocused, colors.color9, gen_button_size, gen_button_margin, "close"),
 
             -- Create some extra padding at the edge
-            helpers.horizontal_pad(gen_button_margin / 2),
+            helpers.horizontal_pad(gen_button_margin),
 
             layout = wibox.layout.fixed.horizontal
         },

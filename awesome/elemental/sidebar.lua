@@ -9,8 +9,8 @@ local helpers = require("helpers")
 -- Helper function that changes the appearance of progress bars and their icons
 local function format_progress_bar(bar)
     -- Since we will rotate the bars 90 degrees, width and height are reversed
-    bar.forced_width = dpi(70)
-    bar.forced_height = dpi(30)
+    bar.forced_width = dpi(128)
+    bar.forced_height = dpi(32)
     bar.shape = gears.shape.rounded_bar
     bar.bar_shape = gears.shape.rectangle
     local w = wibox.widget{
@@ -33,9 +33,9 @@ weather_widget_icon.valign = "center"
 -- So that content does not get cropped
 -- weather_widget_icon.forced_width = dpi(50)
 local weather_widget_description = weather_widget:get_all_children()[2]
-weather_widget_description.font = "sans medium 14"
+weather_widget_description.font = "sans 14"
 local weather_widget_temperature = weather_widget:get_all_children()[3]
-weather_widget_temperature.font = "sans medium 14"
+weather_widget_temperature.font = "sans 14"
 
 local weather = wibox.widget{
     {
@@ -110,8 +110,7 @@ brightness:buttons(
         end)
 ))
 
-local hours = wibox.widget.textclock("%H")
-local minutes = wibox.widget.textclock("%M")
+local hours_minutes = wibox.widget.textclock("%-I:%M %P")
 
 local make_little_dot = function (color)
     return wibox.widget{
@@ -125,28 +124,10 @@ end
 
 local time = {
     {
-        font = "biotif extra bold 44",
-        align = "right",
+        font = "Cantarell 44",
+        align = "center",
         valign = "top",
-        widget = hours
-    },
-    {
-        nil,
-        {
-            make_little_dot(colors.color1),
-            make_little_dot(colors.color4),
-            make_little_dot(colors.color5),
-            spacing = dpi(10),
-            widget = wibox.layout.fixed.vertical
-        },
-        expand = "none",
-        widget = wibox.layout.align.vertical
-    },
-    {
-        font = "biotif extra bold 44",
-        align = "left",
-        valign = "top",
-        widget = minutes
+        widget = hours_minutes
     },
     spacing = dpi(20),
     layout = wibox.layout.fixed.horizontal
@@ -196,7 +177,7 @@ local search_icon = wibox.widget {
 }
 
 local reset_search_icon = function ()
-    search_icon.markup = helpers.colorize_text("\u{F0DA5}", colors.color3)
+    search_icon.markup = helpers.colorize_text("\u{F006E}", colors.color3)
 end
 reset_search_icon()
 

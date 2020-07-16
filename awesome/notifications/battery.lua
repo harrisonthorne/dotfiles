@@ -1,5 +1,4 @@
 local helpers = require("helpers")
-local icons = require("icons")
 local notifications = require("notifications")
 
 -- Helper variables
@@ -24,7 +23,7 @@ awesome.connect_signal("evil::battery", function(battery)
         return
     end
     if not charger_plugged then
-        icon = icons.image.battery
+        -- icon = icons.image.battery
         if battery <= user.battery_threshold_critical and not battery_critical_already_notified then
             battery_critical_already_notified = true
             message = "CRITICAL"
@@ -37,7 +36,7 @@ awesome.connect_signal("evil::battery", function(battery)
             timeout = 6
         end
     else
-        icon = icons.image.battery_charging
+        -- icon = icons.image.battery_charging
         if battery > battery_full_threshold and not battery_full_already_notified then
             battery_full_already_notified = true
             message = "Full"
@@ -48,7 +47,7 @@ awesome.connect_signal("evil::battery", function(battery)
 
     -- If message has been initialized, then we need to send a notification
     if message then
-        notif = notifications.notify_dwim({ title = "Battery", message = message, icon = icon, timeout = timeout, app_name = "battery" }, notif)
+        notif = notifications.notify_dwim({ title = "Battery", message = message, timeout = timeout, app_name = "battery" }, notif)
     end
 end)
 
@@ -63,17 +62,17 @@ awesome.connect_signal("evil::charger", function(plugged)
         -- Avoids notifying of a full battery if it was almost full after plugging
         battery_full_already_notified = battery_current > battery_full_threshold
         message = "Plugged"
-        icon = icons.image.battery_charging
+        -- icon = icons.image.battery_charging
     else
         battery_full_already_notified = false
         message = "Unplugged"
-        icon = icons.image.battery
+        -- icon = icons.image.battery
     end
 
     -- Do not send a notification the first time (when AwesomeWM (re)starts)
     if charger_first_time then
         charger_first_time = false
     else
-        notif = notifications.notify_dwim({ title = "Charger", message = message, icon = icon, timeout = 3, app_name = "charger" }, notif)
+        notif = notifications.notify_dwim({ title = "Charger", message = message, timeout = 3, app_name = "charger" }, notif)
     end
 end)

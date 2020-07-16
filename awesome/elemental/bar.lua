@@ -27,8 +27,7 @@ local dock_placement = function(w)
 end
 
 local tag_colors_empty = { "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000" }
-
-local tag_colors_urgent = { colors.foreground, colors.foreground, colors.foreground, colors.foreground, colors.foreground, colors.foreground, colors.foreground, colors.foreground, colors.foreground, colors.foreground }
+local tag_colors_urgent = { "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff" }
 
 local tag_colors_focused = {
     colors.color1,
@@ -44,16 +43,16 @@ local tag_colors_focused = {
 }
 
 local tag_colors_occupied = {
-    colors.color1.."45",
-    colors.color5.."45",
-    colors.color4.."45",
-    colors.color6.."45",
-    colors.color2.."45",
-    colors.color3.."45",
-    colors.color1.."45",
-    colors.color5.."45",
-    colors.color4.."45",
-    colors.color6.."45",
+    colors.color1.."80",
+    colors.color5.."80",
+    colors.color4.."80",
+    colors.color6.."80",
+    colors.color2.."80",
+    colors.color3.."80",
+    colors.color1.."80",
+    colors.color5.."80",
+    colors.color4.."80",
+    colors.color6.."80",
 }
 
 -- Helper function that updates a taglist item
@@ -102,10 +101,10 @@ awful.screen.connect_for_each_screen(function(s)
         ontop = false,
         type = "dock",
         position = "top",
-        height = dpi(10),
+        height = dpi(32),
         -- position = "left",
         -- width = dpi(6),
-        bg = "#00000000",
+        bg = colors.background .. "c0",
     })
 
     s.taglist_box:setup {
@@ -197,31 +196,31 @@ awful.screen.connect_for_each_screen(function(s)
         autohide()
     end)
 
-    -- Create a system tray widget
-    s.systray = wibox.widget.systray()
-    -- Create the tray box
-    s.traybox = wibox({ screen = s, width = dpi(150), height = beautiful.wibar_height, bg = "#00000000", visible = false, ontop = true})
-    s.traybox:setup {
-        {
-            {
-                nil,
-                s.systray,
-                expand = "none",
-                layout = wibox.layout.align.horizontal,
-            },
-            margins = dpi(10),
-            widget = wibox.container.margin
-        },
-        bg = beautiful.bg_systray,
-        shape = helpers.rrect(beautiful.border_radius),
-        widget = wibox.container.background
-    }
-    awful.placement.bottom_right(s.traybox, { margins = beautiful.useless_gap * 2 })
-    s.traybox:buttons(gears.table.join(
-        awful.button({ }, 2, function ()
-            s.traybox.visible = false
-        end)
-    ))
+    -- -- Create a system tray widget
+    -- s.systray = wibox.widget.systray()
+    -- -- Create the tray box
+    -- s.traybox = wibox({ screen = s, width = dpi(150), height = beautiful.wibar_height, bg = "#00000000", visible = false, ontop = true})
+    -- s.traybox:setup {
+    --     {
+    --         {
+    --             nil,
+    --             s.systray,
+    --             expand = "none",
+    --             layout = wibox.layout.align.horizontal,
+    --         },
+    --         margins = dpi(10),
+    --         widget = wibox.container.margin
+    --     },
+    --     bg = beautiful.bg_systray,
+    --     shape = helpers.rrect(beautiful.border_radius),
+    --     widget = wibox.container.background
+    -- }
+    -- awful.placement.bottom_right(s.traybox, { margins = beautiful.useless_gap * 2 })
+    -- s.traybox:buttons(gears.table.join(
+    --     awful.button({ }, 2, function ()
+    --         s.traybox.visible = false
+    --     end)
+    -- ))
 end)
 
 awesome.connect_signal("elemental::dismiss", function()
@@ -234,7 +233,7 @@ function wibars_toggle()
     local s = awful.screen.focused()
     s.dock.visible = not s.dock.visible
 end
-function tray_toggle()
-    local s = awful.screen.focused()
-    s.traybox.visible = not s.traybox.visible
-end
+-- function tray_toggle()
+--     local s = awful.screen.focused()
+--     s.traybox.visible = not s.traybox.visible
+-- end

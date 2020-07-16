@@ -19,7 +19,6 @@ awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/autostart.sh")
 local theme = "amarena"
 local decoration_theme = "ephemeral"
 local bar_theme = "amarena"
-local icon_theme = "linebit"
 local notification_theme = "amarena"
 local sidebar_theme = "amarena"
 local dashboard_theme = "amarena"
@@ -59,14 +58,6 @@ user = {
         hide_on_mouse_leave = true,
         show_on_mouse_screen_edge = true,
     },
-
-    -- >> Lock screen <<
-    -- This password will ONLY be used if you have not installed
-    -- https://github.com/RMTT/lua-pam
-    -- as described in the README instructions
-    -- Leave it empty in order to unlock with just the Enter key.
-    -- lock_screen_custom_password = "",
-    lock_screen_custom_password = "awesome",
 
     -- >> Battery <<
     -- You will receive notifications when your battery reaches these
@@ -127,10 +118,6 @@ end)
 -- Features
 -- ===================================================================
 
--- Initialize icons array and load icon theme
-local icons = require("icons")
-icons.init(icon_theme)
-
 -- Keybinds and mousebinds
 local keys = require("keys")
 
@@ -158,11 +145,6 @@ require("elemental.sidebar")
 -- Dashboard (previously called: Start screen)
 require("elemental.dashboard")
 
--- Lock screen
--- Make sure to install lua-pam as described in the README or configure your
--- custom password in the 'user' section above
-local lock_screen = require("elemental.lock_screen")
-lock_screen.init()
 -- App drawer
 require("elemental.app_drawer")
 -- Window switcher
@@ -185,46 +167,35 @@ screen_height = awful.screen.focused().geometry.height
 -- Layouts
 -- ===================================================================
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
+awful.layout.append_default_layouts({
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.max,
-    --awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
-    --awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.corner.nw,
-    --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.ne,
-    --awful.layout.suit.corner.sw,
-    --awful.layout.suit.corner.se,
-}
+    -- awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.tile.top,
+    awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal,
+    -- awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.bottom,
+    -- awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.corner.nw,
+    -- awful.layout.suit.magnifier,
+    -- awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
+    -- awful.layout.suit.corner.se,
+})
 
 -- Wallpaper
 -- ===================================================================
 local function set_wallpaper(s)
     -- Wallpaper
-    if beautiful.wallpaper then
-        -- local wallpaper = beautiful.wallpaper
-        -- -- If wallpaper is a function, call it with the screen
-        -- if type(wallpaper) == "function" then
-        --     wallpaper = wallpaper(s)
-        -- end
+    awful.spawn.easy_async_with_shell('wpg -c', function(stdout, _, __, ___) 
+        local wallpaper = os.getenv("HOME") .. "/Pictures/Wallpapers/Photos/" .. (stdout:match "^%s*(.-)%s*$")
+        print(wallpaper)
 
-        -- >> Method 1: Built in wallpaper function
-        gears.wallpaper.fit(wallpaper, s, true)
         gears.wallpaper.maximized(wallpaper, s, true)
-
-        -- >> Method 2: Set theme's wallpaper with feh
-        --awful.spawn.with_shell("feh --bg-fill " .. wallpaper)
-
-        -- >> Method 3: Set last wallpaper with feh
-        -- awful.spawn.with_shell(os.getenv("HOME") .. "/.config/wpg/wp_init.sh")
-    end
+    end)
 end
 
 -- Set wallpaper

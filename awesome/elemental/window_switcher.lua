@@ -5,8 +5,6 @@ local helpers = require("helpers")
 local keys = require("keys")
 local gears = require("gears")
 local capi = { screen = screen, client = client }
-local icons = require("icons")
-local class_icons = icons.text.by_class
 
 -- TODO ability to switch to specific minimized clients without using the mouse:
 -- Might need to ditch the "easy" tasklist approach for something manual
@@ -69,8 +67,8 @@ awful.screen.connect_for_each_screen(function(s)
             id = "bg_role",
             widget = wibox.container.background,
             create_callback = function(self, c, _, __)
-                local i = class_icons[c.class] or class_icons['_']
-                self:get_children_by_id('text_icon')[1].markup = helpers.colorize_text(i.symbol, i.color)
+                -- local i = class_icons[c.class] or class_icons['_']
+                -- self:get_children_by_id('text_icon')[1].markup = helpers.colorize_text(i.symbol, i.color)
             end,
         },
     }

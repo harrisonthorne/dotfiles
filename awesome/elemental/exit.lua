@@ -13,20 +13,8 @@ local poweroff_text_icon = ""
 local reboot_text_icon = ""
 local suspend_text_icon = ""
 local exit_text_icon = ""
--- local exit_text_icon = ""
--- local poweroff_text_icon = ""
--- local reboot_text_icon = ""
--- local suspend_text_icon = ""
--- local exit_text_icon = ""
 local lock_text_icon = ""
 
--- Material Design Icons symbols
--- local icon_font = "Material Design Icons 90"
--- local poweroff_text_icon = ""
--- local reboot_text_icon = ""
--- local suspend_text_icon = ""
--- local exit_text_icon = ""
--- local lock_text_icon = ""
 
 local button_bg = colors.color0
 local button_size = dpi(120)

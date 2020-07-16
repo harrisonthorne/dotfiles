@@ -224,34 +224,34 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "quit awesome", group = "awesome"}),
 
-    -- TODO: This key should lock the desktop
-    -- awful.key({ superkey }, "Escape",
-    --     function ()
-    --         -- lock()
-    --     end,
-    --     {description = "lock", group = "awesome"}),
+    -- Lock
+    awful.key({ superkey }, "Escape",
+        function ()
+            awful.spawn.with_shell(os.getenv("HOME").."/.config/i3/lock.sh")
+        end,
+        {description = "lock", group = "awesome"}),
 
-    -- TODO: These should focus different outputs
-    -- awful.key({ superkey, altkey }, "h",   
-    --     function () 
-    --         awful.tag.incnmaster( 1, nil, true) 
-    --     end,
-    --     {description = "increase the number of master clients", group = "layout"}),
-    -- awful.key({ superkey, altkey }, "l",   
-    --     function () 
-    --         awful.tag.incnmaster(-1, nil, true) 
-    --     end,
-    --     {description = "decrease the number of master clients", group = "layout"}),
-    -- awful.key({ superkey, altkey }, "Left",   
-    --     function () 
-    --         awful.tag.incnmaster( 1, nil, true) 
-    --     end,
-    --     {description = "increase the number of master clients", group = "layout"}),
-    -- awful.key({ superkey, altkey }, "Right",   
-    --     function () 
-    --         awful.tag.incnmaster(-1, nil, true) 
-    --     end,
-    --     {description = "decrease the number of master clients", group = "layout"}),
+    -- increase/decrease master clients
+    awful.key({ superkey, ctrlkey }, "k",   
+        function () 
+            awful.tag.incnmaster( 1, nil, true) 
+        end,
+        {description = "increase the number of master clients", group = "layout"}),
+    awful.key({ superkey, ctrlkey }, "j",   
+        function () 
+            awful.tag.incnmaster(-1, nil, true) 
+        end,
+        {description = "decrease the number of master clients", group = "layout"}),
+    awful.key({ superkey, ctrlkey }, "Up",   
+        function () 
+            awful.tag.incnmaster( 1, nil, true) 
+        end,
+        {description = "increase the number of master clients", group = "layout"}),
+    awful.key({ superkey, ctrlkey }, "Down",   
+        function () 
+            awful.tag.incnmaster(-1, nil, true) 
+        end,
+        {description = "decrease the number of master clients", group = "layout"}),
 
     -- Number of columns
     awful.key({ superkey }, "\\",   
@@ -271,17 +271,56 @@ keys.globalkeys = gears.table.join(
     --awful.key({ superkey, shiftkey   }, "space", function () awful.layout.inc(-1)                end,
     --{description = "select previous", group = "layout"}),
 
-    -- Prompt
-    --awful.key({ superkey },            "d",     function () awful.screen.focused().mypromptbox:run() end,
-    --{description = "run prompt", group = "launcher"}),
-    --
     -- App shortcuts {{{
     -- Spawn terminal
     awful.key({ superkey }, "Return", function () awful.spawn(user.terminal) end,
         {description = "open a terminal", group = "launcher"}),
+    --
+    -- Pomodoro timer TODO: I'd like this
+    awful.key({ superkey }, "slash", function() awful.spawn.with_shell("pomodoro") end,
+        {description = "pomodoro", group = "launcher"}),
+
+    -- Spawn file manager
+    awful.key({ superkey }, "e", apps.file_manager,
+        {description = "file manager", group = "launcher"}),
+
+    -- Spawn music client
+    awful.key({ superkey }, "b", apps.music,
+        {description = "music client", group = "launcher"}),
+
+    -- Quick note
+    awful.key({ superkey, ctrlkey }, "n", apps.quick_note,
+        {description = "markdown scratchpad", group = "launcher"}),
+
+    -- Browser
+    awful.key({ superkey }, "w", apps.browser,
+        {description = "browser", group = "launcher"}),
+
+    -- Editor
+    awful.key({ superkey }, "n", apps.editor,
+        {description = "editor", group = "launcher"}),
+
+    -- htop
+    awful.key({ superkey }, "p", apps.process_monitor,
+        {description = "process monitor", group = "launcher"}),
+
+    -- ponies
+    awful.key({ superkey, shiftkey }, "p", apps.ponies),
+    -- }}}
+
+    -- redshift toggle
+    awful.key({ superkey, ctrlkey }, "r", apps.toggle_redshift),
     -- }}}
 
     -- Rofi shortcuts {{{
+    -- TODO: might be nice
+    -- -- Network dialog: nmapplet rofi frontend
+    -- awful.key({ superkey }, "F11", function() awful.spawn("networks-rofi") end,
+    --     {description = "spawn network dialog", group = "launcher"}),
+
+    -- Toggle wibar(s)
+    -- awful.key({ superkey }, "b", function() wibars_toggle() end,
+    --     {description = "show or hide wibar(s)", group = "awesome"}),
     -- Run program (d for dmenu ;)
     awful.key({ superkey }, "d",
         function()
@@ -289,6 +328,11 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "launch an app", group = "launcher"}),
     -- }}}
+
+    -- Sidebar {{{
+    -- Toggle sidebar
+    awful.key({ superkey }, "grave", function() sidebar_toggle() end,
+        {description = "show or hide sidebar", group = "awesome"}),
 
     -- Run
     awful.key({ superkey }, "r",
@@ -308,9 +352,10 @@ keys.globalkeys = gears.table.join(
             end
         end,
         {description = "activate sidebar web search prompt", group = "awesome"}),
+    -- }}}
 
     -- Dismiss notifications and elements that connect to the dismiss signal
-    awful.key( { ctrlkey }, "space",
+    awful.key( { ctrlkey }, "Escape",
         function()
             awesome.emit_signal("elemental::dismiss")
             naughty.destroy_all_notifications()
@@ -362,8 +407,8 @@ keys.globalkeys = gears.table.join(
     -- Screenshots {{{
     awful.key( { superkey }, "Print", function() apps.screenshot("full") end,
         {description = "take screenshot", group = "screenshots"}),
-    -- awful.key( { superkey, altkey }, "Print", function() apps.screenshot("clipboard") end,
-    --     {description = "copy full screenshot to clipboard", group = "screenshots"}),
+    awful.key( { superkey, altkey }, "Print", function() apps.screenshot("full-copy") end,
+        {description = "copy full screenshot to clipboard", group = "screenshots"}),
     awful.key( { superkey, ctrlkey }, "Print", function() apps.screenshot("selection") end,
         {description = "take area screenshot", group = "screenshots"}),
     awful.key( { superkey, ctrlkey, altkey }, "Print", function() apps.screenshot("clipboard") end,
@@ -436,48 +481,7 @@ keys.globalkeys = gears.table.join(
     -- App drawer
     awful.key({ superkey, shiftkey }, "a", function()
         app_drawer_show() end,
-        {description = "App drawer", group = "custom"}),
-
-    -- Pomodoro timer TODO: I'd like this
-    awful.key({ superkey }, "slash", function()
-        awful.spawn.with_shell("pomodoro")
-                                     end,
-        {description = "pomodoro", group = "launcher"}),
-
-    -- Spawn file manager
-    awful.key({ superkey }, "e", apps.file_manager,
-        {description = "file manager", group = "launcher"}),
-
-    -- Spawn music client
-    awful.key({ superkey }, "b", apps.music,
-        {description = "music client", group = "launcher"}),
-
-    -- TODO: might be nice
-    -- -- Network dialog: nmapplet rofi frontend
-    -- awful.key({ superkey }, "F11", function() awful.spawn("networks-rofi") end,
-    --     {description = "spawn network dialog", group = "launcher"}),
-
-    -- Toggle sidebar
-    awful.key({ superkey }, "grave", function() sidebar_toggle() end,
-        {description = "show or hide sidebar", group = "awesome"}),
-
-    -- Toggle wibar(s)
-    -- awful.key({ superkey }, "b", function() wibars_toggle() end,
-    --     {description = "show or hide wibar(s)", group = "awesome"}),
-
-    -- Markdown input scratchpad
-    -- For quickly typing markdown comments and pasting them in
-    -- the browser
-    awful.key({ superkey, ctrlkey }, "n", apps.markdown_input,
-        {description = "markdown scratchpad", group = "launcher"}),
-
-    -- Editor
-    awful.key({ superkey }, "n", apps.editor,
-        {description = "editor", group = "launcher"}),
-
-    -- htop
-    awful.key({ superkey }, "p", apps.process_monitor,
-        {description = "process monitor", group = "launcher"})
+        {description = "App drawer", group = "custom"})
 )
 
 keys.clientkeys = gears.table.join(
@@ -547,25 +551,8 @@ keys.clientkeys = gears.table.join(
     --     c:relative_move(dpi( 20), 0, 0, 0)
     -- end),
 
-    -- -- Toggle titlebars (for focused client only)
-    -- TODO: probably not needed
-    -- awful.key({ superkey,           }, "t",
-    --     function (c)
-    --         decorations.cycle(c)
-    --     end,
-    --     {description = "toggle titlebar", group = "client"}),
-    -- -- Toggle titlebars (for all visible clients in selected tag)
-    -- awful.key({ superkey, shiftkey }, "t",
-    --     function (c)
-    --         local clients = awful.screen.focused().clients
-    --         for _, c in pairs(clients) do
-    --             decorations.cycle(c)
-    --         end
-    --     end,
-    --     {description = "toggle titlebar", group = "client"}),
-
     -- Toggle fullscreen
-    awful.key({ superkey,           }, "f",
+    awful.key({ superkey }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
             c:raise()
@@ -573,21 +560,21 @@ keys.clientkeys = gears.table.join(
         {description = "toggle fullscreen", group = "client"}),
 
     -- F for focused view
-    awful.key({ superkey, ctrlkey  }, "f",
+    awful.key({ superkey, ctrlkey }, "f",
         function (c)
             helpers.float_and_resize(c, screen_width * 0.7, screen_height * 0.75)
         end,
         {description = "focus mode", group = "client"}),
 
     -- V for vertical view
-    awful.key({ superkey, ctrlkey  }, "v",
+    awful.key({ superkey, ctrlkey }, "v",
         function (c)
             helpers.float_and_resize(c, screen_width * 0.45, screen_height * 0.90)
         end,
         {description = "focus mode", group = "client"}),
 
     -- T for tiny window
-    awful.key({ superkey, ctrlkey  }, "t",
+    awful.key({ superkey, ctrlkey }, "t",
         function (c)
             helpers.float_and_resize(c, screen_width * 0.3, screen_height * 0.35)
         end,
@@ -954,9 +941,6 @@ return keys
 -- # mako notifications
 -- Control+Escape exec makoctl dismiss
 -- Super+Space exec makoctl invoke
--- 
--- # toggle tiling / floating
--- Super+s floating toggle; border normal 4
 -- 
 -- # start mivy
 -- Super+d exec mivy

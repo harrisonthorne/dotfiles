@@ -12,28 +12,28 @@ end
 
 -- Text icons
 -- 'Material Design Icons' font
--- local sun_icon = ""
--- local moon_icon = ""
--- local dcloud_icon = ""
--- local ncloud_icon = ""
--- local cloud_icon = ""
--- local rain_icon = ""
--- local storm_icon = ""
--- local snow_icon = ""
--- local mist_icon = ""
--- local whatever_icon = ""
+-- local sun_icon = "\u{}"
+-- local moon_icon = "\u{}"
+-- local dcloud_icon = "\u{}"
+-- local ncloud_icon = "\u{}"
+-- local cloud_icon = "\u{}"
+-- local rain_icon = "\u{}"
+-- local storm_icon = "\u{}"
+-- local snow_icon = "\u{}"
+-- local mist_icon = "\u{}"
+-- local whatever_icon = "\u{}"
 
 -- 'Material Design Icons' font (filled variant)
-local sun_icon = ""
-local moon_icon = ""
-local dcloud_icon = ""
-local ncloud_icon = ""
-local cloud_icon = ""
-local rain_icon = ""
-local storm_icon = ""
-local snow_icon = ""
-local mist_icon = ""
-local whatever_icon = ""
+local sun_icon = "\u{F0599}"
+local moon_icon = "\u{F0594}"
+local dcloud_icon = "\u{F0595}"
+local ncloud_icon = "\u{F0F31}"
+local cloud_icon = "\u{F0590}"
+local rain_icon = "\u{F0596}"
+local storm_icon = "\u{F0593}"
+local snow_icon = "\u{F0598}"
+local mist_icon = "\u{F0591}"
+local whatever_icon = "\u{F0595}"
 
 local weather_description = wibox.widget{
     -- text = "Weather unavailable",
