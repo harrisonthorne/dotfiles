@@ -1,7 +1,6 @@
 configuration {
     theme: "muse";
 	columns: 10;
-    rows: 1;
 	show-icons: true;
     location: 6;
 }

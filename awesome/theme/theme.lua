@@ -123,7 +123,7 @@ theme.separator_fg = colors.color8
 -- Wibar(s)
 -- Keep in mind that these settings could be ignored by the bar theme
 theme.wibar_position = "bottom"
-theme.wibar_height = dpi(45)
+theme.wibar_height = dpi(64)
 theme.wibar_fg = colors.background
 theme.wibar_bg = colors.foreground
 --theme.wibar_opacity = 0.7

@@ -76,11 +76,11 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = keys.taglist_buttons,
         layout = {
             spacing = 10,
-            spacing_widget = {
-                color  = '#00ff00',
-                shape  = gears.shape.circle,
-                widget = wibox.widget.separator,
-            },
+            -- spacing_widget = {
+            --     color  = '#00ff00',
+            --     shape  = gears.shape.circle,
+            --     widget = wibox.widget.separator,
+            -- },
             layout = wibox.layout.flex.horizontal,
         },
         widget_template = {
