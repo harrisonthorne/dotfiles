@@ -110,8 +110,6 @@ brightness:buttons(
         end)
 ))
 
-local hours_minutes = wibox.widget.textclock("%-I:%M %P")
-
 local make_little_dot = function (color)
     return wibox.widget{
         bg = color,
@@ -122,11 +120,14 @@ local make_little_dot = function (color)
     }
 end
 
+local hours_minutes = wibox.widget.textclock("<span color='" .. colors.color15 .. "'>%-I:%M %P</span>")
+
 local time = {
     {
         font = "Cantarell 44",
         align = "center",
         valign = "top",
+        fg_color = colors.color15,
         widget = hours_minutes
     },
     spacing = dpi(20),
@@ -359,20 +360,21 @@ helpers.add_hover_cursor(cute_battery_face, "hand1")
 
 
 -- Create the sidebar
-sidebar = wibox({visible = false, ontop = true, type = "dock", screen = screen.primary})
-sidebar.bg = "#00000000" -- For anti aliasing
+sidebar = wibox({visible = false, ontop = true, screen = screen.primary})
+-- sidebar.bg = "#00000000" -- For anti aliasing
 sidebar.fg = beautiful.sidebar_fg or beautiful.wibar_fg or "#FFFFFF"
 sidebar.opacity = beautiful.sidebar_opacity or 1
 sidebar.height = screen.primary.geometry.height
 sidebar.width = beautiful.sidebar_width or dpi(300)
-sidebar.y = beautiful.sidebar_y or 0
+sidebar.x = 0
+sidebar.y = 0
 local radius = beautiful.sidebar_border_radius or 0
 if beautiful.sidebar_position == "right" then
     awful.placement.top_right(sidebar)
 else
     awful.placement.top_left(sidebar)
 end
-awful.placement.maximize_vertically(sidebar, { honor_workarea = true, margins = { top = beautiful.useless_gap * 2 } })
+awful.placement.maximize_vertically(sidebar, { honor_workarea = true })
 
 sidebar:buttons(gears.table.join(
     -- Middle click - Hide sidebar
@@ -437,7 +439,7 @@ sidebar:setup {
     {
         { ----------- TOP GROUP -----------
             {
-                helpers.vertical_pad(dpi(30)),
+                helpers.vertical_pad(dpi(32)),
                 {
                     nil,
                     {
@@ -448,9 +450,9 @@ sidebar:setup {
                     expand = "none",
                     layout = wibox.layout.align.horizontal
                 },
-                helpers.vertical_pad(dpi(20)),
+                helpers.vertical_pad(dpi(24)),
                 day_of_the_week,
-                helpers.vertical_pad(dpi(25)),
+                helpers.vertical_pad(dpi(24)),
                 {
                     nil,
                     cute_battery_face,
@@ -464,13 +466,13 @@ sidebar:setup {
         },
         { ----------- MIDDLE GROUP -----------
             {
-                helpers.vertical_pad(dpi(30)),
+                helpers.vertical_pad(dpi(32)),
                 weather,
                 {
                     {
                         mpd_buttons,
                         mpd_song,
-                        spacing = dpi(5),
+                        spacing = dpi(4),
                         layout = wibox.layout.fixed.vertical
                     },
                     top = dpi(40),
@@ -487,18 +489,18 @@ sidebar:setup {
                         temperature,
                         ram,
                         brightness,
-                        spacing = dpi(5),
+                        spacing = dpi(4),
                         -- layout = wibox.layout.fixed.vertical
                         layout = wibox.layout.fixed.horizontal
                     },
                     expand = "none",
                     layout = wibox.layout.align.horizontal
                 },
-                helpers.vertical_pad(dpi(25)),
+                helpers.vertical_pad(dpi(32)),
                 layout = wibox.layout.fixed.vertical
             },
             shape = helpers.prrect(beautiful.sidebar_border_radius, false, true, false, false),
-            bg = colors.color0.."66",
+            bg = colors.color0.."80",
             widget = wibox.container.background
         },
         { ----------- BOTTOM GROUP -----------
@@ -510,7 +512,7 @@ sidebar:setup {
                         expand = "none",
                         layout = wibox.layout.align.horizontal,
                     },
-                    helpers.vertical_pad(dpi(30)),
+                    helpers.vertical_pad(dpi(32)),
                     {
                         nil,
                         search,
@@ -519,17 +521,17 @@ sidebar:setup {
                     },
                     layout = wibox.layout.fixed.vertical
                 },
-                left = dpi(20),
-                right = dpi(20),
-                bottom = dpi(30),
+                left = dpi(24),
+                right = dpi(24),
+                bottom = dpi(32),
                 widget = wibox.container.margin
             },
-            bg = colors.color0.."66",
+            bg = colors.color0.."80",
             widget = wibox.container.background
         },
         layout = wibox.layout.align.vertical,
     },
-    shape = helpers.prrect(beautiful.sidebar_border_radius, false, true, false, false),
-    bg = beautiful.sidebar_bg or beautiful.wibar_bg or "#111111",
+    shape = helpers.rrect(beautiful.sidebar_border_radius),
+    bg = beautiful.sidebar_bg,
     widget = wibox.container.background
 }

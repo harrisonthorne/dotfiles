@@ -8,15 +8,14 @@ local beautiful = require("beautiful")
 local dummy_textclock = wibox.widget.textclock("%M")
 dummy_textclock.visible = false
 
-local dotw_initials = {"M", "T", "W", "T", "F", "S", "S"}
+local dotw_initials = {"S", "M", "T", "W", "T", "F", "S"}
 local dotw_colors = {
-    colors.color9,
-    colors.color9,
-    colors.color9,
-    colors.color9,
-    colors.color9,
-    -- Different color for weekends ^_^
     colors.color13,
+    colors.color15,
+    colors.color15,
+    colors.color15,
+    colors.color15,
+    colors.color15,
     colors.color13,
 }
 
@@ -34,8 +33,6 @@ local create_dotw_container = function (text, color)
         text,
         forced_height = dpi(25),
         forced_width = dpi(25),
-        bg = color,
-        shape = gears.shape.circle,
         -- shape = gears.shape.rounded_rect, 
         widget = wibox.container.background()
     }
@@ -67,15 +64,15 @@ local day_of_the_week = wibox.widget {
 }
 
 local update_dotw = function ()
-    awful.spawn.easy_async_with_shell("date +%u", function (out)
-        local index = tonumber(out)
+    awful.spawn.easy_async_with_shell("date +%w", function (out)
+        local index = tonumber(out) + 1
         for i=1,7 do
-            dotw_containers[i].bg = "#00000000"
+            dotw_containers[i].fg = colors.inactive
             -- dotw_textboxes[i].markup = 
             --     "<span foreground='" .. colors.color8 .."'>"
             --     .. dotw_initials[i] .. "</span>"
         end
-        dotw_containers[index].bg = dotw_colors[index]
+        dotw_containers[index].fg = dotw_colors[index]
         -- dotw_textboxes[index].markup = 
         --     "<span foreground='" .. dotw_colors[index] .."'>"
         --     .. dotw_initials[index] .. "</span>"

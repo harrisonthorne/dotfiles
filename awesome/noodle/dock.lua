@@ -156,7 +156,7 @@ local function generate_dock_icon(c, bg, fg, symbol)
                 visible = not c.ghost,
                 layout = wibox.layout.stack
             },
-            spacing = indicator_spacing,
+            spacing = dpi(8),
             layout = wibox.layout.fixed.vertical
         },
         left = item_margin,
@@ -244,7 +244,7 @@ local function generate_dock_icon(c, bg, fg, symbol)
             rofi_input = rofi_input:sub(1, #rofi_input - 1)
 
             -- Pass lines to rofi and get user choice
-            awful.spawn.easy_async_with_shell('echo "'..rofi_input..'" | rofi -format d -markup-rows -i -matching fuzzy -dmenu -p " Pick window:"', function(out, _, __, exit_code)
+            awful.spawn.easy_async_with_shell('echo "'..rofi_input..'" | rofi -format d -markup-rows -i -matching fuzzy -dmenu -p "Which window?"', function(out, _, __, exit_code)
                 -- If user did not cancel rofi
                 if exit_code == 0 then
                     -- Jump to chosen client
@@ -261,9 +261,6 @@ local function generate_dock_icon(c, bg, fg, symbol)
             cycle_by_class(class, true)
         end)
     ))
-
-    -- Hover cursor
-    helpers.add_hover_cursor(w, "hand1")
 
     return w
 end

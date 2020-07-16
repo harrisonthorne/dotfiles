@@ -332,7 +332,7 @@ function helpers.find_clients_and_do(match, f_do)
     end
 end
 
-function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
+function helpers.run_or_focus(match, move, spawn_cmd, spawn_args)
     local matcher = function (c)
         return awful.rules.match(c, match)
     end
@@ -342,12 +342,8 @@ function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
     for c in awful.client.iterate(matcher) do
         found = true
         c.minimized = false
-        if move then
-            c:move_to_tag(mouse.screen.selected_tag)
-            client.focus = c
-        else
-            c:jump_to()
-        end
+        c:move_to_tag(mouse.screen.selected_tag)
+        client.focus = c
         break
     end
 
@@ -358,7 +354,7 @@ function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
 end
 
 -- Run raise or minimize a client (scratchpad style)
--- Depends on helpers.run_or_raise
+-- Depends on helpers.run_or_focus
 -- If it not running, spawn it
 -- If it is running, focus it
 -- If it is focused, minimize it
@@ -367,7 +363,7 @@ function helpers.scratchpad(match, spawn_cmd, spawn_args)
     if cf and awful.rules.match(cf, match) then
         cf.minimized = true
     else
-        helpers.run_or_raise(match, true, spawn_cmd, spawn_args)
+        helpers.run_or_focus(match, true, spawn_cmd, spawn_args)
     end
 end
 

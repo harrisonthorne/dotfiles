@@ -10,62 +10,24 @@ local dock_autohide_delay = 0.5 -- seconds
 
 -- {{{ Widgets
 local update_taglist = function (item, tag, index)
-    if tag.selected then
-        item.bg = beautiful.taglist_text_color_focused[index]
-    elseif tag.urgent then
-        item.bg = beautiful.taglist_text_color_urgent[index]
+    if tag.urgent then
+        item.fg = "#ffaa00"
+        item.bg = "#00000000"
+    elseif tag.selected then
+        item.fg = colors.color15
+        item.bg = "#00000000"
     elseif #tag:clients() > 0 then
-        item.bg = beautiful.taglist_text_color_occupied[index]
+        item.fg = colors.inactive
+        item.bg = "#00000000"
     else
-        item.bg = beautiful.taglist_text_color_empty[index]
+        item.fg = "#00000000"
+        item.bg = "#00000000"
     end
 end
 
 local dock = require("noodle.dock")
 local dock_placement = function(w)
     return awful.placement.bottom(w)
-end
-
-local tag_colors_empty = { "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000", "#00000000" }
-local tag_colors_urgent = { "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff", "#ffaa00ff" }
-
-local tag_colors_focused = {
-    colors.color1,
-    colors.color5,
-    colors.color4,
-    colors.color6,
-    colors.color2,
-    colors.color3,
-    colors.color1,
-    colors.color5,
-    colors.color4,
-    colors.color6,
-}
-
-local tag_colors_occupied = {
-    colors.color1.."80",
-    colors.color5.."80",
-    colors.color4.."80",
-    colors.color6.."80",
-    colors.color2.."80",
-    colors.color3.."80",
-    colors.color1.."80",
-    colors.color5.."80",
-    colors.color4.."80",
-    colors.color6.."80",
-}
-
--- Helper function that updates a taglist item
-local update_taglist = function (item, tag, index)
-    if tag.selected then
-        item.bg = tag_colors_focused[index]
-    elseif tag.urgent then
-        item.bg = tag_colors_urgent[index]
-    elseif #tag:clients() > 0 then
-        item.bg = tag_colors_occupied[index]
-    else
-        item.bg = tag_colors_empty[index]
-    end
 end
 
 awful.screen.connect_for_each_screen(function(s)
@@ -81,7 +43,7 @@ awful.screen.connect_for_each_screen(function(s)
             --     shape  = gears.shape.circle,
             --     widget = wibox.widget.separator,
             -- },
-            layout = wibox.layout.flex.horizontal,
+            layout = wibox.layout.fixed.horizontal,
         },
         widget_template = {
             widget = wibox.container.background,
@@ -117,7 +79,7 @@ awful.screen.connect_for_each_screen(function(s)
         visible = false,
         bg = "#00000000",
         ontop = true,
-        type = "dock",
+        -- type = "dock",
         placement = dock_placement,
         widget = dock
     })

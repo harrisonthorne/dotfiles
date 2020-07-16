@@ -19,6 +19,8 @@ colors = {
     color13    = "#a9d5ff",
     color14    = "#85c2ff",
     color15    = "#f2fdff",
+    active     = "#6a9bcb",
+    inactive   = "#496a8c"
 }
 
 return colors

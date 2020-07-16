@@ -1,6 +1,5 @@
 local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 local helpers = require("helpers")
@@ -15,28 +14,28 @@ apps.file_manager = function ()
     awful.spawn(user.file_manager)
 end
 apps.telegram = function ()
-    helpers.run_or_raise({class = 'TelegramDesktop'}, false, "telegram")
+    helpers.run_or_focus({class = 'TelegramDesktop'}, false, "telegram")
 end
 apps.mail = function ()
-    helpers.run_or_raise({instance = 'email'}, false, user.email_client)
+    helpers.run_or_focus({instance = 'email'}, false, user.email_client)
 end
 apps.gimp = function ()
-    helpers.run_or_raise({class = 'Gimp'}, false, "gimp")
+    helpers.run_or_focus({class = 'Gimp'}, false, "gimp")
 end
 apps.steam = function ()
-    helpers.run_or_raise({class = 'Steam'}, false, "steam")
+    helpers.run_or_focus({class = 'Steam'}, false, "steam")
 end
 apps.networks = function ()
     awful.spawn.with_shell("rofi_networks")
 end
 apps.authenticator = function ()
-    helpers.run_or_raise({instance = 'authenticator'}, true, user.terminal.." --class auth -e gashell")
+    helpers.run_or_focus({instance = 'authenticator'}, true, user.terminal.." --class auth -e gashell")
 end
 apps.pavucontrol = function ()
-    helpers.run_or_raise({class = 'Pavucontrol'}, true, "pavucontrol")
+    helpers.run_or_focus({class = 'Pavucontrol'}, true, "pavucontrol")
 end
 apps.editor = function ()
-    helpers.run_or_raise({instance = 'editor'}, false, user.editor)
+    helpers.run_or_focus({instance = 'editor'}, false, user.editor)
 end
 
 -- Toggle compositor
@@ -48,8 +47,8 @@ apps.toggle_redshift = function ()
     awful.spawn.with_shell(os.getenv("HOME").."/.config/toggle_redshift.sh")
 end
 
-apps.record = function ()
-    awful.spawn.with_shell("screenrec.sh")
+apps.record_screen = function ()
+    -- TODO
 end
 
 apps.music = function ()
@@ -57,27 +56,23 @@ apps.music = function ()
 end
 
 apps.ponies = function ()
-    helpers.run_or_raise({instance = 'ponies'}, true, user.terminal.." --class ponies -e ranger ~/Videos/mlp")
+    helpers.run_or_focus({instance = 'ponies'}, true, user.file_manager.." "..os.getenv("HOME").."/Videos/mlp")
 end
 
 apps.process_monitor = function ()
-    helpers.run_or_raise({instance = 'htop'}, false, user.terminal.." --class htop -e htop")
-end
-
-apps.process_monitor_gui = function ()
-    helpers.run_or_raise({class = 'Lxtask'}, false, "lxtask")
+    helpers.run_or_focus({instance = 'htop'}, false, user.terminal.." --class htop -e htop")
 end
 
 apps.temperature_monitor = function ()
-    helpers.run_or_raise({class = 'sensors'}, false, user.terminal.." --class sensors -e watch sensors", { tag = mouse.screen.tags[5] })
+    helpers.run_or_focus({class = 'sensors'}, false, user.terminal.." --class sensors -e watch sensors", { tag = mouse.screen.tags[5] })
 end
 
 apps.battery_monitor = function ()
-    helpers.run_or_raise({class = 'battop'}, false, user.terminal.." --class battop -e battop", { tag = mouse.screen.tags[5] })
+    helpers.run_or_focus({class = 'battop'}, false, user.terminal.." --class battop -e battop", { tag = mouse.screen.tags[5] })
 end
 
 apps.quick_note = function ()
-    awful.spawn.with_shell()
+    helpers.run_or_focus({class = 'battop'}, false, user.terminal.." --class battop -e battop", { tag = mouse.screen.tags[5] })
 end
 
 -- Scratchpad terminal with tmux (see bin/scratchpad)

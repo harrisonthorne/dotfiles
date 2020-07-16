@@ -23,14 +23,16 @@ local notification_theme = "amarena"
 local sidebar_theme = "amarena"
 local dashboard_theme = "amarena"
 local exit_screen_theme = "ephemeral"
+
+local terminal = "kitty -1"
 user = {
     -- >> Default applications <<
     -- Check apps.lua for more
-    terminal = "kitty -1",
-    floating_terminal = "kitty -1",
+    terminal = terminal,
+    floating_terminal = terminal,
     browser = "firefox",
-    file_manager = "kitty -1 --class files -e ranger",
-    editor = "kitty -1 --class editor -e nvim",
+    file_manager = terminal.." --class files -e ranger",
+    editor = terminal.." --class editor -e nvim",
     email_client = "thunderbird",
     music_client = "spotify",
 
@@ -215,34 +217,16 @@ client.connect_signal("mouse::enter", function(c)
     end 
 end)
 
--- nice rounded corners
-client.connect_signal("manage", function (c)
-    c.shape = gears.shape.rounded_rect
-end)
-
 -- Tags
 -- ===================================================================
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     local l = awful.layout.suit -- Alias to save time :)
-    -- Tag layouts
-    local layouts = {
-        l.max,
-        l.max,
-        l.max,
-        l.max,
-        l.tile,
-        l.max,
-        l.max,
-        l.max,
-        l.tile,
-        l.max
-    }
 
     -- Tag names
     local tagnames = beautiful.tagnames or { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
     -- Create all tags at once (without seperate configuration for each tag)
-    awful.tag(tagnames, s, layouts)
+    awful.tag(tagnames, s, l.fair)
 
     -- Create tags with seperate configuration for each tag
     -- awful.tag.add(tagnames[1], {
@@ -287,7 +271,6 @@ awful.rules.rules = {
             raise = true,
             keys = keys.clientkeys,
             buttons = keys.clientbuttons,
-            -- screen = awful.screen.preferred,
             screen = awful.screen.focused,
             size_hints_honor = false,
             honor_workarea = true,
@@ -307,7 +290,6 @@ awful.rules.rules = {
                 "copyq",  -- Includes session name in class.
                 "floating_terminal",
                 "riotclientux.exe",
-                "leagueclientux.exe",
                 "Devtools", -- Firefox devtools
             },
             class = {
@@ -412,10 +394,10 @@ awful.rules.rules = {
             class = {
             },
             type = {
-              "splash"
+              "splash",
+              "dialog"
             },
             name = {
-                -- "^discord.com is sharing your screen.$" -- Discord (running in browser) screen sharing popup
             }
         },
         callback = function(c)
@@ -426,9 +408,9 @@ awful.rules.rules = {
     -- Titlebars ON (explicitly)
     {
         rule_any = {
-            type = {
-                "dialog",
-            },
+            -- type = {
+            --     "dialog",
+            -- },
             role = {
                 "conversation",
             }
@@ -498,33 +480,6 @@ awful.rules.rules = {
         properties = { floating = true, width = screen_width * 0.55, height = screen_height * 0.65 }
     },
 
-    -- Pavucontrol
-    {
-        rule_any = { class = { "Pavucontrol" } },
-        properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.8 }
-    },
-
-    -- Galculator
-    {
-        rule_any = { class = { "Galculator" } },
-        except_any = { type = { "dialog" } },
-        properties = { floating = true, width = screen_width * 0.2, height = screen_height * 0.4 }
-    },
-
-    -- File managers
-    {
-        rule_any = {
-            class = {
-                "Nemo",
-                "Thunar"
-            },
-        },
-        except_any = {
-            type = { "dialog" }
-        },
-        properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.55}
-    },
-
     -- Screenruler
     {
         rule_any = { class = { "Screenruler" } },
@@ -532,98 +487,6 @@ awful.rules.rules = {
         callback = function (c)
             awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
         end
-    },
-
-    -- Keepass
-    {
-        rule_any = { class = { "KeePassXC" } },
-        except_any = { name = { "KeePassXC-Browser Confirm Access" }, type = { "dialog" } },
-        properties = { floating = true, width = screen_width * 0.7, height = screen_height * 0.75},
-    },
-
-    -- Scratchpad
-    {
-        rule_any = {
-            instance = {
-                "scratchpad",
-                "markdown_input"
-            },
-            class = {
-                "scratchpad",
-                "markdown_input"
-            },
-        },
-        properties = {
-            skip_taskbar = false,
-            floating = true,
-            ontop = false,
-            minimized = true,
-            sticky = false,
-            width = screen_width * 0.7,
-            height = screen_height * 0.75
-        }
-    },
-
-    -- Markdown input
-    {
-        rule_any = {
-            instance = {
-                "markdown_input"
-            },
-            class = {
-                "markdown_input"
-            },
-        },
-        properties = {
-            skip_taskbar = false,
-            floating = true,
-            ontop = false,
-            minimized = true,
-            sticky = false,
-            width = screen_width * 0.5,
-            height = screen_height * 0.7
-        }
-    },
-
-    -- Music clients (usually a terminal running ncmpcpp)
-    {
-        rule_any = {
-            class = {
-                "music",
-            },
-            instance = {
-                "music",
-            },
-        },
-        properties = {
-            floating = true,
-            width = screen_width * 0.45,
-            height = screen_height * 0.50
-        },
-    },
-
-    -- Image viewers
-    {
-        rule_any = {
-            class = {
-                "feh",
-                "Sxiv",
-            },
-        },
-        properties = {
-            floating = true,
-            width = screen_width * 0.7,
-            height = screen_height * 0.75
-        },
-        callback = function (c)
-            awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
-        end
-    },
-
-    -- Magit window
-    {
-        rule = { instance = "Magit" },
-        properties = { floating = true, width = screen_width * 0.55, height = screen_height * 0.6 }
     },
 
     -- Steam guard
@@ -692,24 +555,24 @@ awful.rules.rules = {
 -- Signals
 -- ===================================================================
 -- Signal function to execute when a new client appears.
-client.connect_signal("manage", function (c)
-    -- For debugging awful.rules
-    -- print('c.class = '..c.class)
-    -- print('c.instance = '..c.instance)
-    -- print('c.name = '..c.name)
+-- client.connect_signal("manage", function (c)
+--     -- For debugging awful.rules
+--     -- print('c.class = '..c.class)
+--     -- print('c.instance = '..c.instance)
+--     -- print('c.name = '..c.name)
 
-    -- Set every new window as a slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    if not awesome.startup then awful.client.setslave(c) end
+--     -- Set every new window as a slave,
+--     -- i.e. put it at the end of others instead of setting it master.
+--     if not awesome.startup then awful.client.setslave(c) end
 
-    -- if awesome.startup
-    -- and not c.size_hints.user_position
-    -- and not c.size_hints.program_position then
-    --     -- Prevent clients from being unreachable after screen count changes.
-    --     awful.placement.no_offscreen(c)
-    --     awful.placement.no_overlap(c)
-    -- end
-end)
+--     -- if awesome.startup
+--     -- and not c.size_hints.user_position
+--     -- and not c.size_hints.program_position then
+--     --     -- Prevent clients from being unreachable after screen count changes.
+--     --     awful.placement.no_offscreen(c)
+--     --     awful.placement.no_overlap(c)
+--     -- end
+-- end)
 
 -- When a client starts up in fullscreen, resize it to cover the fullscreen a short moment later
 -- Fixes wrong geometry when titlebars are enabled
@@ -805,19 +668,6 @@ end)
 -- Breaks fullscreen and maximized
 -- client.disconnect_signal("request::geometry", awful.ewmh.client_geometry_requests)
 -- client.disconnect_signal("request::geometry", awful.ewmh.geometry)
-
--- Show the dashboard on login
--- Add `touch /tmp/awesomewm-show-dashboard` to your ~/.xprofile in order to make the dashboard appear on login
-local dashboard_flag_path = "/tmp/awesomewm-show-dashboard"
--- Check if file exists
-awful.spawn.easy_async_with_shell("stat "..dashboard_flag_path.." >/dev/null 2>&1", function (_, __, ___, exitcode)
-    if exitcode == 0 then
-      -- Show dashboard
-      if dashboard_show then dashboard_show() end
-      -- Delete the file
-      awful.spawn.with_shell("rm "..dashboard_flag_path)
-    end
-end)
 
 -- Garbage collection
 -- Enable for lower memory consumption

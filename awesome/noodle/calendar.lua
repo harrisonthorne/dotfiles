@@ -10,18 +10,16 @@ styles.month   = { padding      = 20,
 }
 styles.normal  = {}
 styles.focus   = { fg_color = colors.color1,
-    bg_color = colors.color5..00,
-    markup   = function(t) return '<b>' .. t .. '</b>' end,
+    text   = function(t) return t.."" end,
+    fg_color = colors.color15
 }
 styles.header  = { fg_color = colors.color4,
-    bg_color = colors.color1.."00",
-    -- markup   = function(t) return '<b>' .. t .. '</b>' end,
-    markup   = function(t) return '<span font_desc="sans bold 22">' .. t .. '</span>' end,
+    fg_color = colors.color15,
+    markup   = function(t) return '<span font_desc="sans 24">' .. t .. '</span>' end,
 }
 styles.weekday = { fg_color = colors.color7,
-    bg_color = colors.color1.."00",
-    padding  = 3,
-    markup   = function(t) return '<b>' .. t .. '</b>' end,
+    padding  = 4,
+    text   = function(t) return t.."" end,
 }
 local function decorate_cell(widget, flag, date)
     if flag=='monthheader' and not styles.monthheader then
@@ -34,9 +32,8 @@ local function decorate_cell(widget, flag, date)
     -- Change bg color for weekends
     local d = {year=date.year, month=(date.month or 1), day=(date.day or 1)}
     local weekday = tonumber(os.date('%w', os.time(d)))
-    local default_fg = colors.color7
+    local default_fg = colors.inactive
     local default_bg = colors.color0.."00"
-    -- local default_bg = (weekday==0 or weekday==6) and colors.color6 or colors.color14
     local ret = wibox.widget {
         {
             widget,
@@ -55,11 +52,12 @@ end
 
 calendar_widget = wibox.widget {
     date     = os.date('*t'),
-    font     = "sans medium 13",
+    font     = "sans 12",
     long_weekdays = false,
-    spacing  = dpi(3),
+    spacing  = dpi(4),
     fn_embed = decorate_cell,
-    widget   = wibox.widget.calendar.month
+    widget   = wibox.widget.calendar.month,
+    start_sunday = true
 }
 
 local current_month = os.date('*t').month

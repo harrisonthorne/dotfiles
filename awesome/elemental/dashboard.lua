@@ -9,7 +9,7 @@ local apps = require("apps")
 local keygrabber = require("awful.keygrabber")
 
 -- Appearance
-local box_radius = beautiful.dashboard_box_border_radius or dpi(12)
+local box_radius = beautiful.dashboard_box_border_radius or dpi(16)
 local box_gap = dpi(6)
 
 -- Get screen geometry
@@ -17,7 +17,7 @@ local screen_width = awful.screen.focused().geometry.width
 local screen_height = awful.screen.focused().geometry.height
 
 -- Create the widget
-dashboard = wibox({visible = false, ontop = true, type = "dock", screen = screen.primary})
+dashboard = wibox({visible = false, ontop = true, screen = screen.primary})
 awful.placement.maximize(dashboard)
 
 dashboard.bg = beautiful.dashboard_bg or beautiful.exit_screen_bg or beautiful.wibar_bg or "#111111"

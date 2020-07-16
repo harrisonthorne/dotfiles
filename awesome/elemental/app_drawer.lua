@@ -89,7 +89,7 @@ restart_awesome:buttons(gears.table.join(
 ))
 
 -- Create the widget
-app_drawer = wibox({visible = false, ontop = true, type = "dock"})
+app_drawer = wibox({visible = false, ontop = true})
 awful.placement.maximize(app_drawer)
 
 app_drawer.bg = "#00000000"

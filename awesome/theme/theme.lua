@@ -1,5 +1,4 @@
 local awful = require("awful")
-local wibox = require("wibox")
 local gears = require("gears")
 local theme_name = "amarena"
 local theme_assets = require("beautiful.theme_assets")
@@ -50,7 +49,7 @@ theme.border_width  = dpi(0)
 theme.border_normal = colors.background
 theme.border_focus  = colors.background
 -- Rounded corners
-theme.border_radius = dpi(8)
+theme.border_radius = dpi(16)
 
 -- Titlebars
 -- (Titlebar items can be customized in titlebars.lua)
@@ -78,7 +77,7 @@ theme.titlebar_fg_normal = colors.color15.."40"
 --         top_left, top_right, top_middle
 theme.notification_position = "top_right"
 theme.notification_border_width = theme.border_width
-theme.notification_border_radius = dpi(8)
+theme.notification_border_radius = dpi(16)
 theme.notification_border_color = colors.color10
 theme.notification_bg = colors.background
 -- theme.notification_bg = colors.color8
@@ -129,7 +128,7 @@ theme.wibar_bg = colors.foreground
 --theme.wibar_opacity = 0.7
 theme.wibar_border_color = colors.color0
 theme.wibar_border_width = dpi(0)
-theme.wibar_border_radius = dpi(8)
+theme.wibar_border_radius = dpi(16)
 theme.wibar_width = dpi(380)
 
 theme.prefix_fg = colors.color8
