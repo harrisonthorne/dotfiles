@@ -37,34 +37,6 @@ local dock_items = {}
 -- a dock icon.
 local dock_recently_focused = {}
 
--- In the `dock_pinned_classes` table, specify the classes of windows whose dock
--- items should always be visible. Order matters!
-----------------------------------------------------------------------------
--- Lua caveat: We need this to be a non-associative table, since tables with
--- string-based keys are not compatible with `ipairs`, meaning we cannot use
--- `ipairs` in order to loop through them.
--- https://stackoverflow.com/a/60088452
---
--- Sadly this means we have to declare the pinned classes twice, unless we want
--- to search for the launcher function sequentially :(
--- TODO (low priority): find a better way to initialize pinned items in order
--- to get rid of this redundancy
-----------------------------------------------------------------------------
-local dock_pinned_classes = {
-    -- "firefox",
-    -- "TelegramDesktop",
-    -- "editor",
-    -- "email"
-}
--- `dock_pinned_launchers` determines the function that should run when
--- clicking the dock item of a class when there is no such window open.
-local dock_pinned_launchers = {
-    -- ["firefox"] = apps.browser,
-    -- ["TelegramDesktop"] = apps.telegram,
-    -- ["editor"] = apps.editor,
-    -- ["email"] = apps.mail
-}
-
 -- >> Helper functions
 local function class_window_exists(class)
     return dock_class_count[class] and dock_class_count[class] > 0
@@ -170,17 +142,12 @@ local function generate_dock_icon(c, bg, fg, symbol)
     -- Set mousebinds
     w:buttons(gears.table.join(
         -- Left click: Focus 'relevant' client of class, minimize if already
-        -- focused, or run the pinned function of the class if there is no such
-        -- client
+        -- focused
         awful.button({ }, 1, function ()
-            if dock_pinned_launchers[class] and not class_window_exists(class) then
-                dock_pinned_launchers[class]() -- Run specified launcher function
+            if class_window_focused(class) then
+                client.focus.minimized = true
             else
-                if class_window_focused(class) then
-                    client.focus.minimized = true
-                else
-                    find_relevant_client(class):jump_to()
-                end
+                find_relevant_client(class):jump_to()
             end
         end),
 
@@ -270,17 +237,6 @@ local dock = wibox.widget({
     layout = wibox.layout.fixed.horizontal
 })
 
--- Initialize dock with pinned clients
-for i = 1, #dock_pinned_classes do
-    local class = dock_pinned_classes[i]
-    local i = {
-        color = colors.foreground,
-        symbol = ""
-    }
-    dock_items[class] = generate_dock_icon({ class = class, ghost = true }, item_bg, i.color, i.symbol)
-    dock:add(dock_items[class])
-end
-
 -- >> Helper functions used by signals
 local add_client
 local remove_client
@@ -296,20 +252,10 @@ add_client = function(c)
             color = colors.foreground,
             symbol = ""
         }
-        if dock_pinned_launchers[c.class] then
-            -- It is pinned, we dont need to create a new item, as it is
-            -- already there. Instead, just show the indicator.
-            local item = dock_items[c.class]
-            if not item then
-                return
-            end
-            local indicator = item:get_children_by_id("indicator")[1]
-            indicator.visible = true
-        else
-            -- Create a new item if it has not been created yet
-            dock_items[c.class] = generate_dock_icon(c, item_bg, i.color, i.symbol)
-            dock:add(dock_items[c.class])
-        end
+
+        -- Create a new item if it has not been created yet
+        dock_items[c.class] = generate_dock_icon(c, item_bg, i.color, i.symbol)
+        dock:add(dock_items[c.class])
     end
 
     local old_class = c.class
@@ -325,26 +271,19 @@ end
 
 remove_client = function(c)
     if not c.class then return end -- Some clients have no class (rare)
-
-    -- Decrement class count
-    dock_class_count[c.class] = dock_class_count[c.class] - 1
+    
+    if not dock_class_count[c.class] then
+        dock_class_count[c.class] = 0
+    else
+        -- Decrement class count
+        dock_class_count[c.class] = dock_class_count[c.class] - 1
+    end
 
     -- Check if we need to hide the item from the dock
     if dock_class_count[c.class] == 0 then
-        if dock_pinned_launchers[c.class] then
-            -- It is pinned, we dont need to hide it
-            -- Just make the indicator invisible
-            local item = dock_items[c.class]
-            if not item then
-                return
-            end
-            local indicator = item:get_children_by_id("indicator")[1]
-            indicator.visible = false
-        else
-            -- Remove item
-            dock:remove_widgets(dock_items[c.class])
-            dock_items[c.class] = nil
-        end
+        -- Remove item
+        dock:remove_widgets(dock_items[c.class])
+        dock_items[c.class] = nil
     end
 end
 
