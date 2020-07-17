@@ -7,7 +7,7 @@ local active_color = beautiful.temperature_bar_active_color or "#5AA3CC"
 local background_color = beautiful.temperature_bar_background_color or "#222222"
 
 local temperature_bar = wibox.widget{
-  max_value     = 100,
+  max_value     = 212,
   value         = 50,
   forced_height = dpi(10),
   margins       = {

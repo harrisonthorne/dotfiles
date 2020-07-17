@@ -274,42 +274,59 @@ keys.globalkeys = gears.table.join(
     -- App shortcuts {{{
     -- Spawn terminal
     awful.key({ superkey }, "Return", function () awful.spawn(user.terminal) end,
-        {description = "open a terminal", group = "launcher"}),
-    --
+        {description = "open a terminal", group = "apps"}),
+
     -- Pomodoro timer TODO: I'd like this
     awful.key({ superkey }, "slash", function() awful.spawn.with_shell("pomodoro") end,
-        {description = "pomodoro", group = "launcher"}),
+        {description = "pomodoro", group = "apps"}),
 
     -- Spawn file manager
     awful.key({ superkey }, "e", apps.file_manager,
-        {description = "file manager", group = "launcher"}),
+        {description = "file manager", group = "apps"}),
 
     -- Spawn music client
     awful.key({ superkey }, "b", apps.music,
-        {description = "music client", group = "launcher"}),
+        {description = "music client", group = "apps"}),
 
     -- Quick note
     awful.key({ superkey, ctrlkey }, "n", apps.quick_note,
-        {description = "markdown scratchpad", group = "launcher"}),
+        {description = "quick note", group = "apps"}),
 
     -- Browser
     awful.key({ superkey }, "w", apps.browser,
-        {description = "browser", group = "launcher"}),
+        {description = "browser", group = "apps"}),
 
     -- Editor
     awful.key({ superkey }, "n", apps.editor,
-        {description = "editor", group = "launcher"}),
+        {description = "editor", group = "apps"}),
 
     -- htop
     awful.key({ superkey }, "p", apps.process_monitor,
-        {description = "process monitor", group = "launcher"}),
+        {description = "process monitor", group = "apps"}),
 
     -- ponies
-    awful.key({ superkey, shiftkey }, "p", apps.ponies),
-    -- }}}
+    awful.key({ superkey, shiftkey }, "p", apps.ponies,
+        {description = "ponies", group = "apps"}),
 
     -- redshift toggle
-    awful.key({ superkey, ctrlkey }, "r", apps.toggle_redshift),
+    awful.key({ superkey, ctrlkey }, "r", apps.toggle_redshift,
+        {description = "toggle redshift", group = "apps"}),
+
+    -- launch shell authenticator
+    awful.key({ superkey }, "g", apps.authenticator,
+        {description = "authenticator", group = "apps"}),
+
+    -- pauvcontrol
+    awful.key({ superkey, ctrlkey }, "p", apps.pavucontrol,
+        {description = "volume control", group = "apps"}),
+
+    -- notebook
+    awful.key({ superkey, shiftkey }, "n", apps.notebook,
+        {description = "open notebook", group = "apps"}),
+
+    -- bored
+    awful.key({ superkey, shiftkey }, "b", apps.bored,
+        {description = "boredom remedies", group = "apps"}),
     -- }}}
 
     -- Rofi shortcuts {{{
@@ -322,11 +339,11 @@ keys.globalkeys = gears.table.join(
     -- awful.key({ superkey }, "b", function() wibars_toggle() end,
     --     {description = "show or hide wibar(s)", group = "awesome"}),
     -- Run program (d for dmenu ;)
-    awful.key({ superkey }, "d",
+    awful.key({ superkey }, "a",
         function()
             awful.spawn.with_shell("rofi -show drun -config ~/.config/rofi/apps_config.rasi")
         end,
-        {description = "launch an app", group = "launcher"}),
+        {description = "launch an app", group = "apps"}),
     -- }}}
 
     -- Sidebar {{{
@@ -471,7 +488,7 @@ keys.globalkeys = gears.table.join(
     -- }}}
 
     -- Dashboard
-    awful.key({ superkey }, "a", function()
+    awful.key({ superkey }, "d", function()
         if dashboard_show then
             dashboard_show()
         end
@@ -634,7 +651,7 @@ keys.clientkeys = gears.table.join(
         end,
         {description = "minimize", group = "client"}),
     -- Restore a minimized window
-    awful.key({ superkey }, "m",
+    awful.key({ superkey, shiftkey }, "v",
         function ()
             local c = awful.client.restore()
             -- Focus restored client
@@ -869,7 +886,6 @@ return keys
 -- XF86AudioPrev exec mpc cdprev || playerctl previous
 -- 
 -- # start rofi
--- Super+a exec rofi -show drun -config ~/.config/rofi/apps_config.rasi
 -- Super+Control+e exec rofi -show emoji -modi emoji
 -- Super+Control+w exec rofi -show window
 -- Super+c exec rofi -show calc -no-sort
@@ -898,7 +914,6 @@ return keys
 -- Super+Mod1+Up focus output up
 -- Super+Mod1+Right focus output right
 -- 
--- 
 -- # floating video mode
 -- Super+i fullscreen disable; floating enable; sticky enable; border pixel 4; resize set 356 200; move position 1548 px 16 px; inhibit_idle open
 -- Super+Shift+i fullscreen disable; floating enable; sticky enable; border pixel 4; resize set 711 400; move position 1193 px 16 px; inhibit_idle open
@@ -909,37 +924,12 @@ return keys
 -- Super+u layout stacking
 -- 
 -- # app shortcuts
--- Super+w exec firefox
--- Super+b exec spotify
--- Super+g exec $TERMINAL -T "Authenticator" -e $SHELL -i -c gashell
 -- Super+m exec $HOME/.config/sway/gaming_mode.sh
--- Super+Control+p exec pavucontrol
--- Super+Control+r exec sh $HOME/.config/toggle_redshift.sh
--- 
--- # files, nvim, notebook, new note
--- Super+e exec $TERMINAL -T "Files" -e $SHELL -i -c ranger
--- Super+n exec $TERMINAL -T Neovim -e $SHELL -i -c nvim
--- Super+Shift+n exec $TERMINAL -T Notebook -e $SHELL -i -c "ranger ~/Notebook"
--- Super+Control+n exec $TERMINAL -T "Quick note" -e $SHELL -i -c "nvim ~/Notebook/new-(date +%Y%m%d-%H%M%S).md"
--- 
--- # ponies
--- Super+Shift+m exec $TERMINAL -e $SHELL -i -c "ranger ~/Videos/mlp/"
--- 
--- # bored
--- Super+Shift+b exec $TERMINAL -T "YOU PRESSED THE BORED BUTTON" -e $SHELL -i -c "nvim ~/Notebook/bored.md"
--- 
--- # lock
--- Super+Escape exec $locker
--- 
--- # screenshot
--- Super+Print exec $screenshot
--- Super+Control+Print exec "sh $HOME/.config/sway/screenshot.sh -s"
 -- 
 -- # video capture
 -- Super+Shift+Print exec sh $HOME/.config/sway/videocapture.sh
 -- 
 -- # mako notifications
--- Control+Escape exec makoctl dismiss
 -- Super+Space exec makoctl invoke
 -- 
 -- # start mivy

@@ -6,8 +6,8 @@ local awful = require("awful")
 local update_interval = 15
 local temp_script = [[
   sh -c "
-  sensors | grep Package | awk '{print $4}' | cut -c 2-3
-  "]]
+  sensors -f | grep temp1 | head -n 1 | awk '{print $2}' | sed 's/.\{4\}$\|[^0-9]//g'
+"]]
 
 -- Periodically get temperature info
 awful.widget.watch(temp_script, update_interval, function(widget, stdout)

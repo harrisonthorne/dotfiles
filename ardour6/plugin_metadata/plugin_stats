@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PluginStats>
+  <Plugin type="LV2" id="http://linuxsampler.org/plugins/linuxsampler" lru="1594942229" use-count="2"/>
+  <Plugin type="LV2" id="http://gareus.org/oss/lv2/gmsynth" lru="1594941995" use-count="1"/>
+</PluginStats>

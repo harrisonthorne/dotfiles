@@ -37,6 +37,12 @@ end
 apps.editor = function ()
     helpers.run_or_focus({instance = 'editor'}, false, user.editor)
 end
+apps.notebook = function()
+    awful.spawn.with_shell(user.terminal.." --class notebook -T 'Notebook' -e ranger "..os.getenv("HOME").."/Notebook")
+end
+apps.bored = function()
+    awful.spawn.with_shell(user.terminal.." --class bored -T 'YOU PRESSED THE BORED BUTTON' -e nvim "..os.getenv("/Notebook/bored.md").."/Notebook")
+end
 
 -- Toggle compositor
 apps.toggle_picom = function ()
@@ -64,20 +70,24 @@ apps.process_monitor = function ()
 end
 
 apps.temperature_monitor = function ()
-    helpers.run_or_focus({class = 'sensors'}, false, user.terminal.." --class sensors -e watch sensors", { tag = mouse.screen.tags[5] })
+    helpers.run_or_focus({class = 'sensors'}, false, user.terminal.." --class sensors -e watch sensors")
 end
 
 apps.battery_monitor = function ()
-    helpers.run_or_focus({class = 'battop'}, false, user.terminal.." --class battop -e battop", { tag = mouse.screen.tags[5] })
+    helpers.run_or_focus({class = 'battop'}, false, user.terminal.." --class battop -e battop")
 end
 
 apps.quick_note = function ()
-    helpers.run_or_focus({class = 'battop'}, false, user.terminal.." --class battop -e battop", { tag = mouse.screen.tags[5] })
+    awful.spawn.with_shell(user.terminal.." --class quick_note -T 'Quick note' -e nvim "..os.getenv("HOME").."/Notebook/new-"..os.date("%Y%m%d-%H%M%S")..".md")
 end
 
 -- Scratchpad terminal with tmux (see bin/scratchpad)
 apps.scratchpad = function()
     helpers.scratchpad({instance = "scratchpad"}, "scratchpad", nil)
+end
+
+apps.bored = function()
+
 end
 
 -- Screenshots

@@ -173,8 +173,8 @@ awful.layout.append_default_layouts({
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.max,
-    -- awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
@@ -226,7 +226,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Tag names
     local tagnames = beautiful.tagnames or { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
     -- Create all tags at once (without seperate configuration for each tag)
-    awful.tag(tagnames, s, l.fair)
+    awful.tag(tagnames, s, l.spiral)
 
     -- Create tags with seperate configuration for each tag
     -- awful.tag.add(tagnames[1], {
@@ -555,27 +555,14 @@ awful.rules.rules = {
 -- Signals
 -- ===================================================================
 -- Signal function to execute when a new client appears.
--- client.connect_signal("manage", function (c)
---     -- For debugging awful.rules
---     -- print('c.class = '..c.class)
---     -- print('c.instance = '..c.instance)
---     -- print('c.name = '..c.name)
+client.connect_signal("manage", function (c)
+    -- Set every new window as a slave,
+    -- i.e. put it at the end of others instead of setting it master.
+    if not awesome.startup then awful.client.setslave(c) end
+end)
 
---     -- Set every new window as a slave,
---     -- i.e. put it at the end of others instead of setting it master.
---     if not awesome.startup then awful.client.setslave(c) end
-
---     -- if awesome.startup
---     -- and not c.size_hints.user_position
---     -- and not c.size_hints.program_position then
---     --     -- Prevent clients from being unreachable after screen count changes.
---     --     awful.placement.no_offscreen(c)
---     --     awful.placement.no_overlap(c)
---     -- end
--- end)
-
--- When a client starts up in fullscreen, resize it to cover the fullscreen a short moment later
--- Fixes wrong geometry when titlebars are enabled
+-- When a client starts up in fullscreen, resize it to cover the fullscreen a
+-- short moment later. Fixes wrong geometry when titlebars are enabled
 client.connect_signal("manage", function(c)
     if c.fullscreen then
         gears.timer.delayed_call(function()

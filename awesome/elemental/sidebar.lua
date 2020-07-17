@@ -340,7 +340,7 @@ end)
 
 local temperature_tooltip = create_tooltip(temperature_bar)
 awesome.connect_signal("evil::temperature", function(value)
-    temperature_tooltip.markup = "Your CPU temperature is at <span foreground='" .. beautiful.temperature_bar_active_color .."'><b>" .. tostring(value) .. "°C</b></span>"
+    temperature_tooltip.markup = "Your CPU temperature is at <span foreground='" .. beautiful.temperature_bar_active_color .."'><b>" .. tostring(value) .. "°F</b></span>"
 end)
 
 local battery_tooltip = create_tooltip(cute_battery_face)
