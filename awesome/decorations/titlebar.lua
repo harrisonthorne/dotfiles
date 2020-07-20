@@ -6,11 +6,6 @@ local helpers = require("helpers")
 local keys = require("keys")
 local decorations = require("decorations")
 
--- This decoration theme will round clients according to your theme's
--- border_radius value
--- Disable this if using `picom` to round your corners
-decorations.enable_rounding()
-
 -- Button configuration
 local gen_button_size = dpi(12)
 local gen_button_margin = dpi(6)

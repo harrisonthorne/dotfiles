@@ -41,14 +41,13 @@ apps.notebook = function()
     awful.spawn.with_shell(user.terminal.." --class notebook -T 'Notebook' -e ranger "..os.getenv("HOME").."/Notebook")
 end
 apps.bored = function()
-    awful.spawn.with_shell(user.terminal.." --class bored -T 'YOU PRESSED THE BORED BUTTON' -e nvim "..os.getenv("/Notebook/bored.md").."/Notebook")
+    awful.spawn.with_shell(user.terminal.." --class bored -T 'YOU PRESSED THE BORED BUTTON' -e nvim "..os.getenv("HOME").."/Notebook/bored.md")
 end
 
--- Toggle compositor
+-- Toggles
 apps.toggle_picom = function ()
     awful.spawn.with_shell(os.getenv("HOME").."/.config/toggle_picom.sh")
 end
-
 apps.toggle_redshift = function ()
     awful.spawn.with_shell(os.getenv("HOME").."/.config/toggle_redshift.sh")
 end
@@ -96,11 +95,11 @@ local screenshot_notification_app_name = "screenshot"
 function apps.screenshot(action, delay)
     -- Read-only actions
     if action == "browse" then
-        awful.spawn.with_shell("cd "..user.dirs.screenshots.." && sxiv $(ls -t)")
+        awful.spawn.with_shell("cd "..user.dirs.screenshots.." && sxiv (ls -t)")
         return
     elseif action == "gimp" then
-        awful.spawn.with_shell("cd "..user.dirs.screenshots.." && gimp $(ls -t | head -n1)")
-        naughty.notification({ message = "Opening last screenshot with GIMP", app_name = screenshot_notification_app_name})
+        awful.spawn.with_shell("cd "..user.dirs.screenshots.." && gimp (ls -t | head -n1)")
+        naughty.notification({ message = "Opening last screenshot for editing", app_name = screenshot_notification_app_name})
         return
     end
 
@@ -123,7 +122,7 @@ function apps.screenshot(action, delay)
     local screenshot_edit = naughty.action { name = "Edit" }
     local screenshot_delete = naughty.action { name = "Delete" }
     screenshot_open:connect_signal('invoked', function()
-        awful.spawn.with_shell("cd "..user.dirs.screenshots.." && sxiv $(ls -t)")
+        awful.spawn.with_shell("cd "..user.dirs.screenshots.." && sxiv (ls -t)")
     end)
     screenshot_copy:connect_signal('invoked', function()
         awful.spawn.with_shell("xclip -selection clipboard -t image/png "..filename.." &>/dev/null")

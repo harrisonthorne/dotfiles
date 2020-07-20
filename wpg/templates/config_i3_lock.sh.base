@@ -18,7 +18,7 @@ while (( "$#" )); do
     esac
 done
 
-paplay "$HOME/Drive/Music/MuseSounds/stereo/Lock.oga"
+paplay $HOME/Music/MuseSounds/stereo/Lock.oga
 
 # suspend notifications
 # pkill -u "$USER" -USR1 dunst
@@ -35,10 +35,11 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
     "$tmpbg"
 
 primary="{color15.strip}ff"
-secondary="{active.strip}e5"
+secondary="{active.strip}c0"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \
     -e \
+    -c 000000ff \
     --clock \
     --ringcolor=00000000 \
     --ringwrongcolor=ff0000aa \

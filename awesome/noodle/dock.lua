@@ -118,7 +118,7 @@ local function generate_dock_icon(c, bg, fg, symbol)
                 {
                     id = "indicator_focused",
                     bg = fg,
-                    shape = helpers.prrect(dpi(60), true, true, false, false),
+                    shape = helpers.rect,
                     visible = false,
                     widget = wibox.container.background
                 },

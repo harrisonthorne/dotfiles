@@ -6,23 +6,23 @@ local helpers = require("helpers")
 
 local mpd_prev_symbol = wibox.widget.textbox()
 mpd_prev_symbol.markup = helpers.colorize_text("", colors.foreground)
-mpd_prev_symbol.font = "Material Icons Bold 18"
+mpd_prev_symbol.font = "Material Icons 18"
 mpd_prev_symbol.align = "center"
 mpd_prev_symbol.valign = "center"
 local mpd_next_symbol = wibox.widget.textbox()
 mpd_next_symbol.markup = helpers.colorize_text("", colors.foreground)
-mpd_next_symbol.font = "Material Icons Bold 18"
+mpd_next_symbol.font = "Material Icons 18"
 mpd_next_symbol.align = "center"
 mpd_next_symbol.valign = "center"
 
 local note_symbol = ""
 local big_note = wibox.widget.textbox(note_symbol)
-big_note.font = "Material Icons Bold 15"
+big_note.font = "Material Icons 15"
 big_note.align = "center"
 local small_note = wibox.widget.textbox()
 small_note.align = "center"
 small_note.markup = helpers.colorize_text(note_symbol, colors.foreground)
-small_note.font = "Material Icons Bold 11"
+small_note.font = "Material Icons 11"
 -- small_note.valign = "bottom"
 local double_note = wibox.widget {
     big_note,

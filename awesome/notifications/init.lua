@@ -4,7 +4,6 @@ local menubar = require("menubar")
 
 local notifications = {}
 
-
 -- naughty.config.defaults['icon_size'] = beautiful.notification_icon_size
 naughty.config.defaults['border_width'] = beautiful.notification_border_width
 

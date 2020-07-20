@@ -6,9 +6,8 @@ local beautiful = require("beautiful")
 local helpers = require("helpers")
 local keys = require("keys")
 
-local dock_autohide_delay = 0.5 -- seconds
+local dock_autohide_delay = 0 -- seconds
 
--- {{{ Widgets
 local update_taglist = function (item, tag, index)
     if tag.urgent then
         item.fg = "#ffaa00"
@@ -38,12 +37,12 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = keys.taglist_buttons,
         layout = {
             spacing = 10,
-            -- spacing_widget = {
-            --     color  = '#00ff00',
-            --     shape  = gears.shape.circle,
-            --     widget = wibox.widget.separator,
-            -- },
-            layout = wibox.layout.fixed.horizontal,
+            spacing_widget = {
+                color  = '#00ff00',
+                shape  = gears.shape.circle,
+                widget = wibox.widget.separator,
+            },
+            layout = wibox.layout.align.horizontal,
         },
         widget_template = {
             widget = wibox.container.background,
@@ -98,7 +97,7 @@ awful.screen.connect_for_each_screen(function(s)
     end
 
     -- Initialize wibox activator
-    s.dock_activator = wibox({ screen = s, height = 1, bg = "#00000000", visible = true, ontop = true})
+    s.dock_activator = wibox({ screen = s, height = 1, bg = "#00000000", visible = true, ontop = false })
     awful.placement.bottom(s.dock_activator)
     s.dock_activator:connect_signal("mouse::enter", function()
         s.dock.visible = true
@@ -108,10 +107,11 @@ awful.screen.connect_for_each_screen(function(s)
         end
     end)
 
-    -- We have set the dock_activator to be ontop, but we do not want it to be
-    -- above fullscreen clients
+    -- Keep dock activator below fullscreen clients
     local function no_dock_activator_ontop(c)
-        if c.fullscreen then
+        if not s then 
+            return
+        elseif c.fullscreen then
             s.dock_activator.ontop = false
         else
             s.dock_activator.ontop = true
@@ -121,15 +121,15 @@ awful.screen.connect_for_each_screen(function(s)
     client.connect_signal("unfocus", no_dock_activator_ontop)
     client.connect_signal("property::fullscreen", no_dock_activator_ontop)
 
-    s.dock_activator:buttons(
-        gears.table.join(
-            awful.button({ }, 4, function ()
-                awful.tag.viewprev()
-            end),
-            awful.button({ }, 5, function ()
-                awful.tag.viewnext()
-            end)
-    ))
+    -- s.dock_activator:buttons(
+    --     gears.table.join(
+    --         awful.button({ }, 4, function ()
+    --             awful.tag.viewprev()
+    --         end),
+    --         awful.button({ }, 5, function ()
+    --             awful.tag.viewnext()
+    --         end)
+    -- ))
 
     local function adjust_dock()
         -- Reset position every time the number of dock items changes

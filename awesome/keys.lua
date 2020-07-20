@@ -136,19 +136,6 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "activate window switcher", group = "client"}),
 
-    -- Focus client by index (cycle through clients)
-    awful.key({ superkey }, "z",
-        function ()
-            awful.client.focus.byidx(1) -- TODO?
-        end,
-        {description = "focus next by index", group = "client"}),
-
-    awful.key({ superkey, shiftkey }, "z",
-        function ()
-            awful.client.focus.byidx(-1) -- TODO? (because of above)
-        end,
-        {description = "focus previous by index", group = "client"}),
-
     -- Change size of gaps {{{
     awful.key({ superkey, shiftkey }, "minus",
         function ()
@@ -231,39 +218,49 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "lock", group = "awesome"}),
 
-    -- increase/decrease master clients
-    awful.key({ superkey, ctrlkey }, "k",   
-        function () 
-            awful.tag.incnmaster( 1, nil, true) 
-        end,
-        {description = "increase the number of master clients", group = "layout"}),
+    -- increase/decrease master clients (mnemonic by direction)
     awful.key({ superkey, ctrlkey }, "j",   
         function () 
+            awful.tag.incnmaster( 1, nil, true) 
+        end,
+        {description = "increase the number of master clients", group = "layout"}),
+    awful.key({ superkey, ctrlkey }, "k",   
+        function () 
             awful.tag.incnmaster(-1, nil, true) 
         end,
         {description = "decrease the number of master clients", group = "layout"}),
-    awful.key({ superkey, ctrlkey }, "Up",   
+    awful.key({ superkey, ctrlkey }, "Down",   
         function () 
             awful.tag.incnmaster( 1, nil, true) 
         end,
         {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ superkey, ctrlkey }, "Down",   
+    awful.key({ superkey, ctrlkey }, "Up",   
         function () 
             awful.tag.incnmaster(-1, nil, true) 
         end,
         {description = "decrease the number of master clients", group = "layout"}),
-
     -- Number of columns
-    awful.key({ superkey }, "\\",   
+    awful.key({ superkey, ctrlkey }, "l",   
         function () 
             awful.tag.incncol( 1, nil, true)
         end,
         {description = "increase the number of columns", group = "layout"}),
-    awful.key({ superkey, shiftkey }, "\\",   
+    awful.key({ superkey, ctrlkey }, "h",   
         function () 
             awful.tag.incncol( -1, nil, true)
         end,
         {description = "decrease the number of columns", group = "layout"}),
+    awful.key({ superkey, ctrlkey }, "Left",   
+        function () 
+            awful.tag.incncol( 1, nil, true)
+        end,
+        {description = "increase the number of columns", group = "layout"}),
+    awful.key({ superkey, ctrlkey }, "Right",   
+        function () 
+            awful.tag.incncol( -1, nil, true)
+        end,
+        {description = "decrease the number of columns", group = "layout"}),
+
 
 
     --awful.key({ superkey,           }, "space", function () awful.layout.inc( 1)                end,
@@ -380,8 +377,8 @@ keys.globalkeys = gears.table.join(
         {description = "dismiss notification", group = "notifications"}),
 
     -- Menubar
-    --awful.key({ superkey, ctrlkey }, "b", function() menubar.show() end,
-    --{description = "show the menubar", group = "launcher"}),
+    awful.key({ superkey, ctrlkey }, "b", function() menubar.show() end,
+        {description = "show the menubar", group = "launcher"}),
 
     -- Brightness {{{
     awful.key( { }, "XF86MonBrightnessDown",
@@ -436,19 +433,13 @@ keys.globalkeys = gears.table.join(
         {description = "edit most recent screenshot with gimp", group = "screenshots"}),
     -- }}}
 
-    -- Media keys TODO: we have keys for these
-    -- awful.key({ superkey }, "period", function() awful.spawn.with_shell("mpc -q next") end,
-    --     {description = "next song", group = "media"}),
-    -- awful.key({ superkey }, "comma", function() awful.spawn.with_shell("mpc -q prev") end,
-    --     {description = "previous song", group = "media"}),
-    -- awful.key({ superkey }, "space", function() awful.spawn.with_shell("mpc -q toggle") end,
-    --     {description = "toggle pause/play", group = "media"}),
-    -- awful.key({ superkey, shiftkey }, "period", function() awful.spawn.with_shell("mpvc next") end,
-    --     {description = "mpv next song", group = "media"}),
-    -- awful.key({ superkey, shiftkey }, "comma", function() awful.spawn.with_shell("mpvc prev") end,
-    --     {description = "mpv previous song", group = "media"}),
-    -- awful.key({ superkey, shiftkey}, "space", function() awful.spawn.with_shell("mpvc toggle") end,
-    --     {description = "mpv toggle pause/play", group = "media"}),
+    -- Media keys
+    awful.key({ }, "XF86AudioPlay", function() awful.spawn.with_shell("playerctl play-pause || mpc toggle") end,
+        {description = "pause/play", group = "media"}),
+    awful.key({ }, "XF86AudioNext", function() awful.spawn.with_shell("playerctl next || mpc next") end,
+        {description = "next song", group = "media"}),
+    awful.key({ }, "XF86AudioPrev", function() awful.spawn.with_shell("playerctl previous || mpc cdprev") end,
+        {description = "previous song", group = "media"}),
 
 
     -- Layouts {{{
@@ -503,6 +494,7 @@ keys.globalkeys = gears.table.join(
 
 keys.clientkeys = gears.table.join(
     -- Move windows {{{
+    -- by direction
     awful.key({ superkey, shiftkey }, "Down", function (c)
         helpers.move_client_dwim(c, "down")
     end),
@@ -527,6 +519,13 @@ keys.clientkeys = gears.table.join(
     awful.key({ superkey, shiftkey }, "l", function (c)
         helpers.move_client_dwim(c, "right")
     end),
+
+    -- to next screen
+    awful.key({ superkey, ctrlkey }, "Tab",
+        function (c)
+
+        end,
+        {description = "move client to next screen", group = "client"}),
     -- }}}
 
     -- Single tap: Center client 
@@ -875,15 +874,11 @@ root.buttons(keys.desktopbuttons)
 return keys
 
 -- TODO: pending keybinds
+--
 -- Super+Control+Mod1+p exec systemctl poweroff
 -- Super+Control+Mod1+r exec systemctl reboot
 -- Super+Control+Mod1+s exec systemctl suspend
 -- Super+Control+Mod1+b exec systemctl hibernate
--- 
--- # Media player controls
--- XF86AudioPlay exec mpc toggle || playerctl play-pause
--- XF86AudioNext exec mpc next || playerctl next
--- XF86AudioPrev exec mpc cdprev || playerctl previous
 -- 
 -- # start rofi
 -- Super+Control+e exec rofi -show emoji -modi emoji

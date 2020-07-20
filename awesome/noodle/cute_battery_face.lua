@@ -77,7 +77,7 @@ local smile = wibox.widget {
 local ok = wibox.widget {
     {
         bg = stroke,
-        shape = helpers.rrect(dpi(2)),
+        shape = helpers.rect,
         widget = wibox.container.background
     },
     top = dpi(5),
@@ -113,7 +113,7 @@ local face = wibox.widget {
 local cute_battery_face = wibox.widget {
     {
         battery_bar,
-        shape = helpers.rrect(dpi(16)),
+        shape = helpers.rect,
         border_color = stroke,
         border_width = dpi(4),
         widget = wibox.container.background

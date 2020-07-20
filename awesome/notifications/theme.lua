@@ -10,7 +10,7 @@ local helpers = require("helpers")
 
 -- For antialiasing
 -- The real background color is set in the widget_template
-beautiful.notification_bg = "#00000000"
+-- beautiful.notification_bg = "#00000000"
 
 local urgency_color = {
     ['low'] = colors.color2,
@@ -29,7 +29,7 @@ naughty.connect_signal("request::display", function(n)
     -- naughty.layout.box.
     local custom_notification_icon = wibox.widget {
         font = "Material Design Icons 18",
-        -- font = "Material Design Icons bold 40",
+        -- font = "Material Design Icons 40",
         align = "center",
         valign = "center",
         widget = wibox.widget.textbox
@@ -66,7 +66,7 @@ naughty.connect_signal("request::display", function(n)
                 },
                 widget = wibox.container.place
             },
-            bg = colors.color8.."32",
+            bg = beautiful.bg,
             forced_height = dpi(25),
             forced_width = dpi(70),
             widget = wibox.container.background
@@ -91,13 +91,12 @@ naughty.connect_signal("request::display", function(n)
                 {
                     {
                         {
-                            markup = helpers.colorize_text("", color),
                             align = "center",
                             valign = "center",
-                            widget = custom_notification_icon,
+                            forced_width = dpi(32),
+                            widget = naughty.widget.icon,
                         },
-                        forced_width = dpi(50),
-                        bg = colors.background,
+                        forced_width = dpi(64),
                         widget  = wibox.container.background,
                     },
                     {
@@ -116,10 +115,9 @@ naughty.connect_signal("request::display", function(n)
                                 widget = naughty.widget.message,
                             },
                             {
-                                helpers.vertical_pad(dpi(10)),
+                                helpers.vertical_pad(dpi(16)),
                                 {
                                     actions,
-                                    shape = helpers.rrect(dpi(4)),
                                     widget = wibox.container.background,
                                 },
                                 visible = n.actions and #n.actions > 0,
@@ -138,8 +136,8 @@ naughty.connect_signal("request::display", function(n)
                 widget   = wibox.container.constraint,
             },
             -- Anti-aliasing container
-            shape = helpers.rrect(beautiful.notification_border_radius),
-            bg = colors.color0,
+            -- shape = helpers.rrect(beautiful.notification_border_radius),
+            -- bg = beautiful.bg,
             widget = wibox.container.background
         }
     }

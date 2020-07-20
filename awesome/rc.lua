@@ -6,9 +6,8 @@
 \/\::/  / \::/:/  / \:\:\/  / \:\:\/__/ \:\/:/  / \/_/:/  / \:\:\/  /
   /:/  /   \::/  /   \:\/  /   \::/  /   \::/  /    /:/  /   \:\/  /
   \/__/     \/__/     \/__/     \/__/     \/__/     \/__/     \/__/
-
--- >> The file that binds everything together.
 --]]
+
 colors = require("colors")
 local awful = require("awful")
 
@@ -38,7 +37,6 @@ user = {
 
     -- >> Web Search <<
     web_search_cmd = "xdg-open https://duckduckgo.com/?q=",
-    -- web_search_cmd = "xdg-open https://www.google.com/search?q="
 
     -- >> User profile <<
     profile_picture = os.getenv("HOME").."/.config/awesome/profile.png",
@@ -196,7 +194,7 @@ local function set_wallpaper(s)
         local wallpaper = os.getenv("HOME") .. "/Pictures/Wallpapers/Photos/" .. (stdout:match "^%s*(.-)%s*$")
         print(wallpaper)
 
-        gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.maximized(wallpaper, s, false)
     end)
 end
 
@@ -573,7 +571,7 @@ client.connect_signal("manage", function(c)
     end
 end)
 
-if beautiful.border_width > 0 then
+if beautiful.border_width and beautiful.border_width > 0 then
     client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
     client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 end

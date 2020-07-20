@@ -53,7 +53,8 @@ local function create_boxed_widget(widget_to_be_boxed, width, height, bg_color)
     box_container.bg = bg_color
     box_container.forced_height = height
     box_container.forced_width = width
-    box_container.shape = helpers.rrect(box_radius)
+    box_container.shape = helpers.rect
+    -- box_container.shape = helpers.rrect(box_radius)
     -- box_container.shape = helpers.prrect(20, true, true, true, true)
     -- box_container.shape = helpers.prrect(30, true, true, false, true)
 
@@ -90,7 +91,7 @@ end
 -- User widget
 local user_picture_container = wibox.container.background()
 -- user_picture_container.shape = gears.shape.circle
-user_picture_container.shape = helpers.prrect(dpi(40), true, true, false, true)
+user_picture_container.shape = helpers.rect
 user_picture_container.forced_height = dpi(140)
 user_picture_container.forced_width = dpi(140)
 local user_picture = wibox.widget {
@@ -98,7 +99,7 @@ local user_picture = wibox.widget {
         wibox.widget.imagebox(user.profile_picture),
         widget = user_picture_container
     },
-    shape = helpers.rrect(box_radius / 2),
+    shape = helpers.rect,
     widget = wibox.container.background
 }
 local username = os.getenv("USER")
@@ -214,7 +215,7 @@ end)
 -- File system bookmarks
 local function create_bookmark(name, path, color, hover_color)
     local bookmark = wibox.widget.textbox()
-    bookmark.font = "sans bold 16"
+    bookmark.font = "sans 16"
     -- bookmark.text = wibox.widget.textbox(name:sub(1,1):upper()..name:sub(2))
     bookmark.markup = helpers.colorize_text(name, color)
     bookmark.align = "center"
@@ -303,13 +304,13 @@ fortune_box:buttons(gears.table.join(
 helpers.add_hover_cursor(fortune_box, "hand1")
 
 -- URL launcher petals
-local petal_font = "Sans Bold 11"
+local petal_font = "sans 11"
 local function create_url_petal(text, bg_color, hover_color, url, tl, tr, br, bl)
     local petal_container = wibox.widget {
         bg = bg_color,
         forced_height = dpi(65),
         forced_width = dpi(65),
-        shape = helpers.prrect(99, tl, tr, br, bl),
+        shape = helpers.rect,
         widget = wibox.container.background()
     } 
 
@@ -325,7 +326,7 @@ local function create_url_petal(text, bg_color, hover_color, url, tl, tr, br, bl
         },
         -- Put the petal container inside a rounded container. Why?
         -- Because I want the unrounded petal corner to not be pointy!
-        shape = helpers.rrect(dpi(4)),
+        shape = helpers.rect,
         widget = wibox.container.background()
     }
 

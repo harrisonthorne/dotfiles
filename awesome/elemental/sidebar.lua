@@ -110,16 +110,6 @@ brightness:buttons(
         end)
 ))
 
-local make_little_dot = function (color)
-    return wibox.widget{
-        bg = color,
-        forced_width = dpi(10),
-        forced_height = dpi(10),
-        shape = helpers.rrect(dpi(2)),
-        widget = wibox.container.background
-    }
-end
-
 local hours_minutes = wibox.widget.textclock("<span color='" .. colors.color15 .. "'>%-I:%M %P</span>")
 
 local time = {
@@ -171,7 +161,7 @@ mpd_song:buttons(gears.table.join(
 ))
 
 local search_icon = wibox.widget {
-    font = "Material Design Icons bold 10",
+    font = "Material Design Icons 10",
     align = "center",
     valign = "center",
     widget = wibox.widget.textbox()
@@ -499,7 +489,7 @@ sidebar:setup {
                 helpers.vertical_pad(dpi(32)),
                 layout = wibox.layout.fixed.vertical
             },
-            shape = helpers.prrect(beautiful.sidebar_border_radius, false, true, false, false),
+            shape = helpers.rect,
             bg = colors.color0.."80",
             widget = wibox.container.background
         },
@@ -531,7 +521,7 @@ sidebar:setup {
         },
         layout = wibox.layout.align.vertical,
     },
-    shape = helpers.rrect(beautiful.sidebar_border_radius),
+    shape = helpers.rect,
     bg = beautiful.sidebar_bg,
     widget = wibox.container.background
 }
