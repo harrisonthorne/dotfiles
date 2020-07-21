@@ -103,7 +103,7 @@ local naughty = require("naughty")
 
 -- Load theme
 local theme_dir = os.getenv("HOME") .. "/.config/awesome/theme/"
-beautiful.init(theme_dir .. "theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- Error handling
 -- ===================================================================
@@ -169,12 +169,12 @@ screen_height = awful.screen.focused().geometry.height
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.append_default_layouts({
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
+    -- awful.layout.suit.floating,
     awful.layout.suit.max,
-    awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
+    -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
@@ -224,7 +224,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Tag names
     local tagnames = beautiful.tagnames or { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
     -- Create all tags at once (without seperate configuration for each tag)
-    awful.tag(tagnames, s, l.spiral)
+    awful.tag(tagnames, s, l.tile)
 
     -- Create tags with seperate configuration for each tag
     -- awful.tag.add(tagnames[1], {

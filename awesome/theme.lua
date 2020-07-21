@@ -10,7 +10,6 @@ local layout_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/layout/"
 local titlebar_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/titlebar/"
 local taglist_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/taglist/"
 local tip = titlebar_icon_path --alias to save time/space
-local xrdb = xresources.get_current_theme()
 local theme = {}
 
 local bg_alpha_hex = "c0"
@@ -136,6 +135,13 @@ theme.prefix_fg = colors.color8
  --hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
  --Example:
  theme.hotkeys_bg = theme.bg
+ theme.hotkeys_fg = theme.fg
+ theme.hotkeys_modifiers_fg = colors.color14
+ theme.hotkeys_font = "sans 10"
+ theme.hotkeys_description_font = "sans 8"
+ theme.hotkeys_label_bg = colors.color0
+ theme.hotkeys_label_fg = colors.color13
+ theme.hotkeys_group_margin = dpi(16)
 
  --Tasklist
 theme.tasklist_font = "sans 10"
@@ -147,7 +153,7 @@ theme.tasklist_bg_normal = "#00000000"
 theme.tasklist_fg_normal = colors.foreground.."77"
 theme.tasklist_bg_minimize = "#00000000"
 theme.tasklist_fg_minimize = colors.color8
--- theme.tasklist_font_minimized = "sans italic 8"
+theme.tasklist_font_minimized = "sans italic 10"
 theme.tasklist_bg_urgent = "#ffaa00"
 theme.tasklist_fg_urgent = theme.bg
 theme.tasklist_spacing = dpi(0)
@@ -160,8 +166,9 @@ theme.sidebar_fg = colors.color7
 theme.sidebar_opacity = 0.75
 theme.sidebar_position = "left" -- left or right
 theme.sidebar_width = dpi(384)
-theme.sidebar_x = 0
-theme.sidebar_y = 0
+-- XXX These were removed from sidebar.lua
+-- theme.sidebar_x = dpi(8)
+-- theme.sidebar_y = dpi(8)
 theme.sidebar_border_radius = theme.border_radius
 
 -- Dashboard
