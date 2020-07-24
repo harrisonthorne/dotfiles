@@ -115,10 +115,10 @@ CustomProfileBuilderKeys=0
 
 [GUI]
 Favorites=
-WindowWidth=632
-WindowHeight=1019
-WindowX=0
-WindowY=0
+WindowWidth=936
+WindowHeight=984
+WindowX=968
+WindowY=48
 WindowMonitor=0
 MeowMonitor=-1
 MeowFullScreen=false
@@ -127,7 +127,7 @@ MeowWidth=1200
 MeowHeight=680
 MeowX=0
 MeowY=0
-WindowMaximized=true
+WindowMaximized=false
 DetailWindowWidth=-1
 DetailWindowHeight=-1
 DirBrowserWidth=260

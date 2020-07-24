@@ -10,10 +10,10 @@ local dock_autohide_delay = 0 -- seconds
 
 local update_taglist = function (item, tag, index)
     if tag.urgent then
-        item.fg = "#ffaa00"
-        item.bg = "#00000000"
+        item.fg = beautiful.bg
+        item.bg = "#ffaa00ff"
     elseif tag.selected then
-        item.fg = colors.color15
+        item.fg = beautiful.fg
         item.bg = "#00000000"
     elseif #tag:clients() > 0 then
         item.fg = colors.inactive
@@ -22,6 +22,7 @@ local update_taglist = function (item, tag, index)
         item.fg = "#00000000"
         item.bg = "#00000000"
     end
+    item.markup = tag.name
 end
 
 local dock = require("noodle.dock")
@@ -33,50 +34,72 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist for every screen
     s.mytaglist = awful.widget.taglist {
         screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = keys.taglist_buttons,
-        layout = {
-            spacing = 10,
-            spacing_widget = {
-                color  = '#00ff00',
-                shape  = gears.shape.circle,
-                widget = wibox.widget.separator,
-            },
-            layout = wibox.layout.align.horizontal,
-        },
+        filter  = awful.widget.taglist.filter.noempty,
         widget_template = {
+            {
+                {
+                    {
+                        {
+                            id     = 'text_role',
+                            valign = "center",
+                            widget = wibox.widget.textbox,
+                        },
+                        widget = wibox.container.background,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = 8,
+                right = 8,
+                widget = wibox.container.margin
+            },
+            id     = 'background_role',
             widget = wibox.container.background,
-            create_callback = function(self, tag, index, _)
+            -- Add support for hover colors and an index label
+            create_callback = function(self, tag, index, objects)
                 update_taglist(self, tag, index)
             end,
-            update_callback = function(self, tag, index, _)
+            update_callback = function(self, tag, index, objects)
                 update_taglist(self, tag, index)
             end,
-        }
+        },
+        buttons = taglist_buttons
     }
 
     -- Create the taglist wibox
     s.taglist_box = awful.wibar({
-        screen = s,
-        visible = true,
-        ontop = false,
-        type = "dock",
-        position = "top",
-        height = dpi(32),
-        -- position = "left",
-        -- width = dpi(6),
-        bg = colors.background .. "c0",
-    })
+            screen = s,
+            visible = true,
+            ontop = false,
+            type = "dock",
+            position = "top",
+            height = dpi(32),
+            -- position = "left",
+            -- width = dpi(6),
+            bg = colors.background .. "c0",
+        })
 
     s.taglist_box:setup {
-        widget = s.mytaglist,
+        {
+            widget = s.mytaglist,
+        },
+        {
+            fg = beautiful.fg,
+            align = "center",
+            widget = wibox.widget.textclock(),
+        },
+        {
+            fg = beautiful.fg,
+            align = "center",
+            widget = wibox.widget.textclock(),
+        },
+        layout = wibox.layout.align.horizontal
     }
 
     -- Create the dock wibox
     s.dock = awful.popup({
         -- Size is dynamic, no need to set it here
         visible = false,
-        bg = "#00000000",
+        bg = "#000000c0",
         ontop = true,
         -- type = "dock",
         placement = dock_placement,
@@ -136,7 +159,7 @@ awful.screen.connect_for_each_screen(function(s)
         dock_placement(s.dock)
 
         -- Adjust activator width every time the dock wibox width changes
-        s.dock_activator.width = s.dock.width + dpi(250)
+        s.dock_activator.width = s.dock.width + dpi(256)
         -- And recenter
         awful.placement.bottom(s.dock_activator)
     end
@@ -158,31 +181,6 @@ awful.screen.connect_for_each_screen(function(s)
         autohide()
     end)
 
-    -- -- Create a system tray widget
-    -- s.systray = wibox.widget.systray()
-    -- -- Create the tray box
-    -- s.traybox = wibox({ screen = s, width = dpi(150), height = beautiful.wibar_height, bg = "#00000000", visible = false, ontop = true})
-    -- s.traybox:setup {
-    --     {
-    --         {
-    --             nil,
-    --             s.systray,
-    --             expand = "none",
-    --             layout = wibox.layout.align.horizontal,
-    --         },
-    --         margins = dpi(10),
-    --         widget = wibox.container.margin
-    --     },
-    --     bg = beautiful.bg_systray,
-    --     shape = helpers.rrect(beautiful.border_radius),
-    --     widget = wibox.container.background
-    -- }
-    -- awful.placement.bottom_right(s.traybox, { margins = beautiful.useless_gap * 2 })
-    -- s.traybox:buttons(gears.table.join(
-    --     awful.button({ }, 2, function ()
-    --         s.traybox.visible = false
-    --     end)
-    -- ))
 end)
 
 awesome.connect_signal("elemental::dismiss", function()
@@ -195,7 +193,3 @@ function wibars_toggle()
     local s = awful.screen.focused()
     s.dock.visible = not s.dock.visible
 end
--- function tray_toggle()
---     local s = awful.screen.focused()
---     s.traybox.visible = not s.traybox.visible
--- end

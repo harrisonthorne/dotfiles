@@ -8,7 +8,6 @@ bash ~/.bashrc
 alias system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
 # alias imv="imv -e Monospace:13"
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
-alias encrypt="gpg -c"
 
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
@@ -60,6 +59,15 @@ end
 function nohup
     command nohup $argv </dev/null >/dev/null 2>&1 & disown
 end
+
+function encrypt
+    gpg -c $argv[1] && rm $argv[1]
+end
+
+# ??? TODO
+# function decrypt
+#     gpg -d $argv[1] && rm $argv[1]
+# end
 
 function crypt-edit
     if count $argv > /dev/null

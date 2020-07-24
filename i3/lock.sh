@@ -35,32 +35,34 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
     "$tmpbg"
 
 primary="fffffaff"
-secondary="c7a052c0"
+secondary="6e98a8c0"
+transparent="00000000"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \
     -e \
     -c 000000ff \
     --clock \
-    --ringcolor=00000000 \
+    -p win \
+    --ringcolor=$transparent \
     --ringwrongcolor=ff0000aa \
     --ringvercolor=$secondary \
 \
-    --radius 32 \
-    --ring-width 4 \
+    --radius 64 \
+    --ring-width 2 \
 \
-    --insidecolor=00000000 \
-    --insidevercolor=00000000 \
-    --insidewrongcolor=00000000 \
+    --insidecolor=$transparent \
+    --insidevercolor=$transparent \
+    --insidewrongcolor=$transparent \
 \
     --keyhlcolor=$primary \
     --bshlcolor=$secondary \
-    --separatorcolor=00000000 \
-    --linecolor=00000000 \
+    --separatorcolor=$transparent \
+    --linecolor=$transparent \
 \
     --timecolor=$primary \
     --datecolor=$secondary \
     --verifcolor=$secondary \
-    --wrongcolor=ff0000aa \
+    --wrongcolor=ff0000ff \
 \
     --timestr="%-I:%M %P" \
     --datestr="%A, %B %-d" \
@@ -87,6 +89,9 @@ secondary="c7a052c0"
     --veriftext="" \
     --wrongtext="" \
     --noinputtext="" \
+\
+    --pass-media-keys \
+    --pass-screen-keys \
 
 # resume notifications
 # pkill -u "$USER" -USR2 dunst

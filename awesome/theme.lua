@@ -33,6 +33,8 @@ theme.fg_focus      = theme.fg
 theme.fg_urgent     = colors.color0
 theme.fg_minimize   = colors.color8
 
+theme.transparent   = "#00000000"
+
 -- Gaps
 theme.useless_gap   = dpi(8)
 -- This could be used to manually determine how far away from the
@@ -54,9 +56,7 @@ theme.titlebars_enabled = true
 theme.titlebar_size = dpi(32)
 theme.titlebar_title_enabled = true
 theme.titlebar_font = "sans 10"
--- Window title alignment: left, right, center
 theme.titlebar_title_align = "center"
--- Titlebar position: top, bottom, left, right
 theme.titlebar_position = "top"
 theme.titlebar_bg = theme.bg
 theme.titlebar_fg_focus = theme.fg
@@ -185,53 +185,28 @@ theme.exit_screen_icon_size = dpi(180)
 theme.lock_screen_bg = theme.bg..bg_alpha_hex
 theme.lock_screen_fg = colors.color7
 
--- Icon taglist
-local ntags = 10
-theme.taglist_icons_empty = {}
-theme.taglist_icons_occupied = {}
-theme.taglist_icons_focused = {}
-theme.taglist_icons_urgent = {}
--- table.insert(tag_icons, tag)
-for i = 1, ntags do
-  theme.taglist_icons_empty[i] = taglist_icon_path .. tostring(i) .. "_empty.png"
-  theme.taglist_icons_occupied[i] = taglist_icon_path .. tostring(i) .. "_occupied.png"
-  theme.taglist_icons_focused[i] = taglist_icon_path .. tostring(i) .. "_focused.png"
-  theme.taglist_icons_urgent[i] = taglist_icon_path .. tostring(i) .. "_urgent.png"
-end
-
--- Noodle Text Taglist
-theme.taglist_text_font = "sans 10"
-
 -- Prompt
 theme.prompt_fg = colors.color12
 
 -- Text Taglist (default)
-theme.taglist_font = "monospace 10"
-theme.taglist_bg_focus = theme.bg
-theme.taglist_fg_focus = theme.fg
-theme.taglist_bg_occupied = theme.bg
-theme.taglist_fg_occupied = theme.fg_unfocused
+theme.taglist_font = "sans 10"
+theme.taglist_bg_focus = theme.transparent
+theme.taglist_bg_occupied = theme.transparent
 theme.taglist_bg_empty = colors.background
-theme.taglist_fg_empty = colors.background
 theme.taglist_bg_urgent = "#ffaa00"
+theme.taglist_fg_focus = theme.fg
+theme.taglist_fg_occupied = theme.fg_unfocused
+theme.taglist_fg_empty = theme.transparent
 theme.taglist_fg_urgent = theme.bg
 theme.taglist_disable_icon = true
 theme.taglist_spacing = dpi(0)
--- Generate taglist squares:
-local taglist_square_size = dpi(0)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_focus
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
 
 -- Variables set for theming the menu:
 theme.menu_height = dpi(32)
 theme.menu_width  = dpi(128)
 theme.menu_bg_normal = theme.bg
 theme.menu_fg_normal= colors.color7
-theme.menu_bg_focus = colors.color8 .. "55"
+theme.menu_bg_focus = colors.color8 .. "80"
 theme.menu_fg_focus= colors.color7
 theme.menu_border_width = dpi(0)
 theme.menu_border_color = theme.bg
@@ -258,23 +233,6 @@ theme.layout_cornernw = layout_icon_path .. "cornernw.png"
 theme.layout_cornerne = layout_icon_path .. "cornerne.png"
 theme.layout_cornersw = layout_icon_path .. "cornersw.png"
 theme.layout_cornerse = layout_icon_path .. "cornerse.png"
-
--- Recolor layout icons
---theme = theme_assets.recolor_layout(theme, colors.color1)
-
--- Noodle widgets customization --
--- Desktop mode widget variables
--- Symbols     
--- theme.desktop_mode_color_floating = colors.color4
--- theme.desktop_mode_color_tile = colors.color3
--- theme.desktop_mode_color_max = colors.color1
--- theme.desktop_mode_text_floating = "f"
--- theme.desktop_mode_text_tile = "t"
--- theme.desktop_mode_text_max = "m"
-
--- Minimal tasklist widget variables
-theme.minimal_tasklist_visible_clients_color = colors.color4
-theme.minimal_tasklist_hidden_clients_color = colors.color7
 
 -- Mpd song
 theme.mpd_song_title_color = colors.color7

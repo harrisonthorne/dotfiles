@@ -4,12 +4,12 @@
 --      total (integer - giga bytes)
 local awful = require("awful")
 
-local update_interval = 180 -- every 3 minutes
+local update_interval = 600 -- every 10 minutes
 
 -- Use /dev/sdxY according to your setup
 local disk_script = [[
     bash -c "
-    df -kh /dev/sda1 | tail -1 | awk '{printf \"%d@%d\", $4, $3}'
+    df -kh /dev/sda3 | tail -1 | awk '{printf \"%d@%d\", $4, $3}'
     "
 ]]
 

@@ -9,12 +9,12 @@ height=512
 border-color=#0a0c07e5
 border-size=4
 max-icon-size=32
-progress-color=#c7a052FF
+progress-color=#6e98a8FF
 layer=overlay
 format=<b>%s</b>\n%b
 
 [urgency=low]
-text-color=#c7a052
+text-color=#6e98a8
 
 [urgency=high]
 border-color=#ffaa00e5
