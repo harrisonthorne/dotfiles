@@ -31,6 +31,9 @@ end
 apps.authenticator = function ()
     helpers.run_or_focus({instance = 'authenticator'}, true, user.terminal.." --class auth -e gashell")
 end
+apps.calculator = function ()
+    helpers.run_or_focus({instance = 'qalc'}, true, user.terminal.." --class qalc -e qalc")
+end
 apps.pavucontrol = function ()
     helpers.run_or_focus({class = 'Pavucontrol'}, true, "pavucontrol")
 end
@@ -83,10 +86,6 @@ end
 -- Scratchpad terminal with tmux (see bin/scratchpad)
 apps.scratchpad = function()
     helpers.scratchpad({instance = "scratchpad"}, "scratchpad", nil)
-end
-
-apps.bored = function()
-
 end
 
 -- Screenshots

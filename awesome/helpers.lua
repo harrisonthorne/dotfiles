@@ -333,6 +333,7 @@ function helpers.find_clients_and_do(match, f_do)
 end
 
 function helpers.run_or_focus(match, move, spawn_cmd, spawn_args)
+    -- just a lil function
     local matcher = function (c)
         return awful.rules.match(c, match)
     end
@@ -344,7 +345,7 @@ function helpers.run_or_focus(match, move, spawn_cmd, spawn_args)
         c.minimized = false
         c:move_to_tag(mouse.screen.selected_tag)
         client.focus = c
-        break
+        return
     end
 
     -- Spawn if not found
