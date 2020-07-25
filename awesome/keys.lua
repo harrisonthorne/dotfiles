@@ -163,20 +163,16 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "activate window switcher", group = "client"}),
 
-    -- Change size of gaps {{{
-    awful.key({ superkey, shiftkey }, "minus",
+    -- Restore a minimized window
+    awful.key({ superkey, shiftkey }, "v",
         function ()
-            awful.tag.incgap(4, nil)
+            local c = awful.client.restore()
+            -- Focus restored client
+            if c then
+                client.focus = c
+            end
         end,
-        {description = "increment gaps size for the current tag", group = "gaps"}
-    ),
-    awful.key({ superkey }, "minus",
-        function ()
-            awful.tag.incgap(-4, nil)
-        end,
-        {description = "decrement gap size for the current tag", group = "gaps"}
-    ),
-    -- }}}
+        {description = "restore minimized", group = "client"}),
 
     -- Jump to urgent client or go back to the last tag
     awful.key({ superkey }, "u",
@@ -261,8 +257,8 @@ keys.globalkeys = gears.table.join(
         {description = "open a terminal", group = "apps"}),
 
     -- Pomodoro timer TODO: I'd like this
-    awful.key({ superkey }, "slash", function() awful.spawn.with_shell("pomodoro") end,
-        {description = "pomodoro", group = "apps"}),
+    -- awful.key({ superkey }, "slash", function() awful.spawn.with_shell("pomodoro") end,
+    --     {description = "pomodoro", group = "apps"}),
 
     -- Spawn file manager
     awful.key({ superkey }, "e", apps.file_manager,
@@ -359,7 +355,7 @@ keys.globalkeys = gears.table.join(
     awful.key( { ctrlkey }, "Escape",
         function()
             awesome.emit_signal("elemental::dismiss")
-            naughty.destroy_all_notifications()
+            naughty.destroy(naughty.getById(0)) -- XXX ??? Not sure if this will work
         end,
         {description = "dismiss notification", group = "notifications"}),
 
@@ -397,13 +393,6 @@ keys.globalkeys = gears.table.join(
         end,
         {description = "raise volume", group = "volume"}),
     -- }}}
-
-    -- Microphone (V for voice)
-    -- awful.key( { superkey }, "m",
-    --     function()
-    --         awful.spawn.with_shell("amixer -D pulse sset Capture toggle &> /dev/null")
-    --     end,
-    --     {description = "(un)mute microphone", group = "volume"}),
 
     -- Screenshots {{{
     awful.key( { superkey }, "Print", function() apps.screenshot("full") end,
@@ -636,16 +625,6 @@ keys.clientkeys = gears.table.join(
             c.minimized = true
         end,
         {description = "minimize", group = "client"}),
-    -- Restore a minimized window
-    awful.key({ superkey, shiftkey }, "v",
-        function ()
-            local c = awful.client.restore()
-            -- Focus restored client
-            if c then
-                client.focus = c
-            end
-        end,
-        {description = "restore minimized", group = "client"}),
     -- Maximize
     awful.key({ superkey, shiftkey }, "m",
         function (c)

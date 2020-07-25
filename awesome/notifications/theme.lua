@@ -13,43 +13,20 @@ local helpers = require("helpers")
 -- beautiful.notification_bg = "#00000000"
 
 local urgency_color = {
-    ['low'] = colors.color2,
-    ['normal'] = colors.color4,
-    ['critical'] = colors.color11,
+    ['low'] = colors.active,
+    ['normal'] = colors.color15,
+    ['critical'] = "#000000",
 }
 
 -- Template
 -- ===================================================================
 naughty.connect_signal("request::display", function(n)
-
-    -- Custom icon widget
-    -- It can be used instead of naughty.widget.icon if you prefer your icon to be
-    -- a textbox instead of an image. However, you have to determine its
-    -- text/markup value from the notification before creating the
-    -- naughty.layout.box.
-    local custom_notification_icon = wibox.widget {
-        font = "Material Design Icons 18",
-        -- font = "Material Design Icons 40",
-        align = "center",
-        valign = "center",
-        widget = wibox.widget.textbox
-    }
-
-    local icon, title_visible
     local color = urgency_color[n.urgency]
-    -- Set icon according to app_name
-    -- if app_config[n.app_name] then
-    --     -- icon = app_config[n.app_name].icon
-    --     title_visible = app_config[n.app_name].title
-    -- else
-    --     -- icon = default_icon
-    --     title_visible = true
-    -- end
 
     local actions = wibox.widget {
         notification = n,
         base_layout = wibox.widget {
-            spacing = dpi(3),
+            spacing = dpi(4),
             layout = wibox.layout.flex.horizontal
         },
         widget_template = {
@@ -60,15 +37,15 @@ naughty.connect_signal("request::display", function(n)
                         font = beautiful.notification_font,
                         widget = wibox.widget.textbox
                     },
-                    left = dpi(6),
-                    right = dpi(6),
+                    left = dpi(8),
+                    right = dpi(8),
                     widget = wibox.container.margin
                 },
                 widget = wibox.container.place
             },
             bg = beautiful.bg,
-            forced_height = dpi(25),
-            forced_width = dpi(70),
+            forced_height = dpi(24),
+            forced_width = dpi(64),
             widget = wibox.container.background
         },
         style = {
@@ -91,53 +68,57 @@ naughty.connect_signal("request::display", function(n)
                 {
                     {
                         {
-                            align = "center",
+                            {
+                                widget = naughty.widget.icon,
+                            },
+                            halign = "center",
                             valign = "center",
-                            forced_width = dpi(32),
-                            widget = naughty.widget.icon,
+                            widget  = wibox.container.place,
                         },
-                        forced_width = dpi(64),
-                        widget  = wibox.container.background,
-                    },
-                    {
                         {
                             {
-                                align = "center",
-                                visible = title_visible,
-                                font = beautiful.notification_font,
-                                markup = "<b>"..n.title.."</b>",
-                                widget = wibox.widget.textbox,
-                                -- widget = naughty.widget.title,
-                            },
-                            {
-                                align = "center",
-                                -- wrap = "char",
-                                widget = naughty.widget.message,
-                            },
-                            {
-                                helpers.vertical_pad(dpi(16)),
                                 {
-                                    actions,
-                                    widget = wibox.container.background,
+                                    align = "left",
+                                    visible = n.title,
+                                    font = beautiful.notification_font,
+                                    markup = helpers.colorize_text("<b>"..n.title.."</b>", color),
+                                    wrap = "word",
+                                    widget = wibox.widget.textbox,
                                 },
-                                visible = n.actions and #n.actions > 0,
-                                layout  = wibox.layout.fixed.vertical
+                                {
+                                    align = "left",
+                                    font = beautiful.notification_font,
+                                    markup = helpers.colorize_text(n.message, color),
+                                    wrap = "word",
+                                    widget = wibox.widget.textbox,
+                                },
+                                {
+                                    helpers.vertical_pad(dpi(16)),
+                                    {
+                                        actions,
+                                        widget = wibox.container.background,
+                                    },
+                                    visible = n.actions and #n.actions > 0,
+                                    layout  = wibox.layout.fixed.vertical
+                                },
+                                layout  = wibox.layout.align.vertical,
                             },
-                            layout  = wibox.layout.align.vertical,
+                            left = beautiful.notification_margin,
+                            widget = wibox.container.margin,
                         },
-                        margins = beautiful.notification_margin,
-                        widget  = wibox.container.margin,
+                        layout  = wibox.layout.fixed.horizontal,
                     },
-                    layout  = wibox.layout.fixed.horizontal,
+                    margins = beautiful.notification_margin,
+                    widget = wibox.container.margin,
                 },
                 strategy = "max",
-                width    = beautiful.notification_max_width or dpi(350),
-                height   = beautiful.notification_max_height or dpi(180),
+                width    = beautiful.notification_max_width or dpi(512),
+                height   = beautiful.notification_max_height or dpi(256),
                 widget   = wibox.container.constraint,
             },
             -- Anti-aliasing container
             -- shape = helpers.rrect(beautiful.notification_border_radius),
-            -- bg = beautiful.bg,
+            bg = n.urgency == "critical" and "#ffaa00c0" or beautiful.bg,
             widget = wibox.container.background
         }
     }
