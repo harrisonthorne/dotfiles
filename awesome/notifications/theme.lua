@@ -58,7 +58,6 @@ naughty.connect_signal("request::display", function(n)
     naughty.layout.box {
         notification = n,
         type = "notification",
-        -- For antialiasing: The real shape is set in widget_template
         shape = gears.shape.rectangle,
         border_width = beautiful.notification_border_width,
         border_color = beautiful.notification_border_color,
@@ -78,30 +77,34 @@ naughty.connect_signal("request::display", function(n)
                         {
                             {
                                 {
-                                    align = "left",
-                                    visible = n.title,
-                                    font = beautiful.notification_font,
-                                    markup = helpers.colorize_text("<b>"..n.title.."</b>", color),
-                                    wrap = "word",
-                                    widget = wibox.widget.textbox,
-                                },
-                                {
-                                    align = "left",
-                                    font = beautiful.notification_font,
-                                    markup = helpers.colorize_text(n.message, color),
-                                    wrap = "word",
-                                    widget = wibox.widget.textbox,
-                                },
-                                {
-                                    helpers.vertical_pad(dpi(16)),
                                     {
-                                        actions,
-                                        widget = wibox.container.background,
+                                        align = "left",
+                                        visible = n.title,
+                                        font = beautiful.notification_font,
+                                        markup = helpers.colorize_text("<b>"..n.title.."</b>", color),
+                                        wrap = "word",
+                                        widget = wibox.widget.textbox,
                                     },
-                                    visible = n.actions and #n.actions > 0,
-                                    layout  = wibox.layout.fixed.vertical
+                                    {
+                                        align = "left",
+                                        font = beautiful.notification_font,
+                                        markup = helpers.colorize_text(n.message, color),
+                                        wrap = "word",
+                                        widget = wibox.widget.textbox,
+                                    },
+                                    {
+                                        helpers.vertical_pad(dpi(16)),
+                                        {
+                                            actions,
+                                            widget = wibox.container.background,
+                                        },
+                                        visible = n.actions and #n.actions > 0,
+                                        layout  = wibox.layout.fixed.vertical
+                                    },
+                                    layout  = wibox.layout.align.vertical,
                                 },
-                                layout  = wibox.layout.align.vertical,
+                                valign = "center",
+                                layout = wibox.container.place,
                             },
                             left = beautiful.notification_margin,
                             widget = wibox.container.margin,
@@ -116,12 +119,8 @@ naughty.connect_signal("request::display", function(n)
                 height   = beautiful.notification_max_height or dpi(256),
                 widget   = wibox.container.constraint,
             },
-            -- Anti-aliasing container
-            -- shape = helpers.rrect(beautiful.notification_border_radius),
             bg = n.urgency == "critical" and "#ffaa00c0" or beautiful.bg,
             widget = wibox.container.background
         }
     }
 end)
-
--- naughty.disconnect_signal("request::display", naughty.default_notification_handler)

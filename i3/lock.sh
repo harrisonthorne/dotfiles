@@ -35,14 +35,13 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
     "$tmpbg"
 
 primary="fffffaff"
-secondary="6e98a8c0"
+secondary="c7a052c0"
 transparent="00000000"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \
     -e \
     -c 000000ff \
     --clock \
-    -p win \
     --ringcolor=$transparent \
     --ringwrongcolor=ff0000aa \
     --ringvercolor=$secondary \

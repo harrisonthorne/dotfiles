@@ -82,12 +82,20 @@ function crypt-edit
             echo "$argv[1] doesn't exist, but we'll create it"
         end
 
-        # edit it
-        $EDITOR $temp
+        # edit it, if successful
+        and begin
+            $EDITOR $temp
 
-        # re-encrypt the file
-        echo "encrypting file..."
-        gpg --batch --yes -o $argv[1] -c $temp
+            # re-encrypt the file
+            echo "encrypting file..."
+            gpg --batch --yes -o $argv[1] -c $temp
+        end
+
+        # or, don't
+        or begin
+            echo "file wasn't decrypted successfully, quitting"
+            return 1
+        end
 
         # remove decrypted file
         rm -f $temp
