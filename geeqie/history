@@ -1,0 +1,12 @@
+#History lists
+
+[shortcuts]
+".[path](null)"
+"Home[path]/home/harrisonthorne"
+"Desktop[path]/home/harrisonthorne/Desktop"
+"Collections[path]/home/harrisonthorne/.local/share/geeqie/collections"
+
+[path_list]
+"/home/harrisonthorne/Pictures/dslr/new-ketchum"
+
+#end
