@@ -5,8 +5,6 @@ function run {
     if ! pgrep -f $1 ;
     then
         "$@" & disown
-    else
-        echo "Skipped!"
     fi
 }
 
