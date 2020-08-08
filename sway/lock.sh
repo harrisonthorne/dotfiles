@@ -50,7 +50,7 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
 
 primary="fffffac0"
 primaryFaded="fffffa20"
-secondary="c7a05220"
+secondary="96bbcb20"
 transparent="00000000"
 orange="ffaa00"
 

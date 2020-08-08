@@ -23,7 +23,7 @@ local sidebar_theme = "amarena"
 local dashboard_theme = "amarena"
 local exit_screen_theme = "ephemeral"
 
-local terminal = "kitty -1"
+local terminal = "kitty"
 user = {
     -- >> Default applications <<
     -- Check apps.lua for more
@@ -72,21 +72,15 @@ user = {
     openweathermap_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     openweathermap_city_id = "yyyyyy",
     -- > Use "metric" for Celcius, "imperial" for Fahrenheit
-    weather_units = "metric",
-
-    -- >> Coronavirus <<
-    -- Country to check for corona statistics
-    -- Uses the https://corona-stats.online API
-    coronavirus_country = "germany",
+    weather_units = "imperial",
 }
 -- ===================================================================
 
-
--- Jit
---pcall(function() jit.on() end)
-
 -- Initialization
 -- ===================================================================
+
+-- Load keybinds and mousebinds
+local keys = require("keys")
 
 -- Theme handling library
 local beautiful = require("beautiful")
@@ -105,6 +99,7 @@ local naughty = require("naughty")
 local theme_dir = os.getenv("HOME") .. "/.config/awesome/theme/"
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
+
 -- Error handling
 -- ===================================================================
 naughty.connect_signal("request::display_error", function(message, startup)
@@ -117,9 +112,6 @@ end)
 
 -- Features
 -- ===================================================================
-
--- Keybinds and mousebinds
-local keys = require("keys")
 
 -- Load notification daemons and notification theme
 local notifications = require("notifications")
@@ -359,30 +351,30 @@ awful.rules.rules = {
     -- },
 
     -- Centered clients
-    {
-        rule_any = {
-            type = {
-                "dialog",
-            },
-            class = {
-                "Steam",
-                "discord",
-                "music",
-                "markdown_input",
-                "scratchpad",
-            },
-            instance = {
-                "music",
-                "markdown_input",
-                "scratchpad",
-            },
-            role = {
-                "GtkFileChooserDialog",
-                "conversation",
-            }
-        },
-        properties = { placement = centered_client_placement },
-    },
+    -- {
+    --     rule_any = {
+    --         type = {
+    --             "dialog",
+    --         },
+    --         class = {
+    --             "Steam",
+    --             "discord",
+    --             "music",
+    --             "markdown_input",
+    --             "scratchpad",
+    --         },
+    --         instance = {
+    --             "music",
+    --             "markdown_input",
+    --             "scratchpad",
+    --         },
+    --         role = {
+    --             "GtkFileChooserDialog",
+    --             "conversation",
+    --         }
+    --     },
+    --     properties = { placement = centered_client_placement },
+    -- },
 
     -- Titlebars OFF (explicitly)
     {
@@ -452,26 +444,6 @@ awful.rules.rules = {
         properties = { width = screen_width * 0.45, height = screen_height * 0.5 }
     },
 
-    -- Visualizer
-    {
-        rule_any = { class = { "Visualizer" } },
-        properties = {
-            floating = true,
-            maximized_horizontal = true,
-            sticky = true,
-            ontop = false,
-            skip_taskbar = true,
-            below = true,
-            focusable = false,
-            height = screen_height * 0.40,
-            opacity = 0.6,
-            titlebars_enabled = false,
-        },
-        callback = function (c)
-            awful.placement.bottom(c)
-        end
-    },
-
     -- File chooser dialog
     {
         rule_any = { role = { "GtkFileChooserDialog" } },
@@ -499,33 +471,33 @@ awful.rules.rules = {
         -- end
     },
 
-    -- MPV
-    {
-        rule = { class = "mpv" },
-        properties = {},
-        callback = function (c)
-            -- Make it floating, ontop and move it out of the way if the current tag is maximized
-            if awful.layout.get(awful.screen.focused()) == awful.layout.suit.max then
-                c.floating = true
-                c.ontop = true
-                c.width = screen_width * 0.30
-                c.height = screen_height * 0.35
-                awful.placement.bottom_right(c, {
-                    honor_padding = true,
-                    honor_workarea = true,
-                    margins = { bottom = beautiful.useless_gap * 2, right = beautiful.useless_gap * 2}
-                })
-            end
+--     -- MPV
+--     {
+--         rule = { class = "mpv" },
+--         properties = {},
+--         callback = function (c)
+--             -- Make it floating, ontop and move it out of the way if the current tag is maximized
+--             if awful.layout.get(awful.screen.focused()) == awful.layout.suit.max then
+--                 c.floating = true
+--                 c.ontop = true
+--                 c.width = screen_width * 0.30
+--                 c.height = screen_height * 0.35
+--                 awful.placement.bottom_right(c, {
+--                     honor_padding = true,
+--                     honor_workarea = true,
+--                     margins = { bottom = beautiful.useless_gap * 2, right = beautiful.useless_gap * 2}
+--                 })
+--             end
 
-            -- Restore `ontop` after fullscreen is disabled
-            -- Sorta tries to fix: https://github.com/awesomeWM/awesome/issues/667
-            c:connect_signal("property::fullscreen", function ()
-                if not c.fullscreen then
-                    c.ontop = true
-                end
-            end)
-        end
-    },
+--             -- Restore `ontop` after fullscreen is disabled
+--             -- Sorta tries to fix: https://github.com/awesomeWM/awesome/issues/667
+--             c:connect_signal("property::fullscreen", function ()
+--                 if not c.fullscreen then
+--                     c.ontop = true
+--                 end
+--             end)
+--         end
+--     },
 
     -- "Fix" games that minimize on focus loss.
     -- Usually this can be fixed by launching them with

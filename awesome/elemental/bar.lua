@@ -134,9 +134,9 @@ awful.screen.connect_for_each_screen(function(s)
     local function no_dock_activator_ontop(c)
         if not s then 
             return
-        elseif c.fullscreen then
+        elseif c.fullscreen and s.dock_activator then
             s.dock_activator.ontop = false
-        else
+        elseif s.dock_activator then
             s.dock_activator.ontop = true
         end
     end
