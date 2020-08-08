@@ -21,7 +21,6 @@ set -gx QT_QPA_PLATFORMTHEME gtk
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx WINEPREFIX $HOME/.wine/
-set -gx XDG_CURRENT_DESKTOP sway
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 
 set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
