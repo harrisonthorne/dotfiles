@@ -15,8 +15,9 @@ let g:ale_sign_highlight_linenrs = 1
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'deviantfero/wpgtk.vim'
-Plug 'dhruvasagar/vim-table-mode'		" Tables!
+Plug 'dhruvasagar/vim-table-mode'       " Tables!
 Plug 'honza/vim-snippets'               " Snippets
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
