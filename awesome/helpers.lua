@@ -246,27 +246,17 @@ end
 
 function helpers.volume_down()
     awful.spawn("amixer -q sset Master 5%-", false)
+    awful.spawn("paplay /usr/share/sounds/musicaflight/stereo/VolumeDown.oga", false)
 end
 
 function helpers.volume_up()
     awful.spawn("amixer -q sset Master 5%+ unmute", false)
+    awful.spawn("paplay /usr/share/sounds/musicaflight/stereo/Volume.oga", false)
 end
 
 function helpers.volume_mute_toggle()
     awful.spawn("amixer sset Master toggle", false)
-end
-
-function helpers.send_key(c, key)
-    awful.spawn.with_shell("xdotool key --window "..tostring(c.window).." "..key, false)
-end
-
-function helpers.send_key_sequence(c, seq)
-    awful.spawn.with_shell("xdotool type --delay 5 --window "..tostring(c.window).." "..seq, false)
-end
-
-function helpers.fake_escape()
-    root.fake_input('key_press', "Escape")
-    root.fake_input('key_release', "Escape")
+    awful.spawn("paplay /usr/share/sounds/musicaflight/stereo/Volume.oga", false)
 end
 
 local prompt_font = beautiful.prompt_font or "sans 8"

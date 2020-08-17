@@ -22,20 +22,20 @@ local button_size = dpi(120)
 
 -- Commands
 local poweroff_command = function()
-    awful.spawn.with_shell("poweroff")
+    awful.spawn.with_shell("sudo poweroff")
 end
 local reboot_command = function()
-    awful.spawn.with_shell("reboot")
+    awful.spawn.with_shell("sudo reboot")
 end
 local suspend_command = function()
     lock_screen_show()
-    awful.spawn.with_shell("systemctl suspend")
+    awful.spawn.with_shell("zzz")
 end
 local exit_command = function()
-    awesome.quit()
+    awful.spawn.with_shell("canberra-gtk-play --id=desktop-logout; awesome-client 'awesome.quit()'")
 end
 local lock_command = function()
-    lock_screen_show()
+    awful.spawn.with_shell(os.getenv("HOME").."/.config/i3/lock.sh")
 end
 
 -- Helper function that generates the clickable buttons

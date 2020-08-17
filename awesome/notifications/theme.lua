@@ -26,7 +26,7 @@ naughty.connect_signal("request::display", function(n)
     local actions = wibox.widget {
         notification = n,
         base_layout = wibox.widget {
-            spacing = dpi(4),
+            spacing = dpi(16),
             layout = wibox.layout.flex.horizontal
         },
         widget_template = {
@@ -43,9 +43,9 @@ naughty.connect_signal("request::display", function(n)
                 },
                 widget = wibox.container.place
             },
-            bg = beautiful.bg,
-            forced_height = dpi(24),
-            forced_width = dpi(64),
+            bg = colors.color8,
+            forced_height = dpi(32),
+            width = dpi(64),
             widget = wibox.container.background
         },
         style = {

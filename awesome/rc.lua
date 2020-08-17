@@ -8,6 +8,22 @@
   \/__/     \/__/     \/__/     \/__/     \/__/     \/__/     \/__/
 --]]
 
+--[[
+Hot corners
+
++-----------------------------------------------+
+|                           Media/notifications |
+|                                               |
+|                                               |
+|                                               |
+|                                               |
+|                                               |
+|                                               |
+|                                               |
+| App tray/system controls             Calendar |
++-----------------------------------------------+
+--]]
+
 colors = require("colors")
 local awful = require("awful")
 
@@ -201,10 +217,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Focus on hover
 client.connect_signal("mouse::enter", function(c)                                                                                                                           
-    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-        and awful.client.focus.filter(c) then
-        client.focus = c 
-    end 
+    client.focus = c 
 end)
 
 -- Tags

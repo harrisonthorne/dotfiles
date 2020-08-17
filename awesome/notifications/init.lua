@@ -4,9 +4,6 @@ local menubar = require("menubar")
 
 local notifications = {}
 
-naughty.config.defaults['icon_size'] = beautiful.notification_icon_size
-naughty.config.defaults['border_width'] = beautiful.notification_border_width
-
 -- Timeouts
 naughty.config.defaults.timeout = 5
 naughty.config.presets.low.timeout = 5
@@ -24,8 +21,6 @@ function notifications.notify_dwim(args, notif)
     if n and not n._private.is_destroyed and not n.is_expired then
         notif.title = args.title or notif.title
         notif.message = args.message or notif.message
-        -- notif.text = args.text or notif.text
-        -- notif.icon = args.icon or notif.icon
         notif.timeout = args.timeout or notif.timeout
     else
         n = naughty.notification(args)
@@ -34,12 +29,6 @@ function notifications.notify_dwim(args, notif)
 end
 
 function notifications.init()
-    -- Initialize various notification daemons
-    require("notifications.volume")
-    require("notifications.brightness")
-    require("notifications.battery")
-    require("notifications.mpd")
-    require("notifications.keyboardlayout")
     -- Load theme
     require("notifications.theme")
 end

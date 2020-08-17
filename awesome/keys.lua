@@ -23,7 +23,7 @@ local function enable_floating_video(c, height)
     c.height = height
     c.sticky = true
     c.ontop = true
-    awful.placement.top_right(c, { honor_workarea = true, margins = 32 })
+    awful.placement.top_right(c, { honor_workarea = true, margins = 0 })
 
     local disable_floating_video = function()
         if not c.floating then
@@ -355,9 +355,9 @@ keys.globalkeys = gears.table.join(
     awful.key( { ctrlkey }, "Escape",
         function()
             awesome.emit_signal("elemental::dismiss")
-            naughty.destroy(naughty.getById(0)) -- XXX ??? Not sure if this will work
+            naughty.destroy_all_notifications()
         end,
-        {description = "dismiss notification", group = "notifications"}),
+        {description = "dismiss all notifications", group = "notifications"}),
 
     -- Menubar
     awful.key({ superkey, ctrlkey }, "b", function() menubar.show() end,
