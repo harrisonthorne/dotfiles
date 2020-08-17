@@ -15,6 +15,7 @@ set -gx BROWSER /bin/firefox
 set -gx EDITOR /bin/nvim
 set -gx EIX_LIMIT 0
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
+set -gx GPG_TTY (tty)
 set -gx GOPATH $HOME/go
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
 set -gx QT_QPA_PLATFORMTHEME gtk
@@ -33,7 +34,7 @@ if status is-login
         # sway > sway.log ^ sway.err
     # end
 else
-    eval (keychain -q --agents ssh --eval id_rsa_github id_rsa_bitbucket aur)
+    eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket 4B21310A52B15162)
 end
 
 function fish_prompt --description 'Write out the prompt'
@@ -76,7 +77,7 @@ function crypt-edit
         if test -e $argv[1]
             # decrypt the file
             echo "decrypting file..."
-            gpg --batch --yes -o $temp -d $argv[1]
+            gpg --yes -o $temp -d $argv[1]
         else
             echo "$argv[1] doesn't exist, but we'll create it"
         end
@@ -87,7 +88,7 @@ function crypt-edit
 
             # re-encrypt the file
             echo "encrypting file..."
-            gpg --batch --yes -o $argv[1] -c $temp
+            gpg --yes -o $argv[1] -c $temp
         end
 
         # or, don't
