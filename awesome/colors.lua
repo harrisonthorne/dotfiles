@@ -1,6 +1,4 @@
--- Make xresources colors global
 colors = {
-    --           xrdb variable
     background = "#0F1511",
     foreground = "#fdffff",
     color0     = "#0F1511",

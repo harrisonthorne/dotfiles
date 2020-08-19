@@ -10,8 +10,8 @@ local dock_autohide_delay = 0 -- seconds
 
 local update_taglist = function (item, tag, index)
     if tag.urgent then
-        item.fg = beautiful.bg
-        item.bg = "#ffaa00ff"
+        item.fg = beautiful.fg_urgent
+        item.bg = beautiful.bg_urgent
     elseif tag.selected then
         item.fg = beautiful.fg
         item.bg = "#00000000"
@@ -29,6 +29,35 @@ local dock = require("noodle.dock")
 local dock_placement = function(w)
     return awful.placement.bottom(w)
 end
+
+status_primary = wibox.widget {
+    valign = 'center',
+    align = 'right',
+    -- align = 'center',
+    markup = 'pri',
+    fg = beautiful.fg,
+    widget = wibox.widget.textbox
+}
+
+status_secondary = wibox.widget {
+    valign = 'center',
+    align = 'center',
+    markup = 'sec',
+    fg = beautiful.fg,
+    widget = wibox.widget.textbox
+}
+
+awful.spawn.with_line_callback("muse-status -m plain", {
+    stdout = function(l)
+        status_primary.markup = l
+    end
+})
+
+awful.spawn.with_line_callback("muse-status -m plain", {
+    stdout = function(l)
+        status_secondary.markup = l
+    end
+})
 
 awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist for every screen
@@ -67,32 +96,25 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the taglist wibox
     s.taglist_box = awful.wibar({
-            screen = s,
-            visible = true,
-            ontop = false,
-            type = "dock",
-            position = "top",
-            height = dpi(32),
-            -- position = "left",
-            -- width = dpi(6),
-            bg = colors.background .. "c0",
-        })
+        screen = s,
+        visible = true,
+        ontop = false,
+        type = "dock",
+        position = "top",
+        height = dpi(32),
+        bg = beautiful.bg,
+    })
 
     s.taglist_box:setup {
         {
-            widget = s.mytaglist,
+            s.mytaglist,
+            status_primary,
+            -- status_secondary,
+            layout = wibox.layout.align.horizontal
         },
-        {
-            fg = beautiful.fg,
-            align = "center",
-            widget = wibox.widget.textclock(),
-        },
-        {
-            fg = beautiful.fg,
-            align = "center",
-            widget = wibox.widget.textclock(),
-        },
-        layout = wibox.layout.align.horizontal
+        left = dpi(24),
+        right = dpi(32),
+        widget = wibox.container.margin
     }
 
     -- Create the dock wibox

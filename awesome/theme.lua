@@ -1,15 +1,8 @@
 local awful = require("awful")
 local gears = require("gears")
-local theme_name = "amarena"
-local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
-local themes_path = gfs.get_themes_dir()
-local layout_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/layout/"
-local titlebar_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/titlebar/"
-local taglist_icon_path = os.getenv("HOME") .. "/.config/awesome/icons/taglist/"
-local tip = titlebar_icon_path --alias to save time/space
 local theme = {}
 
 local bg_alpha_hex = "c0"
@@ -21,17 +14,16 @@ theme.font          = "sans 10"
 theme.bg            = colors.color0 .. bg_alpha_hex
 theme.bg_dark       = theme.bg
 theme.bg_normal     = theme.bg
-theme.bg_focus      = colors.color8
-theme.bg_urgent     = "#ffaa00"
+theme.bg_focus      = colors.color8 .. bg_alpha_hex
+theme.bg_urgent     = "#ffaa00" .. bg_alpha_hex
 theme.bg_minimize   = theme.bg
-theme.bg_systray    = theme.bg
 
 theme.fg            = colors.color15
 theme.fg_normal     = theme.fg
 theme.fg_unfocused  = theme.fg .. unfocused_alpha
 theme.fg_focus      = theme.fg
 theme.fg_urgent     = colors.color0
-theme.fg_minimize   = colors.color8
+theme.fg_minimize   = colors.color8 .. unfocused_alpha
 
 theme.transparent   = "#00000000"
 
@@ -74,8 +66,9 @@ theme.notification_border_radius = theme.border_radius
 theme.notification_border_color = theme.border_color
 theme.notification_bg = theme.bg
 theme.notification_fg = theme.fg
-theme.notification_crit_bg = theme.bg
-theme.notification_crit_fg = colors.color1
+theme.notification_crit_bg = theme.urgent_bg
+theme.notification_crit_fg = theme.urgent_fg
+theme.notification_low_fg = colors.active
 theme.notification_icon_size = dpi(48)
 theme.notification_margin = dpi(16)
 theme.notification_opacity = 1
@@ -172,18 +165,14 @@ theme.sidebar_width = dpi(384)
 theme.sidebar_border_radius = theme.border_radius
 
 -- Dashboard
-theme.dashboard_bg = theme.bg..bg_alpha_hex
+theme.dashboard_bg = theme.bg
 theme.dashboard_fg = colors.color7
 
 -- Exit screen
-theme.exit_screen_bg = theme.bg .. bg_alpha_hex
+theme.exit_screen_bg = theme.bg
 theme.exit_screen_fg = colors.color7
 theme.exit_screen_font = "sans 20"
 theme.exit_screen_icon_size = dpi(180)
-
--- Lock screen
-theme.lock_screen_bg = theme.bg..bg_alpha_hex
-theme.lock_screen_fg = colors.color7
 
 -- Prompt
 theme.prompt_fg = colors.color12
@@ -211,75 +200,9 @@ theme.menu_fg_focus= colors.color7
 theme.menu_border_width = dpi(0)
 theme.menu_border_color = theme.bg
 
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#ce5000"
-
--- You can use your own layout icons like this:
-theme.layout_fairh = layout_icon_path .. "fairh.png"
-theme.layout_fairv = layout_icon_path .. "fairv.png"
-theme.layout_floating  = layout_icon_path .. "floating.png"
-theme.layout_magnifier = layout_icon_path .. "magnifier.png"
-theme.layout_max = layout_icon_path .. "max.png"
-theme.layout_fullscreen = layout_icon_path .. "fullscreen.png"
-theme.layout_tilebottom = layout_icon_path .. "tilebottom.png"
-theme.layout_tileleft   = layout_icon_path .. "tileleft.png"
-theme.layout_tile = layout_icon_path .. "tile.png"
-theme.layout_tiletop = layout_icon_path .. "tiletop.png"
-theme.layout_spiral  = layout_icon_path .. "spiral.png"
-theme.layout_dwindle = layout_icon_path .. "dwindle.png"
-theme.layout_cornernw = layout_icon_path .. "cornernw.png"
-theme.layout_cornerne = layout_icon_path .. "cornerne.png"
-theme.layout_cornersw = layout_icon_path .. "cornersw.png"
-theme.layout_cornerse = layout_icon_path .. "cornerse.png"
-
--- Mpd song
-theme.mpd_song_title_color = colors.color7
-theme.mpd_song_artist_color = colors.color7
-theme.mpd_song_paused_color = colors.color8
-
--- Volume bar
-theme.volume_bar_active_color = colors.color5
-theme.volume_bar_active_background_color = theme.bg
-theme.volume_bar_muted_color = colors.color8
-theme.volume_bar_muted_background_color = theme.bg
-
--- Temperature bar
-theme.temperature_bar_active_color = colors.color1
-theme.temperature_bar_background_color = theme.bg
-
--- Battery bar
-theme.battery_bar_active_color = colors.color6
-theme.battery_bar_background_color = theme.bg
-
--- CPU bar
-theme.cpu_bar_active_color = colors.color2
-theme.cpu_bar_background_color = theme.bg
-
--- RAM bar
-theme.ram_bar_active_color = colors.color4
-theme.ram_bar_background_color = theme.bg
-
--- Brightness bar
-theme.brightness_bar_active_color = colors.color3
-theme.brightness_bar_background_color = theme.bg
-
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
-)
-
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = "/usr/share/icons/Flat-Remix-Blue-Dark"
-
-theme.cpu_bar_active_color = "#ff00aa"
-theme.brightness_bar_active_color = "#00ffaa"
-theme.battery_bar_active_color = "#00aaff"
-theme.temperature_bar_active_color = "#aa00ff"
-theme.volume_bar_active_color = "#aaff00"
-theme.ram_bar_active_color = "#aa00aa"
 
 return theme
 

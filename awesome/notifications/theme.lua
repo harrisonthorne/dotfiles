@@ -12,10 +12,16 @@ local helpers = require("helpers")
 -- The real background color is set in the widget_template
 -- beautiful.notification_bg = "#00000000"
 
+naughty.config.presets = {
+    ['critical'] = {
+        bg = beautiful.bg_urgent
+    }
+}
+
 local urgency_color = {
     ['low'] = colors.active,
-    ['normal'] = colors.color15,
-    ['critical'] = "#000000",
+    ['normal'] = beautiful.fg,
+    ['critical'] = beautiful.fg_urgent
 }
 
 -- Template
@@ -43,7 +49,7 @@ naughty.connect_signal("request::display", function(n)
                 },
                 widget = wibox.container.place
             },
-            bg = colors.color8,
+            bg = beautiful.bg_focus,
             forced_height = dpi(32),
             width = dpi(64),
             widget = wibox.container.background
@@ -119,7 +125,7 @@ naughty.connect_signal("request::display", function(n)
                 height   = beautiful.notification_max_height or dpi(256),
                 widget   = wibox.container.constraint,
             },
-            bg = n.urgency == "critical" and "#ffaa00c0" or beautiful.bg,
+            bg = n.urgency == "critical" and "#ffaa00" or beautiful.transparent,
             widget = wibox.container.background
         }
     }
