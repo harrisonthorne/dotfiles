@@ -37,20 +37,20 @@ cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
 #     -resize 5% \
 #     -blur 1x2 \
 #     -resize 2000% \
-#     -fill "#0a0c07" \
+#     -fill "#060607" \
 #     -colorize 75% \
 #     "$tmpbg"
 /usr/bin/convert "$tmpbg" \
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \
-    -fill "#0a0c07" \
+    -fill "#060607" \
     -colorize 75% \
     "$tmpbg"
 
-primary="fffffac0"
-primaryFaded="fffffa20"
-secondary="96bbcb20"
+primary="fcfffdc0"
+primaryFaded="fcfffd20"
+secondary="c49f6420"
 transparent="00000000"
 orange="ffaa00"
 

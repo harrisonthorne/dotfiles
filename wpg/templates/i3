@@ -21,15 +21,15 @@ exec redshift &
 exec syncthing --no-browser &
 
 # Use custom colors
-set $active       #96bbcbc0
-set $inactive     #67808cc0
+set $active       #c49f64c0
+set $inactive     #876d44c0
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #fffffa
-set $black        #0a0c07c0
-set $gray         #242c18c0
-set $opaqueGray   #242c18
-set $fadedBlack   #0a0c07c0
+set $white        #fcfffd
+set $black        #060607c0
+set $gray         #1c1c22c0
+set $opaqueGray   #1c1c22
+set $fadedBlack   #060607c0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -279,7 +279,7 @@ mode "Resize mode" {
 
 bar {
     i3bar_command i3bar -t
-    status_command "muse-status -p fffffa -s 96bbcb"
+    status_command "muse-status -p fcfffd -s c49f64"
     # status_command i3status
     font pango: Cantarell 10
     mode dock

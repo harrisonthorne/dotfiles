@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if pgrep -x swaylock >/dev/null
+then
+    echo "i3lock is already running"
+    exit
+fi
+
 FORK=''
 
 # parse args
@@ -18,24 +24,15 @@ while (( "$#" )); do
     esac
 done
 
-paplay $HOME/Music/MuseSounds/stereo/Lock.oga
+paplay /usr/share/sounds/musicaflight/stereo/Lock.oga &
 
 # suspend notifications
 # pkill -u "$USER" -USR1 dunst
 
 tmpbg='/tmp/screen.png'
 
-cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
-/usr/bin/convert "$tmpbg" \
-    -resize 1920x1080^ \
-    -gravity center \
-    -extent 1920x1080 \
-    -fill "#0a0c07" \
-    -colorize 75% \
-    "$tmpbg"
-
-primary="fffffaff"
-secondary="96bbcbc0"
+primary="fcfffdff"
+secondary="c49f64c0"
 transparent="00000000"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \

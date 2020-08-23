@@ -32,11 +32,11 @@ configuration {
 * {
     text-color: #ffffff;
     background-color: #00000000;
-    background: #0a0c07c0;
+    background: #060607c0;
     white: #ffffff;
-    dim: #96bbcb;
+    dim: #c49f64;
     orange: #ffaa00;
-    selected: #96bbcb20;
+    selected: #c49f6420;
 }
 
 window {

@@ -1,7 +1,8 @@
-h2
-h3
 h1
 der
+h2
+unim
+h3
 pri
 BEERWARE
 datetime
@@ -12,7 +13,6 @@ html
 h5
 pln
 pri,
-unim
 res
 printf
 todo
