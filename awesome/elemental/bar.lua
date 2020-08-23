@@ -8,23 +8,6 @@ local keys = require("keys")
 
 local dock_autohide_delay = 0 -- seconds
 
-local update_taglist = function (item, tag, index)
-    if tag.urgent then
-        item.fg = beautiful.fg_urgent
-        item.bg = beautiful.bg_urgent
-    elseif tag.selected then
-        item.fg = beautiful.fg
-        item.bg = "#00000000"
-    elseif #tag:clients() > 0 then
-        item.fg = colors.inactive
-        item.bg = "#00000000"
-    else
-        item.fg = "#00000000"
-        item.bg = "#00000000"
-    end
-    item.markup = tag.name
-end
-
 local dock = require("noodle.dock")
 local dock_placement = function(w)
     return awful.placement.bottom(w)
@@ -32,8 +15,7 @@ end
 
 status_primary = wibox.widget {
     valign = 'center',
-    align = 'right',
-    -- align = 'center',
+    align = 'center',
     markup = 'pri',
     fg = beautiful.fg,
     widget = wibox.widget.textbox
@@ -41,19 +23,19 @@ status_primary = wibox.widget {
 
 status_secondary = wibox.widget {
     valign = 'center',
-    align = 'center',
+    align = 'right',
     markup = 'sec',
     fg = beautiful.fg,
     widget = wibox.widget.textbox
 }
 
-awful.spawn.with_line_callback("muse-status -m plain", {
+awful.spawn.with_line_callback("muse-status sub p -m plain -p '" .. colors.color15 .. "' -s '" .. colors.active .. "'", {
     stdout = function(l)
         status_primary.markup = l
     end
 })
 
-awful.spawn.with_line_callback("muse-status -m plain", {
+awful.spawn.with_line_callback("muse-status sub s -m plain -p '" .. colors.color15 .. "' -s '" .. colors.active .. "'", {
     stdout = function(l)
         status_secondary.markup = l
     end
@@ -67,29 +49,16 @@ awful.screen.connect_for_each_screen(function(s)
         widget_template = {
             {
                 {
-                    {
-                        {
-                            id     = 'text_role',
-                            valign = "center",
-                            widget = wibox.widget.textbox,
-                        },
-                        widget = wibox.container.background,
-                    },
-                    layout = wibox.layout.fixed.horizontal,
+                    id     = 'text_role',
+                    valign = "center",
+                    widget = wibox.widget.textbox,
                 },
-                left  = 8,
-                right = 8,
+                left  = dpi(8),
+                right = dpi(8),
                 widget = wibox.container.margin
             },
             id     = 'background_role',
             widget = wibox.container.background,
-            -- Add support for hover colors and an index label
-            create_callback = function(self, tag, index, objects)
-                update_taglist(self, tag, index)
-            end,
-            update_callback = function(self, tag, index, objects)
-                update_taglist(self, tag, index)
-            end,
         },
         buttons = taglist_buttons
     }
@@ -109,11 +78,10 @@ awful.screen.connect_for_each_screen(function(s)
         {
             s.mytaglist,
             status_primary,
-            -- status_secondary,
-            layout = wibox.layout.align.horizontal
+            status_secondary,
+            layout = wibox.layout.flex.horizontal
         },
-        left = dpi(24),
-        right = dpi(32),
+        right = dpi(8),
         widget = wibox.container.margin
     }
 

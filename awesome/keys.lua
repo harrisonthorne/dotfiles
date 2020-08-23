@@ -367,11 +367,13 @@ keys.globalkeys = gears.table.join(
     awful.key( { }, "XF86MonBrightnessDown",
         function()
             awful.spawn("light -U 5", false)
+            awful.spawn("muse-status update brightness", false)
         end,
         {description = "decrease brightness", group = "brightness"}),
     awful.key( { }, "XF86MonBrightnessUp",
         function()
             awful.spawn("light -A 5", false)
+            awful.spawn("muse-status update brightness", false)
         end,
         {description = "increase brightness", group = "brightness"}),
     -- }}}

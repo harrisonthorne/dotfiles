@@ -116,15 +116,15 @@ local theme_dir = os.getenv("HOME") .. "/.config/awesome/theme/"
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 
--- Error handling
--- ===================================================================
-naughty.connect_signal("request::display_error", function(message, startup)
-    naughty.notification {
-        urgency = "critical",
-        title   = "Oops, an error happened"..(startup and " during startup!" or "!"),
-        message = message
-    }
-end)
+-- -- Error handling
+-- -- ===================================================================
+-- naughty.connect_signal("request::display_error", function(message, startup)
+--     naughty.notification {
+--         urgency = "critical",
+--         title   = "Oops, an error happened"..(startup and " during startup!" or "!"),
+--         message = message
+--     }
+-- end)
 
 -- Features
 -- ===================================================================

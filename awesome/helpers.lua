@@ -247,16 +247,19 @@ end
 function helpers.volume_down()
     awful.spawn("amixer -q sset Master 5%-", false)
     awful.spawn("paplay /usr/share/sounds/musicaflight/stereo/VolumeDown.oga", false)
+    awful.spawn("muse-status update volume", false)
 end
 
 function helpers.volume_up()
     awful.spawn("amixer -q sset Master 5%+ unmute", false)
     awful.spawn("paplay /usr/share/sounds/musicaflight/stereo/Volume.oga", false)
+    awful.spawn("muse-status update volume", false)
 end
 
 function helpers.volume_mute_toggle()
     awful.spawn("amixer sset Master toggle", false)
     awful.spawn("paplay /usr/share/sounds/musicaflight/stereo/Volume.oga", false)
+    awful.spawn("muse-status update volume", false)
 end
 
 local prompt_font = beautiful.prompt_font or "sans 8"
@@ -340,7 +343,7 @@ function helpers.run_or_focus(match, move, spawn_cmd, spawn_args)
 
     -- Spawn if not found
     if not found then
-        awful.spawn(spawn_cmd, spawn_args)
+        awful.spawn.with_shell(spawn_cmd, spawn_args)
     end
 end
 

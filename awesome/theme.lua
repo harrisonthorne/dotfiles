@@ -20,7 +20,7 @@ theme.bg_minimize   = theme.bg
 
 theme.fg            = colors.color15
 theme.fg_normal     = theme.fg
-theme.fg_unfocused  = theme.fg .. unfocused_alpha
+theme.fg_unfocused  = colors.active
 theme.fg_focus      = theme.fg
 theme.fg_urgent     = colors.color0
 theme.fg_minimize   = colors.color8 .. unfocused_alpha
