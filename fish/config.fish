@@ -18,24 +18,13 @@ set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g 
 set -gx GPG_TTY (tty)
 set -gx GOPATH $HOME/go
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
-set -gx QT_QPA_PLATFORMTHEME gtk
+set -gx QT_QPA_PLATFORMTHEME gtk2
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx WINEPREFIX $HOME/.wine/
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 
 set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
-
-# Start desktop at login
-if status is-login
-    # removing; sway is started at boot via systemd service for the time being
-    #    if test -z "$DISPLAY"
-        # startx -- -keeptty > ~/startx.log
-        # sway > sway.log ^ sway.err
-    # end
-else
-    eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket 4B21310A52B15162)
-end
 
 function fish_prompt --description 'Write out the prompt'
     set -l color_cwd
@@ -104,4 +93,8 @@ function crypt-edit
     else
         echo "no file given."
     end
+end
+
+if ! status is-login
+    eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket 4B21310A52B15162)
 end
