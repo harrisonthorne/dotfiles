@@ -102,15 +102,24 @@ decorations.button = function (c, shape, color, unfocused_color, hover_color, si
     local p = button_commands[cmd].track_property
     -- Track client property if needed
     if p then
+        local active_color = color
+        local inactive_color = color .. "40"
+
+        if p == "floating" then
+            local tmp = active_color
+            active_color = inactive_color
+            inactive_color = tmp
+        end
+
         c:connect_signal("property::"..p, function ()
-            button.bg = c[p] and color .. "40" or color
+            button.bg = c[p] and inactive_color or active_color
         end)
         c:connect_signal("focus", function ()
-            button.bg = c[p] and color .. "40" or color
+            button.bg = c[p] and inactive_color or active_color
         end)
         button_widget:connect_signal("mouse::leave", function ()
             if c == client.focus then
-                button.bg = c[p] and color .. "40" or color
+                button.bg = c[p] and inactive_color or active_color
             else
                 button.bg = unfocused_color
             end

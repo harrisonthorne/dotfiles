@@ -9,7 +9,7 @@ local decorations = require("decorations")
 -- Button configuration
 local gen_button_size = dpi(12)
 local gen_button_margin = dpi(6)
-local gen_button_color_unfocused = colors.color15.."20"
+local gen_button_color_unfocused = beautiful.transparent
 local gen_button_shape = gears.shape.circle
 
 -- Add a titlebar
