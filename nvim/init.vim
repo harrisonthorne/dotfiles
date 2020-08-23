@@ -3,7 +3,6 @@ filetype plugin indent on
 syntax on
 
 let mapleader=","
-nnoremap <bslash> ,
 
 let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '!'
@@ -16,6 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'deviantfero/wpgtk.vim'
 Plug 'dhruvasagar/vim-table-mode'       " Tables!
+Plug 'easymotion/vim-easymotion'        " EasyMotion
 Plug 'honza/vim-snippets'               " Snippets
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -102,7 +102,7 @@ set updatetime=300
 set whichwrap+=<,>,h,l
 set wildignore+=*/node_modules,*/node_modules/*,.git,.git/*,tags,*/dist,*/dist/*
 
-" call echodoc#enable()
+map <bslash> <Plug>(easymotion-prefix)
 
 " get highlight under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -316,7 +316,7 @@ hi! CocRustChainingHint cterm=italic gui=italic ctermfg=4 guifg=4 ctermbg=NONE g
 hi DiffAdd ctermbg=NONE guibg=NONE ctermfg=48 guifg=green
 hi DiffChange ctermbg=NONE guibg=NONE ctermfg=214 guifg=orange
 hi DiffDelete ctermbg=NONE guibg=NONE ctermfg=196 guifg=red
-hi DiffText ctermbg=NONE guibg=NONE ctermfg=226 guifg=yellow cterm=bold gui=bold
+hi DiffText ctermbg=NONE guibg=NONE ctermfg=214 guifg=orange cterm=undercurl gui=undercurl
 
 hi diffAdded ctermbg=NONE guibg=NONE ctermfg=48 guifg=green
 hi diffRemoved ctermbg=NONE guibg=NONE ctermfg=196 guifg=orange
