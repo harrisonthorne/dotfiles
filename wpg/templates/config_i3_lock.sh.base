@@ -29,7 +29,7 @@ paplay /usr/share/sounds/musicaflight/stereo/Lock.oga &
 # suspend notifications
 # pkill -u "$USER" -USR1 dunst
 
-tmpbg='/tmp/screen.png'
+tmpbg='$HOME/.lock_screen.png'
 
 primary="{color15.strip}ff"
 secondary="{active.strip}c0"
