@@ -5,8 +5,7 @@ local menubar = require("menubar")
 local notifications = {}
 
 -- Timeouts
-naughty.config.defaults.timeout = 5
-naughty.config.presets.low.timeout = 5
+naughty.config.presets.critical.bg = "#ffaa00c0"
 naughty.config.presets.critical.timeout = 10
 
 -- >> Notify DWIM (Do What I Mean):

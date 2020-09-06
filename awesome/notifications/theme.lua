@@ -8,16 +8,6 @@ local helpers = require("helpers")
 
 -- Note: This theme does not show image notification icons
 
--- For antialiasing
--- The real background color is set in the widget_template
--- beautiful.notification_bg = "#00000000"
-
-naughty.config.presets = {
-    ['critical'] = {
-        bg = beautiful.bg_urgent
-    }
-}
-
 local urgency_color = {
     ['low'] = colors.active,
     ['normal'] = beautiful.fg,
@@ -49,9 +39,10 @@ naughty.connect_signal("request::display", function(n)
                 },
                 widget = wibox.container.place
             },
-            bg = beautiful.bg_focus,
+            bg = beautiful.bg,
             forced_height = dpi(32),
             width = dpi(64),
+            shape = helpers.rrect(beautiful.border_radius),
             widget = wibox.container.background
         },
         style = {
@@ -64,7 +55,7 @@ naughty.connect_signal("request::display", function(n)
     naughty.layout.box {
         notification = n,
         type = "notification",
-        shape = gears.shape.rectangle,
+        shape = helpers.rrect(beautiful.border_radius),
         border_width = beautiful.notification_border_width,
         border_color = beautiful.notification_border_color,
         position = beautiful.notification_position,
@@ -81,7 +72,6 @@ naughty.connect_signal("request::display", function(n)
                             widget  = wibox.container.place,
                         },
                         {
-                            {
                                 {
                                     {
                                         align = "left",
@@ -111,9 +101,6 @@ naughty.connect_signal("request::display", function(n)
                                 },
                                 valign = "center",
                                 layout = wibox.container.place,
-                            },
-                            left = beautiful.notification_margin,
-                            widget = wibox.container.margin,
                         },
                         layout  = wibox.layout.fixed.horizontal,
                     },
@@ -125,8 +112,8 @@ naughty.connect_signal("request::display", function(n)
                 height   = beautiful.notification_max_height or dpi(256),
                 widget   = wibox.container.constraint,
             },
-            bg = n.urgency == "critical" and "#ffaa00" or beautiful.transparent,
-            widget = wibox.container.background
+            id = "background_role",
+            widget = naughty.container.background
         }
     }
 end)
