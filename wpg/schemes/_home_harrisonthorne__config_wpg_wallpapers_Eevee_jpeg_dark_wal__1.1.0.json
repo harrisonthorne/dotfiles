@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/.config/wpg/wallpapers/Eevee.jpeg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#070604",
+        "foreground": "#fffff0",
+        "cursor": "#fffff0"
+    },
+    "colors": {
+        "color0": "#070604",
+        "color1": "#9E8371",
+        "color2": "#EADCB1",
+        "color3": "#C9B098",
+        "color4": "#5C5999",
+        "color5": "#C4AB9C",
+        "color6": "#29AAD1",
+        "color7": "#f6f4db",
+        "color8": "#282114",
+        "color9": "#dea681",
+        "color10": "#ffffc2",
+        "color11": "#ffe4ae",
+        "color12": "#6963d6",
+        "color13": "#ffd8b3",
+        "color14": "#24e5ff",
+        "color15": "#fffff0"
+    }
+}
