@@ -72,6 +72,7 @@ naughty.connect_signal("request::display", function(n)
                             widget  = wibox.container.place,
                         },
                         {
+                            {
                                 {
                                     {
                                         align = "left",
@@ -101,6 +102,9 @@ naughty.connect_signal("request::display", function(n)
                                 },
                                 valign = "center",
                                 layout = wibox.container.place,
+                            },
+                            left = beautiful.notification_margin,
+                            widget = wibox.container.margin,
                         },
                         layout  = wibox.layout.fixed.horizontal,
                     },
