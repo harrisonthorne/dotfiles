@@ -5,7 +5,7 @@ killall muse-status-dae
 
 awesome-client "awesome.restart()"
 
-tmpbg='$HOME/.lock_screen.png'
+tmpbg="$HOME/.lock_screen.png"
 
 cp $HOME/.config/wpg/wallpapers/$(wpg -c) $tmpbg
 /usr/bin/convert "$tmpbg" \

@@ -1,26 +1,26 @@
 -- Make xresources colors global
 colors = {
     --           xrdb variable
-    background = "#060607",
-    foreground = "#fcfffd",
-    color0     = "#060607",
-    color1     = "#6B899B",
-    color2     = "#647C8D",
-    color3     = "#AF976F",
-    color4     = "#55748C",
-    color5     = "#8FA7B5",
-    color6     = "#7093AB",
-    color7     = "#c8ccc9",
-    color8     = "#1c1c22",
-    color9     = "#7ab6da",
-    color10    = "#72a3c6",
-    color11    = "#f6c87d",
-    color12    = "#5f98c4",
-    color13    = "#a4deff",
-    color14    = "#7fc2f0",
-    color15    = "#fcfffd",
-    active     = "#c49f64",
-    inactive   = "#876d44"
+    background = "#0E1C0F",
+    foreground = "#fcffff",
+    color0     = "#0E1C0F",
+    color1     = "#96A466",
+    color2     = "#648F26",
+    color3     = "#A2B13F",
+    color4     = "#6E8C60",
+    color5     = "#A1A894",
+    color6     = "#748E89",
+    color7     = "#d5dad9",
+    color8     = "#1e3d20",
+    color9     = "#cce673",
+    color10    = "#84c525",
+    color11    = "#def542",
+    color12    = "#89c56d",
+    color13    = "#d7eeab",
+    color14    = "#86c9bc",
+    color15    = "#fcffff",
+    active     = "#b1c334",
+    inactive   = "#798624"
 }
 
 return colors

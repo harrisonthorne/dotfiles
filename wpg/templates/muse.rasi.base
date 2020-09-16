@@ -1,7 +1,7 @@
 configuration {{
 	modi: "drun,emoji,window";
 	combi-modi: "drun,window";
-	font: "Cantarell 10";
+	font: "sans 10";
 	yoffset: 0;
 	xoffset: 0;
 	disable-history: false;

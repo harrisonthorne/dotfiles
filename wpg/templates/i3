@@ -21,15 +21,15 @@ exec redshift &
 exec syncthing --no-browser &
 
 # Use custom colors
-set $active       #c49f64c0
-set $inactive     #876d44c0
+set $active       #b1c334c0
+set $inactive     #798624c0
 set $warning      #ffaa00
 set $warningAlpha #ffaa00c0
-set $white        #fcfffd
-set $black        #060607c0
-set $gray         #1c1c22c0
-set $opaqueGray   #1c1c22
-set $fadedBlack   #060607c0
+set $white        #fcffff
+set $black        #0E1C0Fc0
+set $gray         #1e3d20c0
+set $opaqueGray   #1e3d20
+set $fadedBlack   #0E1C0Fc0
 set $transparent  #00000000
 
 set $TERMINAL kitty
@@ -48,7 +48,7 @@ client.background       $black
 title_align center
 
 # Font for window titles
-font pango: Cantarell 10
+font pango: sans 10
 title_align center
 
 # others
@@ -279,9 +279,9 @@ mode "Resize mode" {
 
 bar {
     i3bar_command i3bar -t
-    status_command "muse-status -p fcfffd -s c49f64"
+    status_command "muse-status -p fcffff -s b1c334"
     # status_command i3status
-    font pango: Cantarell 10
+    font pango: sans 10
     mode dock
     modifier $mod
     separator_symbol "    "

@@ -61,7 +61,7 @@ client.background       $black
 xwayland force
 
 # Font for window titles
-font pango: Cantarell 10
+font pango: sans 10
 title_align center
 
 # others
@@ -330,7 +330,7 @@ output "*" {{
 
 bar {{
     status_command "muse-status -p {color15.strip} -s {inactive.strip}"
-    font pango: Cantarell 10
+    font pango: sans 10
     mode dock
     modifier $mod
     separator_symbol "    "

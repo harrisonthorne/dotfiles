@@ -1,7 +1,7 @@
 configuration {
 	modi: "drun,emoji,window";
 	combi-modi: "drun,window";
-	font: "Cantarell 10";
+	font: "sans 10";
 	yoffset: 0;
 	xoffset: 0;
 	disable-history: false;
@@ -32,11 +32,11 @@ configuration {
 * {
     text-color: #ffffff;
     background-color: #00000000;
-    background: #060607c0;
+    background: #0E1C0Fc0;
     white: #ffffff;
-    dim: #c49f64;
+    dim: #b1c334;
     orange: #ffaa00;
-    selected: #c49f6420;
+    selected: #b1c33420;
 }
 
 window {

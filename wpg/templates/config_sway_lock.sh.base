@@ -90,7 +90,7 @@ swaylock $FORK -i "$tmpbg" \
     --text-wrong-color=$transparent \
     --text-caps-lock-color=$orange \
 \
-    --font "Cantarell Thin" \
+    --font "sans Thin" \
     --font-size 128 \
 \
     --timestr="%-l:%M %P" \

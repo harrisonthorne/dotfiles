@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if pgrep -x swaylock >/dev/null
+if pgrep -x i3lock >/dev/null
 then
     echo "i3lock is already running"
     exit
@@ -29,10 +29,10 @@ paplay /usr/share/sounds/musicaflight/stereo/Lock.oga &
 # suspend notifications
 # pkill -u "$USER" -USR1 dunst
 
-tmpbg='/tmp/screen.png'
+tmpbg="$HOME/.lock_screen.png"
 
-primary="fcfffdff"
-secondary="c49f64c0"
+primary="fcffffff"
+secondary="b1c334c0"
 transparent="00000000"
 
 /usr/bin/i3lock $FORK -t -i "$tmpbg" \
@@ -72,10 +72,10 @@ transparent="00000000"
     --timepos="256:256" \
     --datepos="tx:ty+64" \
 \
-    --time-font="Cantarell Thin" \
-    --date-font="Cantarell" \
-    --verif-font="Cantarell" \
-    --wrong-font="Cantarell" \
+    --time-font="Inter Thin" \
+    --date-font="sans" \
+    --verif-font="sans" \
+    --wrong-font="sans" \
 \
     --timesize=128 \
     --datesize=24 \

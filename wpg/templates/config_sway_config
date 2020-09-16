@@ -35,11 +35,11 @@ exec_always gsettings set $gnome-sound-schema event-sounds true
 exec_always gsettings set $gnome-sound-schema input-feedback-sounds true
 
 # Use custom colors
-set $active       #c49f64e5
-set $inactive     #876d44e5
-set $white        #fcfffd
-set $black        #060607e5
-set $gray         #1c1c22e5
+set $active       #b1c334e5
+set $inactive     #798624e5
+set $white        #fcffff
+set $black        #0E1C0Fe5
+set $gray         #1e3d20e5
 set $warning      #ffaa00e5
 set $transparent  #00000000
 
@@ -61,7 +61,7 @@ client.background       $black
 xwayland force
 
 # Font for window titles
-font pango: Cantarell 10
+font pango: sans 10
 title_align center
 
 # others
@@ -329,8 +329,8 @@ output "*" {
 }
 
 bar {
-    status_command "muse-status -p fcfffd -s 876d44"
-    font pango: Cantarell 10
+    status_command "muse-status -p fcffff -s 798624"
+    font pango: sans 10
     mode dock
     modifier $mod
     separator_symbol "    "

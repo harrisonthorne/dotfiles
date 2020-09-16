@@ -48,7 +48,7 @@ client.background       $black
 title_align center
 
 # Font for window titles
-font pango: Cantarell 10
+font pango: sans 10
 title_align center
 
 # others
@@ -281,7 +281,7 @@ bar {{
     i3bar_command i3bar -t
     status_command "muse-status -p {color15.strip} -s {active.strip}"
     # status_command i3status
-    font pango: Cantarell 10
+    font pango: sans 10
     mode dock
     modifier $mod
     separator_symbol "    "
