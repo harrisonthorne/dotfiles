@@ -10,7 +10,7 @@ local dock_autohide_delay = 0 -- seconds
 
 local dock = require("noodle.dock")
 local dock_placement = function(w)
-    return awful.placement.bottom(w)
+    return awful.placement.bottom_left(w, { margins = dpi(4) })
 end
 
 status_primary = wibox.widget {
@@ -93,7 +93,8 @@ awful.screen.connect_for_each_screen(function(s)
         ontop = true,
         -- type = "dock",
         placement = dock_placement,
-        widget = dock
+        widget = dock,
+        shape = helpers.rrect(beautiful.border_radius)
     })
     dock_placement(s.dock)
 
@@ -110,8 +111,8 @@ awful.screen.connect_for_each_screen(function(s)
     end
 
     -- Initialize wibox activator
-    s.dock_activator = wibox({ screen = s, height = 1, bg = "#00000000", visible = true, ontop = false })
-    awful.placement.bottom(s.dock_activator)
+    s.dock_activator = wibox({ screen = s, width = 1, height = 1, bg = "#00000000", visible = true, ontop = false })
+    awful.placement.bottom_left(s.dock_activator)
     s.dock_activator:connect_signal("mouse::enter", function()
         s.dock.visible = true
         if popup_timer then
@@ -134,24 +135,9 @@ awful.screen.connect_for_each_screen(function(s)
     client.connect_signal("unfocus", no_dock_activator_ontop)
     client.connect_signal("property::fullscreen", no_dock_activator_ontop)
 
-    -- s.dock_activator:buttons(
-    --     gears.table.join(
-    --         awful.button({ }, 4, function ()
-    --             awful.tag.viewprev()
-    --         end),
-    --         awful.button({ }, 5, function ()
-    --             awful.tag.viewnext()
-    --         end)
-    -- ))
-
     local function adjust_dock()
         -- Reset position every time the number of dock items changes
         dock_placement(s.dock)
-
-        -- Adjust activator width every time the dock wibox width changes
-        s.dock_activator.width = s.dock.width + dpi(256)
-        -- And recenter
-        awful.placement.bottom(s.dock_activator)
     end
 
     adjust_dock()
@@ -167,10 +153,6 @@ awful.screen.connect_for_each_screen(function(s)
     s.dock:connect_signal("mouse::leave", function ()
         autohide()
     end)
-    s.dock_activator:connect_signal("mouse::leave", function ()
-        autohide()
-    end)
-
 end)
 
 awesome.connect_signal("elemental::dismiss", function()

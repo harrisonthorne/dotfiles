@@ -9,7 +9,7 @@ local bg_alpha_hex = "c0"
 local unfocused_alpha = "40"
 
 -- Set the theme font. This is the font that will be used by default in menus, bars, titlebars etc.
-theme.font          = "sans 10"
+theme.font          = "sans 11"
 
 theme.bg            = colors.color0 .. bg_alpha_hex
 theme.bg_dark       = theme.bg
@@ -40,14 +40,14 @@ theme.border_normal = colors.background
 theme.border_focus  = colors.background
 
 -- Rounded corners
-theme.border_radius = dpi(0)
+theme.border_radius = dpi(12)
 
 -- Titlebars
 -- (Titlebar items can be customized in titlebars.lua)
 theme.titlebars_enabled = true
 theme.titlebar_size = dpi(32)
 theme.titlebar_title_enabled = true
-theme.titlebar_font = "sans 10"
+theme.titlebar_font = theme.font
 theme.titlebar_title_align = "center"
 theme.titlebar_position = "top"
 theme.titlebar_bg = theme.bg
@@ -72,7 +72,7 @@ theme.notification_low_fg = colors.active
 theme.notification_icon_size = dpi(48)
 theme.notification_margin = dpi(16)
 theme.notification_opacity = 1
-theme.notification_font = "sans 10"
+theme.notification_font = theme.font
 theme.notification_padding = dpi(16)
 theme.notification_spacing = dpi(8)
 
@@ -130,39 +130,34 @@ theme.prefix_fg = colors.color8
  theme.hotkeys_bg = theme.bg
  theme.hotkeys_fg = theme.fg
  theme.hotkeys_modifiers_fg = colors.color14
- theme.hotkeys_font = "sans 10"
+ theme.hotkeys_font = theme.font
  theme.hotkeys_description_font = "sans 8"
  theme.hotkeys_label_bg = colors.color0
  theme.hotkeys_label_fg = colors.color13
  theme.hotkeys_group_margin = dpi(16)
 
  --Tasklist
-theme.tasklist_font = "sans 10"
-theme.tasklist_disable_icon = true
+theme.tasklist_font = theme.font
+theme.tasklist_disable_icon = false
 theme.tasklist_plain_task_name = true
-theme.tasklist_bg_focus = theme.bg
-theme.tasklist_fg_focus = colors.foreground
-theme.tasklist_bg_normal = "#00000000"
-theme.tasklist_fg_normal = colors.foreground.."77"
-theme.tasklist_bg_minimize = "#00000000"
-theme.tasklist_fg_minimize = colors.color8
-theme.tasklist_font_minimized = "sans italic 10"
+theme.tasklist_bg_normal = "#ff000000"
+theme.tasklist_fg_normal = colors.active
+theme.tasklist_bg_focus = colors.active .. "80"
+theme.tasklist_fg_focus = colors.fg
+theme.tasklist_bg_minimize = colors.transparent
+theme.tasklist_fg_minimize = colors.active
+theme.tasklist_font_minimized = "sans italic 11"
 theme.tasklist_bg_urgent = "#ffaa00"
 theme.tasklist_fg_urgent = theme.bg
 theme.tasklist_spacing = dpi(0)
-theme.tasklist_align = "center"
 
--- Sidebar
--- (Sidebar items can be customized in sidebar.lua)
-theme.sidebar_bg = colors.background
-theme.sidebar_fg = colors.color7
-theme.sidebar_opacity = 0.75
-theme.sidebar_position = "left" -- left or right
-theme.sidebar_width = dpi(384)
--- XXX These were removed from sidebar.lua
--- theme.sidebar_x = dpi(8)
--- theme.sidebar_y = dpi(8)
-theme.sidebar_border_radius = theme.border_radius
+-- calendar
+-- (calendar items can be customized in calendar.lua)
+theme.calendar_bg = colors.background
+theme.calendar_fg = colors.color7
+theme.calendar_opacity = 0.75
+theme.calendar_position = "left" -- left or right
+theme.calendar_width = dpi(384)
 
 -- Dashboard
 theme.dashboard_bg = theme.bg
@@ -178,7 +173,7 @@ theme.exit_screen_icon_size = dpi(180)
 theme.prompt_fg = colors.color12
 
 -- Text Taglist (default)
-theme.taglist_font = "sans 10"
+theme.taglist_font = theme.font
 theme.taglist_bg_focus = theme.transparent
 theme.taglist_bg_occupied = theme.transparent
 theme.taglist_bg_empty = colors.background

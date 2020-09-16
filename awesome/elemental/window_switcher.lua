@@ -66,6 +66,7 @@ awful.screen.connect_for_each_screen(function(s)
         screen = s,
         bg = "#00000000",
         fg = colors.foreground,
+        shape = helpers.rrect(beautiful.border_radius),
         widget = {
             {
                 s.window_switcher_tasklist,
@@ -74,14 +75,13 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.margin
             },
             bg = colors.color0.."c0",
-            shape = helpers.rect,
             widget = wibox.container.background
         }
     })
 
     -- Center window switcher whenever its height changes
     s.window_switcher:connect_signal("property::height", function()
-        awful.placement.centered(s.window_switcher, { honor_workarea = true, honor_padding = true })
+        awful.placement.top_left(s.window_switcher, { honor_workarea = true, margins = dpi(4) })
         if get_num_clients(s) == 0 then
             window_switcher_hide()
         end
