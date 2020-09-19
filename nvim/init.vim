@@ -23,6 +23,7 @@ Plug 'mattn/emmet-vim'                  " Emmet
 Plug 'mhinz/vim-startify'               " Startify
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'psliwka/vim-smoothie'
+Plug 'rhysd/vim-grammarous'
 Plug 'sheerun/vim-polyglot'             " languages
 Plug 'tpope/vim-abolish'                " camelCase to snake_case
 Plug 'gorodinskiy/vim-coloresque'
@@ -151,11 +152,11 @@ noremap <leader>tc :tabc<CR>
 noremap <leader>te :tabe<CR>
 
 " splitting shortcuts
-noremap <leader>v :vs<CR>
-noremap <leader>s :sp<CR>
-noremap <leader>nv :vs<CR>:FZF<CR>
-noremap <leader>ns :sp<CR>:FZF<CR>
-noremap <leader>nt :tabe<CR>:FZF<CR>
+noremap <leader>nv :vs<CR>
+noremap <leader>ns :sp<CR>
+noremap <leader>v :vs<CR>:FZF<CR>
+noremap <leader>s :sp<CR>:FZF<CR>
+noremap <leader>t :tabe<CR>:FZF<CR>
 
 " Fugitive shortcuts
 noremap <leader>gg :Git
@@ -171,9 +172,9 @@ nnoremap <leader>gor :!go run *.go
 nnoremap <silent> <leader>ca :CocAction<CR>
 nnoremap <silent> <leader>cc :CocCommand<space>
 nmap <silent> <leader>cr <Plug>(coc-rename)
-nmap <silent> <leader>cx <Plug>(coc-format)
+nmap <silent> <leader>cx <Plug>(coc-references)
 nmap <silent> <leader>ct <Plug>(coc-type-definition)
-nmap <silent> <leader>cf <Plug>(coc-references)
+nmap <silent> <leader>cf <Plug>(coc-format)
 nmap <silent> <leader>cq <Plug>(coc-fix-current)
 nmap <silent> <leader>ci <Plug>(coc-diagnostic-info)
 nmap <silent> <leader>cn <Plug>(coc-diagnostic-next)
@@ -239,15 +240,16 @@ augroup END
 "color wpgtk
 
 " change gutter (SignColumn) color to clear
-hi SignColumn guibg=NONE ctermbg=NONE
-hi LineNr ctermfg=4 guibg=NONE ctermbg=NONE
+hi! SignColumn guibg=NONE ctermbg=NONE
+hi! LineNr ctermfg=4 guibg=NONE ctermbg=NONE
 
-hi MatchParen cterm=bold ctermbg=8 ctermfg=231 gui=bold guibg=8 guifg=white
-hi FoldColumn guibg=NONE ctermbg=NONE
-hi CursorLineNr guibg=8 ctermbg=8 cterm=bold gui=bold guifg=white ctermfg=231
-hi CursorLine guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
-hi CursorColumn guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
-hi Folded guibg=0 ctermbg=0 guifg=4 ctermfg=4 gui=italic cterm=italic
+hi! MatchParen cterm=bold ctermbg=8 ctermfg=231 gui=bold guibg=8 guifg=white
+hi! FoldColumn guibg=NONE ctermbg=NONE
+hi! CursorLineNr guibg=8 ctermbg=8 cterm=bold gui=bold guifg=white ctermfg=231
+hi! CursorLine guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
+hi! CursorColumn guibg=8 ctermbg=8 cterm=NONE gui=NONE ctermfg=NONE guifg=NONE
+hi! Folded guibg=0 ctermbg=0 guifg=4 ctermfg=4 gui=italic cterm=italic
+hi! ColorColumn guibg=52 ctermbg=52
 
 hi! Error guibg=NONE ctermbg=NONE guifg=red ctermfg=196 gui=bold cterm=bold
 hi! Warning guibg=NONE ctermbg=NONE guifg=yellow ctermfg=226 gui=bold cterm=bold
@@ -417,7 +419,7 @@ hi Inactive cterm=italic gui=italic ctermfg=4 guifg=4 ctermbg=NONE guibg=NONE
 
 let g:currentmode={
     \ 'n'  : 'n',
-    \ 'no' : '...',
+    \ 'no' : '.',
     \ 'v'  : 'v',
     \ 'V'  : 'vl',
     \ '^V' : 'vb',
@@ -427,13 +429,13 @@ let g:currentmode={
     \ 'i'  : 'i',
     \ 'R'  : 'r',
     \ 'Rv' : 'vr',
-    \ 'c'  : 'cmd',
-    \ 'cv' : 'vim ex',
-    \ 'ce' : 'ex',
+    \ 'c'  : '_',
+    \ 'cv' : 'xv',
+    \ 'ce' : 'x',
     \ 'r'  : 'p',
     \ 'rm' : 'm',
     \ 'r?' : '?',
-    \ '!'  : 'sh',
+    \ '!'  : '!',
     \ 't'  : 't'
     \ }
 
@@ -542,3 +544,6 @@ endfunction
 hi TabLine cterm=bold ctermfg=1 guifg=1 ctermbg=NONE guibg=NONE
 hi TabLineFill cterm=bold ctermfg=8 guifg=8 ctermbg=NONE guibg=NONE
 hi TabLineSel cterm=bold ctermfg=15 guifg=15 ctermbg=NONE guibg=NONE
+
+" sudo write
+com! -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod
