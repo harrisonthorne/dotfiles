@@ -43,7 +43,7 @@ calendar_drawer.opacity = beautiful.calendar_drawer_opacity or 1
 calendar_drawer.width = dpi(384)
 calendar_drawer.height = dpi(256)
 calendar_drawer.shape = helpers.rrect(beautiful.border_radius)
-awful.placement.bottom_right(calendar_drawer, { margins = dpi(4) })
+awful.placement.bottom_right(calendar_drawer, { margins = dpi(8) })
 
 calendar_drawer:buttons(gears.table.join(
     -- Middle click - Hide calendar_drawer

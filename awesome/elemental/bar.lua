@@ -10,7 +10,7 @@ local dock_autohide_delay = 0 -- seconds
 
 local dock = require("noodle.dock")
 local dock_placement = function(w)
-    return awful.placement.bottom_left(w, { margins = dpi(4) })
+    return awful.placement.bottom_left(w, { margins = dpi(8) })
 end
 
 status_primary = wibox.widget {
