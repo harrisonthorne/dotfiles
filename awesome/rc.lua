@@ -1,27 +1,28 @@
 --[[
    ___       ___       ___       ___       ___       ___       ___
   /\  \     /\__\     /\  \     /\  \     /\  \     /\__\     /\  \
- /::\  \   /:/\__\   /::\  \   /::\  \   /::\  \   /::L_L_   /::\  \
-/::\:\__\ /:/:/\__\ /::\:\__\ /\:\:\__\ /:/\:\__\ /:/L:\__\ /::\:\__\
-\/\::/  / \::/:/  / \:\:\/  / \:\:\/__/ \:\/:/  / \/_/:/  / \:\:\/  /
-  /:/  /   \::/  /   \:\/  /   \::/  /   \::/  /    /:/  /   \:\/  /
+ /  \  \   / /\__\   /  \  \   /  \  \   /  \  \   /  L_L_   /  \  \
+/  \ \__\ / / /\__\ /  \ \__\ /\ \ \__\ / /\ \__\ / /L \__\ /  \ \__\
+\/\  /  / \  / /  / \ \ \/  / \ \ \/__/ \ \/ /  / \/_/ /  / \ \ \/  /
+  / /  /   \  /  /   \ \/  /   \  /  /   \  /  /    / /  /   \ \/  /
   \/__/     \/__/     \/__/     \/__/     \/__/     \/__/     \/__/
 --]]
 
 --[[
 Hot corners
 
-+-----------------------------------------------+
-|                           Media/notifications |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-|                                               |
-| App tray/system controls             Calendar |
-+-----------------------------------------------+
++-----------------------------------------------------+
+|                                 Media/notifications |
+|                                                     |
+|                                                     |
+|                                                     |
+|                                                     |
+|                                                     |
+|                                                     |
+|                                                     |
+|                                                     |
+| App tray/system controls     Calendar/notifications |
++-----------------------------------------------------+
 --]]
 
 colors = require("colors")
@@ -30,14 +31,6 @@ local awful = require("awful")
 -- Start apps
 awful.spawn.with_shell(os.getenv("HOME") .. "/.config/wpg/wp_init.sh")
 awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/autostart.sh")
-
-local theme = "amarena"
-local decoration_theme = "ephemeral"
-local bar_theme = "amarena"
-local notification_theme = "amarena"
-local sidebar_theme = "amarena"
-local dashboard_theme = "amarena"
-local exit_screen_theme = "ephemeral"
 
 local terminal = "kitty"
 user = {
@@ -69,8 +62,8 @@ user = {
         screenshots = os.getenv("XDG_SCREENSHOTS_DIR") or "~/Pictures/Screenshots",
     },
 
-    -- >> Sidebar <<
-    sidebar = {
+    -- >> calendar_drawer <<
+    calendar_drawer = {
         hide_on_mouse_leave = true,
         show_on_mouse_screen_edge = true,
     },
@@ -147,14 +140,12 @@ require("elemental.bar")
 -- Exit screen
 require("elemental.exit")
 
--- Sidebar
-require("elemental.sidebar")
+-- calendar_drawer
+require("elemental.calendar_drawer")
 
 -- Dashboard (previously called: Start screen)
 require("elemental.dashboard")
 
--- App drawer
-require("elemental.app_drawer")
 -- Window switcher
 require("elemental.window_switcher")
 
@@ -199,7 +190,7 @@ awful.layout.append_default_layouts({
 local function set_wallpaper(s)
     -- Wallpaper
     awful.spawn.easy_async_with_shell('wpg -c', function(stdout, _, __, ___) 
-        local wallpaper = os.getenv("HOME") .. "/Pictures/Wallpapers/Photos/" .. (stdout:match "^%s*(.-)%s*$")
+        local wallpaper = os.getenv("HOME") .. "/.config/wpg/wallpapers/" .. (stdout:match "^%s*(.-)%s*$")
         print(wallpaper)
 
         gears.wallpaper.maximized(wallpaper, s, false)
@@ -404,7 +395,7 @@ awful.rules.rules = {
             }
         },
         callback = function(c)
-            decorations.hide(c)
+            awful.titlebar.hide(c, beautiful.titlebar_position)
         end
     },
 
@@ -419,7 +410,7 @@ awful.rules.rules = {
             }
         },
         callback = function(c)
-            decorations.show(c)
+            awful.titlebar:show(c, beautiful.titlebar_position)
         end
     },
 

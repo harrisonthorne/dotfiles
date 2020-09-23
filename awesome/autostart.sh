@@ -8,8 +8,6 @@ function run {
     fi
 }
 
-killall muse-status
-killall muse-status-dae
 run muse-status-daemon
 run rot8 -d eDP -i "ELAN0732:00 04F3:2537"
 run light -I

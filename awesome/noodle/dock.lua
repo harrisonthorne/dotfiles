@@ -27,6 +27,7 @@ dock = awful.widget.tasklist {
     screen   = screen[1],
     filter   = awful.widget.tasklist.filter.allscreen,
     buttons  = tasklist_buttons,
+    bg       = beautiful.bg,
     style    = {
         shape = gears.shape.rounded_rect,
     },
@@ -53,14 +54,10 @@ dock = awful.widget.tasklist {
 
 app_drawer = wibox.widget({
     {
-        {
-            widget = dock
-        },
-        margins = dpi(16),
-        widget = wibox.container.margin,
+        widget = dock
     },
-    bg = beautiful.bg,
-    widget = wibox.container.background,
+    margins = dpi(16),
+    widget = wibox.container.margin,
 })
 
 return app_drawer

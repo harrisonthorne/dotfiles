@@ -17,7 +17,7 @@ ctrlkey = "Control"
 shiftkey = "Shift"
 
 local function enable_floating_video(c, height)
-    decorations.hide(c)
+    awful.titlebar.hide(c, beautiful.titlebar_position)
     c.floating = true
     c.width = height * 16 / 9
     c.height = height
@@ -27,7 +27,7 @@ local function enable_floating_video(c, height)
 
     local disable_floating_video = function()
         if not c.floating then
-            decorations.show(c)
+            awful.titlebar.show(c, beautiful.titlebar_position)
             c.sticky = false
             c.ontop = false
         end
@@ -45,8 +45,8 @@ keys.desktopbuttons = gears.table.join(
         if mymainmenu then
             mymainmenu:hide()
         end
-        if sidebar_hide then
-            sidebar_hide()
+        if calendar_hide then
+            calendar_hide()
         end
         -- Double tap
         local function double_tap()
@@ -64,8 +64,8 @@ keys.desktopbuttons = gears.table.join(
     -- Right click - Show app drawer
     -- awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 3, function ()
-        if app_drawer_show then
-            app_drawer_show()
+        if calendar_show then
+            calendar_show()
         end
     end),
 
@@ -326,29 +326,29 @@ keys.globalkeys = gears.table.join(
         {description = "open emoji menu", group = "apps"}),
     -- }}}
 
-    -- Sidebar {{{
-    -- Toggle sidebar
-    awful.key({ superkey }, "grave", function() sidebar_toggle() end,
-        {description = "show or hide sidebar", group = "awesome"}),
+    -- calendar {{{
+    -- Toggle calendar
+    awful.key({ superkey }, "grave", function() calendar_toggle() end,
+        {description = "show or hide calendar", group = "awesome"}),
 
     -- Run
     awful.key({ superkey }, "r",
         function ()
-            -- Not all sidebars have a prompt
-            if sidebar_activate_prompt then
-                sidebar_activate_prompt("run")
+            -- Not all calendars have a prompt
+            if calendar_activate_prompt then
+                calendar_activate_prompt("run")
             end
         end,
-        {description = "activate sidebar run prompt", group = "awesome"}),
+        {description = "activate calendar run prompt", group = "awesome"}),
     -- Web search
     awful.key({ superkey, shiftkey }, "w",
         function ()
-            -- Not all sidebars have a prompt
-            if sidebar_activate_prompt then
-                sidebar_activate_prompt("web_search")
+            -- Not all calendars have a prompt
+            if calendar_activate_prompt then
+                calendar_activate_prompt("web_search")
             end
         end,
-        {description = "activate sidebar web search prompt", group = "awesome"}),
+        {description = "activate calendar web search prompt", group = "awesome"}),
     -- }}}
 
     -- Dismiss notifications and elements that connect to the dismiss signal
@@ -465,7 +465,7 @@ keys.globalkeys = gears.table.join(
 
     -- App drawer
     awful.key({ superkey, shiftkey }, "a", function()
-        app_drawer_show() end,
+        calendar_show() end,
         {description = "App drawer", group = "custom"})
 )
 

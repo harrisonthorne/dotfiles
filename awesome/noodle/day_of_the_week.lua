@@ -23,7 +23,7 @@ local dotw_textboxes = {}
 
 local create_dotw_container = function (text, color)
     local text = wibox.widget.textbox(text)
-    text.font = "sans 10"
+    text.font = beautiful.font
     -- text.markup = "<span foreground='" .. colors.background .."'>" .. text .. "</span>"
     text.align = "center"
     text.valign = "center"

@@ -166,7 +166,7 @@ local disk_hover_text = wibox.widget {
     {
         align = "center",
         valign = "center",
-        font = "sans medium 10",
+        font = "sans 11",
         widget = wibox.widget.textbox("free")
     },
     spacing = dpi(2),
