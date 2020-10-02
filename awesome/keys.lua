@@ -634,16 +634,13 @@ end
 keys.clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) client.focus = c end),
     awful.button({ superkey }, 1, awful.mouse.client.move),
-    -- awful.button({ superkey }, 2, function (c) c:kill() end),
     awful.button({ superkey }, 3, function(c)
         client.focus = c
         awful.mouse.client.resize(c)
-        -- awful.mouse.resize(c, nil, {jump_to_corner=true})
     end),
     awful.button({ superkey, altkey }, 1, function(c)
         client.focus = c
         awful.mouse.client.resize(c)
-        -- awful.mouse.resize(c, nil, {jump_to_corner=true})
     end)
 )
 
