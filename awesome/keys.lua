@@ -36,70 +36,6 @@ local function enable_floating_video(c, height)
     c:connect_signal("property::floating", disable_floating_video)
 end
 
--- {{{ Mouse bindings on desktop
-keys.desktopbuttons = gears.table.join(
-    awful.button({ }, 1, function ()
-        -- Single tap
-        awesome.emit_signal("elemental::dismiss")
-        naughty.destroy_all_notifications()
-        if mymainmenu then
-            mymainmenu:hide()
-        end
-        if calendar_hide then
-            calendar_hide()
-        end
-        -- Double tap
-        local function double_tap()
-            uc = awful.client.urgent.get()
-            -- If there is no urgent client, go back to last tag
-            if uc == nil then
-                awful.tag.history.restore()
-            else
-                awful.client.urgent.jumpto()
-            end
-        end
-        helpers.single_double_tap(function() end, double_tap)
-    end),
-
-    -- Right click - Show app drawer
-    -- awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 3, function ()
-        if calendar_show then
-            calendar_show()
-        end
-    end),
-
-    -- Middle button - Toggle dashboard
-    awful.button({ }, 2, function ()
-        if dashboard_show then
-            dashboard_show()
-        end
-    end),
-
-    -- Scrolling - Switch tags
-    awful.button({ }, 4, awful.tag.viewprev),
-    awful.button({ }, 5, awful.tag.viewnext),
-
-    -- Side buttons - Control volume
-    awful.button({ }, 9, function () helpers.volume_up() end),
-    awful.button({ }, 8, function () helpers.volume_down() end)
-
-    -- Side buttons - Minimize and restore minimized client
-    -- awful.button({ }, 8, function()
-    --     if client.focus ~= nil then
-    --         client.focus.minimized = true
-    --     end
-    -- end),
-    -- awful.button({ }, 9, function()
-    --       local c = awful.client.restore()
-    --       -- Focus restored client
-    --       if c then
-    --           client.focus = c
-    --       end
-    -- end)
-)
--- }}}
-
 -- {{{ Key bindings
 keys.globalkeys = gears.table.join(
     -- key help
@@ -722,7 +658,6 @@ keys.tasklist_buttons = gears.table.join(
                 c.minimized = true
             else
                 c:jump_to()
-                client.focus = c
             end
         end),
 
@@ -731,34 +666,21 @@ keys.tasklist_buttons = gears.table.join(
 
     -- Right click moves the client to the current tag and raises it
     awful.button({ 'Any' }, 3, function (c) 
-        c:move_to_tag(awful.tag.current) 
+        c:move_to_tag(awful.screen.focused().selected_tag) 
+        c:jump_to()
     end)
 )
 
 -- Mouse buttons on a tag of the taglist widget
 keys.taglist_buttons = gears.table.join(
     awful.button({ }, 1, function(t)
-        -- t:view_only()
         helpers.tag_back_and_forth(t.index)
     end),
-    awful.button({ modkey }, 1, function(t)
+    awful.button({ shiftkey }, 3, function(t)
         if client.focus then
             client.focus:move_to_tag(t)
         end
-    end),
-    -- awful.button({ }, 3, awful.tag.viewtoggle),
-    awful.button({ }, 3, function(t)
-        if client.focus then
-            client.focus:move_to_tag(t)
-        end
-    end),
-    awful.button({ modkey }, 3, function(t)
-        if client.focus then
-            client.focus:toggle_tag(t)
-        end
-    end),
-    awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
-    awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end)
+    end)
 )
 
 
@@ -769,39 +691,6 @@ keys.titlebar_buttons = gears.table.join(
         local c = mouse.object_under_pointer()
         client.focus = c
         awful.mouse.client.move(c)
-    end),
-    -- Middle button - close
-    awful.button({ }, 2, function ()
-        local c = mouse.object_under_pointer()
-        c:kill()
-    end),
-    -- Right button - resize
-    awful.button({ }, 3, function()
-        local c = mouse.object_under_pointer()
-        client.focus = c
-        awful.mouse.client.resize(c)
-        -- awful.mouse.resize(c, nil, {jump_to_corner=true})
-    end),
-    -- Side button up - toggle floating
-    awful.button({ }, 9, function()
-        local c = mouse.object_under_pointer()
-        client.focus = c
-        --awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
-        c.floating = not c.floating
-    end),
-    -- Side button down - toggle ontop
-    awful.button({ }, 8, function()
-        local c = mouse.object_under_pointer()
-        client.focus = c
-        c.ontop = not c.ontop
-        -- Double Tap - toggle sticky
-        -- local function single_tap()
-        --   c.ontop = not c.ontop
-        -- end
-        -- local function double_tap()
-        --   c.sticky = not c.sticky
-        -- end
-        -- helpers.single_double_tap(single_tap, double_tap)
     end)
 )
 
@@ -809,6 +698,5 @@ keys.titlebar_buttons = gears.table.join(
 
 -- Set root (desktop) keys
 root.keys(keys.globalkeys)
-root.buttons(keys.desktopbuttons)
 
 return keys
