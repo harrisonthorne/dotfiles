@@ -7,6 +7,7 @@ local helpers = require("helpers")
 local beautiful = require("beautiful")
 local apps = require("apps")
 local cairo = require("lgi").cairo
+local keys = require("keys")
 -- local class_icons = icons.text.by_class
 
 local item_font = "Material Design Icons 15"
@@ -23,15 +24,42 @@ local function draw_indicator_shape_unfocused(cr)
     cr:fill()
 end
 
-dock = awful.widget.tasklist {
-    screen   = screen[1],
-    filter   = awful.widget.tasklist.filter.allscreen,
-    buttons  = tasklist_buttons,
-    bg       = beautiful.bg,
-    style    = {
+local visible_apps = awful.widget.tasklist {
+    screen = screen[1],
+    filter = function(c) return not c.minimized end,
+    buttons = keys.tasklist_buttons,
+    style = {
         shape = gears.shape.rounded_rect,
     },
-    layout   = {
+    layout = {
+        spacing = dpi(16),
+        layout = wibox.layout.fixed.horizontal
+    },
+    widget_template = {
+        {
+            {
+                id = 'clienticon',
+                widget = awful.widget.clienticon,
+                forced_width = dpi(48),
+                forced_height = dpi(48),
+            },
+            widget = wibox.container.margin,
+            margins = dpi(8),
+        },
+        id = "background_role",
+        widget = wibox.container.background,
+        shape = helpers.rrect(beautiful.border_radius),
+    },
+}
+
+local invisible_apps = awful.widget.tasklist {
+    screen = screen[1],
+    filter = function(c) return c.minimized end,
+    buttons = keys.tasklist_buttons,
+    style = {
+        shape = gears.shape.rounded_rect,
+    },
+    layout = {
         spacing = dpi(16),
         layout = wibox.layout.fixed.horizontal
     },
@@ -40,8 +68,8 @@ dock = awful.widget.tasklist {
             {
                 id     = 'clienticon',
                 widget = awful.widget.clienticon,
-                forced_width    = dpi(48),
-                forced_height   = dpi(48),
+                forced_width = dpi(48),
+                forced_height = dpi(48),
             },
             widget = wibox.container.margin,
             margins = dpi(8),
@@ -54,10 +82,20 @@ dock = awful.widget.tasklist {
 
 app_drawer = wibox.widget({
     {
-        widget = dock
+        visible_apps,
+        invisible_apps,
+        layout = wibox.layout.fixed.horizontal,
+        spacing = dpi(32),
+        spacing_widget = wibox.widget.separator {
+            thickness = dpi(2),
+            color = colors.inactive,
+            orientation = 'vertical',
+            span_ratio = 0.75,
+        }
     },
     margins = dpi(16),
     widget = wibox.container.margin,
+    bg       = beautiful.bg,
 })
 
 return app_drawer

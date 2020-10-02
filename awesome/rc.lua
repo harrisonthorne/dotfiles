@@ -533,11 +533,9 @@ client.connect_signal("manage", function (c)
     -- Set every new window as a slave,
     -- i.e. put it at the end of others instead of setting it master.
     if not awesome.startup then awful.client.setslave(c) end
-end)
 
--- When a client starts up in fullscreen, resize it to cover the fullscreen a
--- short moment later. Fixes wrong geometry when titlebars are enabled
-client.connect_signal("manage", function(c)
+    -- When a client starts up in fullscreen, resize it to cover the fullscreen a
+    -- short moment later. Fixes wrong geometry when titlebars are enabled
     if c.fullscreen then
         gears.timer.delayed_call(function()
             if c.valid then
@@ -554,35 +552,6 @@ end
 
 -- Set mouse resize mode (live or after)
 awful.mouse.resize.set_mode("live")
-
--- Restore geometry for floating clients
--- (for example after swapping from tiling mode to floating mode)
--- ==============================================================
-tag.connect_signal('property::layout', function(t)
-    for k, c in ipairs(t:clients()) do
-        if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
-            local cgeo = awful.client.property.get(c, 'floating_geometry')
-            if cgeo then
-                c:geometry(awful.client.property.get(c, 'floating_geometry'))
-            end
-        end
-    end
-end)
-
-client.connect_signal('manage', function(c)
-    if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
-        awful.client.property.set(c, 'floating_geometry', c:geometry())
-    end
-end)
-
-client.connect_signal('property::geometry', function(c)
-    if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
-        awful.client.property.set(c, 'floating_geometry', c:geometry())
-    end
-end)
-
--- ==============================================================
--- ==============================================================
 
 -- When switching to a tag with urgent clients, raise them.
 -- This fixes the issue (visual mismatch) where after switching to
@@ -603,32 +572,14 @@ end)
 -- Raise focused clients automatically
 client.connect_signal("focus", function(c) c:raise() end)
 
--- Focus all urgent clients automatically
--- client.connect_signal("property::urgent", function(c)
---     if c.urgent then
---         c.minimized = false
---         c:jump_to()
---     end
--- end)
-
--- Disable ontop when the client is not floating, and restore ontop if needed
--- when the client is floating again
--- I never want a non floating client to be ontop.
+-- Always keep floating clients on top
 client.connect_signal('property::floating', function(c)
     if c.floating then
-        if c.restore_ontop then
-            c.ontop = c.restore_ontop
-        end
+        c.ontop = true
     else
-        c.restore_ontop = c.ontop
         c.ontop = false
     end
 end)
-
--- Disconnect the client ability to request different size and position
--- Breaks fullscreen and maximized
--- client.disconnect_signal("request::geometry", awful.ewmh.client_geometry_requests)
--- client.disconnect_signal("request::geometry", awful.ewmh.geometry)
 
 -- Garbage collection
 -- Enable for lower memory consumption
