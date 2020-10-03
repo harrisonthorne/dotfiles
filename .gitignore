@@ -13,9 +13,11 @@ Microsoft/
 Postman/
 QtProject.conf
 Qtwebflix/
+RawTherapee/batch/
 RawTherapee/options
 Signal/
 Slack/
+TUG/
 Thunar/
 Unknown Organization/
 autostart/
@@ -47,6 +49,7 @@ icedtea-web/
 kak/autoload/
 kak/plugins/
 kdenliverc
+komparerc
 kwalletrc
 libreoffice/
 linuxsampler.org/
@@ -56,6 +59,7 @@ mopidy/
 node_modules/
 obs-studio/
 pamac/
+protonmail/
 pulse/
 qalculate/
 qt5ct/
