@@ -18,13 +18,15 @@ set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g 
 set -gx GPG_TTY (tty)
 set -gx GOPATH $HOME/go
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
-set -gx QT_QPA_PLATFORMTHEME gtk2
+set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx RUSTBIN $HOME/.cargo/bin
+set -gx SUDO_ASKPASS /usr/bin/ksshaskpass
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx WINEPREFIX $HOME/.wine/
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
+set -gx NODE_BIN $HOME/.npm-global/bin
 
-set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin
+set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin $NODE_BIN
 
 function fish_prompt --description 'Write out the prompt'
     set -l color_cwd
