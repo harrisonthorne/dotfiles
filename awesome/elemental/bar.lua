@@ -96,7 +96,6 @@ awful.screen.connect_for_each_screen(function(s)
         widget = dock,
         shape = helpers.rrect(beautiful.border_radius)
     })
-    dock_placement(s.dock)
 
     local popup_timer
     local autohide = function ()

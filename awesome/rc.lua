@@ -41,47 +41,8 @@ user = {
     browser = "firefox",
     file_manager = terminal.." --class files -e ranger",
     editor = terminal.." --class editor -e nvim",
-    email_client = "thunderbird",
+    email_client = "evolution",
     music_client = "spotify",
-
-    -- >> Web Search <<
-    web_search_cmd = "xdg-open https://duckduckgo.com/?q=",
-
-    -- >> User profile <<
-    profile_picture = os.getenv("HOME").."/.config/awesome/profile.png",
-
-    -- Directories with fallback values
-    dirs = {
-        downloads = os.getenv("XDG_DOWNLOAD_DIR") or "~/Downloads",
-        documents = os.getenv("XDG_DOCUMENTS_DIR") or "~/Documents",
-        music = os.getenv("XDG_MUSIC_DIR") or "~/Music",
-        pictures = os.getenv("XDG_PICTURES_DIR") or "~/Pictures",
-        videos = os.getenv("XDG_VIDEOS_DIR") or "~/Videos",
-        -- Make sure the directory exists so that your screenshots
-        -- are not lost
-        screenshots = os.getenv("XDG_SCREENSHOTS_DIR") or "~/Pictures/Screenshots",
-    },
-
-    -- >> calendar_drawer <<
-    calendar_drawer = {
-        hide_on_mouse_leave = true,
-        show_on_mouse_screen_edge = true,
-    },
-
-    -- >> Battery <<
-    -- You will receive notifications when your battery reaches these
-    -- levels.
-    battery_threshold_low = 20,
-    battery_threshold_critical = 5,
-
-    -- >> Weather <<
-    -- Get your key and find your city id at
-    -- https://openweathermap.org/
-    -- (You will need to make an account!)
-    openweathermap_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    openweathermap_city_id = "yyyyyy",
-    -- > Use "metric" for Celcius, "imperial" for Fahrenheit
-    weather_units = "imperial",
 }
 -- ===================================================================
 
@@ -93,21 +54,18 @@ local keys = require("keys")
 
 -- Theme handling library
 local beautiful = require("beautiful")
-local xrdb = beautiful.xresources.get_current_theme()
 
 -- Make dpi function global
 dpi = beautiful.xresources.apply_dpi
 
 -- Load AwesomeWM libraries
 local gears = require("gears")
-require("awful.autofocus")
--- Default notification library
 local naughty = require("naughty")
+local ruled = require("ruled")
+require("awful.autofocus")
 
 -- Load theme
-local theme_dir = os.getenv("HOME") .. "/.config/awesome/theme/"
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
-
 
 -- -- Error handling
 -- -- ===================================================================
@@ -143,25 +101,8 @@ require("elemental.exit")
 -- calendar_drawer
 require("elemental.calendar_drawer")
 
--- Dashboard (previously called: Start screen)
-require("elemental.dashboard")
-
 -- Window switcher
 require("elemental.window_switcher")
-
--- >> Daemons
--- Most widgets that display system/external info depend on evil.
--- Make sure to initialize it last in order to allow all widgets to connect to
--- their needed evil signals.
-require("evil")
--- ===================================================================
--- ===================================================================
-
--- Get screen geometry
--- I am using a single screen setup and I assume that screen geometry will not
--- change during the session.
-screen_width = awful.screen.focused().geometry.width
-screen_height = awful.screen.focused().geometry.height
 
 -- Layouts
 -- ===================================================================
@@ -191,7 +132,6 @@ local function set_wallpaper(s)
     -- Wallpaper
     awful.spawn.easy_async_with_shell('wpg -c', function(stdout, _, __, ___) 
         local wallpaper = os.getenv("HOME") .. "/.config/wpg/wallpapers/" .. (stdout:match "^%s*(.-)%s*$")
-        print(wallpaper)
 
         gears.wallpaper.maximized(wallpaper, s, false)
     end)
@@ -221,57 +161,25 @@ awful.screen.connect_for_each_screen(function(s)
     local tagnames = beautiful.tagnames or { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
     -- Create all tags at once (without seperate configuration for each tag)
     awful.tag(tagnames, s, l.tile)
-
-    -- Create tags with seperate configuration for each tag
-    -- awful.tag.add(tagnames[1], {
-    --     layout = layouts[1],
-    --     screen = s,
-    --     master_width_factor = 0.6,
-    --     selected = true,
-    -- })
-    -- ...
 end)
-
--- Determines how floating clients should be placed
-local floating_client_placement = function(c)
-    -- If the layout is floating or there are no other visible
-    -- clients, center client
-    if awful.layout.get(mouse.screen) ~= awful.layout.suit.floating or #mouse.screen.clients == 1 then
-        return awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
-    end
-
-    -- Else use this placement
-    local p = awful.placement.no_overlap + awful.placement.no_offscreen
-    return p(c, {honor_padding = true, honor_workarea=true, margins = beautiful.useless_gap * 2})
-end
-
-local centered_client_placement = function(c)
-    return gears.timer.delayed_call(function ()
-        awful.placement.centered(c, {honor_padding = true, honor_workarea=true})
-    end)
-end
 
 -- Rules
 -- ===================================================================
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    {
-        -- All clients will match this rule.
-        rule = { },
-        properties = {
-            focus = awful.client.focus.filter,
-            raise = true,
-            keys = keys.clientkeys,
-            buttons = keys.clientbuttons,
-            screen = awful.screen.focused,
-            size_hints_honor = true,
-            honor_workarea = true,
-            honor_padding = true,
-            titlebars_enabled = beautiful.titlebars_enabled,
-            fullscreen = false,
-        },
+ruled.client.append_rule({
+    -- Wildcard
+    rule = { },
+    properties = {
+        raise = true,
+        keys = keys.clientkeys,
+        buttons = keys.clientbuttons,
+        screen = awful.screen.focused,
+        size_hints_honor = true,
+        honor_workarea = true,
+        honor_padding = true,
+        titlebars_enabled = beautiful.titlebars_enabled,
     }
-}
+})
 
 -- Signals
 -- ===================================================================

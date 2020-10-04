@@ -101,18 +101,6 @@ theme.separator_text = "|"
 -- theme.separator_text = " •• "
 theme.separator_fg = colors.color8
 
--- Wibar(s)
--- Keep in mind that these settings could be ignored by the bar theme
-theme.wibar_position = "bottom"
-theme.wibar_height = dpi(64)
-theme.wibar_fg = colors.background
-theme.wibar_bg = colors.foreground..bg_alpha_hex
---theme.wibar_opacity = 0.7
-theme.wibar_border_color = theme.bg
-theme.wibar_border_width = dpi(0)
-theme.wibar_border_radius = theme.border_radius
-theme.wibar_width = dpi(380)
-
 theme.prefix_fg = colors.color8
 
  --There are other variable sets
@@ -131,8 +119,6 @@ theme.prefix_fg = colors.color8
  theme.hotkeys_modifiers_fg = colors.color14
  theme.hotkeys_font = theme.font
  theme.hotkeys_description_font = "sans 8"
- theme.hotkeys_label_bg = colors.color0
- theme.hotkeys_label_fg = colors.color13
  theme.hotkeys_group_margin = dpi(16)
 
  --Tasklist
@@ -149,18 +135,6 @@ theme.tasklist_font_minimized = "sans italic 11"
 theme.tasklist_bg_urgent = "#ffaa00"
 theme.tasklist_fg_urgent = theme.bg
 theme.tasklist_spacing = dpi(0)
-
--- calendar
--- (calendar items can be customized in calendar.lua)
-theme.calendar_bg = colors.background
-theme.calendar_fg = colors.color7
-theme.calendar_opacity = 0.75
-theme.calendar_position = "left" -- left or right
-theme.calendar_width = dpi(384)
-
--- Dashboard
-theme.dashboard_bg = theme.bg
-theme.dashboard_fg = colors.color7
 
 -- Exit screen
 theme.exit_screen_bg = theme.bg
