@@ -22,6 +22,8 @@ TUG/
 Thunar/
 Unknown Organization/
 autostart/
+blender/2.83/config/bookmarks.txt
+blender/2.83/config/recent-files.txt
 calibre/
 cef_user_data/
 chromium/
@@ -44,6 +46,8 @@ gashell/
 gconf/
 gedit/
 gnome-games/
+gtk-2.0/gtkfilechooser.ini
+gtk-3.0/settings.ini
 hydroxide/
 i3/config
 i3blocks/
@@ -53,7 +57,10 @@ icedtea-web/
 kak/autoload/
 kak/plugins/
 kdenliverc
+keepassxc/keepassxc.ini
 komparerc
+kritadisplayrc
+kritarc
 kwalletrc
 libreoffice/
 linuxsampler.org/
@@ -62,6 +69,7 @@ menus/
 mopidy/
 mpv/scripts/mpris.so
 node_modules/
+nvim/.netrwhist
 obs-studio/
 pamac/
 protonmail/

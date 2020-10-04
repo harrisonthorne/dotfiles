@@ -1,6 +1,0 @@
-[Bookmarks]
-[Recent]
-/home/harrisonthorne/Documents/blender/_blender_release__starlight_glimmer_by_mythicspeed_db0hx8o/StarlightGlimmer_1-1/
-/home/harrisonthorne/Documents/blender/trixie-blend/
-/home/harrisonthorne/Videos/
-/home/harrisonthorne/Documents/college/software_engineering/observer_presentation/

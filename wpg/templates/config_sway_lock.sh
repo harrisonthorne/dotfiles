@@ -1,1 +1,0 @@
-/home/harrisonthorne/.config/sway/lock.sh
