@@ -33,7 +33,9 @@ local visible_apps = awful.widget.tasklist {
     },
     layout = {
         spacing = dpi(16),
-        layout = wibox.layout.fixed.horizontal
+        forced_num_cols = 3,
+        homogeneous = true,
+        layout = wibox.layout.grid.vertical
     },
     widget_template = {
         {
@@ -61,7 +63,9 @@ local invisible_apps = awful.widget.tasklist {
     },
     layout = {
         spacing = dpi(16),
-        layout = wibox.layout.fixed.horizontal
+        forced_num_cols = 3,
+        homogeneous = true,
+        layout = wibox.layout.grid.vertical
     },
     widget_template = {
         {
@@ -77,6 +81,7 @@ local invisible_apps = awful.widget.tasklist {
         id = "background_role",
         widget = wibox.container.background,
         shape = helpers.rrect(beautiful.border_radius),
+        opacity = 0.5,
     },
 }
 
@@ -84,12 +89,13 @@ app_drawer = wibox.widget({
     {
         visible_apps,
         invisible_apps,
-        layout = wibox.layout.fixed.horizontal,
+        layout = wibox.layout.fixed.vertical,
         spacing = dpi(32),
         spacing_widget = wibox.widget.separator {
             thickness = dpi(2),
             color = colors.inactive,
-            orientation = 'vertical',
+            opacity = 0.5,
+            orientation = 'horizontal',
             span_ratio = 0.75,
         }
     },
