@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'deviantfero/wpgtk.vim'
 Plug 'dhruvasagar/vim-table-mode'       " Tables!
 Plug 'easymotion/vim-easymotion'        " EasyMotion
+Plug 'harrisonthorne/pandoc-preview.vim'
 Plug 'honza/vim-snippets'               " Snippets
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -36,7 +37,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore-dir={.git,node_modules}'
 let g:fzf_preview_window = 'right:50%'
 let g:gitgutter_map_keys = 0
 let g:gitgutter_sign_allow_clobber = 1
-let g:go_fmt_autosave = 0
+let g:pandoc_preview_pdf_cmd = "zathura"
 let g:startify_custom_header = startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
 let g:startify_lists = [
             \ { 'type': 'sessions',  'header': ['   Sessions']             },
@@ -58,7 +59,7 @@ set clipboard+=unnamedplus
 set cmdheight=2
 set complete+=kspell                    " spell check
 set completeopt+=preview
-set conceallevel=2
+set conceallevel=1
 set diffopt+=hiddenoff
 set equalalways
 set fillchars+=vert:\||
@@ -80,7 +81,6 @@ set noshowmode " hides -- INSERT --
 set noswapfile
 set noeb vb t_vb= " disable error bells
 set nowb
-set nowrap
 set number
 set rnu
 set shiftwidth=4
@@ -102,6 +102,7 @@ set undoreload=10000
 set updatetime=300
 set whichwrap+=<,>,h,l
 set wildignore+=*/node_modules,*/node_modules/*,.git,.git/*,tags,*/dist,*/dist/*
+set wrap
 
 map <bslash> <Plug>(easymotion-prefix)
 
@@ -143,6 +144,7 @@ noremap <silent> <leader>j :wincmd j<CR>
 noremap <silent> <leader>k :wincmd k<CR>
 noremap <silent> <leader>l :wincmd l<CR>
 noremap <silent> <leader>= :wincmd =<CR>
+noremap <silent> <leader>W :windo set nowinfixwidth nowinfixheight<CR>
 
 " trim whitespace
 noremap <silent> <leader>tw :%s/\s\+$//e<CR>:noh<CR>
@@ -192,8 +194,10 @@ nnoremap <silent> <leader>xs :sp<CR>:terminal<CR>i
 noremap <silent> <leader>e :Lex<CR>
 noremap <silent> <leader>q :q<CR>
 noremap <silent> <leader>pwd :pwd<CR>
-noremap <silent> <leader>pp :!pandoc "%" -o "%.pdf"<CR>
-noremap <silent> <leader>pd :!pandoc "%" -o "%.docx"<CR>
+noremap <silent> <leader>pp :!pandoc --filter pandoc-citeproc "%" -o "%.pdf"<CR>
+noremap <silent> <leader>pd :!pandoc --filter pandoc-citeproc "%" -o "%.docx"<CR>
+noremap <silent> <leader>pm :!pandoc --filter pandoc-citeproc "%" -o "%.md"<CR>
+noremap <silent> <leader>ph :!pandoc --filter pandoc-citeproc "%" -o "%.html"<CR>
 noremap <silent> <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap Y y$
 
@@ -232,12 +236,8 @@ augroup auto_commands
     autocmd BufWinEnter * silent! loadview
     autocmd VimLeave * call SaveLastSession()
     autocmd BufEnter * checktime
-    autocmd CursorHold,InsertLeave * nested call AutoSave()
+    autocmd CursorHold * nested call AutoSave()
 augroup END
-
-" au CursorHold,InsertLeave * nested update
-
-"color wpgtk
 
 " change gutter (SignColumn) color to clear
 hi! SignColumn guibg=NONE ctermbg=NONE

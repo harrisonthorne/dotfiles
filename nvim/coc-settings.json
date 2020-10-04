@@ -19,6 +19,7 @@
     "rust-analyzer.callInfo.full": true,
     "diagnostic.displayByAle": false,
     "rust-analyzer.inlayHints.chainingHints": true,
+    "codeLens.enable": true,
     "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -39,6 +40,18 @@
                 "cache": {
                     "directory": "/tmp/ccls"
                 }
+            }
+        },
+        "elmLS": {
+            "command": "elm-language-server",
+            "filetypes": [
+                "elm"
+            ],
+            "rootPatterns": [
+                "elm.json"
+            ],
+            "initializationOptions": {
+                "elmAnalyseTrigger": "change"
             }
         }
     }
