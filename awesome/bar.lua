@@ -14,7 +14,7 @@ end
 status_primary = wibox.widget {
     valign = 'center',
     align = 'center',
-    markup = 'pri',
+    markup = '',
     fg = beautiful.fg,
     widget = wibox.widget.textbox
 }
@@ -22,7 +22,7 @@ status_primary = wibox.widget {
 status_secondary = wibox.widget {
     valign = 'center',
     align = 'right',
-    markup = 'sec',
+    markup = '',
     fg = beautiful.fg,
     widget = wibox.widget.textbox
 }
