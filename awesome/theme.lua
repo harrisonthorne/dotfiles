@@ -3,6 +3,9 @@ local gears = require("gears")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
+
+local helpers = require("helpers")
+
 local theme = {}
 
 local bg_alpha_hex = "c0"
@@ -60,20 +63,17 @@ theme.titlebar_fg_normal = theme.fg_unfocused
 -- notification widget_template
 -- ============================
 -- Position: bottom_left, bottom_right, bottom_middle, top_left, top_right, top_middle
-theme.notification_position = "top_right"
-theme.notification_border_width = theme.border_width
-theme.notification_border_radius = theme.border_radius
-theme.notification_border_color = theme.border_color
+theme.notification_font = theme.font
 theme.notification_bg = theme.bg
 theme.notification_fg = theme.fg
-theme.notification_crit_bg = theme.bg_urgent
-theme.notification_crit_fg = theme.fg_urgent
-theme.notification_low_fg = colors.active
-theme.notification_icon_size = dpi(48)
+theme.notification_border_width = theme.border_width
+theme.notification_border_color = theme.border_color
 theme.notification_margin = dpi(16)
-theme.notification_font = theme.font
-theme.notification_padding = dpi(16)
+theme.notification_icon_size = dpi(48)
+theme.notification_max_width = dpi(512)
+theme.notification_max_height = dpi(256)
 theme.notification_spacing = dpi(8)
+theme.notification_shape = helpers.rrect(theme.border_radius);
 
 -- Edge snap
 theme.snap_shape = gears.shape.rectangle

@@ -70,6 +70,9 @@ user = {
     editor = terminal.." --class editor -e nvim",
     email_client = "evolution",
     music_client = "spotify",
+    dirs = {
+        screenshots = os.getenv("HOME") .. "/Pictures/Screenshots/"
+    }
 }
 
 -- Custom libraries

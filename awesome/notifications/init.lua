@@ -5,6 +5,8 @@ local menubar = require("menubar")
 local notifications = {}
 
 -- Timeouts
+naughty.config.presets.low.fg = colors.active
+naughty.config.presets.critical.fg = beautiful.bg
 naughty.config.presets.critical.bg = "#ffaa00c0"
 naughty.config.presets.critical.timeout = 10
 

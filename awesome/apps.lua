@@ -98,7 +98,7 @@ function apps.screenshot(action, delay)
         return
     elseif action == "gimp" then
         awful.spawn.with_shell("cd "..user.dirs.screenshots.." && gimp (ls -t | head -n1)")
-        naughty.notification({ message = "Opening last screenshot for editing", app_name = screenshot_notification_app_name})
+        naughty.notify({ text = "Opening last screenshot for editing", app_name = screenshot_notification_app_name})
         return
     end
 
@@ -116,30 +116,32 @@ function apps.screenshot(action, delay)
     end
 
     -- Configure action buttons for the notification
-    local screenshot_open = naughty.action { name = "Open" }
-    local screenshot_copy = naughty.action { name = "Copy" }
-    local screenshot_edit = naughty.action { name = "Edit" }
-    local screenshot_delete = naughty.action { name = "Delete" }
-    screenshot_open:connect_signal('invoked', function()
+    -- TODO Possible to do with 4.3
+    local screenshot_open = function()
         awful.spawn.with_shell("cd "..user.dirs.screenshots.." && sxiv (ls -t)")
-    end)
-    screenshot_copy:connect_signal('invoked', function()
+    end
+    local screenshot_copy = function()
         awful.spawn.with_shell("xclip -selection clipboard -t image/png "..filename.." &>/dev/null")
-    end)
-    screenshot_edit:connect_signal('invoked', function()
+    end
+    local screenshot_edit = function()
         awful.spawn.with_shell("gimp "..filename.." >/dev/null")
-    end)
-    screenshot_delete:connect_signal('invoked', function()
+    end
+    local screenshot_delete = function()
         awful.spawn.with_shell("rm "..filename)
-    end)
+    end
 
     if action == "full" then
         cmd = prefix.."maim "..maim_args.." "..filename
         awful.spawn.easy_async_with_shell(cmd, function()
-            naughty.notification({
+            naughty.notify({
                 title = "Screenshot saved",
-                message = "Your screenshot was saved as "..filename,
-                actions = { screenshot_open, screenshot_copy, screenshot_edit, screenshot_delete },
+                text = "Your screenshot was saved as "..filename,
+                actions = { 
+                    ['Open'] = screenshot_open, 
+                    ['Copy'] = screenshot_copy, 
+                    ['Edit'] = screenshot_edit, 
+                    ['Delete'] = screenshot_delete 
+                },
                 app_name = screenshot_notification_app_name,
             })
         end)
@@ -147,31 +149,31 @@ function apps.screenshot(action, delay)
         cmd = "maim "..maim_args.." /tmp/maim_clipboard && xclip -selection clipboard -t image/png /tmp/maim_clipboard &>/dev/null && rm /tmp/maim_clipboard"
         awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, exit_code)
             if exit_code == 0 then
-                capture_notif = notifications.notify_dwim({ title = "Screenshot copied to clipboard", message = "The entire screen was copied.", app_name = screenshot_notification_app_name }, capture_notif)
+                capture_notif = notifications.notify_dwim({ title = "Screenshot copied to clipboard", text = "The entire screen was copied.", app_name = screenshot_notification_app_name }, capture_notif)
             else
                 naughty.destroy(capture_notif)
             end
         end)
     elseif action == "selection" then
         cmd = "maim "..maim_args.." -s "..filename
-        capture_notif = naughty.notification({ title = "Selection screenshot started", message = "Select an area to capture.", timeout = 2, app_name = screenshot_notification_app_name })
+        capture_notif = naughty.notify({ title = "Selection screenshot started", text = "Select an area to capture.", timeout = 2, app_name = screenshot_notification_app_name })
         awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, exit_code)
             naughty.destroy(capture_notif)
             if exit_code == 0 then
-                naughty.notification({
+                naughty.notify({
                     title = "Selection screenshot saved",
-                    message = "Your screenshot was saved as "..filename,
+                    text = "Your screenshot was saved as "..filename,
                     actions = { screenshot_open, screenshot_copy, screenshot_edit, screenshot_delete },
                     app_name = screenshot_notification_app_name,
                 })
             end
         end)
     elseif action == "clipboard" then
-        capture_notif = naughty.notification({ title = "Selection screenshot started", message = "Select an area of your screen to copy." })
+        capture_notif = naughty.notify({ title = "Selection screenshot started", text = "Select an area of your screen to copy." })
         cmd = "maim "..maim_args.." -s /tmp/maim_clipboard && xclip -selection clipboard -t image/png /tmp/maim_clipboard &>/dev/null && rm /tmp/maim_clipboard"
         awful.spawn.easy_async_with_shell(cmd, function(_, __, ___, exit_code)
             if exit_code == 0 then
-                capture_notif = notifications.notify_dwim({ title = "Selection screenshot copied", message = "Your selection was copied.", app_name = screenshot_notification_app_name }, capture_notif)
+                capture_notif = notifications.notify_dwim({ title = "Selection screenshot copied", text = "Your selection was copied.", app_name = screenshot_notification_app_name }, capture_notif)
             else
                 naughty.destroy(capture_notif)
             end
