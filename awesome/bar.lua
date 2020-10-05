@@ -41,6 +41,7 @@ awful.spawn.with_line_callback("muse-status sub s -m plain -p '" .. colors.color
     end
 })
 
+-- Creates a bar for every screen
 awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist for every screen
     s.mytaglist = awful.widget.taglist {

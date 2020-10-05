@@ -8,34 +8,61 @@
   \/__/     \/__/     \/__/     \/__/     \/__/     \/__/     \/__/
 --]]
 
---[[
-Hot corners
+-- If LuaRocks is installed, make sure that packages installed through it are
+-- found (e.g. lgi). If LuaRocks is not installed, do nothing.
+pcall(require, "luarocks.loader")
 
-+-----------------------------------------------------+
-|                                 Media/notifications |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-|                                                     |
-| App tray/system controls     Calendar/notifications |
-+-----------------------------------------------------+
---]]
-
+-- Import wpgtk colors
 colors = require("colors")
+
+-- Standard awesome libraries
+local gears = require("gears")
 local awful = require("awful")
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local naughty = require("naughty")
+local hotkeys_popup = require("awful.hotkeys_popup")
+require("awful.autofocus")
 
 -- Start apps
 awful.spawn.with_shell(os.getenv("HOME") .. "/.config/wpg/wp_init.sh")
 awful.spawn.with_shell(os.getenv("HOME") .. "/.config/awesome/autostart.sh")
 
-local terminal = "kitty"
+-- {{{ Error handling
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during startup!",
+                     text = awesome.startup_errors })
+end
+
+-- Handle runtime errors after startup
+do
+    local in_error = false
+    awesome.connect_signal("debug::error", function (err)
+        -- Make sure we don't go into an endless error loop
+        if in_error then return end
+        in_error = true
+
+        naughty.notify({ preset = naughty.config.presets.critical,
+                         title = "Oops, an error happened!",
+                         text = tostring(err) })
+        in_error = false
+    end)
+end
+-- }}}
+
+-- {{{ Variable definitions
+-- Init theme variables
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+dpi = beautiful.xresources.apply_dpi
+
+-- App config (See apps.lua)
+terminal = "kitty"
+editor = os.getenv("EDITOR") or "nano"
+editor_cmd = terminal .. " -e " .. editor
 user = {
-    -- >> Default applications <<
-    -- Check apps.lua for more
     terminal = terminal,
     floating_terminal = terminal,
     browser = "firefox",
@@ -44,90 +71,23 @@ user = {
     email_client = "evolution",
     music_client = "spotify",
 }
--- ===================================================================
 
--- Initialization
--- ===================================================================
-
--- Load keybinds and mousebinds
+-- Custom libraries
 local keys = require("keys")
-
--- Theme handling library
-local beautiful = require("beautiful")
-
--- Make dpi function global
-dpi = beautiful.xresources.apply_dpi
-
--- Load AwesomeWM libraries
-local gears = require("gears")
-local naughty = require("naughty")
-local ruled = require("ruled")
-require("awful.autofocus")
-
--- Load theme
-beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
-
--- -- Error handling
--- -- ===================================================================
--- naughty.connect_signal("request::display_error", function(message, startup)
---     naughty.notification {
---         urgency = "critical",
---         title   = "Oops, an error happened"..(startup and " during startup!" or "!"),
---         message = message
---     }
--- end)
-
--- Features
--- ===================================================================
-
--- Load notification daemons and notification theme
-local notifications = require("notifications")
-notifications.init()
-
--- Load window decoration theme and custom decorations
 local decorations = require("decorations")
+local notifications = require("notifications")
 decorations.init()
+notifications.init()
+require("bar")
 
--- Load helper functions
-local helpers = require("helpers")
-
--- >> Elements - Desktop components
--- Statusbar(s)
-require("elemental.bar")
-
--- Exit screen
-require("elemental.exit")
-
--- calendar_drawer
-require("elemental.calendar_drawer")
-
--- Window switcher
-require("elemental.window_switcher")
-
--- Layouts
--- ===================================================================
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.append_default_layouts({
+awful.layout.layouts = {
     awful.layout.suit.tile,
-    -- awful.layout.suit.floating,
+    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.tile.top,
-    -- awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.tile.left,
-    -- awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.corner.nw,
-    -- awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
-})
+}
+-- }}}
 
--- Wallpaper
--- ===================================================================
 local function set_wallpaper(s)
     -- Wallpaper
     awful.spawn.easy_async_with_shell('wpg -c', function(stdout, _, __, ___) 
@@ -137,105 +97,98 @@ local function set_wallpaper(s)
     end)
 end
 
--- Set wallpaper
-awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
-end)
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
--- Focus on hover
-client.connect_signal("mouse::enter", function(c)                                                                                                                           
-    client.focus = c 
-end)
-
--- Tags
--- ===================================================================
 awful.screen.connect_for_each_screen(function(s)
+    -- Wallpaper
+    set_wallpaper(s)
+
     -- Each screen has its own tag table.
-    local l = awful.layout.suit -- Alias to save time :)
-
-    -- Tag names
-    local tagnames = beautiful.tagnames or { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
-    -- Create all tags at once (without seperate configuration for each tag)
-    awful.tag(tagnames, s, l.tile)
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "•" }, s, awful.layout.layouts[1])
 end)
+-- }}}
 
--- Rules
--- ===================================================================
+-- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
-ruled.client.append_rule({
-    -- Wildcard
-    rule = { },
-    properties = {
-        raise = true,
-        keys = keys.clientkeys,
-        buttons = keys.clientbuttons,
-        screen = awful.screen.focused,
-        size_hints_honor = true,
-        honor_workarea = true,
-        honor_padding = true,
-        titlebars_enabled = beautiful.titlebars_enabled,
-    }
-})
+awful.rules.rules = {
+    -- All clients will match this rule.
+    { rule = { },
+      properties = { border_width = beautiful.border_width,
+                     border_color = beautiful.border_normal,
+                     focus = awful.client.focus.filter,
+                     raise = true,
+                     keys = keys.clientkeys,
+                     buttons = keys.clientbuttons,
+                     screen = awful.screen.preferred,
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+     }
+    },
 
--- Signals
--- ===================================================================
+    -- Floating clients.
+    { rule_any = {
+        instance = {
+          "DTA",  -- Firefox addon DownThemAll.
+          "copyq",  -- Includes session name in class.
+          "pinentry",
+        },
+        class = {
+          "Arandr",
+          "Blueman-manager",
+          "Gpick",
+          "Kruler",
+          "MessageWin",  -- kalarm.
+          "Sxiv",
+          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+          "Wpa_gui",
+          "veromix",
+          "xtightvncviewer"},
+
+        -- Note that the name property shown in xprop might be set slightly after creation of the client
+        -- and the name shown there might not match defined rules here.
+        name = {
+          "Event Tester",  -- xev.
+        },
+        role = {
+          "AlarmWindow",  -- Thunderbird's calendar.
+          "ConfigManager",  -- Thunderbird's about:config.
+          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+        }
+      }, properties = { floating = true }},
+
+    -- Add titlebars to normal clients and dialogs
+    { rule_any = {type = { "normal", "dialog" }
+      }, properties = { titlebars_enabled = true }
+    },
+
+    -- Set Firefox to always map on the tag named "2" on screen 1.
+    -- { rule = { class = "Firefox" },
+    --   properties = { screen = 1, tag = "2" } },
+}
+-- }}}
+
+-- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
-    -- Set every new window as a slave,
-    -- i.e. put it at the end of others instead of setting it master.
+    -- Put new windows at the end of others instead of setting it master.
     if not awesome.startup then awful.client.setslave(c) end
 
-    if c.requests_no_titlebar then
-        awful.titlebar:hide(c)
+    if awesome.startup
+      and not c.size_hints.user_position
+      and not c.size_hints.program_position then
+        -- Prevent clients from being unreachable after screen count changes.
+        awful.placement.no_offscreen(c)
     end
 end)
 
-if beautiful.border_width and beautiful.border_width > 0 then
-    client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-    client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-end
+-- TODO Add a titlebar if titlebars_enabled is set to true in the rules.
 
--- Set mouse resize mode (live or after)
-awful.mouse.resize.set_mode("live")
-
--- When switching to a tag with urgent clients, raise them.
--- This fixes the issue (visual mismatch) where after switching to
--- a tag which includes an urgent client, the urgent client is
--- unfocused but still covers all other windows (even the currently
--- focused window).
-awful.tag.attached_connect_signal(s, "property::selected", function ()
-    local urgent_clients = function (c)
-        return awful.rules.match(c, { urgent = true })
-    end
-    for c in awful.client.iterate(urgent_clients) do
-        if c.first_tag == mouse.screen.selected_tag then
-            client.focus = c
-        end
-    end
+-- Enable sloppy focus, so that focus follows mouse.
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
--- Raise focused clients automatically
-client.connect_signal("focus", function(c) c:raise() end)
-
--- Always keep floating clients on top
-client.connect_signal('property::floating', function(c)
-    if c.floating then
-        c.ontop = true
-    else
-        c.ontop = false
-    end
-end)
-
--- Garbage collection
--- Enable for lower memory consumption
--- ===================================================================
-
--- collectgarbage("setpause", 160)
--- collectgarbage("setstepmul", 400)
-
-collectgarbage("setpause", 110)
-collectgarbage("setstepmul", 1000)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+-- }}}

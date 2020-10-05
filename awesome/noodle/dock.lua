@@ -8,21 +8,6 @@ local beautiful = require("beautiful")
 local apps = require("apps")
 local cairo = require("lgi").cairo
 local keys = require("keys")
--- local class_icons = icons.text.by_class
-
-local item_font = "Material Design Icons 15"
-local item_bg = colors.background
-local item_size = dpi(48)
-local item_shape = helpers.squircle(1.7, 0)
-local item_margin = dpi(8) -- For spacing between items
-local indicator_spacing = dpi(12)
-local indicator_height = dpi(4)
--- Custom arc shape
-local function draw_indicator_shape_unfocused(cr)
-    cr:arc(item_size / 2, indicator_height, indicator_height, 0, 2 * math.pi)
-    cr:close_path()
-    cr:fill()
-end
 
 local visible_apps = awful.widget.tasklist {
     screen = screen[1],
@@ -51,6 +36,9 @@ local visible_apps = awful.widget.tasklist {
         id = "background_role",
         widget = wibox.container.background,
         shape = helpers.rrect(beautiful.border_radius),
+        create_callback = function(self, c, index, objects)
+            self:get_children_by_id('clienticon')[1].client = c
+        end
     },
 }
 
@@ -82,6 +70,9 @@ local invisible_apps = awful.widget.tasklist {
         widget = wibox.container.background,
         shape = helpers.rrect(beautiful.border_radius),
         opacity = 0.5,
+        create_callback = function(self, c, index, objects)
+            self:get_children_by_id('clienticon')[1].client = c
+        end
     },
 }
 
