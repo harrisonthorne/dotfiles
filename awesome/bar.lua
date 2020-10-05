@@ -6,8 +6,6 @@ local beautiful = require("beautiful")
 local helpers = require("helpers")
 local keys = require("keys")
 
-local dock_autohide_delay = 0 -- seconds
-
 local dock = require("noodle.dock")
 local dock_placement = function(w)
     return awful.placement.bottom_left(w, { margins = dpi(8) })
@@ -98,16 +96,8 @@ awful.screen.connect_for_each_screen(function(s)
         shape = helpers.rrect(beautiful.border_radius)
     })
 
-    local popup_timer
     local autohide = function ()
-        if popup_timer then
-            popup_timer:stop()
-            popup_timer = nil
-        end
-        popup_timer = gears.timer.start_new(dock_autohide_delay, function()
-            popup_timer = nil
             s.dock.visible = false
-        end)
     end
 
     -- Initialize wibox activator
@@ -115,10 +105,6 @@ awful.screen.connect_for_each_screen(function(s)
     awful.placement.bottom_left(s.dock_activator)
     s.dock_activator:connect_signal("mouse::enter", function()
         s.dock.visible = true
-        if popup_timer then
-            popup_timer:stop()
-            popup_timer = nil
-        end
     end)
 
     -- Keep dock activator below fullscreen clients
@@ -142,13 +128,6 @@ awful.screen.connect_for_each_screen(function(s)
 
     adjust_dock()
     s.dock:connect_signal("property::width", adjust_dock)
-
-    s.dock:connect_signal("mouse::enter", function ()
-        if popup_timer then
-            popup_timer:stop()
-            popup_timer = nil
-        end
-    end)
 
     s.dock:connect_signal("mouse::leave", function ()
         autohide()
