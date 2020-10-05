@@ -36,6 +36,64 @@ local function enable_floating_video(c, height)
     c:connect_signal("property::floating", disable_floating_video)
 end
 
+local app_switcher_grabber
+local app_switcher_first_client
+
+local function stop_switch_apps()
+    -- Add currently focused client to history
+    if client.focus then
+        local app_switcher_last_client = client.focus
+        awful.client.focus.history.add(app_switcher_last_client)
+        -- Raise client that was focused originally
+        -- Then raise last focused client
+        if app_switcher_first_client and app_switcher_first_client.valid then
+            app_switcher_first_client:raise()
+            app_switcher_last_client:raise()
+        end
+    end
+    -- Resume recording focus history
+    awful.client.focus.history.enable_tracking()
+    -- Stop and hide window_switcher
+    local s = awful.screen.focused()
+    awful.keygrabber.stop(app_switcher_grabber)
+    s.dock.visible = false
+end
+
+local function start_switch_apps(s)
+    s.dock.visible = true
+
+    app_switcher_first_client = client.focus
+
+    -- Stop recording focus history
+    awful.client.focus.history.disable_tracking()
+
+    -- Go to previously focused client (in the tag)
+    awful.client.focus.history.previous()
+
+    local keybinds = {
+        ['Tab'] = function() awful.client.focus.byidx(1) end,
+    }
+
+    -- Start the keygrabber
+    app_switcher_grabber = awful.keygrabber.run(function(_, key, event)
+        if event == "release" then
+            -- Hide if the modifier was released
+            -- We try to match Super or Alt or Control since we do not know which keybind is
+            -- used to activate the window switcher (the keybind is set by the user in keys.lua)
+            if key:match("Super") or key:match("Alt") or key:match("Control") then
+                stop_switch_apps()
+            end
+            -- Do nothing
+            return
+        end
+
+        -- Run function attached to key, if it exists
+        if keybinds[key] then
+            keybinds[key]()
+        end
+    end)
+end
+
 -- {{{ Key bindings
 keys.globalkeys = gears.table.join(
     -- key help
@@ -95,9 +153,9 @@ keys.globalkeys = gears.table.join(
     -- Window switcher
     awful.key({ altkey }, "Tab",
         function ()
-            window_switcher_show(awful.screen.focused())
+            start_switch_apps(awful.screen.focused())
         end,
-        {description = "activate window switcher", group = "client"}),
+        {description = "switch apps", group = "client"}),
 
     -- Restore a minimized window
     awful.key({ superkey, shiftkey }, "v",
@@ -262,31 +320,6 @@ keys.globalkeys = gears.table.join(
         {description = "open emoji menu", group = "apps"}),
     -- }}}
 
-    -- calendar {{{
-    -- Toggle calendar
-    awful.key({ superkey }, "grave", function() calendar_toggle() end,
-        {description = "show or hide calendar", group = "awesome"}),
-
-    -- Run
-    awful.key({ superkey }, "r",
-        function ()
-            -- Not all calendars have a prompt
-            if calendar_activate_prompt then
-                calendar_activate_prompt("run")
-            end
-        end,
-        {description = "activate calendar run prompt", group = "awesome"}),
-    -- Web search
-    awful.key({ superkey, shiftkey }, "w",
-        function ()
-            -- Not all calendars have a prompt
-            if calendar_activate_prompt then
-                calendar_activate_prompt("web_search")
-            end
-        end,
-        {description = "activate calendar web search prompt", group = "awesome"}),
-    -- }}}
-
     -- Dismiss notifications and elements that connect to the dismiss signal
     awful.key( { ctrlkey }, "Escape",
         function()
@@ -294,10 +327,6 @@ keys.globalkeys = gears.table.join(
             naughty.destroy_all_notifications()
         end,
         {description = "dismiss all notifications", group = "notifications"}),
-
-    -- Menubar
-    awful.key({ superkey, ctrlkey }, "b", function() menubar.show() end,
-        {description = "show the menubar", group = "launcher"}),
 
     -- Brightness {{{
     awful.key( { }, "XF86MonBrightnessDown",
@@ -389,20 +418,8 @@ keys.globalkeys = gears.table.join(
                     end
                 end)
         end,
-        {description = "set tiled layout", group = "tag"}),
+        {description = "set tiled layout", group = "tag"})
     -- }}}
-
-    -- Dashboard
-    awful.key({ superkey }, "d", function()
-        if dashboard_show then
-            dashboard_show()
-        end
-    end, {description = "dashboard", group = "custom"}),
-
-    -- App drawer
-    awful.key({ superkey, shiftkey }, "a", function()
-        calendar_show() end,
-        {description = "App drawer", group = "custom"})
 )
 
 keys.clientkeys = gears.table.join(
@@ -477,34 +494,6 @@ keys.clientkeys = gears.table.join(
         end,
         {description = "toggle fullscreen", group = "client"}),
 
-    -- F for focused view
-    awful.key({ superkey, ctrlkey }, "f",
-        function (c)
-            helpers.float_and_resize(c, screen_width * 0.7, screen_height * 0.75)
-        end,
-        {description = "focus view", group = "client"}),
-
-    -- V for vertical view
-    awful.key({ superkey, ctrlkey }, "v",
-        function (c)
-            helpers.float_and_resize(c, screen_width * 0.45, screen_height * 0.90)
-        end,
-        {description = "vertical view", group = "client"}),
-
-    -- T for tiny window
-    awful.key({ superkey, ctrlkey }, "t",
-        function (c)
-            helpers.float_and_resize(c, screen_width * 0.3, screen_height * 0.35)
-        end,
-        {description = "tiny view", group = "client"}),
-
-    -- N for normal size (good for terminals)
-    awful.key({ superkey, ctrlkey }, "n",
-        function (c)
-            helpers.float_and_resize(c, screen_width * 0.45, screen_height * 0.5)
-        end,
-        {description = "normal view", group = "client"}),
-
     -- Floating video
     awful.key({ superkey }, "i", function (c)
         enable_floating_video(c, 200)
@@ -529,7 +518,7 @@ keys.clientkeys = gears.table.join(
                 c:kill()
             end
         end,
-        {description = "kill all visible clients for the current tag", group = "client"}
+        {description = "close all in view", group = "client"}
     ),
     -- }}}
 
@@ -568,7 +557,7 @@ keys.clientkeys = gears.table.join(
         function (c)
             c.maximized = not c.maximized
         end,
-        {description = "(un)maximize", group = "client"})
+        {description = "toggle maximize", group = "client"})
     -- }}}
 )
 
