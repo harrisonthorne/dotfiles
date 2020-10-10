@@ -191,7 +191,7 @@ keys.globalkeys = gears.table.join(
         function ()
             exit_screen_show()
         end,
-        {description = "quit awesome", group = "awesome"}),
+        {description = "leave", group = "awesome"}),
 
     -- Lock
     awful.key({ superkey }, "Escape",
@@ -199,6 +199,12 @@ keys.globalkeys = gears.table.join(
             awful.spawn.with_shell(os.getenv("HOME").."/.config/i3/lock.sh")
         end,
         {description = "lock", group = "awesome"}),
+
+    -- Change wallpaper
+    awful.key({ superkey, ctrlkey }, "w", function()
+            awful.spawn("wpg -m")
+        end,
+        {description = "next wallpaper", group = "awesome"}),
 
     -- Layout options {{{
     -- increase/decrease master clients (mnemonic by direction)
@@ -250,10 +256,6 @@ keys.globalkeys = gears.table.join(
     awful.key({ superkey }, "Return", function () awful.spawn(user.terminal) end,
         {description = "open a terminal", group = "apps"}),
 
-    -- Pomodoro timer TODO: I'd like this
-    -- awful.key({ superkey }, "slash", function() awful.spawn.with_shell("pomodoro") end,
-    --     {description = "pomodoro", group = "apps"}),
-
     -- Spawn file manager
     awful.key({ superkey }, "e", apps.file_manager,
         {description = "file manager", group = "apps"}),
@@ -286,15 +288,11 @@ keys.globalkeys = gears.table.join(
     awful.key({ superkey, ctrlkey }, "r", apps.toggle_redshift,
         {description = "toggle redshift", group = "apps"}),
 
-    -- launch shell authenticator
-    awful.key({ superkey }, "g", apps.authenticator,
-        {description = "authenticator", group = "apps"}),
-
     -- launch qalc in terminal
     awful.key({ superkey }, "c", apps.calculator,
         {description = "calculator", group = "apps"}),
 
-    -- pauvcontrol
+    -- pavucontrol
     awful.key({ superkey, ctrlkey }, "p", apps.pavucontrol,
         {description = "volume control", group = "apps"}),
 
@@ -305,6 +303,14 @@ keys.globalkeys = gears.table.join(
     -- bored
     awful.key({ superkey, shiftkey }, "b", apps.bored,
         {description = "boredom remedies", group = "apps"}),
+
+    -- email
+    awful.key({ superkey }, "m", apps.email,
+        {description = "email", group = "apps"}),
+
+    -- media
+    awful.key({ superkey, shiftkey }, "m", apps.media_center,
+        {description = "media center", group = "apps"}),
     -- }}}
 
     -- Rofi shortcuts {{{
@@ -333,32 +339,27 @@ keys.globalkeys = gears.table.join(
         function()
             awful.spawn("light -U 5", false)
             awful.spawn("muse-status update brightness", false)
-        end,
-        {description = "decrease brightness", group = "brightness"}),
+        end),
     awful.key( { }, "XF86MonBrightnessUp",
         function()
             awful.spawn("light -A 5", false)
             awful.spawn("muse-status update brightness", false)
-        end,
-        {description = "increase brightness", group = "brightness"}),
+        end),
     -- }}}
 
     -- Volume {{{
     awful.key( { }, "XF86AudioMute",
         function()
             helpers.volume_mute_toggle()
-        end,
-        {description = "toggle mute", group = "volume"}),
+        end),
     awful.key( { }, "XF86AudioLowerVolume",
         function()
             helpers.volume_down()
-        end,
-        {description = "lower volume", group = "volume"}),
+        end),
     awful.key( { }, "XF86AudioRaiseVolume",
         function()
             helpers.volume_up()
-        end,
-        {description = "raise volume", group = "volume"}),
+        end),
     -- }}}
 
     -- Screenshots {{{
@@ -377,19 +378,16 @@ keys.globalkeys = gears.table.join(
     -- }}}
 
     -- Media keys
-    awful.key({ }, "XF86AudioPlay", function() awful.spawn.with_shell("playerctl play-pause || mpc toggle") end,
-        {description = "pause/play", group = "media"}),
-    awful.key({ }, "XF86AudioNext", function() awful.spawn.with_shell("playerctl next || mpc next") end,
-        {description = "next song", group = "media"}),
-    awful.key({ }, "XF86AudioPrev", function() awful.spawn.with_shell("playerctl previous || mpc cdprev") end,
-        {description = "previous song", group = "media"}),
+    awful.key({ }, "XF86AudioPlay", function() awful.spawn.with_shell("playerctl play-pause || mpc toggle") end),
+    awful.key({ }, "XF86AudioNext", function() awful.spawn.with_shell("playerctl next || mpc next") end),
+    awful.key({ }, "XF86AudioPrev", function() awful.spawn.with_shell("playerctl previous || mpc cdprev") end),
 
 
     -- Layouts {{{
     -- Max layout
     -- Single tap: Set max layout
     -- Double tap: Also disable floating for ALL visible clients in the tag
-    awful.key({ superkey }, "t",
+    awful.key({ superkey }, "y",
         function()
             awful.layout.set(awful.layout.suit.max)
             helpers.single_double_tap(
@@ -406,7 +404,7 @@ keys.globalkeys = gears.table.join(
     -- Tiling
     -- Single tap: Set tiled layout
     -- Double tap: Also disable floating for ALL visible clients in the tag
-    awful.key({ superkey }, "y",
+    awful.key({ superkey }, "t",
         function()
             awful.layout.set(awful.layout.suit.tile)
             helpers.single_double_tap(
@@ -553,7 +551,7 @@ keys.clientkeys = gears.table.join(
         end,
         {description = "minimize", group = "client"}),
     -- Maximize
-    awful.key({ superkey, shiftkey }, "m",
+    awful.key({ superkey, ctrlkey }, "m",
         function (c)
             c.maximized = not c.maximized
         end,

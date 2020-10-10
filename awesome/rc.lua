@@ -70,6 +70,7 @@ user = {
     editor = terminal.." --class editor -e nvim",
     email_client = "evolution",
     music_client = "spotify",
+    media_center = "kodi",
     dirs = {
         screenshots = os.getenv("HOME") .. "/Pictures/Screenshots/"
     }

@@ -13,23 +13,11 @@ end
 apps.file_manager = function ()
     awful.spawn(user.file_manager)
 end
-apps.telegram = function ()
-    helpers.run_or_focus({class = 'TelegramDesktop'}, false, "telegram")
-end
-apps.mail = function ()
+apps.email = function ()
     helpers.run_or_focus({instance = 'email'}, false, user.email_client)
 end
 apps.gimp = function ()
     helpers.run_or_focus({class = 'Gimp'}, false, "gimp")
-end
-apps.steam = function ()
-    helpers.run_or_focus({class = 'Steam'}, false, "steam")
-end
-apps.networks = function ()
-    awful.spawn.with_shell("rofi_networks")
-end
-apps.authenticator = function ()
-    helpers.run_or_focus({instance = 'authenticator'}, true, user.terminal.." --class auth -e gashell")
 end
 apps.calculator = function ()
     helpers.run_or_focus({instance = 'qalc'}, true, user.terminal.." --class qalc -e qalc")
@@ -45,6 +33,9 @@ apps.notebook = function()
 end
 apps.bored = function()
     awful.spawn.with_shell(user.terminal.." --class bored -T 'YOU PRESSED THE BORED BUTTON' -e nvim "..os.getenv("HOME").."/Notebook/bored.md")
+end
+apps.media_center = function()
+    helpers.run_or_focus({instance = 'email'}, true, user.media_center)
 end
 
 -- Toggles
