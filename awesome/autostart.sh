@@ -8,6 +8,7 @@ function run {
     fi
 }
 
+run light -I
 run muse-status-daemon
 run rot8 -d eDP -i "ELAN0732:00 04F3:2537"
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
