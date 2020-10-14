@@ -83,6 +83,7 @@ local notifications = require("notifications")
 decorations.init()
 notifications.init()
 require("bar")
+require("elemental.exit")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {

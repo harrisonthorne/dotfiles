@@ -57,9 +57,8 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.margin
             },
             id     = 'background_role',
-            widget = wibox.container.background,
+            widget = wibox.container.background
         },
-        buttons = taglist_buttons
     }
 
     -- Create the taglist wibox

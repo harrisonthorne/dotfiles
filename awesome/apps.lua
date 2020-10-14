@@ -55,7 +55,7 @@ apps.music = function ()
 end
 
 apps.ponies = function ()
-    helpers.run_or_focus({instance = 'ponies'}, true, user.file_manager.." "..os.getenv("HOME").."/Videos/mlp")
+    helpers.run_or_focus({instance = 'ponies'}, true, user.file_manager.." "..os.getenv("HOME").."/Videos/tv/My_Little_Pony:_Friendship_Is_Magic_\\(2010\\)")
 end
 
 apps.process_monitor = function ()
