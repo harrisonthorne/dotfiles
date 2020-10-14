@@ -1,0 +1,6 @@
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/harrisonthorne/nvim-config
+[submodule "awesome"]
+	path = awesome
+	url = https://github.com/harrisonthorne/awesomewm-config
