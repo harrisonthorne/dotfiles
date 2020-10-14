@@ -65,6 +65,7 @@ kateschemarc
 kcminputrc
 kconf_updaterc
 kded5rc
+kdeglobals
 kdenliverc
 keepassxc/keepassxc.ini
 kglobalshortcutsrc
@@ -89,6 +90,7 @@ node_modules/
 nvim/.netrwhist
 obs-studio/
 pamac/
+pavucontrol.ini
 plasma-localerc
 plasma-org.kde.plasma.desktop-appletsrc
 plasmashellrc
