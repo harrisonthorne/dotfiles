@@ -93,6 +93,7 @@ set scrolloff=5
 set splitbelow
 set splitright
 set tabstop=4 " Tab size is 4
+set textwidth=80
 set tags=./tags;
 set notermguicolors
 set undodir=~/.local/share/nvim/undodir
@@ -403,7 +404,7 @@ function! SetupMarkdown()
 endfunction
 
 function! AutoSave()
-    silent! wa 
+    silent! wa
     call coc#refresh()
 endfunction
 
