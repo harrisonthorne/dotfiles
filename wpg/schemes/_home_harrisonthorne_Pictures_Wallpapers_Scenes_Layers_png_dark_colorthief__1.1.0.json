@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/harrisonthorne/Pictures/Wallpapers/Scenes/Layers.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#050a08",
+        "foreground": "#ddebe6",
+        "cursor": "#ddebe6"
+    },
+    "colors": {
+        "color0": "#050a08",
+        "color1": "#8c7c0c",
+        "color2": "#565e32",
+        "color3": "#4a707c",
+        "color4": "#25556c",
+        "color5": "#5287a8",
+        "color6": "#76b1ce",
+        "color7": "#a3aeaa",
+        "color8": "#142c22",
+        "color9": "#c0a805",
+        "color10": "#758337",
+        "color11": "#5398ae",
+        "color12": "#267195",
+        "color13": "#5ab3ea",
+        "color14": "#84edff",
+        "color15": "#ddebe6"
+    }
+}

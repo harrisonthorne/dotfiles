@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <instant>
-  <Main x="8" y="40" w="1904" h="1000" current-tab="editor"/>
-  <Editor id="41" edit-horizontal-pane-pos="0.70640754699707031" notebook-shrunk="0" edit-vertical-pane-pos="0.89999997615814209" mixer-width="Wide" zoom-focus="ZoomFocusPlayhead" zoom="1905" grid-type="GridTypeBeatDiv2" snap-mode="SnapNormal" internal-grid-type="GridTypeBeat" internal-snap-mode="SnapNormal" pre-internal-grid-type="GridTypeBeatDiv2" pre-internal-snap-mode="SnapNormal" edit-point="EditAtMouse" visible-track-count="-1" playhead="8657901" left-frame="0" y-origin="197" maximised="0" follow-playhead="0" stationary-playhead="0" mouse-mode="MouseDraw" join-object-range="0" show-editor-mixer="0" show-editor-list="1" editor-list-page="2" show-marker-lines="0" nudge-clock-value="240000">
+  <Main x="32" y="64" w="1024" h="952" current-tab="editor"/>
+  <Editor id="41" edit-horizontal-pane-pos="0.970703125" notebook-shrunk="0" edit-vertical-pane-pos="0.89999997615814209" mixer-width="Wide" zoom-focus="ZoomFocusPlayhead" zoom="3744" grid-type="GridTypeBeat" snap-mode="SnapNormal" internal-grid-type="GridTypeBeat" internal-snap-mode="SnapNormal" pre-internal-grid-type="GridTypeBeat" pre-internal-snap-mode="SnapNormal" edit-point="EditAtMouse" visible-track-count="-1" playhead="3098051" left-frame="1535829" y-origin="66" maximised="0" follow-playhead="0" stationary-playhead="0" mouse-mode="MouseObject" join-object-range="0" show-editor-mixer="0" show-editor-list="1" editor-list-page="0" show-marker-lines="0" nudge-clock-value="240000">
     <Window name="Editor" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" tabbed="1"/>
     <Buttons>
       <Press/>
       <Release/>
     </Buttons>
     <Selection>
-      <MIDINotes region-id="36506">
-        <note note-id="389754"/>
+      <MIDINotes region-id="6048">
+        <note note-id="56150"/>
       </MIDINotes>
     </Selection>
     <RegionList/>
     <EditorLocations clock-mode="BBT"/>
   </Editor>
-  <Mixer mixer-rhs-pane1-pos="0.60000002384185791" mixer-rhs_pane2-pos="0.69999998807907104" mixer-list-hpane-pos="0.20000000298023224" mixer-inner-pane-pos="0.79098361730575562" narrow-strips="0" show-mixer="0" maximised="0" show-mixer-list="1" monitor-section-visible="0" foldback-strip-visible="1" show-vca-pane="1">
-    <Window name="Mixer" visible="0" x-off="8" y-off="40" x-size="1904" y-size="1000" tabbed="0"/>
+  <Mixer mixer-rhs-pane1-pos="0.60000002384185791" mixer-rhs_pane2-pos="0.69999998807907104" mixer-list-hpane-pos="0.20000000298023224" mixer-inner-pane-pos="0.78571426868438721" narrow-strips="0" show-mixer="1" maximised="0" show-mixer-list="1" monitor-section-visible="0" foldback-strip-visible="1" show-vca-pane="1">
+    <Window name="Mixer" visible="1" x-off="1088" y-off="572" x-size="800" y-size="444" tabbed="0"/>
   </Mixer>
   <Preferences>
-    <Window name="Preferences" visible="0" x-off="700" y-off="100" x-size="1004" y-size="710" tabbed="0"/>
+    <Window name="Preferences" visible="0" x-off="700" y-off="100" x-size="1084" y-size="710" tabbed="0"/>
   </Preferences>
   <Meterbridge show-meterbridge="0">
-    <geometry x-size="600" y-size="400" x-pos="1" y-pos="1"/>
+    <geometry x-size="166" y-size="387" x-pos="1" y-pos="1"/>
   </Meterbridge>
 </instant>

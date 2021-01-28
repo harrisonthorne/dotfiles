@@ -65,6 +65,7 @@
     <Option name="show-solo-mutes" value="1"/>
     <Option name="solo-mute-override" value="1"/>
     <Option name="auto-input-does-talkback" value="0"/>
+    <Option name="use-master-volume" value="0"/>
     <Option name="solo-mute-gain" value="0"/>
     <Option name="monitor-bus-preferred-bundle" value=""/>
     <Option name="quieten-at-speed" value="1"/>
@@ -161,11 +162,11 @@
   <Extra>
     <Keyboard copy-modifier="4" edit-button="3" edit-modifier="4" delete-button="3" delete-modifier="1" snap-modifier="8" snap-delta-modifier="67108936" insert-note-button="1" insert-note-modifier="4" constraint-modifier="1" trim-contents-modifier="4" trim-overlap-modifier="1" trim-anchored-modifier="5" fine-adjust-modifier="12" push-points-modifier="67108932" note-size-relative-modifier="1"/>
     <UI status-bar="Format,TCFormat,Audio,Disk,DSP,WallClock">
-      <Window name="key-editor" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="key-editor" visible="0" x-off="92" y-off="235" x-size="611" y-size="469"/>
       <Window name="session-options-editor" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="speaker-config" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="about" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="add-routes" visible="0" x-off="-1" y-off="-1" x-size="668" y-size="490"/>
+      <Window name="add-routes" visible="0" x-off="-1" y-off="-1" x-size="631" y-size="490"/>
       <Window name="add-video" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="inspector" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="audio-midi-setup" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
@@ -181,50 +182,23 @@
       <Window name="idle-o-meter" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="plugin-dsp-load" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Window name="transport-masters" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-61" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-162" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-514" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-592" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-801" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-891" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-4975" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-6064" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-29024" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="RPM-29136" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-61-4946" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-61-4946" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-162-226" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-162-226" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-514-583" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-514-583" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-592-666" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-592-666" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-801-882" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-801-882" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-891-977" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-891-977" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-4975-5066" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-4975-5066" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-6064-6083" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-6064-6083" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-29024-29131" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-29024-29131" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
-      <Window name="P-29136-29242" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
-      <Window name="PM-29136-29242" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="RPM-1185" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="RPM-1288" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="RPM-1412" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="RPM-2483" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="P-1288-2579" visible="0" x-off="223" y-off="139" x-size="550" y-size="465" custom-ui="1"/>
+      <Window name="PM-1288-2579" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
+      <Window name="P-2483-2573" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
+      <Window name="P-2483-2659" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1" custom-ui="1"/>
+      <Window name="PM-2483-2573" visible="0" x-off="-1" y-off="-1" x-size="-1" y-size="-1"/>
       <Tearoffs>
         <monitor-section tornoff="0"/>
       </Tearoffs>
     </UI>
     <AudioMIDISetup>
       <EngineStates>
-        <State backend="Pulseaudio" driver="" device="Default Playback" input-device="" output-device="" sample-rate="48000" buffer-size="1024" n-periods="0" input-latency="0" output-latency="0" input-channels="0" output-channels="0" lm-input="" lm-output="" active="1" use-buffered-io="0" midi-option="" lru="1594945053">
+        <State backend="ALSA" driver="" device="" input-device="USB Audio Device" output-device="HD-Audio Generic" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" lm-input="" lm-output="" active="1" use-buffered-io="0" midi-option="ALSA sequencer" lru="1608334678">
           <MIDIDevices/>
-        </State>
-        <State backend="ALSA" driver="" device="" input-device="HD-Audio Generic" output-device="HD-Audio Generic" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" lm-input="" lm-output="" active="0" use-buffered-io="0" midi-option="ALSA sequencer" lru="1592429198">
-          <MIDIDevices>
-            <MIDIDevice name="input (IO)" enabled="1" input-latency="0" output-latency="0"/>
-            <MIDIDevice name="input [2] (IO)" enabled="1" input-latency="0" output-latency="0"/>
-          </MIDIDevices>
         </State>
         <State backend="JACK" driver="ALSA" device="HD-Audio Generic" input-device="" output-device="" sample-rate="48000" buffer-size="1024" n-periods="2" input-latency="0" output-latency="0" input-channels="0" output-channels="0" lm-input="" lm-output="" active="0" use-buffered-io="0" midi-option="" lru="1587961928">
           <MIDIDevices/>
@@ -245,7 +219,6 @@
     <Protocol name="PreSonus FaderPort8" active="0" session-state="0"/>
     <Protocol name="Steinberg CC121" active="0" session-state="0"/>
     <Protocol name="Tascam US-2400" active="0" session-state="0"/>
-    <Protocol name="WebSockets Server (Experimental)" active="0" session-state="0"/>
   </ControlProtocols>
   <TransportMasters current="MIDI Clock">
     <TransportMaster type="JACK" removeable="0" name="JACK" sclock_synced="0" collect="1" allowed_transport_requests=""/>

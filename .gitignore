@@ -87,7 +87,6 @@ menus/
 mopidy/
 mpv/scripts/mpris.so
 node_modules/
-nvim/.netrwhist
 obs-studio/
 pamac/
 pavucontrol.ini
@@ -116,6 +115,17 @@ wpg/templates/
 wpg/wallpapers/*
 xfce4/
 zoomus.conf
+DesktopPonies/
+Kitware/
+cordless/
+Ledger Live/
+whoozle.github.io/
+spotifyd/
+spotify-tui/
+systemsettingsrc
+plasmanotifyrc
+kdenlive-layoutsrc
+JetBrains/
 
 alacritty/alacritty.yml
 awesome/colors.lua

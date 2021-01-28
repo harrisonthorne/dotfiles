@@ -132,10 +132,10 @@
          id="rect"
          style="fill:blue;"
          usecurrent="1"
-         width="644.845"
-         height="111.956"
+         width="755.906"
+         height="68.7186"
          rx="0"
-         ry="3.77953" />
+         ry="34.3593" />
       <eventcontext
          id="3dbox"
          style="stroke:none;stroke-linejoin:round;"
@@ -168,12 +168,12 @@
       <eventcontext
          id="arc"
          style="fill:red;"
-         end="90"
-         start="270"
+         end="0"
+         start="0"
          usecurrent="1"
-         rx="3"
-         ry="3"
-         arc_type="1" />
+         rx="34.7757"
+         ry="34.7757"
+         arc_type="0" />
       <eventcontext
          id="star"
          magnitude="5"
@@ -207,7 +207,7 @@
          mode="drag"
          selcue="1"
          style="stroke-width:1px;"
-         usecurrent="0" />
+         usecurrent="1" />
     </group>
     <eventcontext
        id="calligraphic"
@@ -329,7 +329,7 @@
        id="lpetool"
        mode="drag"
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;"
-       unit="mm"
+       unit="px"
        show_bbox="1" />
     <eventcontext
        id="text"
@@ -338,10 +338,10 @@
        font_sample="AaBbCcIiPpQq12369$€¢?.;/()"
        show_sample_in_list="1"
        use_svg2="1"
-       style="font-family:sans-serif;font-size:26.66666667px;line-height:1.25;letter-spacing:0px;word-spacing:0px"
+       style="font-family:sans-serif;font-size:26.66666667px;line-height:1.25;letter-spacing:0px;word-spacing:0px;text-anchor:middle;text-align:center"
        selcue="1"
        outer_style="0"
-       align_mode="0">
+       align_mode="1">
       <group
          display_unit="0"
          id="lineheight" />
@@ -361,8 +361,8 @@
        live_outline="1"
        live_objects="1"
        show_helperpath="0"
-       x="24"
-       y="26"
+       x="2607.82"
+       y="392.805"
        edit_clipping_paths="0"
        edit_masks="0"
        highlight_color="4278190335" />
@@ -583,10 +583,10 @@
        x="0"
        y="0"
        w="458"
-       h="441"
-       visible="1"
+       h="489"
+       visible="0"
        state="2"
-       placement="2" />
+       placement="5" />
     <group
        id="filtereffects" />
     <group
@@ -614,23 +614,23 @@
        panel_mode="1"
        panel_wrap="0"
        panel_border="0"
-       x="705"
-       y="289"
-       w="200"
-       h="200"
+       x="818"
+       y="39"
+       w="645"
+       h="832"
        visible="0"
        placement="1" />
     <group
        id="preferences"
        state="1"
-       page="1"
+       page="13"
        panel_size="1"
        panel_ratio="100"
        panel_mode="1"
        panel_wrap="0"
        panel_border="0"
-       x="735"
-       y="408"
+       x="553"
+       y="327"
        w="814"
        h="489"
        visible="0"
@@ -651,17 +651,17 @@
        panel_border="0"
        x="0"
        y="0"
-       w="458"
+       w="398"
        h="489"
        visible="0"
        state="2"
-       placement="5">
+       placement="1">
       <group
          id="exportarea"
          value="page" />
       <group
          id="defaultxdpi"
-         value="96" />
+         value="25.8" />
     </group>
     <group
        id="save_as"
@@ -679,7 +679,7 @@
     <group
        id="open"
        enable_preview="1"
-       path="/home/harrisonthorne/Documents/muse-icons/" />
+       path="/home/harrisonthorne/Pictures/dank_memes/templates/" />
     <group
        id="import"
        enable_preview="1"
@@ -718,15 +718,21 @@
        x="0"
        y="0"
        w="458"
-       h="294"
-       visible="1"
+       h="441"
+       visible="0"
        state="2"
        placement="5" />
     <group
        id="extensioneditor" />
     <group
        id="trace"
-       state="1" />
+       state="1"
+       x="673"
+       y="319"
+       w="573"
+       h="442"
+       visible="0"
+       placement="1" />
     <group
        id="script" />
     <group
@@ -1056,11 +1062,11 @@
      org.inkscape.input.svg.do_not_ask="1" />
   <group
      id="desktop"
-     style="line-height:1.25;fill:none;font-variant-east_asian:normal;stroke-linecap:round;font-size:26.66666667px;-inkscape-font-specification:'DejaVu Sans Bold';font-family:'DejaVu Sans';font-weight:bold;stroke-linejoin:round;stroke-width:2;stroke:#000000">
+     style="line-height:1.25;fill:#ffff00;font-variant-east_asian:normal;stroke-linecap:round;font-size:42.66666667px;-inkscape-font-specification:'sans-serif Italic';font-family:sans-serif;stroke-linejoin:round;stroke:#000000;stroke-width:3.77952756;text-anchor:middle;text-align:center;font-style:italic;">
     <group
-       width="1888"
+       width="1208"
        height="984"
-       x="16"
+       x="696"
        y="48"
        fullscreen="0"
        id="geometry"

@@ -5,9 +5,10 @@ end
 bash /etc/profile
 bash ~/.bashrc
 
-alias system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
+alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
 # alias imv="imv -e Monospace:13"
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
+alias pandoc-preview="~/.config/nvim/pandocPreview.sh"
 
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
@@ -17,16 +18,26 @@ set -gx EIX_LIMIT 0
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
 set -gx GPG_TTY (tty)
 set -gx GOPATH $HOME/go
-set -gx LEDGER_FILE $HOME/Notebook/ledger/main.mvelopes
+set -gx LEDGER_FILE $HOME/Notebook/ledger/main.sfox
 set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SUDO_ASKPASS /usr/bin/ksshaskpass
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx WINEPREFIX $HOME/.wine/
-set -gx _JAVA_AWT_WM_NONREPARENTING 1
 set -gx NODE_BIN $HOME/.npm-global/bin
+set -gx XBPS_DISTDIR $HOME/Documents/void-packages
 
-set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin $NODE_BIN
+# sway recommended settings
+set -gx CLUTTER_BACKEND wayland
+set -gx ECORE_EVAS_ENGINE wayland-egl
+set -gx ELM_ENGINE wayland_egl
+set -gx MOZ_ENABLE_WAYLAND 1
+set -gx NO_AT_BRIDGE 1
+set -gx QT_QPA_PLATFORM wayland-egl
+set -gx SDL_VIDEODRIVER wayland
+set -gx _JAVA_AWT_WM_NONREPARENTING 1
+
+set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin $NODE_BIN /usr/lib $HOME/bin
 
 function fish_prompt --description 'Write out the prompt'
     set -l color_cwd
@@ -98,5 +109,7 @@ function crypt-edit
 end
 
 if ! status is-login
-    eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket 4B21310A52B15162)
+    eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket id_ed25519 4B21310A52B15162) 2> /dev/null
 end
+
+alias enable-conda="eval /home/harrisonthorne/.anaconda3/bin/conda "shell.fish" "hook" $argv | source"

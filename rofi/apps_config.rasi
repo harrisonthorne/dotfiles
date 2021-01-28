@@ -1,17 +1,23 @@
 configuration {
     theme: "muse";
-	columns: 10;
+	columns: 5;
 	show-icons: true;
-    location: 6;
+    location: 0;
+    fullscreen: true;
+}
+
+mainbox {
+    padding: 10% 20%;
 }
 
 window {
-    width: 100%;
-    height: 232px;
+    width: 50%;
+    height: 70%;
 }
 
 element {
     orientation: vertical;
+    margin: 16px 0px 0px 0px;
     padding: 32px;
 }
 

@@ -4,14 +4,14 @@
     <Option name="icon-set" value="default"/>
     <Option name="ui-rc-file" value="clearlooks.rc"/>
     <Option name="ui-font-family" value="Sans"/>
-    <Option name="color-file" value="unastudia"/>
+    <Option name="color-file" value="recbox"/>
     <Option name="flat-buttons" value="1"/>
     <Option name="boxy-buttons" value="0"/>
     <Option name="blink-rec-arm" value="0"/>
     <Option name="blink-alert-indicators" value="1"/>
     <Option name="waveform-gradient-depth" value="0"/>
     <Option name="timeline-item-gradient-depth" value="0.5"/>
-    <Option name="all-floating-windows-are-dialogs" value="0"/>
+    <Option name="all-floating-windows-are-dialogs" value="1"/>
     <Option name="floating-monitor-section" value="0"/>
     <Option name="transients-follow-front" value="0"/>
     <Option name="color-regions-using-track-color" value="0"/>

@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PluginOrder>
-  <PluginInfo sort="0" unique-id="http://calf.sourceforge.net/plugins/Reverb" expanded="0"/>
-  <PluginInfo sort="1" unique-id="http://gareus.org/oss/lv2/gmsynth" expanded="0"/>
-  <PluginInfo sort="2" unique-id="http://geontime.com/geonkick" expanded="0"/>
-  <PluginInfo sort="3" unique-id="http://tytel.org/helm" expanded="0"/>
-  <PluginInfo sort="4" unique-id="http://linuxsampler.org/plugins/linuxsampler" expanded="0"/>
-  <PluginInfo sort="5" unique-id="http://zynaddsubfx.sourceforge.net" expanded="0"/>
-</PluginOrder>
+<PluginOrder/>

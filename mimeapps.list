@@ -17,6 +17,8 @@ application/xhtml+xml=userapp-Firefox-7E6SO0.desktop
 application/x-extension-xhtml=userapp-Firefox-7E6SO0.desktop
 application/x-extension-xht=userapp-Firefox-7E6SO0.desktop
 x-scheme-handler/sgnl=signal.desktop
+x-scheme-handler/discord-719647875465871400=discord-719647875465871400.desktop
+x-scheme-handler/slack=slack.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Evolution-8BBWB0.desktop;
@@ -36,3 +38,8 @@ application/x-extension-xht=firefox.desktop;userapp-Firefox-7E6SO0.desktop;
 application/pdf=com.github.xournalpp.xournalpp.desktop;org.gnome.Evince.desktop;mupdf.desktop;
 text/csv=libreoffice-calc.desktop;
 application/rss+xml=thunderbird.desktop;
+application/x-desktop=org.gnome.gedit.desktop;
+application/x-executable=org.gnome.gedit.desktop;
+application/x-shellscript=nvim.desktop;
+text/plain=nvim.desktop;
+image/jpeg=imv.desktop;sxiv.desktop;feh.desktop;

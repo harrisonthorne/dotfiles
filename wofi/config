@@ -1,0 +1,11 @@
+insensitive=true
+width=100%
+height=100%
+allow_images=true
+allow_markup=true
+matching=fuzzy
+halign=fill
+valign=start
+image_size=48
+layer=overlay
+columns=5

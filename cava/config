@@ -101,17 +101,22 @@ source = auto
 # Gradient mode, only hex defined colors are supported, background must also be defined in hex
 # or remain commented out. 1 = on, 0 = off. Warning: for certain terminal emulators cava will
 # not able to restore color definitions on exit, simply restart your terminal to restore colors.
-; gradient = 0
-; gradient_color_1 = '#0099ff'
-; gradient_color_2 = '#ff3399'
-
-
+gradient = 1
+gradient_color_1 = '#6E8C60'
+gradient_color_2 = '#6E8C60'
+gradient_color_3 = '#748E89'
+gradient_color_4 = '#748E89'
+gradient_color_5 = '#648F26'
+gradient_color_6 = '#648F26'
+gradient_color_7 = '#A2B13F'
+gradient_color_8 = '#A2B13F'
+gradient_color_9 = '#96A466'
 
 [smoothing]
 
 # Percentage value for integral smoothing. Takes values from 0 - 100.
 # Higher values means smoother, but less precise. 0 to disable.
-integral = 30
+integral = 5
 
 # Disables or enables the so-called "Monstercat smoothing" with or without "waves". Set to 0 to disable. 
 ; monstercat = 1
