@@ -1,4 +1,3 @@
-!wpg/templates/*.base
 .*/
 3T/
 Authenticator/
@@ -103,7 +102,6 @@ remmina/
 rncbc.org/
 session/
 spotify/
-sway/config
 syncthing/
 teams/
 termite/
@@ -111,7 +109,6 @@ torbrowser/
 transmission/
 vmpk.sourceforge.net/
 wpg/.current
-wpg/templates/
 wpg/wallpapers/*
 xfce4/
 zoomus.conf
@@ -127,6 +124,9 @@ plasmanotifyrc
 kdenlive-layoutsrc
 JetBrains/
 
+wpg/templates/*
+!wpg/templates/*.base
+
 alacritty/alacritty.yml
 awesome/colors.lua
 bspwm/bspwmrc
@@ -136,9 +136,7 @@ i3/lock.sh
 mako/config
 rofi/muse.rasi
 sway/lock.sh
+sway/config
 wpg/.current
 wpg/sequences
-wpg/templates/config_cava_config
-wpg/templates/config_sway_config
-wpg/templates/i3
 wpg/wp_init.sh
