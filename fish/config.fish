@@ -5,13 +5,15 @@ end
 bash /etc/profile
 bash ~/.bashrc
 
-alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
-# alias imv="imv -e Monospace:13"
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
+alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
+alias imv="imv -e Monospace:13"
+alias n="nvim"
 alias pandoc-preview="~/.config/nvim/pandocPreview.sh"
 
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
+set -gx BAT_THEME base16
 set -gx BROWSER /bin/firefox
 set -gx EDITOR /bin/nvim
 set -gx EIX_LIMIT 0
@@ -24,7 +26,7 @@ set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SUDO_ASKPASS /usr/bin/ksshaskpass
 set -gx SXHKD_SHELL '/bin/sh'
-set -gx TZ America/Chicago
+set -gx TZ America/Boise
 set -gx WINEPREFIX $HOME/.wine/
 set -gx XBPS_DISTDIR $HOME/Documents/void-packages
 
