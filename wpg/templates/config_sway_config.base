@@ -30,15 +30,15 @@ set $gnome-sound-schema org.gnome.desktop.sound
 
 # define names for default workspaces for which we configure key bindings later
 # on. we use variables to avoid repeating the names in multiple places.
-set $ws1 "I"
-set $ws2 "II"
-set $ws3 "III"
-set $ws4 "IV"
-set $ws5 "V"
-set $ws6 "VI"
-set $ws7 "VII"
-set $ws8 "VIII"
-set $ws9 "IX"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
 set $ws10 "X"
 
 # custom colors
@@ -192,8 +192,8 @@ bindsym $mod+Escape exec $locker
 
 # screen capture
 bindsym --release $mod+Print exec $screenshot
-bindsym --release $mod+Control+Print exec "sh $HOME/.config/sway/screenshot.sh -s"
-bindsym --release $mod+Shift+Print exec sh $HOME/.config/sway/videocapture.sh
+bindsym --release $mod+Control+Print exec $HOME/.config/sway/screenshot.sh -s
+bindsym --release $mod+Shift+Print exec $HOME/.config/sway/videocapture.sh
 
 # mako notifications
 bindsym Control+Escape exec makoctl dismiss
