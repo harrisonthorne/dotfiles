@@ -1,0 +1,138 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <data>
+      <entry key="$Delete">
+        <ActionSummary times="2" last="1615423867502" />
+      </entry>
+      <entry key="$Redo">
+        <ActionSummary times="1" last="1615422221663" />
+      </entry>
+      <entry key="$SelectAll">
+        <ActionSummary times="1" last="1615419181835" />
+      </entry>
+      <entry key="$Undo">
+        <ActionSummary times="10" last="1615423965900" />
+      </entry>
+      <entry key="About">
+        <ActionSummary times="2" last="1615419614474" />
+      </entry>
+      <entry key="CloseAllEditorsButActive">
+        <ActionSummary times="1" last="1615420374722" />
+      </entry>
+      <entry key="CodeCompletion">
+        <ActionSummary times="2" last="1615424718448" />
+      </entry>
+      <entry key="EditCustomVmOptions">
+        <ActionSummary times="1" last="1615419661624" />
+      </entry>
+      <entry key="EditorBackSpace">
+        <ActionSummary times="97" last="1615424822742" />
+      </entry>
+      <entry key="EditorChooseLookupItem">
+        <ActionSummary times="10" last="1615424800755" />
+      </entry>
+      <entry key="EditorCopy">
+        <ActionSummary times="4" last="1615423953075" />
+      </entry>
+      <entry key="EditorCut">
+        <ActionSummary times="4" last="1615423355311" />
+      </entry>
+      <entry key="EditorDeleteLine">
+        <ActionSummary times="1" last="1615422215300" />
+      </entry>
+      <entry key="EditorDeleteToWordStart">
+        <ActionSummary times="12" last="1615424718286" />
+      </entry>
+      <entry key="EditorDown">
+        <ActionSummary times="5" last="1615424577490" />
+      </entry>
+      <entry key="EditorDuplicate">
+        <ActionSummary times="1" last="1615422372886" />
+      </entry>
+      <entry key="EditorEnter">
+        <ActionSummary times="27" last="1615424815442" />
+      </entry>
+      <entry key="EditorLeft">
+        <ActionSummary times="12" last="1615424664879" />
+      </entry>
+      <entry key="EditorLineEnd">
+        <ActionSummary times="2" last="1615424663370" />
+      </entry>
+      <entry key="EditorNextWord">
+        <ActionSummary times="6" last="1615424657145" />
+      </entry>
+      <entry key="EditorPaste">
+        <ActionSummary times="10" last="1615424746795" />
+      </entry>
+      <entry key="EditorPasteFromX11">
+        <ActionSummary times="1" last="1615422554883" />
+      </entry>
+      <entry key="EditorPreviousWord">
+        <ActionSummary times="8" last="1615424656745" />
+      </entry>
+      <entry key="EditorRight">
+        <ActionSummary times="1" last="1615422400945" />
+      </entry>
+      <entry key="EditorScrollDown">
+        <ActionSummary times="1" last="1615422365914" />
+      </entry>
+      <entry key="EditorUp">
+        <ActionSummary times="1" last="1615422366621" />
+      </entry>
+      <entry key="NewAndroidVectorAsset">
+        <ActionSummary times="1" last="1615423829569" />
+      </entry>
+      <entry key="NewDir">
+        <ActionSummary times="1" last="1615421552353" />
+      </entry>
+      <entry key="NewProject">
+        <ActionSummary times="1" last="1615420821212" />
+      </entry>
+      <entry key="RenameElement">
+        <ActionSummary times="1" last="1615423874269" />
+      </entry>
+      <entry key="Run">
+        <ActionSummary times="26" last="1615424865123" />
+      </entry>
+      <entry key="SaveAll">
+        <ActionSummary times="8" last="1615423462733" />
+      </entry>
+      <entry key="ShowIntentionActions">
+        <ActionSummary times="1" last="1615424773057" />
+      </entry>
+      <entry key="TabList">
+        <ActionSummary times="2" last="1615422523027" />
+      </entry>
+      <entry key="WelcomeScreen.CreateNewProject">
+        <ActionSummary times="1" last="1615419158862" />
+      </entry>
+      <entry key="android.deploy.ApplyChanges">
+        <ActionSummary times="2" last="1615422878505" />
+      </entry>
+      <entry key="com.android.tools.idea.common.editor.DesignToolsSplitEditor$MyToolBarAction">
+        <ActionSummary times="18" last="1615424260146" />
+      </entry>
+      <entry key="com.android.tools.idea.common.error.IssuePanel$MinimizeAction">
+        <ActionSummary times="2" last="1615424151936" />
+      </entry>
+      <entry key="com.android.tools.idea.templates.TemplateManager$fillCategory$1$galleryAction$1">
+        <ActionSummary times="1" last="1615421799759" />
+      </entry>
+      <entry key="com.android.tools.idea.ui.resourcemanager.explorer.ResourceExplorerListView$GridModeButton">
+        <ActionSummary times="2" last="1615423762421" />
+      </entry>
+      <entry key="com.android.tools.idea.uibuilder.editor.NlActionManager$DirectViewActionWrapper">
+        <ActionSummary times="5" last="1615424225971" />
+      </entry>
+      <entry key="com.intellij.ide.plugins.PluginManagerMain$2">
+        <ActionSummary times="1" last="1615421901897" />
+      </entry>
+      <entry key="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
+        <ActionSummary times="2" last="1615419425168" />
+      </entry>
+      <entry key="org.jetbrains.android.actions.CreateMultiRootResourceFileAction">
+        <ActionSummary times="1" last="1615421654416" />
+      </entry>
+    </data>
+  </component>
+</application>
