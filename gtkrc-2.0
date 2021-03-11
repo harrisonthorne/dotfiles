@@ -1,9 +1,7 @@
-# created by KDE Plasma, Fri Oct 16 12:01:18 2020
-#
-
-gtk-alternative-button-order = 1
-
-include "/usr/share/themes/Breeze/gtk-2.0/gtkrc"
-
-gtk-theme-name="Breeze"
-
+gtk-theme-name = "Adwaita-dark"
+gtk-font-name = "Inter 11"
+gtk-icon-theme-name = "Flat-Remix-Blue-Dark"
+gtk-cursor-theme-name = "Adwaita"
+gtk-enable-event-sounds = true
+gtk-enable-input-feedback-sounds = true
+gtk-sound-theme-name = musicaflight
