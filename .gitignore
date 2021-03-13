@@ -7,9 +7,9 @@ Cadence/
 Code - OSS/
 Code/
 DesktopPonies/
-Google/AndroidStudio*
 GIMP/
 GREYC/
+Google/AndroidStudio*
 Insomnia/
 JetBrains/
 Kitware/
@@ -63,6 +63,7 @@ i3blocks/arch-update/arch-update.py
 i3blocks/monitor_manager/monitor_manager.py
 ibus/
 icedtea-web/
+inkscape/
 kactivitymanagerd-statsrc
 kactivitymanagerdrc
 kak/autoload/
