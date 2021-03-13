@@ -8,8 +8,11 @@ bash ~/.bashrc
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
 alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
 alias imv="imv -e Monospace:13"
-alias n="nvim"
 alias pandoc-preview="~/.config/nvim/pandocPreview.sh"
+
+alias g="git"
+alias n="nvim"
+alias r="ranger"
 alias s="dbus-run-session sway"
 
 set fish_greeting ""
