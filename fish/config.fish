@@ -10,6 +10,7 @@ alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going 
 alias imv="imv -e Monospace:13"
 alias n="nvim"
 alias pandoc-preview="~/.config/nvim/pandocPreview.sh"
+alias s="dbus-run-session sway"
 
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
