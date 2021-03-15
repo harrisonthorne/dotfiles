@@ -1,2 +1,0 @@
-{X.Org/AMD Radeon R7 Graphics (CARRIZO, DRM 3.39.0, 5.9.14_1, LLVM 11.0.0)/4.6 (Core Profile) Mesa 20.2.3}=SUPPORTED
-{AMD/AMD Radeon R7 Graphics (CARRIZO, DRM 3.39.0, 5.9.16_1, LLVM 11.0.0)/4.6 (Core Profile) Mesa 20.3.1}=SUPPORTED

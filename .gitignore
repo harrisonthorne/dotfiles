@@ -29,8 +29,6 @@ akregatorrc
 autostart/
 awesome/.rc.lua
 baloofilerc
-blender/2.83/config/bookmarks.txt
-blender/2.83/config/recent-files.txt
 calibre/
 cef_user_data/
 chromium/
@@ -127,6 +125,9 @@ wpg/.current
 wpg/wallpapers/*
 xfce4/
 zoomus.conf
+
+blender/
+!blender/**/userpref.blend
 
 wpg/templates/*
 !wpg/templates/*.base
