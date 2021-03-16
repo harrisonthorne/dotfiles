@@ -1,0 +1,7 @@
+gtk-theme-name = "Adwaita-dark"
+gtk-font-name = "Inter 11"
+gtk-icon-theme-name = "Flat-Remix-Blue-Dark"
+gtk-cursor-theme-name = "Adwaita"
+gtk-enable-event-sounds = true
+gtk-enable-input-feedback-sounds = true
+gtk-sound-theme-name = musicaflight
