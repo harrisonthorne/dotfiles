@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<PluginStats>
-  <Plugin type="LXVST" id="1735999862" lru="1607830551" use-count="1"/>
-  <Plugin type="LV2" id="https://community.ardour.org/node/7596" lru="1607830411" use-count="2"/>
-  <Plugin type="LV2" id="http://linuxsampler.org/plugins/linuxsampler" lru="1594942229" use-count="2"/>
-  <Plugin type="LV2" id="http://gareus.org/oss/lv2/gmsynth" lru="1594941995" use-count="1"/>
-</PluginStats>
