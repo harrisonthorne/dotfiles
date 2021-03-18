@@ -6,13 +6,15 @@ set $browser firefox
 set $music spotify
 set $email evolution
 set $media kodi
-set $notebook_dir $HOME/Notebook
 set $locker "sh $HOME/.config/sway/lock.sh"
 set $screenshot "sh $HOME/.config/sway/screenshot.sh"
 set $terminal kitty
 set $shell /usr/bin/fish
 
+# other variables
+set $sans Inter
 set $terminal_with_title $terminal -T
+set $notebook_dir $HOME/notebook
 set $exec_with_shell -e $shell -i -c
 
 # launcher
@@ -65,7 +67,7 @@ floating_minimum_size -1 x -1
 floating_modifier $mod
 focus_follows_mouse always
 focus_on_window_activation smart
-font pango: sans 11
+font pango: $sans 11
 gaps inner 0
 smart_borders on
 smart_gaps on
@@ -172,13 +174,13 @@ bindsym $mod+f fullscreen toggle
 
 # shortcuts for apps
 # TODO bindsym $mod+Control+e exec wofi -S emoji -modi emoji
-bindsym $mod+Control+n exec $terminal_with_title "Quick note" -d $notebook_dir $exec_with_shell "nvim ~/Notebook/new/(date +%Y%m%d-%H%M%S).md"
+bindsym $mod+Control+n exec $terminal_with_title "Quick note" -d $notebook_dir $exec_with_shell "nvim $notebook_dir/new/(date +%Y%m%d-%H%M%S).md"
 bindsym $mod+Control+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_gammastep.sh
 bindsym $mod+Return exec $terminal
-bindsym $mod+Shift+b exec $terminal_with_title "YOU PRESSED THE BORED BUTTON" -d $notebook_dir $exec_with_shell "nvim ~/Notebook/bored.md"
+bindsym $mod+Shift+b exec $terminal_with_title "YOU PRESSED THE BORED BUTTON" -d $notebook_dir $exec_with_shell "nvim $notebook_dir/bored.md"
 bindsym $mod+Shift+m exec kodi
-bindsym $mod+Shift+n exec $terminal_with_title Notebook -d $notebook_dir $exec_with_shell "ranger ~/Notebook"
+bindsym $mod+Shift+n exec $terminal_with_title Notebook -d $notebook_dir $exec_with_shell "ranger $notebook_dir"
 bindsym $mod+a exec $menu
 bindsym $mod+c exec $terminal_with_title Calculator $exec_with_shell qalc
 bindsym $mod+b exec $music
@@ -265,7 +267,7 @@ output "*" {{
 
 bar {{
     status_command "muse-status sub a -m i3 -p {color15.strip} -s {inactive.strip}"
-    font pango: sans 11
+    font pango: $sans 11
     modifier $mod
     separator_symbol "    "
     position top
@@ -288,8 +290,8 @@ bar {{
 # startup apps
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec gammastep &
-exec hydroxide serve &
 exec light -I &
+exec mako &
 exec muse-status-daemon &
 exec pulseaudio --start &
 exec rot8 &
@@ -299,11 +301,10 @@ exec xhost si:localuser:root &
 exec xrdb -load ~/.Xresources &
 
 # theming
-exec_always "killall mako; mako"
 exec_always gsettings set $gnome-desktop-schema gtk-theme 'Adwaita'
-exec_always gsettings set $gnome-desktop-schema icon-theme 'Flat-Remix-Blue-Dark'
+exec_always gsettings set $gnome-desktop-schema icon-theme 'Adwaita'
 exec_always gsettings set $gnome-desktop-schema cursor-theme 'Adwaita'
-exec_always gsettings set $gnome-desktop-schema font-name 'sans 11'
+exec_always gsettings set $gnome-desktop-schema font-name '$sans 11'
 exec_always gsettings set $gnome-sound-schema theme-name 'musicaflight'
 exec_always gsettings set $gnome-sound-schema event-sounds true
 exec_always gsettings set $gnome-sound-schema input-feedback-sounds true
