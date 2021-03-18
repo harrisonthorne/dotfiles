@@ -235,7 +235,7 @@ bindsym $mod+Shift+r exec wpg -s $(wpg -c)
 bindsym $mod+Control+w exec wpg -m
 
 # exit sway
-bindsym $mod+Shift+e exec paplay "/usr/share/sounds/musicaflight/stereo/Goodbye.oga" && swaymsg exit
+bindsym $mod+Shift+e exec "paplay /usr/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
 
 # inputs and outputs
 
