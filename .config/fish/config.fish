@@ -9,6 +9,7 @@ alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- 
 alias config='/usr/bin/git --git-dir=$HOME/.dots.git/ --work-tree=$HOME'
 alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
 alias imv="imv -e Monospace:13"
+alias notebook='/usr/bin/git --git-dir=$HOME/.notebook.git/ --work-tree=$HOME/notebook'
 alias pandoc-preview="~/.config/nvim/pandocPreview.sh"
 
 alias g="git"
