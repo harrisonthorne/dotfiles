@@ -4,3 +4,9 @@
 [submodule "awesome"]
 	path = .config/awesome
 	url = https://github.com/harrisonthorne/awesomewm-config
+[submodule "/home/harrison/.config/nvim"]
+	path = /home/harrison/.config/nvim
+	url = https://github.com/harrisonthorne/nvim-config
+[submodule "/home/harrison/.config/awesome"]
+	path = /home/harrison/.config/awesome
+	url = https://github.com/harrisonthorne/awesome-config
