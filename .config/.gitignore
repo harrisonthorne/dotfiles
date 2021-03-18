@@ -136,7 +136,7 @@ wpg/sequences
 wpg/wp_init.sh
 wpg/.current
 
-wpg/templates
+wpg/templates/*
 !wpg/templates/*.base
 
 alacritty/alacritty.yml
