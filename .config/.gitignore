@@ -54,6 +54,7 @@ gedit/
 gnome-games/
 gnome-initial-setup-done
 gtk-2.0/gtkfilechooser.ini
+gtk-3.0/bookmarks
 hydroxide/
 i3/config
 i3blocks/
