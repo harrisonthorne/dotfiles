@@ -67,7 +67,7 @@ floating_minimum_size -1 x -1
 floating_modifier $mod
 focus_follows_mouse always
 focus_on_window_activation smart
-font pango: $sans 11
+font pango: $sans 12
 gaps inner 0
 smart_borders on
 smart_gaps on
@@ -267,7 +267,7 @@ output "*" {{
 
 bar {{
     status_command "muse-status sub a -m i3 -p {color15.strip} -s {inactive.strip}"
-    font pango: $sans 11
+    font pango: $sans 12
     modifier $mod
     separator_symbol "    "
     position top
@@ -304,7 +304,7 @@ exec xrdb -load ~/.Xresources &
 exec_always gsettings set $gnome-desktop-schema gtk-theme 'Adwaita'
 exec_always gsettings set $gnome-desktop-schema icon-theme 'Adwaita'
 exec_always gsettings set $gnome-desktop-schema cursor-theme 'Adwaita'
-exec_always gsettings set $gnome-desktop-schema font-name '$sans 11'
+exec_always gsettings set $gnome-desktop-schema font-name '$sans 12'
 exec_always gsettings set $gnome-sound-schema theme-name 'musicaflight'
 exec_always gsettings set $gnome-sound-schema event-sounds true
 exec_always gsettings set $gnome-sound-schema input-feedback-sounds true
