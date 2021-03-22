@@ -93,6 +93,7 @@ menus/
 mimeapps.list
 mopidy/
 mpv/scripts/mpris.so
+muse-status/daemon.yaml
 node_modules/
 obs-studio/
 pamac/
