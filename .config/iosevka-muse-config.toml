@@ -2,14 +2,61 @@
 
 [buildPlans.iosevka-muse] # <iosevka-muse> is your plan name
 family = "Iosevka Muse"   # Font menu family name
-design = ["sp-fixed", "VXBS", "VXBQ", "cv98", "cv27", "VXBA", "cv72", "cv78", "cv92", "cv83", "VXAB", "VXAE", "cv96", "cv95", "cv19", "cv38", "cv36", "cv81", "cv74", "cv49", "cv76", "VXBT", "cv85", "cv69", "cv88"] # Custom styles
+no-ligation = true
 
- [buildPlans.iosevka-muse.weights.regular]
- shape = 400  # Weight for glyph shapes.
- menu  = 400  # Weight for the font's names.
- css   = 400  # Weight for webfont CSS.
- 
- [buildPlans.iosevka-muse.weights.bold]
- shape = 700
- menu  = 700
- css   = 700
+[buildPlans.iosevka-muse.weights.regular]
+shape = 400  # Weight for glyph shapes.
+menu  = 400  # Weight for the font's names.
+css   = 400  # Weight for webfont CSS.
+
+[buildPlans.iosevka-muse.weights.bold]
+shape = 700
+menu  = 700
+css   = 700
+
+[buildPlans.iosevka-muse.variants.design]
+capital-a = 'curly'
+capital-d = 'more-rounded'
+capital-g = 'toothless-corner-serifless-hooked'
+capital-j = 'serifless'
+capital-k = 'curly'
+capital-q = 'crossing-curly-tailed'
+capital-r = 'curly'
+capital-v = 'curly'
+capital-w = 'curly'
+capital-x = 'curly'
+capital-y = 'curly'
+capital-z = 'curly-with-horizontal-crossbar'
+a = 'double-storey-toothless-corner'
+b = 'toothless-corner'
+d = 'toothless-corner'
+f = 'flat-hook'
+g = 'double-storey-open'
+i = 'flat-tailed'
+j = 'flat-hook-serifless'
+k = 'curly'
+l = 'flat-tailed'
+m = 'earless-corner-double-arch'
+n = 'earless-corner-straight'
+p = 'earless-corner'
+q = 'earless-corner'
+r = 'earless-corner'
+t = 'flat-hook'
+u = 'toothless-corner'
+v = 'curly'
+w = 'curly'
+x = 'curly'
+y = 'cursive-flat-hook'
+z = 'curly'
+turn-v = 'curly'
+lower-lambda = 'curly'
+cyrl-ka = 'curly'
+cyrl-capital-u = 'curly'
+seven = 'curly-serifless'
+asterisk = 'low'
+brace = 'straight'
+dollar = 'open'
+cent = 'open'
+percent = 'rings-continuous-slash'
+bar = 'force-upright'
+
