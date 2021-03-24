@@ -1,6 +1,6 @@
 gtk-theme-name = "Adwaita-dark"
 gtk-font-name = "Inter 12"
-gtk-icon-theme-name = "Flat-Remix-Blue-Dark"
+gtk-icon-theme-name = "Adwaita++"
 gtk-cursor-theme-name = "Adwaita"
 gtk-enable-event-sounds = true
 gtk-enable-input-feedback-sounds = true
