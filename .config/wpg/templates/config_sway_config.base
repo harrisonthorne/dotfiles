@@ -30,6 +30,17 @@ set $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
 set $gnome-desktop-schema org.gnome.desktop.interface
 set $gnome-sound-schema org.gnome.desktop.sound
 
+# gtk theming
+exec_always {
+    gsettings set $gnome-desktop-schema gtk-theme 'Adwaita'
+    gsettings set $gnome-desktop-schema icon-theme 'Adwaita++'
+    gsettings set $gnome-desktop-schema cursor-theme 'Adwaita'
+    gsettings set $gnome-desktop-schema font-name '$sans 12'
+    gsettings set $gnome-sound-schema theme-name 'musicaflight'
+    gsettings set $gnome-sound-schema event-sounds true
+    gsettings set $gnome-sound-schema input-feedback-sounds true
+}
+
 # define names for default workspaces for which we configure key bindings later
 # on. we use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -300,15 +311,7 @@ exec syncthing --no-browser &
 exec xhost si:localuser:root &
 exec xrdb -load ~/.Xresources &
 
-# theming
-exec_always gsettings set $gnome-desktop-schema gtk-theme 'Adwaita'
-exec_always gsettings set $gnome-desktop-schema icon-theme 'Adwaita'
-exec_always gsettings set $gnome-desktop-schema cursor-theme 'Adwaita'
-exec_always gsettings set $gnome-desktop-schema font-name '$sans 12'
-exec_always gsettings set $gnome-sound-schema theme-name 'musicaflight'
-exec_always gsettings set $gnome-sound-schema event-sounds true
-exec_always gsettings set $gnome-sound-schema input-feedback-sounds true
-
+# login sound
 exec canberra-gtk-play --id=desktop-login
 
 # vim: ft=conf
