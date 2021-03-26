@@ -12,6 +12,8 @@ alias imv="imv -e Monospace:13"
 alias notebook='/usr/bin/git --git-dir=$HOME/.notebook.git/ --work-tree=$HOME/notebook'
 alias pandoc-preview="~/.config/nvim/pandocPreview.sh"
 
+alias b="notebook"
+alias c="config"
 alias g="git"
 alias n="nvim"
 alias r="ranger"
