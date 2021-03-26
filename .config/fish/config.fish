@@ -12,12 +12,13 @@ alias imv="imv -e Monospace:13"
 alias notebook='/usr/bin/git --git-dir=$HOME/.notebook.git/ --work-tree=$HOME/notebook'
 alias pandoc-preview="~/.config/nvim/pandocPreview.sh"
 
-alias b="notebook"
 alias c="config"
 alias g="git"
 alias n="nvim"
 alias r="ranger"
 alias s="dbus-run-session sway"
+
+alias nb="notebook"
 
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
