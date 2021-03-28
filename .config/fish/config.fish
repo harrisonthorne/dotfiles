@@ -121,8 +121,8 @@ function crypt-edit
     end
 end
 
-if ! status is-login
-    eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket id_ed25519 4B21310A52B15162) 2> /dev/null
-end
+# if ! status is-login
+#     eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket id_ed25519 4B21310A52B15162) 2> /dev/null
+# end
 
 alias enable-conda="eval /home/harrison/.anaconda3/bin/conda "shell.fish" "hook" $argv | source"
