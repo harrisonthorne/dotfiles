@@ -31,7 +31,7 @@ set $gnome-desktop-schema org.gnome.desktop.interface
 set $gnome-sound-schema org.gnome.desktop.sound
 
 # gtk theming
-exec_always {
+exec_always {{
     gsettings set $gnome-desktop-schema gtk-theme 'Adwaita'
     gsettings set $gnome-desktop-schema icon-theme 'Adwaita++'
     gsettings set $gnome-desktop-schema cursor-theme 'Adwaita'
@@ -39,7 +39,7 @@ exec_always {
     gsettings set $gnome-sound-schema theme-name 'musicaflight'
     gsettings set $gnome-sound-schema event-sounds true
     gsettings set $gnome-sound-schema input-feedback-sounds true
-}
+}}
 
 # define names for default workspaces for which we configure key bindings later
 # on. we use variables to avoid repeating the names in multiple places.
