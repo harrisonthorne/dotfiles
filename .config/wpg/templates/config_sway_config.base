@@ -5,9 +5,9 @@ set $alt Mod1
 set $browser firefox
 set $music spotify
 set $email evolution
-set $media kodi
+set $media "kodi --windowing=x11"
 set $locker "sh $HOME/.config/sway/lock.sh"
-set $screenshot "sh $HOME/.config/sway/screenshot.sh"
+set $screenshot $HOME/.config/sway/screenshot.fish
 set $terminal kitty
 set $shell /usr/bin/fish
 
@@ -20,6 +20,9 @@ set $exec_with_shell -e $shell -i -c
 # launcher
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 4
 set $menu exec $terminal --class=launcher -e /home/harrison/.config/launch_apps.sh 
+
+# window criteria
+for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px, border pixel 4
 
 # some convenience variables
 set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
@@ -190,7 +193,7 @@ bindsym $mod+Control+p exec pavucontrol
 bindsym $mod+Control+r exec sh $HOME/.config/toggle_gammastep.sh
 bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+b exec $terminal_with_title "YOU PRESSED THE BORED BUTTON" -d $notebook_dir $exec_with_shell "nvim $notebook_dir/bored.md"
-bindsym $mod+Shift+m exec kodi
+bindsym $mod+Shift+m exec $media
 bindsym $mod+Shift+n exec $terminal_with_title Notebook -d $notebook_dir $exec_with_shell "ranger $notebook_dir"
 bindsym $mod+a exec $menu
 bindsym $mod+c exec $terminal_with_title Calculator $exec_with_shell qalc
@@ -205,7 +208,8 @@ bindsym $mod+Escape exec $locker
 
 # screen capture
 bindsym --release $mod+Print exec $screenshot
-bindsym --release $mod+Control+Print exec $HOME/.config/sway/screenshot.sh -s
+bindsym --release $mod+Control+Print exec $screenshot -s
+bindsym --release $mod+Control+$alt+Print exec $screenshot -o
 bindsym --release $mod+Shift+Print exec $HOME/.config/sway/videocapture.sh
 
 # mako notifications
