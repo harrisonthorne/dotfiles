@@ -36,7 +36,7 @@ set $gnome-sound-schema org.gnome.desktop.sound
 # gtk theming
 exec_always {{
     gsettings set $gnome-desktop-schema gtk-theme 'Adwaita'
-    gsettings set $gnome-desktop-schema icon-theme 'Adwaita++'
+    gsettings set $gnome-desktop-schema icon-theme 'Adwaita++-Dark'
     gsettings set $gnome-desktop-schema cursor-theme 'Adwaita'
     gsettings set $gnome-desktop-schema font-name '$sans 12'
     gsettings set $gnome-sound-schema theme-name 'musicaflight'
