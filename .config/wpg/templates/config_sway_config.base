@@ -6,7 +6,7 @@ set $browser firefox
 set $music spotify
 set $email evolution
 set $media "kodi --windowing=x11"
-set $locker "sh $HOME/.config/sway/lock.sh"
+set $lock "sh $HOME/.config/sway/lock.sh"
 set $screenshot $HOME/.config/sway/screenshot.fish
 set $terminal kitty
 set $shell /usr/bin/fish
@@ -18,11 +18,11 @@ set $notebook_dir $HOME/notebook
 set $exec_with_shell -e $shell -i -c
 
 # launcher
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 4
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 6
 set $menu exec $terminal --class=launcher -e /home/harrison/.config/launch_apps.sh 
 
 # window criteria
-for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px, border pixel 4
+for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px, border pixel 6
 
 # some convenience variables
 set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
@@ -73,8 +73,8 @@ client.placeholder      $black          $black          $inactive
 client.background       $black
 
 # some options
-default_border normal 4
-default_floating_border normal 4
+default_border normal 6
+default_floating_border normal 6
 default_orientation auto
 floating_maximum_size 1856 x 1016
 floating_minimum_size -1 x -1
@@ -82,7 +82,7 @@ floating_modifier $mod
 focus_follows_mouse always
 focus_on_window_activation smart
 font pango: $sans 12
-gaps inner 0
+gaps inner 16
 smart_borders on
 smart_gaps on
 title_align center
@@ -159,7 +159,7 @@ bindsym $mod+i \
     fullscreen disable,\
     floating enable,\
     sticky enable,\
-    border pixel 4,\
+    border pixel 6,\
     resize set 356 200,\
     move position 1564 px 0 px,\
     inhibit_idle open
@@ -167,7 +167,7 @@ bindsym $mod+Shift+i \
     fullscreen disable,\
     floating enable,\
     sticky enable,\
-    border pixel 4,\
+    border pixel 6,\
     resize set 711 400,\
     move position 1209 px 0 px,\
     inhibit_idle open
@@ -204,7 +204,7 @@ bindsym $mod+p exec $terminal_with_title Processes $exec_with_shell htop
 bindsym $mod+w exec $browser
 
 # lock
-bindsym $mod+Escape exec $locker
+bindsym $mod+Escape exec $lock
 
 # screen capture
 bindsym --release $mod+Print exec $screenshot
@@ -217,7 +217,7 @@ bindsym Control+Escape exec makoctl dismiss
 bindsym $mod+Space exec makoctl invoke
 
 # toggle floating. also set border in case we're coming from floating video mode
-bindsym $mod+s floating toggle; border normal 4
+bindsym $mod+s floating toggle; border normal 6
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -310,7 +310,7 @@ exec mako &
 exec muse-status-daemon &
 exec pulseaudio --start &
 exec rot8 &
-exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $locker timeout 315 $dpmsoff resume $dpmson before-sleep $locker &
+exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $lock timeout 315 $dpmsoff resume $dpmson before-sleep $lock &
 exec syncthing --no-browser &
 exec xhost si:localuser:root &
 exec xrdb -load ~/.Xresources &
