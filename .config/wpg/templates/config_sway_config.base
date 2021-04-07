@@ -12,26 +12,22 @@ set $terminal kitty
 set $shell /usr/bin/fish
 
 # other variables
+set $bemenu bemenu-run -H 32 --fn $sans 12 --tb "{color0}" --tf "{active}" --fb "{color0}" --ff "{color15}" --nb "{color0}" --nf "{active}" --hb "{inactive}" --hf "{color15}" --sb "{inactive}" --sf "{color15}" -p "Run what?" --scrollbar autohide
+set $dpmsoff "swaymsg 'output * dpms off'"
+set $dpmson "swaymsg 'output * dpms on'"
+set $exec_with_shell -e $shell -i -c
+set $gnome-desktop-schema org.gnome.desktop.interface
+set $gnome-sound-schema org.gnome.desktop.sound
+set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
+set $notebook_dir $HOME/notebook
 set $sans Inter
 set $terminal_with_title $terminal -T
-set $notebook_dir $HOME/notebook
-set $exec_with_shell -e $shell -i -c
-
-# launcher
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 6
-set $menu exec $terminal --class=launcher -e /home/harrison/.config/launch_apps.sh 
+set $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
+set $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
 
 # window criteria
 for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px, border pixel 6
-
-# some convenience variables
-set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
-set $dpmsoff "swaymsg 'output * dpms off'"
-set $dpmson "swaymsg 'output * dpms on'"
-set $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
-set $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
-set $gnome-desktop-schema org.gnome.desktop.interface
-set $gnome-sound-schema org.gnome.desktop.sound
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 6
 
 # gtk theming
 exec_always {{
@@ -120,6 +116,8 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym $mod+Tab focus next
+bindsym $mod+Shift+Tab focus prev
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -202,6 +200,10 @@ bindsym $mod+e exec $terminal_with_title Files $exec_with_shell ranger
 bindsym $mod+n exec $terminal_with_title Neovim $exec_with_shell nvim
 bindsym $mod+p exec $terminal_with_title Processes $exec_with_shell htop
 bindsym $mod+w exec $browser
+
+# launcher
+set $menu exec $bemenu
+# set $menu exec $terminal --class=launcher -e /home/harrison/.config/launch_apps.sh 
 
 # lock
 bindsym $mod+Escape exec $lock
