@@ -12,7 +12,6 @@ set $terminal kitty
 set $shell /usr/bin/fish
 
 # other variables
-set $bemenu bemenu-run -H 32 --fn $sans 12 --tb "{color0}" --tf "{active}" --fb "{color0}" --ff "{color15}" --nb "{color0}" --nf "{active}" --hb "{inactive}" --hf "{color15}" --sb "{inactive}" --sf "{color15}" -p "Run what?" --scrollbar autohide
 set $dpmsoff "swaymsg 'output * dpms off'"
 set $dpmson "swaymsg 'output * dpms on'"
 set $exec_with_shell -e $shell -i -c
@@ -24,6 +23,8 @@ set $sans Inter
 set $terminal_with_title $terminal -T
 set $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
 set $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
+
+set $bemenu bemenu-run -H 32 --fn $sans 12 --tb "{color0}" --tf "{active}" --fb "{color0}" --ff "{color15}" --nb "{color0}" --nf "{active}" --hb "{inactive}" --hf "{color15}" --sb "{inactive}" --sf "{color15}" -p "Run what?" --scrollbar autohide
 
 # window criteria
 for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px, border pixel 6
@@ -310,6 +311,7 @@ exec gammastep &
 exec light -I &
 exec mako &
 exec muse-status-daemon &
+exec pipewire &
 exec pulseaudio --start &
 exec rot8 &
 exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $lock timeout 315 $dpmsoff resume $dpmson before-sleep $lock &

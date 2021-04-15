@@ -16,7 +16,7 @@ alias c="config"
 alias g="git"
 alias n="nvim"
 alias r="ranger"
-alias s="dbus-run-session sway"
+alias s="env XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland dbus-run-session sway"
 
 alias nb="notebook"
 
@@ -36,6 +36,7 @@ set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SUDO_ASKPASS /usr/bin/ksshaskpass
 set -gx SXHKD_SHELL '/bin/sh'
+set -gx TEXLIVE_PATH /opt/texlive/2021/bin/x86_64-linux/
 set -gx TZ America/Boise
 set -gx WINEPREFIX $HOME/.wine/
 set -gx XBPS_DISTDIR $HOME/code/void/packages
@@ -50,7 +51,8 @@ set -gx QT_QPA_PLATFORM wayland-egl
 set -gx SDL_VIDEODRIVER wayland
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 
-set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin $NODE_BIN /usr/lib $HOME/bin
+# path. you know it, you love it
+set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin $NODE_BIN /usr/lib $HOME/bin $TEXLIVE_PATH
 
 function fish_prompt --description 'Write out the prompt'
     set -l color_cwd
