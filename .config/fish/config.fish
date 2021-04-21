@@ -123,6 +123,18 @@ function crypt-edit
     end
 end
 
+function sleep-timer
+    set seconds (math "$argv[1] * 60")
+    for i in (seq $seconds)
+        set left (math $seconds - $i)
+        echo -n -e "\r\033[Kgoing to sleep in $left seconds"
+        sleep 1
+    end
+    echo -e "\r\033[Ksweet dreams :)"
+    sudo zzz
+    echo -e "\r\033[Kgood morning!"
+end
+
 if ! status is-login
     eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket id_ed25519 4B21310A52B15162) 2> /dev/null
 end
