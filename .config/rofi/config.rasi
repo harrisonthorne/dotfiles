@@ -1,0 +1,17 @@
+configuration {
+    theme: "muse";
+    columns: 1;
+    location: 8;
+}
+
+element {
+    padding: 12px;
+}
+
+window {
+    height: 100%;
+    width: 512px;
+}
+
+/* vim: ft=css 
+ */
