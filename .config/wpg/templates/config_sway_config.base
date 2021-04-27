@@ -24,7 +24,7 @@ set $terminal_with_title $terminal -T
 set $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
 set $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
 
-set $bemenu bemenu-run -H 32 --fn $sans 12 --tb "{color0}" --tf "{active}" --fb "{color0}" --ff "{color15}" --nb "{color0}" --nf "{active}" --hb "{inactive}" --hf "{color15}" --sb "{inactive}" --sf "{color15}" -p "Run what?" --scrollbar autohide
+set $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{inactive}' --hf '{color15}' --sb '{inactive}' --sf '{color15}' --scrollbar autohide -f
 
 # window criteria
 for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px, border pixel 6
@@ -203,7 +203,7 @@ bindsym $mod+p exec $terminal_with_title Processes $exec_with_shell htop
 bindsym $mod+w exec $browser
 
 # launcher
-set $menu exec $bemenu
+set $menu exec bemenu-run -p "Run what?" $bemenu_opts
 # set $menu exec $terminal --class=launcher -e /home/harrison/.config/launch_apps.sh 
 
 # lock
@@ -253,6 +253,14 @@ bindsym $mod+Shift+v scratchpad show
 # reload with same or random wallpaper
 bindsym $mod+Shift+r exec wpg -s $(wpg -c)
 bindsym $mod+Control+w exec wpg -m
+
+# record clock times (easy clock-in or clock-out :))
+bindsym $mod+Delete exec $notebook_dir/record_time.fish
+bindsym $mod+Home exec $notebook_dir/record_time.fish '(clock-in)'
+bindsym $mod+End exec $notebook_dir/record_time.fish '(clock-out)'
+bindsym $mod+Shift+Delete exec ~/.config/sway/prompt_timestamp.fish $bemenu_opts
+bindsym $mod+Shift+Home exec ~/.config/sway/prompt_clock_in.fish $bemenu_opts
+bindsym $mod+Shift+End exec ~/.config/sway/prompt_clock_out.fish $bemenu_opts
 
 # exit sway
 bindsym $mod+Shift+e exec "paplay /usr/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
