@@ -11,6 +11,9 @@ set $screenshot $HOME/.config/sway/screenshot.fish
 set $terminal kitty
 set $shell /usr/bin/fish
 
+# launcher
+set $menu exec bemenu-run -p "Run what?" $bemenu_opts
+
 # other variables
 set $dpmsoff "swaymsg 'output * dpms off'"
 set $dpmson "swaymsg 'output * dpms on'"
@@ -201,10 +204,6 @@ bindsym $mod+e exec $terminal_with_title Files $exec_with_shell ranger
 bindsym $mod+n exec $terminal_with_title Neovim $exec_with_shell nvim
 bindsym $mod+p exec $terminal_with_title Processes $exec_with_shell htop
 bindsym $mod+w exec $browser
-
-# launcher
-set $menu exec bemenu-run -p "Run what?" $bemenu_opts
-# set $menu exec $terminal --class=launcher -e /home/harrison/.config/launch_apps.sh 
 
 # lock
 bindsym $mod+Escape exec $lock
