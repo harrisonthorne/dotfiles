@@ -27,7 +27,7 @@ set $terminal_with_title $terminal -T
 set $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
 set $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
 
-set $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{inactive}' --hf '{color15}' --sb '{inactive}' --sf '{color15}' --scrollbar autohide -f
+set $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{inactive}' --hf '{color15}' --sb '{inactive}' --sf '{color15}' --scrollbar autohide -f -m all
 
 # window criteria
 for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px, border pixel 6
