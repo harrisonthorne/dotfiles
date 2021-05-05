@@ -61,12 +61,13 @@ set $ws10 "X"
 set $active       {active}e5
 set $inactive     {inactive}e5
 set $white        {color15}
+set $silver       {color7}
 set $black        {color0}e5
 set $gray         {color8}e5
 set $warning      #ffaa00e5
 set $transparent  #00000000
 client.focused          $gray           $gray           $white      $inactive
-client.focused_inactive $black          $black          $active     $black
+client.focused_inactive $black          $black          $silver     $black
 client.unfocused        $black          $black          $inactive   $black
 client.urgent           $warning        $warning        $black
 client.placeholder      $black          $black          $inactive
@@ -305,7 +306,7 @@ bar {{
         statusline $white
         separator $inactive
         focused_workspace $black $black $white
-        active_workspace $black $black $active
+        active_workspace $black $black $silver
         inactive_workspace $black $black $inactive
         urgent_workspace $warning $warning $black
         binding_mode $black $black $warning
