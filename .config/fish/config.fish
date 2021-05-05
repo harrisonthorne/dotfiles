@@ -140,7 +140,7 @@ function sleep-timer
     echo -e "\r\033[Kgood morning!"
 end
 
-if ! status is-login
+if ! status is-login && status is-interactive
     eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket id_ed25519 4B21310A52B15162) 2> /dev/null
 end
 
