@@ -5,6 +5,10 @@ end
 bash /etc/profile
 bash ~/.bashrc
 
+if [ -f $HOME/.config/fish/private.fish ]
+    source $HOME/.config/fish/private.fish
+end > /dev/null
+
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
 alias config='/usr/bin/git --git-dir=$HOME/.dots.git/ --work-tree=$HOME'
 alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
