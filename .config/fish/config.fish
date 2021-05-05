@@ -27,6 +27,7 @@ alias nb="notebook"
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
 set -gx BAT_THEME base16
+set -gx BEMENU_BACKEND wayland
 set -gx BROWSER /bin/firefox
 set -gx EDITOR /bin/nvim
 set -gx EIX_LIMIT 0
