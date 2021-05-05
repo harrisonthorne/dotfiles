@@ -99,18 +99,18 @@ bindsym $mod+Control+$alt+s exec systemctl suspend
 bindsym $mod+Control+$alt+b exec systemctl hibernate
 
 # volume controls
-bindsym --locked XF86AudioRaiseVolume exec "amixer -q sset Master 5%+ unmute && muse-status notify volume; paplay $volume_up"
-bindsym --locked XF86AudioLowerVolume exec "amixer -q sset Master 5%- && muse-status notify volume; paplay $volume_down"
-bindsym --locked XF86AudioMute exec "amixer sset Master toggle && muse-status notify volume; paplay $volume_up"
+bindsym --locked --no-repeat XF86AudioRaiseVolume exec "pamixer -ui 5; muse-status notify volume; pw-play $volume_up; pamixer --get-volume > $SWAYSOCK.wob"
+bindsym --locked XF86AudioLowerVolume exec "pamixer -d 5; muse-status notify volume; pw-play $volume_down; pamixer --get-volume > $SWAYSOCK.wob"
+bindsym --locked --no-repeat XF86AudioMute exec "pamixer --toggle-mute; muse-status notify volume; pw-play $volume_up; pamixer --get-volume > $SWAYSOCK.wob"
 
 # player controls
-bindsym --locked XF86AudioPlay exec mpc toggle || playerctl play-pause
-bindsym --locked XF86AudioNext exec mpc next || playerctl next
-bindsym --locked XF86AudioPrev exec mpc cdprev || playerctl previous
+bindsym --locked --no-repeat XF86AudioPlay exec mpc toggle || playerctl play-pause
+bindsym --locked --no-repeat XF86AudioNext exec mpc next || playerctl next
+bindsym --locked --no-repeat XF86AudioPrev exec mpc cdprev || playerctl previous
 
 # brightness controls
-bindsym --locked XF86MonBrightnessUp exec light -A 2 && muse-status notify brightness
-bindsym --locked XF86MonBrightnessDown exec light -U 2 && muse-status notify brightness
+bindsym --locked XF86MonBrightnessUp exec "brillo -q -A 2; muse-status notify brightness; brillo -G | cut -d'.' -f1 > $SWAYSOCK.wob"
+bindsym --locked XF86MonBrightnessDown exec "brillo -q -U 2; muse-status notify brightness; brillo -G | cut -d'.' -f1 > $SWAYSOCK.wob"
 
 # change focus
 bindsym $mod+h focus left
@@ -186,6 +186,7 @@ for_window [class=".*"] inhibit_idle fullscreen
 # change container layout
 bindsym $mod+t layout tabbed
 bindsym $mod+y layout toggle split
+bindsym $mod+u layout stacking
 bindsym $mod+o split toggle
 bindsym $mod+f fullscreen toggle
 
@@ -216,8 +217,9 @@ bindsym --release $mod+Control+$alt+Print exec $screenshot -o
 bindsym --release $mod+Shift+Print exec $HOME/.config/sway/videocapture.sh
 
 # mako notifications
-bindsym Control+Escape exec makoctl dismiss
-bindsym $mod+Space exec makoctl invoke
+bindsym $mod+Minus exec makoctl dismiss
+bindsym $mod+Equal exec makoctl restore
+bindsym $mod+Space exec makoctl menu bemenu -p "Do what?" $bemenu_opts
 
 # toggle floating. also set border in case we're coming from floating video mode
 bindsym $mod+s floating toggle; border normal 6
@@ -263,7 +265,7 @@ bindsym $mod+Shift+Home exec ~/.config/sway/prompt_clock_in.fish $bemenu_opts
 bindsym $mod+Shift+End exec ~/.config/sway/prompt_clock_out.fish $bemenu_opts
 
 # exit sway
-bindsym $mod+Shift+e exec "paplay /usr/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
+bindsym $mod+Shift+e exec "pw-play /usr/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
 
 # inputs and outputs
 
@@ -313,18 +315,23 @@ bar {{
     }}
 }}
 
+# (re)start wob
+exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a top -H 24 -W 512 -M 32 -p 4 -o 0 -b 6 --border-color '#e5{color8.strip}' --bar-color '#ff{active.strip}' --background '#e5{color0.strip}'"
+
 # startup apps
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec gammastep &
-exec light -I &
-exec mako &
-exec muse-status-daemon &
-exec pulseaudio --start &
-exec rot8 &
-exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $lock timeout 315 $dpmsoff resume $dpmson before-sleep $lock &
-exec syncthing --no-browser &
-exec xhost si:localuser:root &
-exec xrdb -load ~/.Xresources &
+exec /usr/libexec/xdg-desktop-portal-wlr
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec gammastep
+exec brillo -I
+exec mako
+exec muse-status-daemon
+exec pipewire
+exec pipewire-pulse
+exec rot8
+exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $lock timeout 315 $dpmsoff resume $dpmson before-sleep $lock
+exec syncthing --no-browser
+exec xhost si:localuser:root
+exec xrdb -load ~/.Xresources
 
 # login sound
 exec canberra-gtk-play --id=desktop-login
