@@ -10,7 +10,7 @@ end
 
 if test "$argv[1]" = "-s"
 	set name $folder/$DATE-s.png
-	notify-send "Selection screenshot started" "Select a window or area to capture."
+	notify-send -t 2000 "Selection screenshot started" "Select a window or area to capture."
 	swaymsg -t get_tree | \
 		jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | \
 		slurp | \
@@ -19,7 +19,7 @@ if test "$argv[1]" = "-s"
 		notify-send "Selection screenshot cancelled" "Nothing was saved."
 else if test "$argv[1]" = "-o"
 	set name $folder/$DATE-o.png
-	notify-send "Display screenshot started" "Select a display to capture."
+	notify-send -t 2000 "Display screenshot started" "Select a display to capture."
 	slurp -o | \
 		grim -g - $name && \
 		notify-send "Screenshot saved" "Your capture was saved as $name." || \
