@@ -267,6 +267,9 @@ bindsym $mod+Shift+End exec ~/.config/sway/prompt_clock_out.fish $bemenu_opts
 # exit sway
 bindsym $mod+Shift+e exec "pw-play /usr/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
 
+# not to be removed until i learn
+bindsym Control+Escape exec notify-send "Silly goose" "You replaced Ctrl+Esc with Super+Minus, remember?"
+
 # inputs and outputs
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {{
