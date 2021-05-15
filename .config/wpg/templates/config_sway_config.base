@@ -330,7 +330,6 @@ exec mako
 exec muse-status-daemon
 exec pipewire
 exec pipewire-pulse
-exec rot8
 exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $lock timeout 315 $dpmsoff resume $dpmson before-sleep $lock
 exec syncthing --no-browser
 exec xhost si:localuser:root
