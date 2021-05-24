@@ -27,11 +27,12 @@ set $terminal_with_title $terminal -T
 set $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
 set $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
 
-set $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{inactive}' --hf '{color15}' --sb '{inactive}' --sf '{color15}' --scrollbar autohide -f -m all
+set $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{active}' --hf '{color15}' --sb '{active}' --sf '{color15}' --scrollbar autohide -f -m all
 
 # window criteria
-for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px, border pixel 6
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 6
+for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px
+for_window [title="Page Unresponsive"] floating enable, resize set 600 px 400 px
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt
 
 # gtk theming
 exec_always {{
@@ -59,18 +60,17 @@ set $ws10 "X"
 
 # custom colors
 set $active       {active}e5
-set $inactive     {inactive}e5
 set $white        {color15}
 set $silver       {color7}
 set $black        {color0}e5
 set $gray         {color8}e5
 set $warning      #ffaa00e5
 set $transparent  #00000000
-client.focused          $gray           $gray           $white      $inactive
+client.focused          $gray           $gray           $white      $active
 client.focused_inactive $black          $black          $silver     $black
-client.unfocused        $black          $black          $inactive   $black
+client.unfocused        $black          $black          $active     $black
 client.urgent           $warning        $warning        $black
-client.placeholder      $black          $black          $inactive
+client.placeholder      $black          $black          $active
 client.background       $black
 
 # some options
@@ -297,7 +297,7 @@ output "*" {{
 # status bar
 
 bar {{
-    status_command "muse-status sub a -m i3 -p {color15.strip} -s {inactive.strip}"
+    status_command "muse-status sub a -m i3 -p {color15.strip} -s {active.strip}"
     font pango: $sans 12
     modifier $mod
     separator_symbol "    "
@@ -309,17 +309,17 @@ bar {{
     colors {{
         background $black
         statusline $white
-        separator $inactive
+        separator $active
         focused_workspace $black $black $white
         active_workspace $black $black $silver
-        inactive_workspace $black $black $inactive
+        inactive_workspace $black $black $active
         urgent_workspace $warning $warning $black
         binding_mode $black $black $warning
     }}
 }}
 
 # (re)start wob
-exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a top -H 24 -W 512 -M 32 -p 4 -o 0 -b 6 --border-color '#e5{color8.strip}' --bar-color '#ff{active.strip}' --background '#e5{color0.strip}'"
+exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a bottom -H 24 -W 512 -M 256 -p 4 -o 0 -b 6 --border-color '#e5{color8.strip}' --bar-color '#ff{active.strip}' --background '#e5{color0.strip}'"
 
 # startup apps
 exec /usr/libexec/xdg-desktop-portal-wlr
