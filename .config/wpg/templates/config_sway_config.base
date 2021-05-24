@@ -1,38 +1,44 @@
-set $mod Mod4
-set $alt Mod1
+set {{
+    $mod Mod4
+    $alt Mod1
 
-# apps
-set $browser firefox
-set $music spotify
-set $email evolution
-set $media "kodi --windowing=x11"
-set $lock "sh $HOME/.config/sway/lock.sh"
-set $screenshot $HOME/.config/sway/screenshot.fish
-set $terminal kitty
-set $shell /usr/bin/fish
+    # apps
+    $browser firefox
+    $music spotify
+    $email evolution
+    $media "kodi --windowing=x11"
+    $lock "sh $HOME/.config/sway/lock.sh"
+    $screenshot $HOME/.config/sway/screenshot.fish
+    $terminal kitty
+    $shell /usr/bin/fish
 
-# launcher
-set $menu exec bemenu-run -p "Run what?" $bemenu_opts
+    # launcher
+    $menu exec bemenu-run -p "Run what?" $bemenu_opts
 
-# other variables
-set $dpmsoff "swaymsg 'output * dpms off'"
-set $dpmson "swaymsg 'output * dpms on'"
-set $exec_with_shell -e $shell -i -c
-set $gnome-desktop-schema org.gnome.desktop.interface
-set $gnome-sound-schema org.gnome.desktop.sound
-set $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
-set $notebook_dir $HOME/notebook
-set $sans Inter
-set $terminal_with_title $terminal -T
-set $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
-set $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
-
-set $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{active}' --hf '{color15}' --sb '{active}' --sf '{color15}' --scrollbar autohide -f -m all
+    # other variables
+    $dpmsoff "swaymsg 'output * dpms off'"
+    $dpmson "swaymsg 'output * dpms on'"
+    $exec_with_shell -e $shell -i -c
+    $gnome-desktop-schema org.gnome.desktop.interface
+    $gnome-sound-schema org.gnome.desktop.sound
+    $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
+    $notebook_dir $HOME/notebook
+    $sans Inter
+    $terminal_with_title $terminal -T
+    $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
+    $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
+    $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{active}' --hf '{color15}' --sb '{active}' --sf '{color15}' --scrollbar autohide -f -m all
+}}
 
 # window criteria
-for_window [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px
-for_window [title="Page Unresponsive"] floating enable, resize set 600 px 400 px
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt
+for_window {{
+    [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px
+    [title="Page Unresponsive"] floating enable, resize set 600 px 400 px
+    [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt
+
+    # disables swayidle for fullscreen windows
+    [class=".*"] inhibit_idle fullscreen
+}}
 
 # gtk theming
 exec_always {{
@@ -45,27 +51,30 @@ exec_always {{
     gsettings set $gnome-sound-schema input-feedback-sounds true
 }}
 
-# define names for default workspaces for which we configure key bindings later
-# on. we use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "X"
+set {{
+    # define names for default workspaces for which we configure key bindings later
+    # on. we use variables to avoid repeating the names in multiple places.
+    $ws1 "1"
+    $ws2 "2"
+    $ws3 "3"
+    $ws4 "4"
+    $ws5 "5"
+    $ws6 "6"
+    $ws7 "7"
+    $ws8 "8"
+    $ws9 "9"
+    $ws10 "X"
 
-# custom colors
-set $active       {active}e5
-set $white        {color15}
-set $silver       {color7}
-set $black        {color0}e5
-set $gray         {color8}e5
-set $warning      #ffaa00e5
-set $transparent  #00000000
+    # custom colors
+    $active       {active}e5
+    $white        {color15}
+    $silver       {color7}
+    $black        {color0}e5
+    $gray         {color8}e5
+    $warning      #ffaa00e5
+    $transparent  #00000000
+}}
+
 client.focused          $gray           $gray           $white      $active
 client.focused_inactive $black          $black          $silver     $black
 client.unfocused        $black          $black          $active     $black
@@ -92,183 +101,187 @@ titlebar_border_thickness 4
 workspace_auto_back_and_forth yes
 xwayland force
 
-# power controls
-bindsym $mod+Control+$alt+p exec systemctl poweroff
-bindsym $mod+Control+$alt+r exec systemctl reboot
-bindsym $mod+Control+$alt+s exec systemctl suspend
-bindsym $mod+Control+$alt+b exec systemctl hibernate
+# volume and brightness controls
+bindsym --locked {{
+    XF86AudioLowerVolume exec "pamixer -d 5; muse-status notify volume; pw-play $volume_down; pamixer --get-volume > $SWAYSOCK.wob"
+    --no-repeat XF86AudioRaiseVolume exec "pamixer -ui 5; muse-status notify volume; pw-play $volume_up; pamixer --get-volume > $SWAYSOCK.wob"
+    --no-repeat XF86AudioMute exec "pamixer --toggle-mute; muse-status notify volume; pw-play $volume_up; pamixer --get-volume > $SWAYSOCK.wob"
 
-# volume controls
-bindsym --locked --no-repeat XF86AudioRaiseVolume exec "pamixer -ui 5; muse-status notify volume; pw-play $volume_up; pamixer --get-volume > $SWAYSOCK.wob"
-bindsym --locked XF86AudioLowerVolume exec "pamixer -d 5; muse-status notify volume; pw-play $volume_down; pamixer --get-volume > $SWAYSOCK.wob"
-bindsym --locked --no-repeat XF86AudioMute exec "pamixer --toggle-mute; muse-status notify volume; pw-play $volume_up; pamixer --get-volume > $SWAYSOCK.wob"
+    XF86MonBrightnessUp exec "brillo -q -A 2; muse-status notify brightness; brillo -G | cut -d'.' -f1 > $SWAYSOCK.wob"
+    XF86MonBrightnessDown exec "brillo -q -U 2; muse-status notify brightness; brillo -G | cut -d'.' -f1 > $SWAYSOCK.wob"
+}}
 
 # player controls
-bindsym --locked --no-repeat XF86AudioPlay exec mpc toggle || playerctl play-pause
-bindsym --locked --no-repeat XF86AudioNext exec mpc next || playerctl next
-bindsym --locked --no-repeat XF86AudioPrev exec mpc cdprev || playerctl previous
-
-# brightness controls
-bindsym --locked XF86MonBrightnessUp exec "brillo -q -A 2; muse-status notify brightness; brillo -G | cut -d'.' -f1 > $SWAYSOCK.wob"
-bindsym --locked XF86MonBrightnessDown exec "brillo -q -U 2; muse-status notify brightness; brillo -G | cut -d'.' -f1 > $SWAYSOCK.wob"
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-bindsym $mod+Tab focus next
-bindsym $mod+Shift+Tab focus prev
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-# move focused workspace to outputs
-bindsym $mod+Control+h move workspace to left
-bindsym $mod+Control+j move workspace to down
-bindsym $mod+Control+k move workspace to up
-bindsym $mod+Control+l move workspace to right
-bindsym $mod+Control+Left move workspace to left
-bindsym $mod+Control+Down move workspace to down
-bindsym $mod+Control+Up move workspace to up
-bindsym $mod+Control+Right move workspace to right
-
-# quick resize
-bindsym $mod+$alt+h resize shrink width 20 px
-bindsym $mod+$alt+j resize grow height 20 px
-bindsym $mod+$alt+k resize shrink height 20 px
-bindsym $mod+$alt+l resize grow width 20 px
-bindsym $mod+$alt+Left resize shrink width 20 px
-bindsym $mod+$alt+Down resize grow height 20 px
-bindsym $mod+$alt+Up resize shrink height 20 px
-bindsym $mod+$alt+Right resize grow width 20 px
-
-# close window
-bindsym $mod+q kill
-
-# floating video mode
-bindsym $mod+i \
-    fullscreen disable,\
-    floating enable,\
-    sticky enable,\
-    border pixel 6,\
-    resize set 356 200,\
-    move position 1564 px 0 px,\
-    inhibit_idle open
-bindsym $mod+Shift+i \
-    fullscreen disable,\
-    floating enable,\
-    sticky enable,\
-    border pixel 6,\
-    resize set 711 400,\
-    move position 1209 px 0 px,\
-    inhibit_idle open
-
-# switch between floating/tiled layers
-bindsym $mod+z focus mode_toggle
-bindsym $mod+Shift+z focus parent
-bindsym $mod+Control+z focus child
-
-# disables swayidle for fullscreen windows
-for_window [class=".*"] inhibit_idle fullscreen
-
-# change container layout
-bindsym $mod+t layout tabbed
-bindsym $mod+y layout toggle split
-bindsym $mod+u layout stacking
-bindsym $mod+o split toggle
-bindsym $mod+f fullscreen toggle
-
-# shortcuts for apps
-# TODO bindsym $mod+Control+e exec wofi -S emoji -modi emoji
-bindsym $mod+Control+n exec $terminal_with_title "Quick note" -d $notebook_dir $exec_with_shell "nvim $notebook_dir/new/(date +%Y%m%d-%H%M%S).md"
-bindsym $mod+Control+p exec pavucontrol
-bindsym $mod+Control+r exec sh $HOME/.config/toggle_gammastep.sh
-bindsym $mod+Return exec $terminal
-bindsym $mod+Shift+b exec $terminal_with_title "YOU PRESSED THE BORED BUTTON" -d $notebook_dir $exec_with_shell "nvim $notebook_dir/bored.md"
-bindsym $mod+Shift+m exec $media
-bindsym $mod+Shift+n exec $terminal_with_title Notebook -d $notebook_dir $exec_with_shell "ranger $notebook_dir"
-bindsym $mod+a exec $menu
-bindsym $mod+c exec $terminal_with_title Calculator $exec_with_shell qalc
-bindsym $mod+b exec $music
-bindsym $mod+e exec $terminal_with_title Files $exec_with_shell ranger
-bindsym $mod+n exec $terminal_with_title Neovim $exec_with_shell nvim
-bindsym $mod+p exec $terminal_with_title Processes $exec_with_shell htop
-bindsym $mod+w exec $browser
-
-# lock
-bindsym $mod+Escape exec $lock
+bindsym --locked --no-repeat {{
+    XF86AudioPlay exec mpc toggle || playerctl play-pause
+    XF86AudioNext exec mpc next || playerctl next
+    XF86AudioPrev exec mpc cdprev || playerctl previous
+}}
 
 # screen capture
-bindsym --release $mod+Print exec $screenshot
-bindsym --release $mod+Control+Print exec $screenshot -s
-bindsym --release $mod+Control+$alt+Print exec $screenshot -o
-bindsym --release $mod+Shift+Print exec $HOME/.config/sway/videocapture.sh
+bindsym --release {{
+    $mod+Print exec $screenshot
+    $mod+Control+Print exec $screenshot -s
+    $mod+Control+$alt+Print exec $screenshot -o
+    $mod+Shift+Print exec $HOME/.config/sway/videocapture.sh
+}}
 
-# mako notifications
-bindsym $mod+Minus exec makoctl dismiss
-bindsym $mod+Equal exec makoctl restore
-bindsym $mod+Space exec makoctl menu bemenu -p "Do what?" $bemenu_opts
+bindsym {{
+    # power controls
+    $mod+Control+$alt+p exec systemctl poweroff
+    $mod+Control+$alt+r exec systemctl reboot
+    $mod+Control+$alt+s exec systemctl suspend
+    $mod+Control+$alt+b exec systemctl hibernate
 
-# toggle floating. also set border in case we're coming from floating video mode
-bindsym $mod+s floating toggle; border normal 6
+    # change focus
+    $mod+h focus left
+    $mod+j focus down
+    $mod+k focus up
+    $mod+l focus right
+    $mod+Left focus left
+    $mod+Down focus down
+    $mod+Up focus up
+    $mod+Right focus right
+    $mod+Tab focus next
+    $mod+Shift+Tab focus prev
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+    # move focused window
+    $mod+Shift+h move left
+    $mod+Shift+j move down
+    $mod+Shift+k move up
+    $mod+Shift+l move right
+    $mod+Shift+Left move left
+    $mod+Shift+Down move down
+    $mod+Shift+Up move up
+    $mod+Shift+Right move right
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+    # move focused workspace to outputs
+    $mod+Control+h move workspace to left
+    $mod+Control+j move workspace to down
+    $mod+Control+k move workspace to up
+    $mod+Control+l move workspace to right
+    $mod+Control+Left move workspace to left
+    $mod+Control+Down move workspace to down
+    $mod+Control+Up move workspace to up
+    $mod+Control+Right move workspace to right
 
-# scratchpad (minimize)
-bindsym $mod+v move scratchpad
-bindsym $mod+Shift+v scratchpad show
+    # quick resize
+    $mod+$alt+h resize shrink width 20 px
+    $mod+$alt+j resize grow height 20 px
+    $mod+$alt+k resize shrink height 20 px
+    $mod+$alt+l resize grow width 20 px
+    $mod+$alt+Left resize shrink width 20 px
+    $mod+$alt+Down resize grow height 20 px
+    $mod+$alt+Up resize shrink height 20 px
+    $mod+$alt+Right resize grow width 20 px
 
-# reload with same or random wallpaper
-bindsym $mod+Shift+r exec wpg -s $(wpg -c)
-bindsym $mod+Control+w exec wpg -m
+    # close window
+    $mod+q kill
 
-# record clock times (easy clock-in or clock-out :))
-bindsym $mod+Delete exec $notebook_dir/record_time.fish
-bindsym $mod+Home exec $notebook_dir/record_time.fish '(clock-in)'
-bindsym $mod+End exec $notebook_dir/record_time.fish '(clock-out)'
-bindsym $mod+Shift+Delete exec ~/.config/sway/prompt_timestamp.fish $bemenu_opts
-bindsym $mod+Shift+Home exec ~/.config/sway/prompt_clock_in.fish $bemenu_opts
-bindsym $mod+Shift+End exec ~/.config/sway/prompt_clock_out.fish $bemenu_opts
+    # switch between floating/tiled layers
+    $mod+z focus mode_toggle
+    $mod+Shift+z focus parent
+    $mod+Control+z focus child
 
-# exit sway
-bindsym $mod+Shift+e exec "pw-play /usr/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
+    # change container layout
+    $mod+t layout tabbed
+    $mod+y layout toggle split
+    $mod+u layout stacking
+    $mod+o split toggle
+    $mod+f fullscreen toggle
 
-# not to be removed until i learn
-bindsym Control+Escape exec notify-send "Silly goose" "You replaced Ctrl+Esc with Super+Minus, remember?"
+    # shortcuts for apps
+    # TODO bindsym $mod+Control+e exec wofi -S emoji -modi emoji
+    $mod+Control+n exec $terminal -d $notebook_dir $exec_with_shell "nvim $notebook_dir/new/(date +%Y%m%d-%H%M%S).md"
+    $mod+Control+p exec pavucontrol
+    $mod+Control+r exec sh $HOME/.config/toggle_gammastep.sh
+    $mod+Return exec $terminal
+    $mod+Shift+b exec $terminal -d $notebook_dir $exec_with_shell "nvim $notebook_dir/bored.md"
+    $mod+Shift+m exec $media
+    $mod+Shift+n exec $terminal -d $notebook_dir $exec_with_shell "ranger $notebook_dir"
+    $mod+a exec $menu
+    $mod+c exec $terminal $exec_with_shell qalc
+    $mod+b exec $music
+    $mod+e exec $terminal $exec_with_shell ranger
+    $mod+n exec $terminal $exec_with_shell nvim
+    $mod+p exec $terminal $exec_with_shell htop
+    $mod+w exec $browser
+
+    # lock
+    $mod+Escape exec $lock
+
+    # mako notifications
+    $mod+Minus exec makoctl dismiss
+    $mod+Equal exec makoctl restore
+    $mod+Space exec makoctl menu bemenu -p "Do what?" $bemenu_opts
+
+    # toggle floating. also set border in case we're coming from floating video mode
+    $mod+s floating toggle; border normal 6
+
+    # floating video mode
+    $mod+i \
+        fullscreen disable,\
+        floating enable,\
+        sticky enable,\
+        border pixel 6,\
+        resize set 356 200,\
+        move position 1564 px 0 px,\
+        inhibit_idle open
+    $mod+Shift+i \
+        fullscreen disable,\
+        floating enable,\
+        sticky enable,\
+        border pixel 6,\
+        resize set 711 400,\
+        move position 1209 px 0 px,\
+        inhibit_idle open
+
+    # switch to workspace
+    $mod+1 workspace $ws1
+    $mod+2 workspace $ws2
+    $mod+3 workspace $ws3
+    $mod+4 workspace $ws4
+    $mod+5 workspace $ws5
+    $mod+6 workspace $ws6
+    $mod+7 workspace $ws7
+    $mod+8 workspace $ws8
+    $mod+9 workspace $ws9
+    $mod+0 workspace $ws10
+
+    # move focused container to workspace
+    $mod+Shift+1 move container to workspace $ws1
+    $mod+Shift+2 move container to workspace $ws2
+    $mod+Shift+3 move container to workspace $ws3
+    $mod+Shift+4 move container to workspace $ws4
+    $mod+Shift+5 move container to workspace $ws5
+    $mod+Shift+6 move container to workspace $ws6
+    $mod+Shift+7 move container to workspace $ws7
+    $mod+Shift+8 move container to workspace $ws8
+    $mod+Shift+9 move container to workspace $ws9
+    $mod+Shift+0 move container to workspace $ws10
+
+    # scratchpad (minimize)
+    $mod+v move scratchpad
+    $mod+Shift+v scratchpad show
+
+    # reload with same or random wallpaper
+    $mod+Shift+r exec wpg -s $(wpg -c)
+    $mod+Control+w exec wpg -m
+
+    # record clock times (easy clock-in or clock-out :))
+    $mod+Delete exec $notebook_dir/record_time.fish
+    $mod+Home exec $notebook_dir/record_time.fish '(clock-in)'
+    $mod+End exec $notebook_dir/record_time.fish '(clock-out)'
+    $mod+Shift+Delete exec ~/.config/sway/prompt_timestamp.fish $bemenu_opts
+    $mod+Shift+Home exec ~/.config/sway/prompt_clock_in.fish $bemenu_opts
+    $mod+Shift+End exec ~/.config/sway/prompt_clock_out.fish $bemenu_opts
+
+    # exit sway
+    $mod+Shift+e exec "pw-play /usr/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
+
+    # not to be removed until i learn
+    Control+Escape exec notify-send "Silly goose" "You replaced Ctrl+Esc with Super+Minus, remember?"
+}}
 
 # inputs and outputs
 
@@ -295,7 +308,6 @@ output "*" {{
 }}
 
 # status bar
-
 bar {{
     status_command "muse-status sub a -m i3 -p {color15.strip} -s {active.strip}"
     font pango: $sans 12
@@ -322,20 +334,22 @@ bar {{
 exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a bottom -H 24 -W 512 -M 256 -p 4 -o 0 -b 6 --border-color '#e5{color8.strip}' --bar-color '#ff{active.strip}' --background '#e5{color0.strip}'"
 
 # startup apps
-exec /usr/libexec/xdg-desktop-portal-wlr
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec gammastep
-exec brillo -I
-exec mako
-exec muse-status-daemon
-exec pipewire
-exec pipewire-pulse
-exec swayidle -w timeout 270 $lockWarningCmd timeout 300 $lock timeout 315 $dpmsoff resume $dpmson before-sleep $lock
-exec syncthing --no-browser
-exec xhost si:localuser:root
-exec xrdb -load ~/.Xresources
+exec {{
+    /usr/libexec/xdg-desktop-portal-wlr
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    gammastep
+    brillo -I
+    mako
+    muse-status-daemon
+    pipewire
+    pipewire-pulse
+    swayidle -w timeout 270 $lockWarningCmd timeout 300 $lock timeout 315 $dpmsoff resume $dpmson before-sleep $lock
+    syncthing --no-browser
+    xhost si:localuser:root
+    xrdb -load ~/.Xresources
 
-# login sound
-exec canberra-gtk-play --id=desktop-login
+    # login sound
+    canberra-gtk-play --id=desktop-login
+}}
 
 # vim: ft=conf
