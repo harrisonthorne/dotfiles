@@ -128,6 +128,20 @@ function crypt-edit
     end
 end
 
+function encrypt-folder
+    set folder (string replace -r '/$' '' $argv[1])
+    tar --zstd -cvf $folder.tar.zst $folder
+    and gpg -c $folder.tar.zst
+    and rm -r $folder $folder.tar.zst
+end
+
+function decrypt-folder
+    set folder (string replace -r '/$' '' $argv[1])
+    gpg --decrypt-files $folder.tar.zst.gpg
+    and tar --same-owner -xpvf $folder.tar.zst
+    and rm $folder.tar.zst.gpg $folder.tar.zst
+end
+
 function sleep-timer
     set seconds (math "$argv[1] * 60")
     for i in (seq $seconds)
@@ -140,11 +154,12 @@ function sleep-timer
     echo -e "\r\033[Kgood morning!"
 end
 
+function tmpqr
+    set file (mktemp)
+    qrencode $argv -o $file
+    imv $file
+end
+
 if ! status is-login && status is-interactive
     eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket id_ed25519 4B21310A52B15162) 2> /dev/null
 end
-
-# SSH
-# function unlock-ssh
-#     ssh-add ~/.ssh/id_rsa_github ~/.ssh/id_rsa_bitbucket ~/.ssh/id_ed25519
-# end
