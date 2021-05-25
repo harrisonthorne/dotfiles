@@ -42,7 +42,7 @@ set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SUDO_ASKPASS /usr/bin/ksshaskpass
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx TEXLIVE_PATH /opt/texlive/2021/bin/x86_64-linux/
-set -gx TZ America/Boise
+set -gx TZ America/Chicago
 set -gx WINEPREFIX $HOME/.wine/
 set -gx XBPS_DISTDIR $HOME/code/void/packages
 
@@ -160,6 +160,10 @@ function tmpqr
     imv $file
 end
 
-if ! status is-login && status is-interactive
+function unlock-keychain
     eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket id_ed25519 4B21310A52B15162) 2> /dev/null
+end
+
+if ! status is-login && status is-interactive
+    unlock-keychain
 end
