@@ -1,6 +1,11 @@
 .dots.git/
+.cache/
+.btrfs/
+.cargo/registry/
+.cargo/git/
 Audio/
 Books/
 Downloads/
 Documents/
 code/
+notebook/
