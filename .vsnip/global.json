@@ -1,0 +1,8 @@
+{
+    "Full date": {
+        "prefix": "date",
+        "body": [
+            "${VIM:system('date +\"%B %-d, %Y\"')}"
+        ]
+    }
+}
