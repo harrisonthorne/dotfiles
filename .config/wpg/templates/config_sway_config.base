@@ -2,6 +2,17 @@ set {{
     $mod Mod4
     $alt Mod1
 
+    $dpmsoff "swaymsg 'output * dpms off'"
+    $dpmson "swaymsg 'output * dpms on'"
+    $gnome-desktop-schema org.gnome.desktop.interface
+    $gnome-sound-schema org.gnome.desktop.sound
+    $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
+    $notebook_dir $HOME/notebook
+    $sans Inter
+    $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
+    $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
+    $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{active}' --hf '{color0}' --sb '{active}' --sf '{color15}' --scrollbar autohide -f -m all
+
     # apps
     $browser firefox
     $music spotify
@@ -15,24 +26,13 @@ set {{
     # launcher
     $menu exec bemenu-run -p "Run what?" $bemenu_opts
 
-    # other variables
-    $dpmsoff "swaymsg 'output * dpms off'"
-    $dpmson "swaymsg 'output * dpms on'"
     $exec_with_shell -e $shell -i -c
-    $gnome-desktop-schema org.gnome.desktop.interface
-    $gnome-sound-schema org.gnome.desktop.sound
-    $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
-    $notebook_dir $HOME/notebook
-    $sans Inter
     $terminal_with_title $terminal -T
-    $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
-    $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
-    $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{active}' --hf '{color15}' --sb '{active}' --sf '{color15}' --scrollbar autohide -f -m all
 }}
 
 # window criteria
 for_window {{
-    [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px 4 px
+    [title="Firefox — Sharing Indicator"] floating enable, resize set 64 px 32 px, move position 256 px -70 px, border csd
     [title="Page Unresponsive"] floating enable, resize set 600 px 400 px
     [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt
 
@@ -41,14 +41,16 @@ for_window {{
 }}
 
 # gtk theming
-exec_always {{
-    gsettings set $gnome-desktop-schema gtk-theme 'Adwaita'
-    gsettings set $gnome-desktop-schema icon-theme 'Adwaita++-Dark'
-    gsettings set $gnome-desktop-schema cursor-theme 'Adwaita'
-    gsettings set $gnome-desktop-schema font-name '$sans 12'
-    gsettings set $gnome-sound-schema theme-name 'musicaflight'
-    gsettings set $gnome-sound-schema event-sounds true
-    gsettings set $gnome-sound-schema input-feedback-sounds true
+exec_always gsettings set $gnome-desktop-schema {{
+    gtk-theme 'Adwaita'
+    icon-theme 'Adwaita++-Dark'
+    cursor-theme 'Adwaita'
+    font-name '$sans 12'
+}}
+exec_always gsettings set $gnome-sound-schema {{
+    theme-name 'musicaflight'
+    event-sounds true
+    input-feedback-sounds true
 }}
 
 set {{
@@ -75,11 +77,11 @@ set {{
     $transparent  #00000000
 }}
 
-client.focused          $gray           $gray           $white      $active
-client.focused_inactive $black          $black          $silver     $black
-client.unfocused        $black          $black          $active     $black
-client.urgent           $warning        $warning        $black
-client.placeholder      $black          $black          $active
+client.focused          $gray    $gray    $white  $active
+client.focused_inactive $black   $black   $silver $black
+client.unfocused        $black   $black   $active $black
+client.urgent           $warning $warning $black
+client.placeholder      $black   $black   $active
 client.background       $black
 
 # some options
@@ -191,7 +193,7 @@ bindsym {{
     $mod+f fullscreen toggle
 
     # shortcuts for apps
-    # TODO bindsym $mod+Control+e exec wofi -S emoji -modi emoji
+    $mod+Control+e exec $HOME/.config/sway/emoji_menu.fish $bemenu_opts
     $mod+Control+n exec $terminal -d $notebook_dir $exec_with_shell "nvim $notebook_dir/new/(date +%Y%m%d-%H%M%S).md"
     $mod+Control+p exec pavucontrol
     $mod+Control+r exec sh $HOME/.config/toggle_gammastep.sh
