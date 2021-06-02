@@ -10,6 +10,7 @@ if [ -f $HOME/.config/fish/private.fish ]
 end > /dev/null
 
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
+alias btrfs-du="sudo btrfs fi du --si $argv | tee du_full.txt | cut -b 11- | sort -h | tee du_sorted.txt | tail -n3000 | tee du.txt"
 alias config='/usr/bin/git --git-dir=$HOME/.dots.git/ --work-tree=$HOME'
 alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
 alias notebook='/usr/bin/git --git-dir=$HOME/.notebook.git/ --work-tree=$HOME/notebook'
@@ -154,7 +155,7 @@ function sleep-timer
     echo -e "\r\033[Kgood morning!"
 end
 
-function tmpqr
+function qr
     set file (mktemp)
     qrencode $argv -o $file
     imv $file
@@ -162,6 +163,10 @@ end
 
 function unlock-keychain
     eval (keychain -q --gpg2 --agents "gpg,ssh" --eval id_rsa_github id_rsa_bitbucket id_ed25519 4B21310A52B15162) 2> /dev/null
+end
+
+function btrfs-du
+    sudo btrfs fi du --si $argv | tee du_full.txt | cut -b 11- | sort -h | tee du_sorted.txt | tail -n3000 | tee du.txt
 end
 
 if ! status is-login && status is-interactive
