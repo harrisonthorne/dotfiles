@@ -10,6 +10,9 @@
 	insteadOf = https://codeberg.org/
 [diff]
 	tool = vimdiff2
+    colorMoved = zebra
+[fetch]
+    prune = true
 [pull]
 	rebase = true
 [gpg]
