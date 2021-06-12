@@ -35,7 +35,7 @@ set -gx EIX_LIMIT 0
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
 set -gx GOPATH $HOME/go
 set -gx GPG_TTY (tty)
-set -gx GTK_THEME "Adwaita-dark"
+set -gx GTK_THEME "Arc-Dark"
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.sfox
 set -gx NODE_BIN $HOME/.npm-global/bin
 set -gx QT_QPA_PLATFORMTHEME qt5ct

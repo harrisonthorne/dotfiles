@@ -42,9 +42,9 @@ for_window {{
 
 # gtk theming
 exec_always gsettings set $gnome-desktop-schema {{
-    gtk-theme 'Adwaita'
+    gtk-theme 'Arc-Dark'
     icon-theme 'Adwaita++-Dark'
-    cursor-theme 'Adwaita'
+    cursor-theme 'Breeze_Obsidian'
     font-name '$sans 12'
 }}
 exec_always gsettings set $gnome-sound-schema {{
