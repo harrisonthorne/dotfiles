@@ -2,8 +2,8 @@ if status is-interactive
    cat ~/.config/wpg/sequences
 end
 
-bash /etc/profile
-bash ~/.bashrc
+bass source /etc/profile
+bass source ~/.bashrc
 
 if [ -f $HOME/.config/fish/private.fish ]
     source $HOME/.config/fish/private.fish
@@ -43,7 +43,6 @@ set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SUDO_ASKPASS /usr/bin/ksshaskpass
 set -gx SXHKD_SHELL '/bin/sh'
 set -gx TEXLIVE_PATH /opt/texlive/2021/bin/x86_64-linux/
-set -gx TZ America/Chicago
 set -gx WINEPREFIX $HOME/.wine/
 set -gx XBPS_DISTDIR $HOME/code/void/packages
 
@@ -166,7 +165,7 @@ function unlock-keychain
 end
 
 function btrfs-du
-    sudo btrfs fi du --si $argv | tee du_full.txt | cut -b 11- | sort -h | tee du_sorted.txt | tail -n3000 | tee du.txt
+    sudo btrfs fi du --si $argv | tee du_full.txt | sort -h | tee du_sorted.txt | tail -n3000 | tee du.txt
 end
 
 if ! status is-login && status is-interactive
