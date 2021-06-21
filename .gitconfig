@@ -30,3 +30,8 @@
 	defaultBranch = main
 [merge]
 	renamelimit = 2016
+[color "diff"]
+	old = 196
+	new = 48
+	oldMoved = 226
+	newMoved = 201
