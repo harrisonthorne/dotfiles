@@ -5,6 +5,10 @@ end
 bass source /etc/profile
 bass source ~/.bashrc
 
+if [ -f $HOME/.config/fish/colors.fish ]
+    source $HOME/.config/fish/colors.fish
+end > /dev/null
+
 if [ -f $HOME/.config/fish/private.fish ]
     source $HOME/.config/fish/private.fish
 end > /dev/null
