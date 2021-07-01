@@ -39,7 +39,9 @@
   home.packages = with pkgs; [
     bemenu
     breeze-icons
+    docker-compose
     fish
+    fd
     gcc
     gnupg
     grim
@@ -51,7 +53,9 @@
     nodejs
     notify-desktop
     pamixer
+    playerctl
     rustup
+    sd
     slack
     slurp
     spotify
