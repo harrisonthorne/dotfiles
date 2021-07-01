@@ -3,6 +3,9 @@
 
 {
   nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
     overlays = [
       (import (builtins.fetchTarball {
         url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
@@ -36,22 +39,29 @@
   home.packages = with pkgs; [
     bemenu
     breeze-icons
+    brillo
     fish
     gcc
     gnupg
+    grim
     keepassxc
     kitty
     kodi
     mako
     neovim-nightly
+    nodejs
+    notify-desktop
     pamixer
-    pinentry-qt
     rustup
+    slack
+    slurp
+    spotify
     sway
     swaybg
     swayidle
     swaylock
     tree-sitter
+    wl-clipboard
     wob
     wpgtk
   ];
