@@ -4,6 +4,7 @@ end
 
 bass source /etc/profile
 bass source ~/.bashrc
+bass source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 
 if [ -f $HOME/.config/fish/colors.fish ]
     source $HOME/.config/fish/colors.fish
@@ -15,9 +16,9 @@ end > /dev/null
 
 alias btrfs-csum-errors="sudo dmesg | grep 'checksum error at' | cut -d\  -f27- | sed 's/.\$//' | sort | uniq"
 alias btrfs-du="sudo btrfs fi du --si $argv | tee du_full.txt | cut -b 11- | sort -h | tee du_sorted.txt | tail -n3000 | tee du.txt"
-alias config='/usr/bin/git --git-dir=$HOME/.dots.git/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.dots.git/ --work-tree=$HOME'
 alias gentoo-system-upgrade="sudo emerge -vuUND --autounmask-write --keep-going --with-bdeps=y --backtrack=1000 @world"
-alias notebook='/usr/bin/git --git-dir=$HOME/.notebook.git/ --work-tree=$HOME/notebook'
+alias notebook='git --git-dir=$HOME/.notebook.git/ --work-tree=$HOME/notebook'
 alias pandoc-preview="~/.config/nvim/pandocPreview.sh"
 
 alias c="config"
@@ -33,8 +34,8 @@ set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
 set -gx BAT_THEME base16
 set -gx BEMENU_BACKEND wayland
-set -gx BROWSER /bin/firefox
-set -gx EDITOR /bin/nvim
+set -gx BROWSER firefox
+set -gx EDITOR nvim
 set -gx EIX_LIMIT 0
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git --ignore node_modules -g ""'
 set -gx GOPATH $HOME/go
@@ -44,8 +45,8 @@ set -gx LEDGER_FILE $HOME/Notebook/ledger/main.sfox
 set -gx NODE_BIN $HOME/.npm-global/bin
 set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx RUSTBIN $HOME/.cargo/bin
-set -gx SUDO_ASKPASS /usr/bin/ksshaskpass
-set -gx SXHKD_SHELL '/bin/sh'
+set -gx SUDO_ASKPASS ksshaskpass
+set -gx SXHKD_SHELL /bin/sh
 set -gx TEXLIVE_PATH /opt/texlive/2021/bin/x86_64-linux/
 set -gx WINEPREFIX $HOME/.wine/
 set -gx XBPS_DISTDIR $HOME/code/void/packages
