@@ -39,7 +39,6 @@
   home.packages = with pkgs; [
     bemenu
     breeze-icons
-    brillo
     fish
     gcc
     gnupg
