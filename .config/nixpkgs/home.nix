@@ -6,11 +6,6 @@
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      (import (builtins.fetchTarball {
-        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-      }))
-    ];
   };
 
   fonts.fontconfig.enable = true;
@@ -49,7 +44,7 @@
     kitty
     kodi
     mako
-    neovim-nightly
+    neovim
     nodejs
     notify-desktop
     pamixer
