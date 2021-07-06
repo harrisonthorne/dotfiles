@@ -6,7 +6,7 @@ awesome-client "awesome.restart()" &
 
 lockbackground="$HOME/.lock_screen.png"
 cp $HOME/.config/wpg/wallpapers/$(wpg -c) $lockbackground
-/usr/bin/convert "$lockbackground" \
+convert "$lockbackground" \
     -resize 1920x1080^ \
     -gravity center \
     -extent 1920x1080 \

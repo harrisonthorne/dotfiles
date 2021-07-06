@@ -21,7 +21,7 @@ set {{
     $lock "sh $HOME/.config/sway/lock.sh"
     $screenshot $HOME/.config/sway/screenshot.fish
     $terminal kitty
-    $shell /usr/bin/fish
+    $shell fish
 
     # launcher
     $menu exec bemenu-run -p "Run what?" $bemenu_opts
