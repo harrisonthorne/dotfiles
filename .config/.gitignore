@@ -139,9 +139,9 @@ wpg/sequences
 wpg/wp_init.sh
 wpg/.current
 
+# wpgtk
 wpg/templates/*
 !wpg/templates/*.base
-
 alacritty/alacritty.yml
 awesome/colors.lua
 bspwm/bspwmrc
@@ -153,3 +153,7 @@ mako/config
 rofi/muse.rasi
 sway/config
 sway/lock.sh
+
+# managed by nix and home-manager
+gammastep/config.ini
+gtk-3.0/settings.ini
