@@ -9,8 +9,8 @@ set {{
     $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
     $notebook_dir $HOME/notebook
     $sans Inter
-    $volume_down "/usr/share/sounds/musicaflight/stereo/VolumeDown.oga"
-    $volume_up "/usr/share/sounds/musicaflight/stereo/Volume.oga"
+    $volume_down "$HOME/.nix-profile/sounds/musicaflight/stereo/VolumeDown.oga"
+    $volume_up "$HOME/.nix-profile/share/sounds/musicaflight/stereo/Volume.oga"
     $bemenu_opts -H 32 --fn $sans 12 --tb '{color0}' --tf '{active}' --fb '{color0}' --ff '{color15}' --nb '{color0}' --nf '{active}' --hb '{active}' --hf '{color0}' --sb '{active}' --sf '{color15}' --scrollbar autohide -f -m all
 
     # apps
@@ -279,7 +279,7 @@ bindsym {{
     $mod+Shift+End exec ~/.config/sway/prompt_clock_out.fish $bemenu_opts
 
     # exit sway
-    $mod+Shift+e exec "pw-play /usr/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
+    $mod+Shift+e exec "pw-play $HOME/.nix-profile/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"
 
     # not to be removed until i learn
     Control+Escape exec notify-send "Silly goose" "You replaced Ctrl+Esc with Super+Minus, remember?"
@@ -337,8 +337,8 @@ exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a b
 
 # startup apps
 exec {{
-    /usr/libexec/xdg-desktop-portal-wlr
-    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    /run/current-system/sw/libexec/xdg-desktop-portal-wlr
+    /run/current-system/sw/libexec/polkit-gnome-authentication-agent-1
     gammastep
     brillo -I
     mako
