@@ -49,6 +49,7 @@
     notify-desktop
     pamixer
     playerctl
+    ranger
     rustup
     sd
     slack
