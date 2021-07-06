@@ -43,8 +43,8 @@ for_window {{
 # gtk theming
 exec_always gsettings set $gnome-desktop-schema {{
     gtk-theme 'Arc-Dark'
-    icon-theme 'Adwaita++-Dark'
-    cursor-theme 'Breeze_Obsidian'
+    icon-theme 'Flat-Remix-Blue-Dark'
+    cursor-theme 'capitaine-cursors'
     font-name '$sans 12'
 }}
 exec_always gsettings set $gnome-sound-schema {{

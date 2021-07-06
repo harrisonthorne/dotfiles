@@ -13,7 +13,7 @@
   gtk = {
     enable = true;
     font = {
-      package = pkgs.inter;
+      package = pkgs.inter-ui;
       name = "Inter";
       size = 12;
     };
@@ -25,44 +25,57 @@
       package = pkgs.arc-theme;
       name = "Arc-Dark";
     };
-    gtk2.extraConfig = "gtk-cursor-theme-name=Breeze_Obsidian";
+    gtk2.extraConfig = "gtk-cursor-theme-name=capitaine-cursors";
     gtk3.extraConfig = {
-      gtk-cursor-theme-name = "Breeze_Obsidian";
+      gtk-cursor-theme-name = "capitaine-cursors";
     };
   };
 
   home.packages = with pkgs; [
+    # desktop environment
     bemenu
-    breeze-icons
-    docker-compose
-    fish
-    fd
-    gcc
-    gnupg
+    capitaine-cursors
+    arc-theme
+    flat-remix-icon-theme
     grim
-    keepassxc
-    kitty
-    kodi
     mako
-    neovim
-    nodejs
-    notify-desktop
-    pamixer
-    playerctl
-    ranger
-    rustup
-    sd
-    slack
+    polkit_gnome
     slurp
-    spotify
     sway
     swaybg
     swayidle
     swaylock
-    tree-sitter
     wl-clipboard
     wob
     wpgtk
+    xdg-desktop-portal-wlr
+
+    # terminal stuff
+    fd
+    fish
+    gnupg
+    kitty
+    neovim
+    notify-desktop
+    ranger
+    sd
+
+    # programming
+    docker-compose
+    gcc
+    nodejs
+    rustup
+    tree-sitter
+
+    # sound
+    pamixer
+    playerctl
+
+    # apps
+    keepassxc
+    kodi
+    slack
+    spotify
   ];
 
   manual.html.enable = true;
@@ -98,12 +111,6 @@
       keys = [ "id_rsa_github" "id_rsa_bitbucket" "id_ed25519" "4B21310A52B15162" ];
     };
     zathura.enable = true;
-  };
-
-  qt = {
-    enable = true;
-    style.package = pkgs.qtstyleplugin-kvantum;
-    style.name = "kvantum-dark";
   };
 
   services = {
