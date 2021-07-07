@@ -333,13 +333,12 @@ bar {{
 }}
 
 # (re)start wob
-exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a bottom -H 24 -W 512 -M 256 -p 4 -o 0 -b 6 --border-color '#e5{color8.strip}' --bar-color '#ff{active.strip}' --background '#e5{color0.strip}'"
+exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a bottom -H 24 -W 512 -M 256 -p 4 -o 0 -b 6 --border-color '#e5{color8.strip}' --bar-color '#ff{active.strip}' --background-color '#e5{color0.strip}'"
 
 # startup apps
 exec {{
     /run/current-system/sw/libexec/xdg-desktop-portal-wlr
     /run/current-system/sw/libexec/polkit-gnome-authentication-agent-1
-    gammastep
     brillo -I
     mako
     muse-status-daemon
