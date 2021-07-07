@@ -19,7 +19,7 @@
     };
     iconTheme = {
       package = pkgs.flat-remix-icon-theme;
-      name = "Flat-Remix-Violet-Dark";
+      name = "Flat-Remix-Blue-Dark";
     };
     theme = {
       package = pkgs.arc-theme;
@@ -72,8 +72,11 @@
     playerctl
 
     # apps
+    android-file-transfer
+    gimp
     keepassxc
     kodi
+    signal-desktop
     slack
     spotify
   ];
