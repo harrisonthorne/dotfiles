@@ -301,10 +301,20 @@ input "*" {{
     # xkb_variant colemak
 }}
 
+# for laptop
 output eDP-1 {{
     pos 0 0
 }}
 
+# for ponytower
+output "Acer Technologies SB220Q 0x00007C0D" {{
+    pos 0 0
+}}
+output "Acer Technologies SB220Q 0x000035FB" {{
+    pos 1920 0
+}}
+
+# for all
 output "*" {{
     background "$HOME/.config/wpg/wallpapers/$(wpg -c)" fill
 }}
