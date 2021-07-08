@@ -18,8 +18,8 @@
       size = 12;
     };
     iconTheme = {
-      package = pkgs.flat-remix-icon-theme;
-      name = "Flat-Remix-Blue-Dark";
+      package = pkgs.arc-icon-theme;
+      name = "Arc";
     };
     theme = {
       package = pkgs.arc-theme;
@@ -39,8 +39,6 @@
     # desktop environment
     bemenu
     capitaine-cursors
-    arc-theme
-    flat-remix-icon-theme
     grim
     mako
     polkit_gnome
