@@ -59,6 +59,8 @@
     kitty
     neovim
     notify-desktop
+    pinentry
+    pinentry-curses
     ranger
     sd
 
