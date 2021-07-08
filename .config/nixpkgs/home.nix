@@ -58,11 +58,15 @@
     gnupg
     kitty
     neovim
+    neovim-remote
     notify-desktop
     pinentry
     pinentry-curses
+    playerctl
     ranger
+    ripgrep
     sd
+    zip
 
     # programming
     docker-compose
@@ -73,13 +77,16 @@
 
     # sound
     pamixer
-    playerctl
 
     # apps
     android-file-transfer
+    awf
+    element-desktop
     gimp
     keepassxc
     kodi
+    mpv-with-scripts
+    pavucontrol
     signal-desktop
     slack
     spotify
