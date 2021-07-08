@@ -40,3 +40,4 @@ notebook/
 
 # managed by home-manager
 .gtkrc-2.0
+.icons/default/index.theme

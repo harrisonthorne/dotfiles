@@ -25,9 +25,13 @@
       package = pkgs.arc-theme;
       name = "Arc-Dark";
     };
-    gtk2.extraConfig = "gtk-cursor-theme-name=capitaine-cursors";
+    gtk2.extraConfig = ''
+      gtk-cursor-theme-name="capitaine-cursors"
+      gtk-cursor-theme-size=24
+    '';
     gtk3.extraConfig = {
       gtk-cursor-theme-name = "capitaine-cursors";
+      gtk-cursor-theme-size = 24;
     };
   };
 
@@ -147,5 +151,13 @@
     # the Home Manager release notes for a list of state version
     # changes in each release.
     stateVersion = "21.11";
+  };
+
+  xsession = {
+    pointerCursor = {
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+      size = 24;
+    };
   };
 }
