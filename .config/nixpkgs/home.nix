@@ -26,11 +26,11 @@
       name = "Arc-Dark";
     };
     gtk2.extraConfig = ''
-      gtk-cursor-theme-name="capitaine-cursors"
+      gtk-cursor-theme-name="Bibata_Classic"
       gtk-cursor-theme-size=24
     '';
     gtk3.extraConfig = {
-      gtk-cursor-theme-name = "capitaine-cursors";
+      gtk-cursor-theme-name = "Bibata_Classic";
       gtk-cursor-theme-size = 24;
     };
   };
@@ -38,7 +38,7 @@
   home.packages = with pkgs; [
     # desktop environment
     bemenu
-    capitaine-cursors
+    bibata-cursors
     grim
     mako
     polkit_gnome
@@ -167,8 +167,8 @@
 
   xsession = {
     pointerCursor = {
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors";
+      package = pkgs.bibata-cursors;
+      name = "Bibata_Classic";
       size = 24;
     };
   };
