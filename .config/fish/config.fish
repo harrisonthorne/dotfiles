@@ -137,7 +137,7 @@ function encrypt-folder
     set folder (string replace -r '/$' '' $argv[1])
     tar --zstd -cvf $folder.tar.zst $folder
     and gpg -c $folder.tar.zst
-    and rm -r $folder $folder.tar.zst
+    and rm -rf $folder.tar.zst $folder
 end
 
 function decrypt-folder
