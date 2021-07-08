@@ -134,6 +134,11 @@
       temperature = {
         night = 1500;
       };
+      settings = {
+        general = {
+          adjustment-method = "wayland";
+        };
+      };
     };
     syncthing.enable = true;
     udiskie = {
