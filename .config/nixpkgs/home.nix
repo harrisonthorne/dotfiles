@@ -12,7 +12,7 @@
     "org/gnome/desktop/interface" = {
       gtk-theme = "Arc-Dark";
       icon-theme = "Arc";
-      cursor-theme = "Bibata_Classic";
+      cursor-theme = "Vanilla-DMZ-AA";
       font-name = "Inter 12";
     };
     "org/gnome/desktop/sound" = {
@@ -40,11 +40,11 @@
       name = "Arc-Dark";
     };
     gtk2.extraConfig = ''
-      gtk-cursor-theme-name="Bibata_Classic"
+      gtk-cursor-theme-name="Vanilla-DMZ-AA"
       gtk-cursor-theme-size=24
     '';
     gtk3.extraConfig = {
-      gtk-cursor-theme-name = "Bibata_Classic";
+      gtk-cursor-theme-name = "Vanilla-DMZ-AA";
       gtk-cursor-theme-size = 24;
     };
   };
@@ -192,8 +192,8 @@
 
   xsession = {
     pointerCursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata_Classic";
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ-AA";
       size = 24;
     };
   };
