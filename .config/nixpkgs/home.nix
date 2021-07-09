@@ -8,6 +8,20 @@
     };
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Arc-Dark";
+      icon-theme = "Arc";
+      cursor-theme = "Bibata_Classic";
+      font-name = "Inter 12";
+    };
+    "org/gnome/desktop/sound" = {
+      theme-name = "musicaflight";
+      event-sounds = true;
+      input-feedback-sounds = true;
+    };
+  };
+
   fonts.fontconfig.enable = true;
 
   gtk = {
