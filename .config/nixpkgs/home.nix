@@ -99,6 +99,7 @@
     element-desktop
     gimp
     inkscape
+    imv
     keepassxc
     kodi
     mpv-with-scripts
