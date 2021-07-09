@@ -40,19 +40,6 @@ for_window {{
     [class=".*"] inhibit_idle fullscreen
 }}
 
-# gtk theming
-exec_always gsettings set $gnome-desktop-schema {{
-    gtk-theme 'Arc-Dark'
-    icon-theme 'Flat-Remix-Blue-Dark'
-    cursor-theme 'capitaine-cursors'
-    font-name '$sans 12'
-}}
-exec_always gsettings set $gnome-sound-schema {{
-    theme-name 'musicaflight'
-    event-sounds true
-    input-feedback-sounds true
-}}
-
 set {{
     # define names for default workspaces for which we configure key bindings later
     # on. we use variables to avoid repeating the names in multiple places.
