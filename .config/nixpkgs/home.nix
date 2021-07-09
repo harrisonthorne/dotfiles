@@ -86,6 +86,7 @@
     docker-compose
     gcc
     nodejs
+    python3
     rustup
     tree-sitter
 
