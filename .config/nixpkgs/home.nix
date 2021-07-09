@@ -109,15 +109,14 @@
 
   manual.html.enable = true;
 
-  # Let Home Manager install and manage itself.
   programs = {
+    # Let Home Manager install and manage itself.
     home-manager.enable = true;
+
     bat.enable = true;
+
     firefox.enable = true;
-    skim = {
-      enable = true;
-      enableFishIntegration = true;
-    };
+
     git = {
       enable = true;
       signing = {
@@ -127,11 +126,15 @@
       userEmail = "harrisonthorne@protonmail.com";
       userName = "Harrison Thorne";
     };
+
     gpg = {
       enable = true;
     };
+
     htop.enable = true;
+
     jq.enable = true;
+
     keychain = {
       enable = true;
       enableFishIntegration = true;
@@ -139,6 +142,12 @@
       extraFlags = [ "-q" "--gpg2" ];
       keys = [ "id_rsa_github" "id_rsa_bitbucket" "id_ed25519" "4B21310A52B15162" ];
     };
+
+    skim = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
     zathura.enable = true;
   };
 
