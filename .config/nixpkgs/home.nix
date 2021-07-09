@@ -8,47 +8,6 @@
     };
   };
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      gtk-theme = "Arc-Dark";
-      icon-theme = "Arc";
-      cursor-theme = "Vanilla-DMZ-AA";
-      font-name = "Inter 12";
-    };
-    "org/gnome/desktop/sound" = {
-      theme-name = "musicaflight";
-      event-sounds = true;
-      input-feedback-sounds = true;
-    };
-  };
-
-  fonts.fontconfig.enable = true;
-
-  gtk = {
-    enable = true;
-    font = {
-      package = pkgs.inter-ui;
-      name = "Inter";
-      size = 12;
-    };
-    iconTheme = {
-      package = pkgs.arc-icon-theme;
-      name = "Arc";
-    };
-    theme = {
-      package = pkgs.arc-theme;
-      name = "Arc-Dark";
-    };
-    gtk2.extraConfig = ''
-      gtk-cursor-theme-name="Vanilla-DMZ-AA"
-      gtk-cursor-theme-size=24
-    '';
-    gtk3.extraConfig = {
-      gtk-cursor-theme-name = "Vanilla-DMZ-AA";
-      gtk-cursor-theme-size = 24;
-    };
-  };
-
   home.packages = with pkgs; [
     # desktop environment
     bemenu
@@ -109,6 +68,47 @@
     spotify
   ];
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Arc-Dark";
+      icon-theme = "Arc";
+      cursor-theme = "Vanilla-DMZ-AA";
+      font-name = "Inter 12";
+    };
+    "org/gnome/desktop/sound" = {
+      theme-name = "musicaflight";
+      event-sounds = true;
+      input-feedback-sounds = true;
+    };
+  };
+
+  fonts.fontconfig.enable = true;
+
+  gtk = {
+    enable = true;
+    font = {
+      package = pkgs.inter-ui;
+      name = "Inter";
+      size = 12;
+    };
+    iconTheme = {
+      package = pkgs.arc-icon-theme;
+      name = "Arc";
+    };
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Dark";
+    };
+    gtk2.extraConfig = ''
+      gtk-cursor-theme-name="Vanilla-DMZ-AA"
+      gtk-cursor-theme-size=24
+    '';
+    gtk3.extraConfig = {
+      gtk-cursor-theme-name = "Vanilla-DMZ-AA";
+      gtk-cursor-theme-size = 24;
+    };
+  };
+
   manual.html.enable = true;
 
   programs = {
@@ -118,6 +118,15 @@
     bat.enable = true;
 
     firefox.enable = true;
+
+    # fish = {
+    #   enable = true;
+
+    # };
+    skim = {
+      enable = true;
+      enableFishIntegration = true;
+    };
 
     git = {
       enable = true;
