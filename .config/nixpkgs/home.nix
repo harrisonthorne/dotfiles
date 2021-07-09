@@ -98,6 +98,7 @@
     awf
     element-desktop
     gimp
+    inkscape
     keepassxc
     kodi
     mpv-with-scripts
