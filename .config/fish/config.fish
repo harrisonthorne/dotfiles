@@ -42,7 +42,7 @@ set -gx GOPATH $HOME/go
 set -gx GPG_TTY (tty)
 set -gx GTK_THEME "Arc-Dark"
 set -gx LEDGER_FILE $HOME/Notebook/ledger/main.sfox
-set -gx NODE_BIN $HOME/.npm-global/bin
+set -gx NODE_BIN $HOME/.npm-global/bin $HOME/.npm-packages/bin
 set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx RUSTBIN $HOME/.cargo/bin
 set -gx SUDO_ASKPASS ksshaskpass
