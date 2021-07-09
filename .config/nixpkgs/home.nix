@@ -144,6 +144,23 @@
       keys = [ "id_rsa_github" "id_rsa_bitbucket" "id_ed25519" "4B21310A52B15162" ];
     };
 
+    kitty = {
+      enable = true;
+      extraConfig = ''
+        include ~/.cache/wal/colors-kitty.conf
+      '';
+      font = with pkgs; {
+        package = iosevka;
+        name = "Iosevka";
+        size = 11;
+      };
+      settings = {
+        bold_font = "Iosevka Bold";
+        italic_font = "Iosevka Italic";
+        bold_italic_font = "Iosevka Bold Italic";
+      };
+    };
+
     skim = {
       enable = true;
       enableFishIntegration = true;

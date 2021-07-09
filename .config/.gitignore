@@ -157,3 +157,4 @@ sway/lock.sh
 # managed by nix and home-manager
 gammastep/config.ini
 gtk-3.0/settings.ini
+kitty/kitty.conf
