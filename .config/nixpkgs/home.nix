@@ -164,6 +164,7 @@
         bold_font = "Iosevka Bold";
         italic_font = "Iosevka Italic";
         bold_italic_font = "Iosevka Bold Italic";
+        background_opacity = "0.95";
       };
     };
 
