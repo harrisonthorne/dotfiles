@@ -175,6 +175,13 @@
 
     bat.enable = true;
 
+    command-not-found.enable = true;
+
+    exa = {
+      enable = true;
+      enableAliases = true;
+    };
+
     firefox.enable = true;
 
     # fish = {
@@ -229,9 +236,26 @@
     skim = {
       enable = true;
       enableFishIntegration = true;
+      defaultCommand = ''fd --type f'';
+    };
+
+    texlive = {
+      enable = true;
+    };
+
+    tmux = {
+      enable = true;
+      shortcut = "a";
     };
 
     zathura.enable = true;
+
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+  };
+
   };
 
   services = {
