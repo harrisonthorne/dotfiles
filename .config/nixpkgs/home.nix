@@ -8,66 +8,70 @@
     };
   };
 
-  home.packages = with pkgs; [
-    # desktop environment
-    bemenu
-    bibata-cursors
-    grim
-    mako
-    polkit_gnome
-    slurp
-    sway
-    swaybg
-    swayidle
-    swaylock
-    wl-clipboard
-    wob
-    wpgtk
-    xdg-desktop-portal-wlr
-
-    # terminal stuff
-    fd
-    fish
-    gnupg
-    kitty
-    neovim
-    neovim-remote
-    notify-desktop
-    pinentry
-    pinentry-curses
-    playerctl
-    ranger
-    ripgrep
-    sd
-    zip
-
-    # programming
-    docker-compose
-    gcc
-    nodejs
-    python3
-    rustup
-    tree-sitter
-
-    # sound
-    pamixer
-
-    # apps
-    android-file-transfer
-    awf
-    element-desktop
-    gimp
-    inkscape
-    imv
-    keepassxc
-    kodi
-    mpv-with-scripts
-    pavucontrol
-    signal-desktop
-    slack
-    spotify
-  ];
   home = {
+    packages = with pkgs; [
+      # desktop environment
+      bemenu
+      bibata-cursors
+      grim
+      mako
+      polkit_gnome
+      slurp
+      sway
+      swaybg
+      swayidle
+      swaylock
+      wl-clipboard
+      wob
+      wpgtk
+      xdg-desktop-portal-wlr
+
+      # terminal stuff
+      fd
+      fish
+      gnupg
+      kitty
+      neovim
+      neovim-remote
+      notify-desktop
+      pinentry
+      pinentry-curses
+      playerctl
+      ranger
+      ripgrep
+      sd
+      zip
+
+      # programming
+      docker-compose
+      gcc
+      nodejs
+      python3
+      rustup
+      tree-sitter
+
+      # sound
+      pamixer
+
+      # apps
+      android-file-transfer
+      awf
+      element-desktop
+      gimp
+      inkscape
+      imv
+      keepassxc
+      kodi
+      mpv-with-scripts
+      pavucontrol
+      signal-desktop
+      slack
+      spotify
+
+      # other
+      xorg.xcursorgen
+    ];
+
     extraOutputsToInstall = [ "doc" "info" "devdoc" ];
     sessionPath = [
       "$HOME/.npm-global/bin"
