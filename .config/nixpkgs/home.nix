@@ -82,6 +82,23 @@
       "${config.home.sessionVariables.TEXLIVE_PATH}"
     ];
     sessionVariables = {
+      # from fish
+      ANDROID_EMULATOR_USE_SYSTEM_LIBS = 1;
+      BAT_THEME = "base16";
+      BEMENU_BACKEND = "wayland";
+      BROWSER = "firefox";
+      EDITOR = "nvim";
+      EIX_LIMIT = 0;
+      FZF_DEFAULT_COMMAND = ''ag --hidden --ignore .git --ignore node_modules -g ""'';
+      GPG_TTY = "$(tty)";
+      GTK_THEME = "Arc-Dark";
+      LEDGER_FILE = "$HOME/Notebook/ledger/main.sfox";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+      SUDO_ASKPASS = "ksshaskpass";
+      TEXLIVE_PATH = "/opt/texlive/2021/bin/x86_64-linux/";
+      WINEPREFIX = "$HOME/.wine/";
+      XBPS_DISTDIR = "$HOME/code/void/packages";
+
       # sway recommended settings
       CLUTTER_BACKEND = "wayland";
       ECORE_EVAS_ENGINE = "wayland-egl";
