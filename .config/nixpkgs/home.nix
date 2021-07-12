@@ -256,6 +256,9 @@
     };
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
   };
 
   services = {
