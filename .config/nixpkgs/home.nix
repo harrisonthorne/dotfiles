@@ -67,6 +67,43 @@
     slack
     spotify
   ];
+  home = {
+    extraOutputsToInstall = [ "doc" "info" "devdoc" ];
+    sessionPath = [
+      "$HOME/.npm-global/bin"
+      "$HOME/.npm-packages/bin"
+      "$HOME/.cargo/bin"
+      "$HOME/.local/bin"
+      "$HOME/go/bin"
+      "${config.home.sessionVariables.TEXLIVE_PATH}"
+    ];
+    sessionVariables = {
+      # sway recommended settings
+      CLUTTER_BACKEND = "wayland";
+      ECORE_EVAS_ENGINE = "wayland-egl";
+      ELM_ENGINE = "wayland_egl";
+      MOZ_ENABLE_WAYLAND = 1;
+      NO_AT_BRIDGE = 1;
+      QT_QPA_PLATFORM = "wayland-egl";
+      SDL_VIDEODRIVER = "wayland";
+      _JAVA_AWT_WM_NONREPARENTING = 1;
+    };
+
+    # Home Manager needs a bit of information about you and the
+    # paths it should manage.
+    username = "harrison";
+    homeDirectory = "/home/harrison";
+
+    # This value determines the Home Manager release that your
+    # configuration is compatible with. This helps avoid breakage
+    # when a new Home Manager release introduces backwards
+    # incompatible changes.
+    #
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
+    stateVersion = "21.11";
+  };
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
@@ -195,23 +232,6 @@
       automount = true;
       notify = true;
     };
-  };
-
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home = {
-    username = "harrison";
-    homeDirectory = "/home/harrison";
-
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
-    stateVersion = "21.11";
   };
 
   xsession = {
