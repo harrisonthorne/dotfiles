@@ -346,6 +346,10 @@ exec {{
     xhost si:localuser:root
     xrdb -load ~/.Xresources
 
+    # this might let gammastep start correctly
+    systemctl --user import-environment
+    systemctl --user start graphical-session.target
+
     # login sound
     canberra-gtk-play --id=desktop-login
 }}
