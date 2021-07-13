@@ -44,6 +44,10 @@
       spotify-tui
       zip
 
+      # fish plugins
+      fishPlugins.done
+      fishPlugins.foreign-env
+
       # programming
       docker-compose
       gcc
