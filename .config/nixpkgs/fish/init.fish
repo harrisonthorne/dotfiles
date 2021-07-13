@@ -1,7 +1,3 @@
-if status is-interactive
-   cat ~/.config/wpg/sequences
-end
-
 fenv source /etc/profile
 fenv source ~/.bashrc
 
