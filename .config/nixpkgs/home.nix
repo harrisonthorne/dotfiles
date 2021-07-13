@@ -32,7 +32,6 @@ in {
       fd
       fish
       gnupg
-      kitty
       neovim
       neovim-remote
       notify-desktop
