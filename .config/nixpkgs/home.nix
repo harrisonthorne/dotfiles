@@ -339,6 +339,12 @@ in {
       };
     };
 
+    keybase.enable = true;
+
+    kbfs = {
+      enable = true;
+    };
+
     spotifyd = {
       enable = true;
       settings = {
