@@ -104,16 +104,6 @@
       TEXLIVE_PATH = "/opt/texlive/2021/bin/x86_64-linux/";
       WINEPREFIX = "\$HOME/.wine/";
       XBPS_DISTDIR = "\$HOME/code/void/packages";
-
-      # sway recommended settings
-      CLUTTER_BACKEND = "wayland";
-      ECORE_EVAS_ENGINE = "wayland-egl";
-      ELM_ENGINE = "wayland_egl";
-      MOZ_ENABLE_WAYLAND = 1;
-      NO_AT_BRIDGE = 1;
-      QT_QPA_PLATFORM = "wayland-egl";
-      SDL_VIDEODRIVER = "wayland";
-      _JAVA_AWT_WM_NONREPARENTING = 1;
     };
 
     # Home Manager needs a bit of information about you and the
@@ -312,6 +302,39 @@
       notify = true;
     };
   };
+
+  wayland.windowManager.sway = {
+    enable = true;
+    config = {
+      floating = {
+        
+      };
+    };
+    extraConfig = builtins.readFile ./sway/config;
+    extraSessionCommands = ''
+      export CLUTTER_BACKEND=wayland
+      export ECORE_EVAS_ENGINE=wayland-egl
+      export ELM_ENGINE=wayland_egl
+      export MOZ_ENABLE_WAYLAND=1
+      export NO_AT_BRIDGE=1
+      export QT_QPA_PLATFORM=wayland-egl
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+      export SDL_VIDEODRIVER=wayland
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
+    terminal = "kitty";
+    window = {
+      titlebar = true;
+      hideEdgeBorders = "smart";
+      border = 6;
+    };
+    workspaceAutoBackAndForth = true;
+    wrapperFeatures = {
+      gtk = true;
+    };
+  };
+
+  xdg.enable = true;
 
   xsession = {
     pointerCursor = {

@@ -51,16 +51,6 @@ set -gx TEXLIVE_PATH /opt/texlive/2021/bin/x86_64-linux/
 set -gx WINEPREFIX $HOME/.wine/
 set -gx XBPS_DISTDIR $HOME/code/void/packages
 
-# sway recommended settings
-set -gx CLUTTER_BACKEND wayland
-set -gx ECORE_EVAS_ENGINE wayland-egl
-set -gx ELM_ENGINE wayland_egl
-set -gx MOZ_ENABLE_WAYLAND 1
-set -gx NO_AT_BRIDGE 1
-set -gx QT_QPA_PLATFORM wayland-egl
-set -gx SDL_VIDEODRIVER wayland
-set -gx _JAVA_AWT_WM_NONREPARENTING 1
-
 # path. you know it, you love it
 set -gx PATH $GOPATH/bin $RUSTBIN $PATH $HOME/.local/bin $NODE_BIN /usr/lib $HOME/bin $TEXLIVE_PATH
 

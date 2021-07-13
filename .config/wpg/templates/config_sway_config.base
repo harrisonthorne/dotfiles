@@ -62,6 +62,13 @@ set {{
     $gray         {color8}e5
     $warning      #ffaa00e5
     $transparent  #00000000
+
+    $wob_border     #e5{color8.strip}
+    $wob_bar        #ff{active.strip}
+    $wob_background #e5{color0.strip}
+
+    $muse_status_primary    {color15.strip}
+    $muse_status_secondary  {active.strip}
 }}
 
 client.focused          $gray    $gray    $white  $active
@@ -308,7 +315,7 @@ output "*" {{
 
 # status bar
 bar {{
-    status_command "muse-status sub a -m i3 -p {color15.strip} -s {active.strip}"
+    status_command "muse-status sub a -m i3 -p $muse_status_primary -s $muse_status_secondary"
     font pango: $sans 12
     modifier $mod
     separator_symbol "    "
@@ -330,7 +337,7 @@ bar {{
 }}
 
 # (re)start wob
-exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a bottom -H 24 -W 512 -M 256 -p 4 -o 0 -b 6 --border-color '#e5{color8.strip}' --bar-color '#ff{active.strip}' --background-color '#e5{color0.strip}'"
+exec_always "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a bottom -H 24 -W 512 -M 256 -p 4 -o 0 -b 6 --border-color '$wob_border' --bar-color '$wob_bar' --background-color '$wob_background'"
 
 # startup apps
 exec {{
