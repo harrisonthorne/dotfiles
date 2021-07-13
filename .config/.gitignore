@@ -155,7 +155,8 @@ sway/config
 sway/lock.sh
 
 # managed by nix and home-manager
+fish/
 gammastep/
+git/
 gtk-3.0/
 kitty/
-fish/
