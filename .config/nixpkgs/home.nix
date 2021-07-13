@@ -336,36 +336,36 @@ in {
     };
   };
 
-  wayland.windowManager.sway = {
-    enable = true;
-    config = {
-      floating = {
+  # wayland.windowManager.sway = {
+  #   enable = true;
+  #   config = {
+  #     floating = {
         
-      };
-    };
-    extraConfig = builtins.readFile ./sway/config;
-    extraSessionCommands = ''
-      export CLUTTER_BACKEND=wayland
-      export ECORE_EVAS_ENGINE=wayland-egl
-      export ELM_ENGINE=wayland_egl
-      export MOZ_ENABLE_WAYLAND=1
-      export NO_AT_BRIDGE=1
-      export QT_QPA_PLATFORM=wayland-egl
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-      export SDL_VIDEODRIVER=wayland
-      export _JAVA_AWT_WM_NONREPARENTING=1
-    '';
-    terminal = "kitty";
-    window = {
-      titlebar = true;
-      hideEdgeBorders = "smart";
-      border = 6;
-    };
-    workspaceAutoBackAndForth = true;
-    wrapperFeatures = {
-      gtk = true;
-    };
-  };
+  #     };
+  #   };
+  #   extraConfig = builtins.readFile ./sway/config;
+  #   extraSessionCommands = ''
+  #     export CLUTTER_BACKEND=wayland
+  #     export ECORE_EVAS_ENGINE=wayland-egl
+  #     export ELM_ENGINE=wayland_egl
+  #     export MOZ_ENABLE_WAYLAND=1
+  #     export NO_AT_BRIDGE=1
+  #     export QT_QPA_PLATFORM=wayland-egl
+  #     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+  #     export SDL_VIDEODRIVER=wayland
+  #     export _JAVA_AWT_WM_NONREPARENTING=1
+  #   '';
+  #   terminal = "kitty";
+  #   window = {
+  #     titlebar = true;
+  #     hideEdgeBorders = "smart";
+  #     border = 6;
+  #   };
+  #   workspaceAutoBackAndForth = true;
+  #   wrapperFeatures = {
+  #     gtk = true;
+  #   };
+  # };
 
   xdg.enable = true;
 
