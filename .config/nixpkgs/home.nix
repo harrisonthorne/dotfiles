@@ -317,7 +317,7 @@ in {
       settings = {
         global = {
           username_cmd = "pass spotify_username";
-          password_cmd = "ksshaskpass";
+          password_cmd = "pass spotify";
           device_name = "spotifyd_ponytower";
           device_type = "computer";
           use_keyring = true;
