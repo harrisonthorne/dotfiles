@@ -40,6 +40,7 @@
       ranger
       ripgrep
       sd
+      spotify-tui
       zip
 
       # programming
@@ -274,7 +275,24 @@
         };
       };
     };
+
+    spotifyd = {
+      enable = true;
+      settings = {
+        global = {
+          username_cmd = "pass spotify_username";
+          password_cmd = "ksshaskpass";
+          device_name = "spotifyd_ponytower";
+          device_type = "computer";
+          use_keyring = true;
+          use_mpris = true;
+          backend = "pulseaudio";
+        };
+      };
+    };
+
     syncthing.enable = true;
+
     udiskie = {
       enable = true;
       automount = true;
