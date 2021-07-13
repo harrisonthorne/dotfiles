@@ -14,6 +14,7 @@
       bemenu
       bibata-cursors
       grim
+      ksshaskpass
       mako
       polkit_gnome
       slurp
