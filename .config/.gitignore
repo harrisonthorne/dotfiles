@@ -153,6 +153,17 @@ mako/config
 rofi/muse.rasi
 sway/config
 sway/lock.sh
+Element/
+MuseScore/
+Sia-UI/
+VirtualBox/
+ardour6/
+ardour5/
+OpenImageIO/
+libvirt/
+light/
+monero-project/
+neofetch/
 
 # managed by nix and home-manager
 fish/
