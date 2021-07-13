@@ -17,7 +17,6 @@ in {
       bibata-cursors
       grim
       ksshaskpass
-      mako
       polkit_gnome
       slurp
       sway
@@ -286,6 +285,21 @@ in {
   };
 
   services = {
+    dunst = {
+      enable = true;
+      iconTheme = {
+        package = pkgs.arc-icon-theme;
+        name = "Arc";
+        size = "48x48";
+      };
+      settings = {
+        global = {
+          geometry = "";
+          transparency = "90";
+        };
+      };
+    };
+
     gammastep = {
       enable = true;
       provider = "geoclue2";
