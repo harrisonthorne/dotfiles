@@ -2,9 +2,8 @@ if status is-interactive
    cat ~/.config/wpg/sequences
 end
 
-bass source /etc/profile
-bass source ~/.bashrc
-bass source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+fenv source /etc/profile
+fenv source ~/.bashrc
 
 if [ -f $HOME/.config/fish/colors.fish ]
     source $HOME/.config/fish/colors.fish
@@ -26,7 +25,8 @@ alias g="git"
 alias n="nvim"
 alias q="exit"
 alias r="ranger"
-alias s="env XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland dbus-run-session sway"
+alias s="env XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland sway"
+# alias s="env XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland dbus-run-session sway"
 
 alias nb="notebook"
 

@@ -184,10 +184,10 @@
 
     firefox.enable = true;
 
-    # fish = {
-    #   enable = true;
-
-    # };
+    fish = {
+      enable = true;
+      shellInit = builtins.readFile ./fish/init.fish;
+    };
 
     git = {
       enable = true;
