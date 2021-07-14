@@ -21,8 +21,7 @@ alias g="git"
 alias n="nvim"
 alias q="exit"
 alias r="ranger"
-alias s="env XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland sway"
-# alias s="env XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland dbus-run-session sway"
+alias s="sway"
 
 alias nb="notebook"
 
