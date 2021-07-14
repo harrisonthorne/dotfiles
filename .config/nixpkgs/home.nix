@@ -321,7 +321,7 @@ in {
           transparency = "90";
         };
       };
-      waylandDisplay = null;
+      waylandDisplay = "";
     };
 
     gammastep = {
