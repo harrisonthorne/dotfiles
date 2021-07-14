@@ -78,11 +78,11 @@ in {
 
     extraOutputsToInstall = [ "doc" "info" "devdoc" ];
     sessionPath = [
-      "\$HOME/.npm-global/bin"
-      "\$HOME/.npm-packages/bin"
-      "\$HOME/.cargo/bin"
-      "\$HOME/.local/bin"
-      "\$HOME/go/bin"
+      "$HOME/.npm-global/bin"
+      "$HOME/.npm-packages/bin"
+      "$HOME/.cargo/bin"
+      "$HOME/.local/bin"
+      "$HOME/go/bin"
       "${config.home.sessionVariables.TEXLIVE_PATH}"
     ];
     sessionVariables = {
@@ -94,14 +94,13 @@ in {
       EDITOR = "nvim";
       EIX_LIMIT = 0;
       FZF_DEFAULT_COMMAND = ''ag --hidden --ignore .git --ignore node_modules -g ""'';
-      GPG_TTY = "\$(tty)";
+      GPG_TTY = "$(tty)";
       GTK_THEME = "Arc-Dark";
-      LEDGER_FILE = "\$HOME/Notebook/ledger/main.sfox";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
+      LEDGER_FILE = "$HOME/Notebook/ledger/main.sfox";
       SUDO_ASKPASS = "pass spotify";
       TEXLIVE_PATH = "/opt/texlive/2021/bin/x86_64-linux/";
-      WINEPREFIX = "\$HOME/.wine/";
-      XBPS_DISTDIR = "\$HOME/code/void/packages";
+      WINEPREFIX = "$HOME/.wine/";
+      XBPS_DISTDIR = "$HOME/code/void/packages";
     };
 
     # Home Manager needs a bit of information about you and the
@@ -275,7 +274,7 @@ in {
     password-store = {
       enable = true;
       settings = {
-        PASSWORD_STORE_DIR = "\$HOME/.password-store";
+        PASSWORD_STORE_DIR = "$HOME/.password-store";
         PASSWORD_STORE_KEY = "4B21310A52B15162";
       };
     };
