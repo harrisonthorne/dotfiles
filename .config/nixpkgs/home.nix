@@ -323,6 +323,7 @@ in {
           transparency = "90";
         };
       };
+      waylandDisplay = null;
     };
 
     gammastep = {
