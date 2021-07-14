@@ -24,6 +24,7 @@ alias r="ranger"
 alias s="sway"
 
 alias nb="notebook"
+alias hm="home-manager"
 
 set fish_greeting ""
 set -gx ANDROID_EMULATOR_USE_SYSTEM_LIBS 1
