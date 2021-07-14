@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   colors = import ./mod/colors.nix;
@@ -369,7 +369,7 @@ in {
     };
   };
 
-  wayland.windowManager.sway = import ./mod/sway/mod.nix colors;
+  wayland.windowManager.sway = import ./mod/sway/mod.nix { inherit config lib colors; };
 
   xdg.enable = true;
 

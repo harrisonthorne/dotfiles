@@ -27,7 +27,6 @@ set {
     $menu exec bemenu-run -p "Run what?" $bemenu_opts
 
     $exec_with_shell -e $shell -i -c
-    $terminal_with_title $terminal -T
 }
 
 # window criteria
