@@ -369,7 +369,7 @@ in {
     };
   };
 
-  wayland.windowManager.sway = import ./mod/sway.nix;
+  wayland.windowManager.sway = import ./mod/sway/mod.nix colors;
 
   xdg.enable = true;
 

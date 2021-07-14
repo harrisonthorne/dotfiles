@@ -64,26 +64,12 @@ set {
     $transparent  #00000000
 }
 
-client.focused          $gray    $gray    $white  $active
-client.focused_inactive $black   $black   $silver $black
-client.unfocused        $black   $black   $active $black
-client.urgent           $warning $warning $black
-client.placeholder      $black   $black   $active
-client.background       $black
-
 # some options
 default_border normal 6
-default_floating_border normal 6
 default_orientation auto
 floating_maximum_size 1856 x 1016
 floating_minimum_size -1 x -1
 floating_modifier $mod
-focus_follows_mouse always
-focus_on_window_activation smart
-font pango: $sans 12
-gaps inner 16
-smart_borders on
-smart_gaps on
 title_align center
 titlebar_padding 4
 titlebar_border_thickness 4
@@ -271,22 +257,6 @@ bindsym {
     Control+Escape exec notify-send "Silly goose" "You replaced Ctrl+Esc with Super+Minus, remember?"
 }
 
-# inputs and outputs
-
-input "2:7:SynPS/2_Synaptics_TouchPad" {
-    tap enabled
-    natural_scroll enabled
-}
-
-input "1267:9527:ELAN0732:00_04F3:2537" {
-    map_to_output eDP-1
-}
-
-input "*" {
-    xkb_layout us
-    # xkb_variant colemak
-}
-
 # for laptop
 output eDP-1 {
     pos 0 0
@@ -303,29 +273,6 @@ output "Acer Technologies SB220Q 0x000035FB" {
 # for all
 output "*" {
     background "$HOME/.config/wpg/wallpapers/$(wpg -c)" fill
-}
-
-# status bar
-bar {
-    status_command "muse-status sub a -m i3 -p f9fdff -s cbc4a3"
-    font pango: $sans 12
-    modifier $mod
-    separator_symbol "    "
-    position top
-    workspace_buttons yes
-    height 32
-    status_edge_padding 16
-    tray_output none
-    colors {
-        background $black
-        statusline $white
-        separator $active
-        focused_workspace $black $black $white
-        active_workspace $black $black $silver
-        inactive_workspace $black $black $active
-        urgent_workspace $warning $warning $black
-        binding_mode $black $black $warning
-    }
 }
 
 # (re)start wob
