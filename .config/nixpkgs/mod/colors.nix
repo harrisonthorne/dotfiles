@@ -1,6 +1,6 @@
 rec {
-  active = color15;
-  inactive = color07;
+  active = color14;
+  inactive = color10;
 
   # monochrome colors
 
