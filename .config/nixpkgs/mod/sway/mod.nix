@@ -28,17 +28,18 @@ let
 
   dpmsOff = "swaymsg 'output * dpms off'";
   dpmsOn = "swaymsg 'output * dpms on'";
-in {
+in
+{
   enable = true;
   config = {
-    bars = [ {
+    bars = [{
       fonts = font;
       position = "top";
       extraConfig = ''
-      separator_symbol "    "
-      status_edge_padding 16
-      height 32
-      modifier "${sup}"
+        separator_symbol "    "
+        status_edge_padding 16
+        height 32
+        modifier "${sup}"
       '';
       statusCommand = "muse-status sub a -m i3 -p ${colors.color15} -s ${colors.active}";
       trayOutput = "none";
@@ -53,7 +54,7 @@ in {
         separator = active;
         urgentWorkspace = { background = warning; border = warning; text = black; };
       };
-    } ];
+    }];
 
     colors = {
       background = black;
@@ -83,12 +84,12 @@ in {
 
     input = {
       "2:7:SynPS/2_Synaptics_TouchPad" = {
-          tap = "enabled";
-          natural_scroll = "enabled";
+        tap = "enabled";
+        natural_scroll = "enabled";
       };
 
       "1267:9527:ELAN0732:00_04F3:2537" = {
-          map_to_output = "eDP-1";
+        map_to_output = "eDP-1";
       };
 
       "*" = {
@@ -106,50 +107,52 @@ in {
     modifier = "${sup}";
 
     output = {
-        # for laptop
-        "eDP-1" = {
-          pos = "0 0";
-        };
+      # for laptop
+      "eDP-1" = {
+        pos = "0 0";
+      };
 
-        # for ponytower
-        "Acer Technologies SB220Q 0x00007C0D" = {
-          pos = "0 0";
-        };
-        "Acer Technologies SB220Q 0x000035FB" = {
-          pos = "1920 0";
-        };
+      # for ponytower
+      "Acer Technologies SB220Q 0x00007C0D" = {
+        pos = "0 0";
+      };
+      "Acer Technologies SB220Q 0x000035FB" = {
+        pos = "1920 0";
+      };
 
-        # for all
-        "*" = {
-          background = ''"$HOME/.config/wpg/wallpapers/$(wpg -c)" fill'';
-        };
+      # for all
+      "*" = {
+        background = ''"$HOME/.config/wpg/wallpapers/$(wpg -c)" fill'';
+      };
     };
 
     # startup apps
-    startup = let
-      wobBorder = "#e5${colors.color08}";
-      wobBar = "#ff${colors.active}";
-      wobBackground = "#e5${colors.color00}";
-      lockWarningCmd = "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'";
-    in [
-      { command = ''/run/current-system/sw/libexec/xdg-desktop-portal-wlr''; }
-      { command = ''/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1''; }
-      { command = ''brillo -I''; }
-      { command = ''muse-status-daemon''; }
-      { command = ''swayidle -w timeout 270 ${lockWarningCmd} timeout 300 ${lockCmd} timeout 315 ${dpmsOff} resume ${dpmsOn} before-sleep ${lockCmd}''; }
-      { command = ''xhost si:localuser:root''; }
-      { command = ''xrdb -load ~/.Xresources''; }
+    startup =
+      let
+        wobBorder = "#e5${colors.color08}";
+        wobBar = "#ff${colors.active}";
+        wobBackground = "#e5${colors.color00}";
+        lockWarningCmd = "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'";
+      in
+      [
+        { command = ''/run/current-system/sw/libexec/xdg-desktop-portal-wlr''; }
+        { command = ''/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1''; }
+        { command = ''brillo -I''; }
+        { command = ''muse-status-daemon''; }
+        { command = ''swayidle -w timeout 270 ${lockWarningCmd} timeout 300 ${lockCmd} timeout 315 ${dpmsOff} resume ${dpmsOn} before-sleep ${lockCmd}''; }
+        { command = ''xhost si:localuser:root''; }
+        { command = ''xrdb -load ~/.Xresources''; }
 
-      # this might let gammastep start correctly
-      { command = ''systemctl --user import-environment''; }
-      { command = ''systemctl --user start graphical-session.target''; }
+        # this might let gammastep start correctly
+        { command = ''systemctl --user import-environment''; }
+        { command = ''systemctl --user start graphical-session.target''; }
 
-      # (re)start wob
-      { command = "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a bottom -H 24 -W 512 -M 256 -p 4 -o 0 -b 6 --border-color '${wobBorder}' --bar-color '${wobBar}' --background-color '${wobBackground}'"; always = true; }
+        # (re)start wob
+        { command = "killall wob; mkfifo $SWAYSOCK.wob; tail -f $SWAYSOCK.wob | wob -a bottom -H 24 -W 512 -M 256 -p 4 -o 0 -b 6 --border-color '${wobBorder}' --bar-color '${wobBar}' --background-color '${wobBackground}'"; always = true; }
 
-      # play startup sound
-      { command = ''canberra-gtk-play --id=desktop-login''; }
-    ];
+        # play startup sound
+        { command = ''canberra-gtk-play --id=desktop-login''; }
+      ];
 
     terminal = "kitty";
 

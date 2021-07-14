@@ -2,7 +2,8 @@
 
 let
   colors = import ./mod/colors.nix;
-in {
+in
+{
   nixpkgs = {
     config = {
       allowUnfree = true;
