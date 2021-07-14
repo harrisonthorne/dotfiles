@@ -5,7 +5,7 @@ let
   lock = "\$HOME/.config/sway/lock.sh";
   notebookDir = "\$HOME/notebook/";
   shell = "fish";
-  terminal = config.wayland.windowManager.sway.terminal;
+  terminal = config.wayland.windowManager.sway.config.terminal;
 
   # apps
   browser = "firefox";

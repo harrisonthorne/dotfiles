@@ -95,6 +95,16 @@ in {
 
     # no modes
     modes = { };
+
+    terminal = "kitty";
+
+    window = {
+      titlebar = true;
+      hideEdgeBorders = "smart";
+      border = 6;
+    };
+
+    workspaceAutoBackAndForth = true;
   };
   extraConfig = builtins.readFile ../files/sway/config;
   extraSessionCommands = ''
@@ -108,13 +118,6 @@ in {
   export SDL_VIDEODRIVER=wayland
   export _JAVA_AWT_WM_NONREPARENTING=1
   '';
-  terminal = "kitty";
-  window = {
-    titlebar = true;
-    hideEdgeBorders = "smart";
-    border = 6;
-  };
-  workspaceAutoBackAndForth = true;
   wrapperFeatures = {
     gtk = true;
   };
