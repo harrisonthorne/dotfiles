@@ -18,7 +18,6 @@ in {
       ksshaskpass
       polkit_gnome
       slurp
-      sway
       swaybg
       swayidle
       swaylock

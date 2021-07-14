@@ -1,9 +1,8 @@
-{ config, lib, sup, bemenuOpts, ... }:
+{ config, lib, sup, alt, bemenuOpts, lockCmd, ... }:
 
 let
   execWithShell = "-e ${shell} -i -p";
-  lock = "\$HOME/.config/sway/lock.sh";
-  notebookDir = "\$HOME/notebook/";
+  notebookDir = "$HOME/notebook/";
   shell = "fish";
   terminal = config.wayland.windowManager.sway.config.terminal;
 
@@ -12,12 +11,12 @@ let
   music = "${terminal} ${execWithShell} spt";
   email = "evolution";
   media = "kodi --windowing=x11";
-in lib.mkOptionDefault {
+in {
   # power controls
-  "${sup}+Control+${alt}+p" = "exec systemctl poweroff"
-  "${sup}+Control+${alt}+r" = "exec systemctl reboot"
-  "${sup}+Control+${alt}+s" = "exec systemctl suspend"
-  "${sup}+Control+${alt}+b" = "exec systemctl hibernate"
+  "${sup}+Control+${alt}+p" = "exec systemctl poweroff";
+  "${sup}+Control+${alt}+r" = "exec systemctl reboot";
+  "${sup}+Control+${alt}+s" = "exec systemctl suspend";
+  "${sup}+Control+${alt}+b" = "exec systemctl hibernate";
   
   # change focus
   "${sup}+h" = "focus left";
@@ -77,15 +76,15 @@ in lib.mkOptionDefault {
   "${sup}+f" = "fullscreen toggle";
   
   # shortcuts for apps
-  "${sup}+Control+e" = "exec \$HOME/.config/sway/emoji_menu.fish ${bemenuOpts}";
+  "${sup}+Control+e" = "exec $HOME/.config/sway/emoji_menu.fish ${bemenuOpts}";
   "${sup}+Control+n" = ''exec ${terminal} -d ${notebookDir} ${execWithShell} "nvim ${notebookDir}/new/(date +%Y%m%d-%H%M%S).md"'';
   "${sup}+Control+p" = "exec pavucontrol";
-  "${sup}+Control+r" = "exec sh \$HOME/.config/toggle_gammastep.sh";
+  "${sup}+Control+r" = "exec sh $HOME/.config/toggle_gammastep.sh";
   "${sup}+Return" = "exec ${terminal}";
   "${sup}+Shift+b" = ''exec ${terminal} -d ${notebookDir} ${execWithShell} "nvim ${notebookDir}/bored.md"'';
   "${sup}+Shift+m" = "exec ${media}";
   "${sup}+Shift+n" = ''exec ${terminal} -d ${notebookDir} ${execWithShell} "ranger ${notebookDir}"'';
-  "${sup}+a" = "exec ${config.wayland.windowManager.sway.menu}";
+  "${sup}+a" = "exec ${config.wayland.windowManager.sway.config.menu}";
   "${sup}+c" = "exec ${terminal} ${execWithShell} qalc";
   "${sup}+b" = "exec ${music}";
   "${sup}+e" = "exec ${terminal} ${execWithShell} ranger";
@@ -94,7 +93,7 @@ in lib.mkOptionDefault {
   "${sup}+w" = "exec ${browser}";
   
   # lock
-  "${sup}+Escape" = "exec ${lock}";
+  "${sup}+Escape" = "exec ${lockCmd}";
   
   # notifications
   "${sup}+Minus" = "exec makoctl dismiss";
@@ -105,19 +104,19 @@ in lib.mkOptionDefault {
   "${sup}+s" = "floating toggle; border normal 6";
   
   # floating video mode
-  "${sup}+i" = "fullscreen disable,\
-  floating enable,\
-  sticky enable,\
-  border pixel 6,\
-  resize set 356 200,\
-  move position 1564 px 0 px,\
+  "${sup}+i" = "fullscreen disable,\\
+  floating enable,\\
+  sticky enable,\\
+  border pixel 6,\\
+  resize set 356 200,\\
+  move position 1564 px 0 px,\\
   inhibit_idle open";
-  "${sup}+Shift+i" = "fullscreen disable,\
-  floating enable,\
-  sticky enable,\
-  border pixel 6,\
-  resize set 711 400,\
-  move position 1209 px 0 px,\
+  "${sup}+Shift+i" = "fullscreen disable,\\
+  floating enable,\\
+  sticky enable,\\
+  border pixel 6,\\
+  resize set 711 400,\\
+  move position 1209 px 0 px,\\
   inhibit_idle open";
   
   # switch to workspace
@@ -161,7 +160,7 @@ in lib.mkOptionDefault {
   "${sup}+Shift+End" = "exec ~/.config/sway/prompt_clock_out.fish ${bemenuOpts}";
   
   # exit sway
-  "${sup}+Shift+e" = ''exec "pw-play \$HOME/.nix-profile/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"'';
+  "${sup}+Shift+e" = ''exec "pw-play $HOME/.nix-profile/share/sounds/musicaflight/stereo/Goodbye.oga; swaymsg exit"'';
   
   # not to be removed until i learn
   "Control+Escape" = ''exec notify-send "Silly goose" "You replaced Ctrl+Esc with Super+Minus, remember?"'';
