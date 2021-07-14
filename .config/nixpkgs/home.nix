@@ -1,8 +1,7 @@
-# vim: ts=2 sw=2 expandtab
 { config, pkgs, ... }:
 
-let 
-  colors = import ./colors.nix; 
+let
+  colors = import ./mod/colors.nix;
 in {
   nixpkgs = {
     config = {
@@ -182,7 +181,7 @@ in {
 
     fish = {
       enable = true;
-      shellInit = builtins.readFile ./fish/init.fish;
+      shellInit = builtins.readFile ./files/fish/init.fish;
     };
 
     git = {
@@ -369,36 +368,7 @@ in {
     };
   };
 
-  # wayland.windowManager.sway = {
-  #   enable = true;
-  #   config = {
-  #     floating = {
-        
-  #     };
-  #   };
-  #   extraConfig = builtins.readFile ./sway/config;
-  #   extraSessionCommands = ''
-  #     export CLUTTER_BACKEND=wayland
-  #     export ECORE_EVAS_ENGINE=wayland-egl
-  #     export ELM_ENGINE=wayland_egl
-  #     export MOZ_ENABLE_WAYLAND=1
-  #     export NO_AT_BRIDGE=1
-  #     export QT_QPA_PLATFORM=wayland-egl
-  #     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-  #     export SDL_VIDEODRIVER=wayland
-  #     export _JAVA_AWT_WM_NONREPARENTING=1
-  #   '';
-  #   terminal = "kitty";
-  #   window = {
-  #     titlebar = true;
-  #     hideEdgeBorders = "smart";
-  #     border = 6;
-  #   };
-  #   workspaceAutoBackAndForth = true;
-  #   wrapperFeatures = {
-  #     gtk = true;
-  #   };
-  # };
+  wayland.windowManager.sway = import ./mod/sway.nix;
 
   xdg.enable = true;
 
@@ -410,3 +380,5 @@ in {
     };
   };
 }
+
+# vim: ts=2 sw=2 expandtab
