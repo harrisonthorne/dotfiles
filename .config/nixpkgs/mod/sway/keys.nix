@@ -1,10 +1,11 @@
 { config, lib, sup, alt, bemenuOpts, lockCmd, ... }:
 
 let
-  execWithShell = "-e ${shell} -i -p";
   notebookDir = "$HOME/notebook/";
   shell = "fish";
   terminal = config.wayland.windowManager.sway.config.terminal;
+
+  execWithShell = "${shell} -i -c";
 
   # apps
   browser = "firefox";

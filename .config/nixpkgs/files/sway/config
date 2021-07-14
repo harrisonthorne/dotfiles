@@ -2,33 +2,12 @@ set {
     $mod Mod4
     $alt Mod1
 
-    $dpmsoff "swaymsg 'output * dpms off'"
-    $dpmson "swaymsg 'output * dpms on'"
-    $gnome-desktop-schema org.gnome.desktop.interface
-    $gnome-sound-schema org.gnome.desktop.sound
-    $lockWarningCmd "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'"
-    $notebook_dir $HOME/notebook
-    $sans Inter
     $volume_down "$HOME/.nix-profile/sounds/musicaflight/stereo/VolumeDown.oga"
     $volume_up "$HOME/.nix-profile/share/sounds/musicaflight/stereo/Volume.oga"
-    $bemenu_opts -H 32 --fn $sans 12 --tb '#0B0907' --tf '#cbc4a3' --fb '#0B0907' --ff '#f9fdff' --nb '#0B0907' --nf '#cbc4a3' --hb '#cbc4a3' --hf '#0B0907' --sb '#cbc4a3' --sf '#f9fdff' --scrollbar autohide -f -m all
 
     # apps
-    $browser firefox
-    $music spotify
-    $email evolution
-    $media "kodi --windowing=x11"
     $screenshot $HOME/.config/sway/screenshot.fish
-    $terminal kitty
-    $shell fish
 
-    # launcher
-    $menu exec bemenu-run -p "Run what?" $bemenu_opts
-
-    $exec_with_shell -e $shell -i -c
-}
-
-set {
     # define names for default workspaces for which we configure key bindings later
     # on. we use variables to avoid repeating the names in multiple places.
     $ws1 1
@@ -41,19 +20,9 @@ set {
     $ws8 8
     $ws9 9
     $ws10 X
-
-    # custom colors
-    $active       #cbc4a3e5
-    $white        #f9fdff
-    $silver       #d9dde3
-    $black        #0B0907e5
-    $gray         #2a2219e5
-    $warning      #ffaa00e5
-    $transparent  #00000000
 }
 
 # some options
-default_border normal 6
 default_orientation auto
 floating_maximum_size 1856 x 1016
 floating_minimum_size -1 x -1

@@ -22,10 +22,12 @@ let
   # other colors
   active = "#${colors.active}e5";
   warning = "#ffaa00e5";
-  transparent = "#00000000";
 
   bemenuOpts = ''-H 32 --fn ${fontText} --tb '${black}' --tf '${active}' --fb '${black}' --ff '${white}' --nb '${black}' --nf '${active}' --hb '${active}' --hf '${black}' --sb '${active}' --sf '${white}' --scrollbar autohide -f -m all'';
   lockCmd = "$HOME/.config/sway/lock.sh";
+
+  dpmsOff = "swaymsg 'output * dpms off'";
+  dpmsOn = "swaymsg 'output * dpms on'";
 in {
   enable = true;
   config = {
@@ -135,7 +137,7 @@ in {
       { command = ''brillo -I''; }
       { command = ''mako''; }
       { command = ''muse-status-daemon''; }
-      { command = ''swayidle -w timeout 270 ${lockWarningCmd} timeout 300 ${lockCmd} timeout 315 $dpmsoff resume $dpmson before-sleep ${lockCmd}''; }
+      { command = ''swayidle -w timeout 270 ${lockWarningCmd} timeout 300 ${lockCmd} timeout 315 ${dpmsOff} resume ${dpmsOn} before-sleep ${lockCmd}''; }
       { command = ''syncthing --no-browser''; }
       { command = ''xhost si:localuser:root''; }
       { command = ''xrdb -load ~/.Xresources''; }
