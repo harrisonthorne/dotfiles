@@ -135,10 +135,8 @@ in {
       { command = ''/run/current-system/sw/libexec/xdg-desktop-portal-wlr''; }
       { command = ''/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1''; }
       { command = ''brillo -I''; }
-      { command = ''mako''; }
       { command = ''muse-status-daemon''; }
       { command = ''swayidle -w timeout 270 ${lockWarningCmd} timeout 300 ${lockCmd} timeout 315 ${dpmsOff} resume ${dpmsOn} before-sleep ${lockCmd}''; }
-      { command = ''syncthing --no-browser''; }
       { command = ''xhost si:localuser:root''; }
       { command = ''xrdb -load ~/.Xresources''; }
 
