@@ -51,6 +51,7 @@ in
       docker-compose
       gcc
       nodejs
+      nodePackages.npm
       python3
       rustup
       tree-sitter
