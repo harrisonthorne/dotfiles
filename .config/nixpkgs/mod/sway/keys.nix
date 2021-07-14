@@ -12,6 +12,11 @@ let
   music = "${terminal} ${execWithShell} spt";
   email = "evolution";
   media = "kodi --windowing=x11";
+
+  # define names for default workspaces for which we configure key bindings later
+  # on. we use variables to avoid repeating the names in multiple places.
+  workspaceNames = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "X" ];
+  workspace = builtins.elemAt workspaceNames;
 in {
   # power controls
   "${sup}+Control+${alt}+p" = "exec systemctl poweroff";
@@ -121,28 +126,28 @@ in {
   inhibit_idle open";
   
   # switch to workspace
-  "${sup}+1" = "workspace $ws1";
-  "${sup}+2" = "workspace $ws2";
-  "${sup}+3" = "workspace $ws3";
-  "${sup}+4" = "workspace $ws4";
-  "${sup}+5" = "workspace $ws5";
-  "${sup}+6" = "workspace $ws6";
-  "${sup}+7" = "workspace $ws7";
-  "${sup}+8" = "workspace $ws8";
-  "${sup}+9" = "workspace $ws9";
-  "${sup}+0" = "workspace $ws10";
+  "${sup}+1" = "workspace ${workspace 0}";
+  "${sup}+2" = "workspace ${workspace 1}";
+  "${sup}+3" = "workspace ${workspace 2}";
+  "${sup}+4" = "workspace ${workspace 3}";
+  "${sup}+5" = "workspace ${workspace 4}";
+  "${sup}+6" = "workspace ${workspace 5}";
+  "${sup}+7" = "workspace ${workspace 6}";
+  "${sup}+8" = "workspace ${workspace 7}";
+  "${sup}+9" = "workspace ${workspace 8}";
+  "${sup}+0" = "workspace ${workspace 9}";
   
   # move focused container to workspace
-  "${sup}+Shift+1" = "move container to workspace $ws1";
-  "${sup}+Shift+2" = "move container to workspace $ws2";
-  "${sup}+Shift+3" = "move container to workspace $ws3";
-  "${sup}+Shift+4" = "move container to workspace $ws4";
-  "${sup}+Shift+5" = "move container to workspace $ws5";
-  "${sup}+Shift+6" = "move container to workspace $ws6";
-  "${sup}+Shift+7" = "move container to workspace $ws7";
-  "${sup}+Shift+8" = "move container to workspace $ws8";
-  "${sup}+Shift+9" = "move container to workspace $ws9";
-  "${sup}+Shift+0" = "move container to workspace $ws10";
+  "${sup}+Shift+1" = "move container to workspace ${workspace 0}";
+  "${sup}+Shift+2" = "move container to workspace ${workspace 1}";
+  "${sup}+Shift+3" = "move container to workspace ${workspace 2}";
+  "${sup}+Shift+4" = "move container to workspace ${workspace 3}";
+  "${sup}+Shift+5" = "move container to workspace ${workspace 4}";
+  "${sup}+Shift+6" = "move container to workspace ${workspace 5}";
+  "${sup}+Shift+7" = "move container to workspace ${workspace 6}";
+  "${sup}+Shift+8" = "move container to workspace ${workspace 7}";
+  "${sup}+Shift+9" = "move container to workspace ${workspace 8}";
+  "${sup}+Shift+0" = "move container to workspace ${workspace 9}";
   
   # scratchpad (minimize)
   "${sup}+v" = "move scratchpad";

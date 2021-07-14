@@ -7,19 +7,6 @@ set {
 
     # apps
     $screenshot $HOME/.config/sway/screenshot.fish
-
-    # define names for default workspaces for which we configure key bindings later
-    # on. we use variables to avoid repeating the names in multiple places.
-    $ws1 1
-    $ws2 2
-    $ws3 3
-    $ws4 4
-    $ws5 5
-    $ws6 6
-    $ws7 7
-    $ws8 8
-    $ws9 9
-    $ws10 X
 }
 
 # some options
