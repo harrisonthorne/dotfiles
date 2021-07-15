@@ -1,4 +1,4 @@
-{ config, lib, colors, ... }:
+{ config, lib, colors, bemenuOpts, ... }:
 
 let
   sup = "Mod4";
@@ -9,7 +9,6 @@ let
     style = "Regular";
     size = 12.0;
   };
-  fontText = "Inter 12";
 
   # background colors
   black = "#${colors.palette.black}e5";
@@ -23,7 +22,6 @@ let
   active = "#${colors.palette.active}e5";
   warning = "#${colors.palette.warning}e5";
 
-  bemenuOpts = ''-H 32 --fn ${fontText} --tb '${black}' --tf '${active}' --fb '${black}' --ff '${white}' --nb '${black}' --nf '${active}' --hb '${active}' --hf '${black}' --sb '${active}' --sf '${white}' --scrollbar autohide -f -m all'';
   lockCmd = "$HOME/.config/sway/lock.sh";
 
   dpmsOff = "swaymsg 'output * dpms off'";

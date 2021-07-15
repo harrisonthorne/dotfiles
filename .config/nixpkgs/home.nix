@@ -2,6 +2,14 @@
 
 let
   colors = import ./mod/colors.nix;
+
+  fontText = "Inter 12";
+
+  # bemenu
+  black = "#${colors.color00}e5";
+  white = "#${colors.color15}";
+  active = "#${colors.palette.active}e5";
+  bemenuOpts = ''-H 32 --fn ${fontText} --tb '${black}' --tf '${active}' --fb '${black}' --ff '${white}' --nb '${black}' --nf '${active}' --hb '${active}' --hf '${black}' --sb '${active}' --sf '${white}' --scrollbar autohide -f -m all'';
 in
 {
   nixpkgs = {
@@ -171,9 +179,9 @@ in
     platformTheme = "gtk";
   };
 
-  services = import ./mod/services.nix { inherit pkgs; };
+  services = import ./mod/services.nix { inherit pkgs bemenuOpts colors; };
 
-  wayland.windowManager.sway = import ./mod/sway/mod.nix { inherit config lib colors; };
+  wayland.windowManager.sway = import ./mod/sway/mod.nix { inherit config lib colors bemenuOpts; };
 
   xdg.enable = true;
 
