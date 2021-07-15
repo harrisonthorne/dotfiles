@@ -36,20 +36,21 @@
     enable = true;
   };
 
-  spotifyd = {
-    enable = true;
-    settings = {
-      global = {
-        username_cmd = "pass spotify_username";
-        password_cmd = "pass spotify";
-        device_name = "spotifyd_ponytower";
-        device_type = "computer";
-        use_keyring = true;
-        use_mpris = true;
-        backend = "pulseaudio";
+  spotifyd =
+    with (import ./spotify-info.nix); {
+      enable = true;
+      settings = {
+        global = {
+          username = username;
+          password_cmd = "pass spotify";
+          device_name = deviceName;
+          device_type = "computer";
+          use_keyring = true;
+          use_mpris = true;
+          backend = "pulseaudio";
+        };
       };
     };
-  };
 
   syncthing.enable = true;
 
