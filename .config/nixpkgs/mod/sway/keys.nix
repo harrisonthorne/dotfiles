@@ -150,8 +150,8 @@ in
   "${sup}+Shift+v" = "scratchpad show";
 
   # reload with same or random wallpaper
-  "${sup}+Shift+r" = "exec wpg -s $(wpg -c)";
-  "${sup}+Control+w" = "exec wpg -m";
+  "${sup}+Shift+r" = "reload";
+  "${sup}+Control+w" = "exec wpg -m, reload";
 
   # record clock times (easy clock-in or clock-out :))
   "${sup}+Delete" = "exec ${notebookDir}/record_time.fish";
