@@ -12,16 +12,16 @@ let
   fontText = "Inter 12";
 
   # background colors
-  black = "#${colors.color00}e5";
-  gray = "#${colors.color08}e5";
+  black = "#${colors.palette.black}e5";
+  gray = "#${colors.palette.gray}e5";
 
   # foreground colors
-  white = "#${colors.color15}";
-  silver = "#${colors.color07}";
+  white = "#${colors.palette.white}";
+  silver = "#${colors.palette.silver}";
 
   # other colors
-  active = "#${colors.active}e5";
-  warning = "#ffaa00e5";
+  active = "#${colors.palette.active}e5";
+  warning = "#${colors.palette.warning}e5";
 
   bemenuOpts = ''-H 32 --fn ${fontText} --tb '${black}' --tf '${active}' --fb '${black}' --ff '${white}' --nb '${black}' --nf '${active}' --hb '${active}' --hf '${black}' --sb '${active}' --sf '${white}' --scrollbar autohide -f -m all'';
   lockCmd = "$HOME/.config/sway/lock.sh";
@@ -46,7 +46,7 @@ in
         height 32
         modifier "${sup}"
       '';
-      statusCommand = "muse-status sub a -m i3 -p ${colors.color15} -s ${colors.active}";
+      statusCommand = "muse-status sub a -m i3 -p ${colors.palette.white} -s ${colors.palette.active}";
       trayOutput = "none";
       workspaceButtons = true;
       colors = {
@@ -137,8 +137,8 @@ in
     startup =
       let
         wobBorder = "#e5${colors.color08}";
-        wobBar = "#ff${colors.active}";
-        wobBackground = "#e5${colors.color00}";
+        wobBar = "#ff${colors.palette.active}";
+        wobBackground = "#e5${colors.palette.black}";
         lockWarningCmd = "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'";
       in
       [

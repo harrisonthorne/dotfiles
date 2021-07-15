@@ -1,7 +1,4 @@
 rec {
-  active = color14;
-  inactive = color10;
-
   # monochrome colors
 
   # color00 = "000000";
@@ -40,4 +37,20 @@ rec {
   color14 = "93a1a1";
   color07 = "eee8d5";
   color15 = "fdf6e3";
+
+  palette = {
+    # background colors
+    black = color00;
+    gray = color08;
+
+    # foreground colors
+    white = color15;
+    silver = color07;
+
+    # other colors
+    active = color14;
+    inactive = color10;
+    warning = "ffaa00";
+    alert = "ff0000";
+  };
 }
