@@ -1,4 +1,4 @@
-{ config, lib, sup, alt, bemenuOpts, lockCmd, ... }:
+{ config, lib, sup, alt, bemenuOpts, lockCmd, workspace, ... }:
 
 let
   notebookDir = "$HOME/notebook/";
@@ -12,11 +12,6 @@ let
   music = "${terminal} ${execWithShell} spt";
   email = "evolution";
   media = "kodi --windowing=x11";
-
-  # define names for default workspaces for which we configure key bindings later
-  # on. we use variables to avoid repeating the names in multiple places.
-  workspaceNames = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "X" ];
-  workspace = builtins.elemAt workspaceNames;
 in
 {
   # power controls

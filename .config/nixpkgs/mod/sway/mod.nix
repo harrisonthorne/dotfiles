@@ -28,6 +28,11 @@ let
 
   dpmsOff = "swaymsg 'output * dpms off'";
   dpmsOn = "swaymsg 'output * dpms on'";
+
+  # define names for default workspaces for which we configure key bindings later
+  # on. we use variables to avoid repeating the names in multiple places.
+  workspaceNames = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "X" ];
+  workspace = builtins.elemAt workspaceNames;
 in
 {
   enable = true;
@@ -64,6 +69,8 @@ in
       urgent = { border = warning; background = warning; text = black; indicator = active; childBorder = warning; };
     };
 
+    defaultWorkspace = "workspace ${workspace 0}";
+
     floating = {
       border = 6;
       titlebar = true;
@@ -97,7 +104,7 @@ in
       };
     };
 
-    keybindings = import ./keys.nix { inherit config lib sup alt bemenuOpts lockCmd; };
+    keybindings = import ./keys.nix { inherit config lib sup alt bemenuOpts lockCmd workspace; };
 
     menu = "bemenu-run -p 'Run what?' ${bemenuOpts}";
 
