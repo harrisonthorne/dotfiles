@@ -39,6 +39,10 @@
   spotifyd =
     with (import ./spotify-info.nix); {
       enable = true;
+      package = pkgs.spotifyd.override {
+        withPulseAudio = true;
+        withMpris = true;
+      };
       settings = {
         global = {
           username = username;

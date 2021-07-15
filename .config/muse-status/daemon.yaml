@@ -1,0 +1,45 @@
+---
+daemon_addr: "localhost:2899"
+primary_order:
+  - date
+  - weather
+  - mpris
+secondary_order:
+  - brightness
+  - volume
+  - network
+  - battery
+tertiary_order: []
+brightness_id: amdgpu_bl0
+network_interface_name: wlan0
+battery_config:
+  battery_id: BAT0
+  warning_level:
+    percentage: 0.30
+  alarm_level:
+    percentage: 0.15
+weather_config:
+  openweathermap_key: d179cc80ed41e8080f9e86356b604ee3
+  ipstack_key: 9c237911bdacce2e8c9a021d9b4c1317
+  weather_icons:
+    04d: 󰖐
+    09d: 󰖗
+    01n: 󰖔
+    10n: 󰖖
+    02n: 󰼱
+    03d: 󰖐
+    11n: 󰖓
+    13n: 󰖘
+    50n: 󰖑
+    03n: 󰖐
+    01d: 󰖙
+    04n: 󰖐
+    02d: 󰖕
+    09n: 󰖗
+    50d: 󰖑
+    10d: 󰖖
+    11d: 󰖓
+    13d: 󰖘
+  default_icon: 󰖐
+  update_interval_minutes: 20
+  units: imperial
