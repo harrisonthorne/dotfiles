@@ -193,6 +193,7 @@ in
     export XDG_SESSION_TYPE=wayland 
   '';
   wrapperFeatures = {
+    base = true;
     gtk = true;
   };
 }
