@@ -98,9 +98,9 @@ in
   "${sup}+Escape" = "exec ${lockCmd}";
 
   # notifications
-  "${sup}+Minus" = "exec makoctl dismiss";
-  "${sup}+Equal" = "exec makoctl restore";
-  "${sup}+Space" = ''exec makoctl menu bemenu -p "Do what?" ${bemenuOpts}'';
+  "${sup}+Minus" = "exec dunstctl history-pop";
+  "${sup}+Equal" = "exec dunstctl restore";
+  "${sup}+Space" = "exec dunstctl context";
 
   # toggle floating. also set border in case we're coming from floating video mode
   "${sup}+s" = "floating toggle; border normal 6";

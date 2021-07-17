@@ -26,6 +26,7 @@
         icon_position = "left";
         layer = "overlay";
         markup = "full";
+        max_icon_size = 48;
         mouse_left = "do_action";
         mouse_middle = "close_current";
         mouse_right = "do_action";
