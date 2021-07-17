@@ -17,7 +17,7 @@
 
   fish = {
     enable = true;
-    shellInit = builtins.readFile ../files/fish/init.fish;
+    shellInit = builtins.readFile ./files/fish/init.fish;
   };
 
   git = {

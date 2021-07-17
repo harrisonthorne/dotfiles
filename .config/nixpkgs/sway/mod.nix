@@ -176,7 +176,7 @@ in
 
     workspaceAutoBackAndForth = true;
   };
-  extraConfig = builtins.readFile ../../files/sway/config;
+  extraConfig = builtins.readFile ./files/config;
   extraSessionCommands = ''
     export CLUTTER_BACKEND=wayland
     export ECORE_EVAS_ENGINE=wayland-egl

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  colors = (import ./mod/colors.nix).solarizedDark;
+  colors = (import ./colors.nix).solarizedDark;
 
   fontText = "Inter 12";
 
@@ -172,16 +172,16 @@ in
 
   manual.html.enable = true;
 
-  programs = import ./mod/programs.nix { inherit pkgs colors; };
+  programs = import ./programs.nix { inherit pkgs colors; };
 
   qt = {
     enable = true;
     platformTheme = "gtk";
   };
 
-  services = import ./mod/services.nix { inherit pkgs bemenuOpts colors; };
+  services = import ./services.nix { inherit pkgs bemenuOpts colors; };
 
-  wayland.windowManager.sway = import ./mod/sway/mod.nix { inherit config lib colors bemenuOpts; };
+  wayland.windowManager.sway = import ./sway/mod.nix { inherit config lib colors bemenuOpts; };
 
   xdg.enable = true;
 
