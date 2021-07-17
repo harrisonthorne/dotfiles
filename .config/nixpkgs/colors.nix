@@ -66,9 +66,9 @@
       gray = base01;
 
       # foreground bases
-      foreground = base05;
-      white = base05;
-      silver = base04;
+      foreground = base06;
+      white = base06;
+      silver = base05;
 
       # other bases
       primary = base14;
