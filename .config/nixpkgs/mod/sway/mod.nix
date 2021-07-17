@@ -11,15 +11,15 @@ let
   };
 
   # background colors
-  black = "#${colors.palette.black}e5";
+  black = "#${colors.palette.background}e5";
   gray = "#${colors.palette.gray}e5";
 
   # foreground colors
-  white = "#${colors.palette.white}";
+  white = "#${colors.palette.foreground}";
   silver = "#${colors.palette.silver}";
 
   # other colors
-  active = "#${colors.palette.active}e5";
+  primary = "#${colors.palette.primary}e5";
   warning = "#${colors.palette.warning}e5";
 
   lockCmd = "$HOME/.config/sway/lock.sh";
@@ -44,7 +44,7 @@ in
         height 32
         modifier "${sup}"
       '';
-      statusCommand = "muse-status sub a -m i3 -p ${colors.palette.white} -s ${colors.palette.active}";
+      statusCommand = "muse-status sub a -m i3 -p ${colors.palette.white} -s ${colors.palette.primary}";
       trayOutput = "none";
       workspaceButtons = true;
       colors = {
@@ -53,18 +53,18 @@ in
         bindingMode = { background = black; border = black; text = warning; };
         focusedWorkspace = { background = black; border = black; text = white; };
         statusline = white;
-        inactiveWorkspace = { background = black; border = black; text = active; };
-        separator = active;
+        inactiveWorkspace = { background = black; border = black; text = primary; };
+        separator = primary;
         urgentWorkspace = { background = warning; border = warning; text = black; };
       };
     }];
 
     colors = {
       background = black;
-      focused = { border = gray; background = gray; text = white; indicator = active; childBorder = gray; };
+      focused = { border = gray; background = gray; text = white; indicator = primary; childBorder = gray; };
       focusedInactive = { border = black; background = black; text = silver; indicator = black; childBorder = black; };
-      unfocused = { border = black; background = black; text = active; indicator = black; childBorder = black; };
-      urgent = { border = warning; background = warning; text = black; indicator = active; childBorder = warning; };
+      unfocused = { border = black; background = black; text = primary; indicator = black; childBorder = black; };
+      urgent = { border = warning; background = warning; text = black; indicator = primary; childBorder = warning; };
     };
 
     defaultWorkspace = "workspace ${workspace 0}";
@@ -134,8 +134,8 @@ in
     # startup apps
     startup =
       let
-        wobBorder = "#e5${colors.color08}";
-        wobBar = "#ff${colors.palette.active}";
+        wobBorder = "#e5${colors.palette.gray}";
+        wobBar = "#ff${colors.palette.primary}";
         wobBackground = "#e5${colors.palette.black}";
         lockWarningCmd = "notify-send -u low -t 29500 -- 'Are you still there?' 'Your system will lock itself soon.'";
       in

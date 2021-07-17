@@ -41,7 +41,7 @@
       };
       "urgency_low" = {
         background = "#${colors.palette.black}e5";
-        foreground = "#${colors.palette.active}";
+        foreground = "#${colors.palette.primary}";
       };
       "urgency_normal" = {
         background = "#${colors.palette.black}e5";

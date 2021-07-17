@@ -1,15 +1,15 @@
 { config, lib, pkgs, ... }:
 
 let
-  colors = import ./mod/colors.nix;
+  colors = (import ./mod/colors.nix).solarizedDark;
 
   fontText = "Inter 12";
 
   # bemenu
-  black = "#${colors.color00}e5";
-  white = "#${colors.color15}";
-  active = "#${colors.palette.active}e5";
-  bemenuOpts = ''-H 32 --fn ${fontText} --tb '${black}' --tf '${active}' --fb '${black}' --ff '${white}' --nb '${black}' --nf '${active}' --hb '${active}' --hf '${black}' --sb '${active}' --sf '${white}' --scrollbar autohide -f -m all'';
+  black = "#${colors.palette.background}e5";
+  white = "#${colors.palette.foreground}";
+  primary = "#${colors.palette.primary}e5";
+  bemenuOpts = ''-H 32 --fn ${fontText} --tb '${black}' --tf '${primary}' --fb '${black}' --ff '${white}' --nb '${black}' --nf '${primary}' --hb '${primary}' --hf '${black}' --sb '${primary}' --sf '${white}' --scrollbar autohide -f -m all'';
 in
 {
   nixpkgs = {

@@ -76,25 +76,25 @@
   kitty = {
     enable = true;
     extraConfig = ''
-      foreground #${colors.color15}
-      background #${colors.color00}
+      foreground #${colors.palette.foreground}
+      background #${colors.palette.background}
 
-      color0 #${colors.color00}
-      color1 #${colors.color01}
-      color2 #${colors.color02}
-      color3 #${colors.color03}
-      color4 #${colors.color04}
-      color5 #${colors.color05}
-      color6 #${colors.color06}
-      color7 #${colors.color07}
-      color8 #${colors.color08}
-      color9 #${colors.color09}
-      color10 #${colors.color10}
-      color11 #${colors.color11}
-      color12 #${colors.color12}
-      color13 #${colors.color13}
-      color14 #${colors.color14}
-      color15 #${colors.color15}
+      color0 #${colors.base00}
+      color1 #${colors.base01}
+      color2 #${colors.base02}
+      color3 #${colors.base03}
+      color4 #${colors.base04}
+      color5 #${colors.base05}
+      color6 #${colors.base06}
+      color7 #${colors.base07}
+      color8 #${colors.base08}
+      color9 #${colors.base09}
+      color10 #${colors.base10}
+      color11 #${colors.base11}
+      color12 #${colors.base12}
+      color13 #${colors.base13}
+      color14 #${colors.base14}
+      color15 #${colors.base15}
     '';
     font = with pkgs; {
       package = iosevka;
