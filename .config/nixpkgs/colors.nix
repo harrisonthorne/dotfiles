@@ -71,7 +71,7 @@
       silver = base05;
 
       # other bases
-      primary = base14;
+      primary = base12;
       warning = "ffaa00";
       alert = "ff0000";
     };
