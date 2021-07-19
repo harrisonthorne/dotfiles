@@ -16,12 +16,6 @@
     };
   };
 
-  keybase.enable = true;
-
-  kbfs = {
-    enable = true;
-  };
-
   spotifyd = import ./spotifyd/mod.nix { inherit pkgs; };
 
   syncthing.enable = true;
