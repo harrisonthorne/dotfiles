@@ -75,26 +75,40 @@
 
   kitty = {
     enable = true;
+
+    # use base16 colors
     extraConfig = ''
       foreground #${colors.palette.foreground}
       background #${colors.palette.background}
 
+      selection_background #${colors.base05}
+      selection_foreground #${colors.base00}
+      url_color #${colors.base04}
+      cursor #${colors.base05}
+      active_border_color #${colors.base03}
+      inactive_border_color #${colors.base01}
+      active_tab_background #${colors.base00}
+      active_tab_foreground #${colors.base05}
+      inactive_tab_background #${colors.base01}
+      inactive_tab_foreground #${colors.base04}
+      tab_bar_background #${colors.base01}
+
       color0 #${colors.base00}
-      color1 #${colors.base01}
-      color2 #${colors.base02}
-      color3 #${colors.base03}
-      color4 #${colors.base04}
-      color5 #${colors.base05}
-      color6 #${colors.base06}
-      color7 #${colors.base07}
-      color8 #${colors.base08}
+      color1 #${colors.base08}
+      color2 #${colors.base0B}
+      color3 #${colors.base0A}
+      color4 #${colors.base0D}
+      color5 #${colors.base0E}
+      color6 #${colors.base0C}
+      color7 #${colors.base04}
+      color8 #${colors.base01}
       color9 #${colors.base09}
-      color10 #${colors.base10}
-      color11 #${colors.base11}
-      color12 #${colors.base12}
-      color13 #${colors.base13}
-      color14 #${colors.base14}
-      color15 #${colors.base15}
+      color10 #${colors.base02}
+      color11 #${colors.base03}
+      color12 #${colors.base06}
+      color13 #${colors.base07}
+      color14 #${colors.base0F}
+      color15 #${colors.base05}
     '';
     font = with pkgs; {
       package = iosevka;

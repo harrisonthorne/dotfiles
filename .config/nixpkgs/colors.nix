@@ -13,14 +13,14 @@
     base05 = "666666";
     base06 = "777777";
     base09 = "888888";
-    base10 = "999999";
-    base11 = "aaaaaa";
-    base12 = "bbbbbb";
-    base13 = "cccccc";
-    base14 = "dddddd";
+    base0A = "999999";
+    base0B = "aaaaaa";
+    base0C = "bbbbbb";
+    base0D = "cccccc";
+    base0E = "dddddd";
 
     base07 = "eeeeee";
-    base15 = "ffffff";
+    base0F = "ffffff";
 
     palette = {
       # background bases
@@ -34,7 +34,7 @@
       silver = base04;
 
       # other bases
-      primary = base14;
+      primary = base0D;
       warning = "ffaa00";
       alert = "ff0000";
     };
@@ -52,12 +52,12 @@
     base07 = "fdf6e3";
     base08 = "dc322f";
     base09 = "cb4b16";
-    base10 = "b58900";
-    base11 = "859900";
-    base12 = "2aa198";
-    base13 = "268bd2";
-    base14 = "6c71c4";
-    base15 = "d33682";
+    base0A = "b58900";
+    base0B = "859900";
+    base0C = "2aa198";
+    base0D = "268bd2";
+    base0E = "6c71c4";
+    base0F = "d33682";
 
     palette = {
       # background bases
@@ -71,7 +71,7 @@
       silver = base05;
 
       # other bases
-      primary = base12;
+      primary = base0C;
       warning = "ffaa00";
       alert = "ff0000";
     };
