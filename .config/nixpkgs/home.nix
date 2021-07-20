@@ -76,6 +76,7 @@ in
       imv
       keepassxc
       kodi
+      ledger-live-desktop
       mpv-with-scripts
       pavucontrol
       signal-desktop
